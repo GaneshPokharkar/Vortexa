@@ -99,7 +99,8 @@ function Choice({ name, value, checked, onChange, children }: {
   );
 }
 
-function QuestionForm({ item, onResult }: { item: PublicItem; onResult: (fb: Feedback) => void }) {
+function QuestionForm({ item: anyItem, onResult }: { item: PublicItem; onResult: (fb: Feedback) => void }) {
+  const item = anyItem as Extract<PublicItem, { kind: "mcq" }>; // old screen: mcq only
   const { learner } = useLearner();
   const [option, setOption] = useState<string | null>(null);
   const [reason, setReason] = useState<string | null>(null); // "r1".."r3" or "own"
@@ -395,7 +396,7 @@ function WhyDrawer({ responseId, open, onClose }: { responseId: number; open: bo
                   <span className="mt-1 block">{why.rule_text}</span>
                 </Row>
                 <Row term="The answer you chose">
-                  {Object.entries(why.distractor_map_entry).map(([opt, code]) => (
+                  {Object.entries(why.distractor_map_entry ?? {}).map(([opt, code]) => (
                     <span key={opt}>
                       Option <span className="num">{opt}</span> is linked to <Code code={code} />
                     </span>

@@ -48,6 +48,12 @@ export const CATEGORY: Record<Category, { label: string; line: string; tone: Ton
     line: "Your answer and your reason don't fit together yet. One short question will sort it out.",
     tone: "teal",
   },
+  PARTIAL: {
+    label: "Partly correct",
+    line: "Your answer looks right, but we can't see your reasoning yet. Tell us why.",
+    tone: "teal",
+  },
+  OFF_TOPIC: { label: "Off-topic", line: "That answer doesn't seem to be about this question.", tone: "muted" },
   UNDIAGNOSED: {
     label: "Couldn't tell",
     line: "Your reasoning is still unclear, so this answer doesn't count either way.",

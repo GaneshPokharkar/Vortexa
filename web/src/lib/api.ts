@@ -1,68 +1,70 @@
-// Thin typed client. Every call goes through the Vite proxy at /api.
+// LearnLoop AI API contract. Owned jointly: backend changes and this file change in the same PR.
+// Every call goes through the Vite proxy at /api (FastAPI on :8000). Status: ✅ live, 🛠 being built on ganesh/learnloop-core.
 
-export type Concept = { concept_id: string; name: string; zone: Zone; summary: string };
-export type Zone = "Oscillations" | "Waves" | "Rays" | "Light as a wave";
+/* ---------------- shared ---------------- */
 
-export type PublicItem = {
-  item_id: string;
-  concept: string;
-  stem: string;
-  options: Record<"A" | "B" | "C" | "D", string>;
-  reasons: Record<"r1" | "r2" | "r3", string>;
-};
+export type TopicId = "SHM" | "OPTICS";
+export type Confidence = "sure" | "unsure";
 
+/** Engine categories (fine-grained). Screens should mostly show `group` (A–F) instead. */
 export type Category =
-  | "SCIENTIFIC" | "FRAGILE" | "FALSE_POSITIVE" | "MISCONCEPTION" | "LACK_OF_KNOWLEDGE"
-  | "SLIP" | "COMPUTATIONAL_SLIP" | "AMBIGUOUS" | "UNDIAGNOSED";
+  | "SCIENTIFIC" | "FRAGILE" | "PARTIAL" | "FALSE_POSITIVE" | "MISCONCEPTION" | "LACK_OF_KNOWLEDGE"
+  | "SLIP" | "COMPUTATIONAL_SLIP" | "AMBIGUOUS" | "OFF_TOPIC" | "UNDIAGNOSED";
 
-export type Feedback = {
-  response_id: number;
-  category: Category;
-  rule_fired: string;
-  rule_text: string;
-  misconception_code: string | null;
-  misconception_status: "SUSPECTED" | "CONFIRMED" | null;
-  remediation_card_id: string;
-  followup_item_ids: string[];
-  sibling_scheduled: boolean;
-  needs_clarification: boolean;
-  clarify: { probes: string[]; reasons: Record<string, string>; remaining: number } | null;
-  mastery: { concept: string; p_learned: number };
+/** The six answer groups required by the problem statement. */
+export type Group = "A" | "B" | "C" | "D" | "E" | "F";
+export const GROUP_LABEL: Record<Group, string> = {
+  A: "Correct understanding",
+  B: "Likely misconception",
+  C: "Possible slip",
+  D: "Partly correct",
+  E: "Needs clarification",
+  F: "Off-topic or unsupported",
 };
 
-export type Why = {
-  response_id: number;
-  item_id: string;
-  category: Category;
-  rule_fired: string;
-  rule_text: string;
-  distractor_map_entry: Record<string, string>;
-  reason: { reason_id: string; maps_to: string } | null;
-  reason_text: string | null;
-  classifier_confidence: number | null;
-  clarifications: number;
-  misconception_status: string | null;
-};
+/* ---------------- curriculum ---------------- */
 
-export type ConceptMastery = {
+export type Topic = { topic_id: TopicId; title: string; description: string; primary: boolean; concepts: string[] };
+
+export type Concept = {
+  concept_id: string; // "C1".."C5" SHM, "C6","C7" Optics
+  name: string;
+  topic_id: TopicId;
+  subtopic: string;
+  summary: string;
+  learning_objective: string;
+  review_status: "needs_review" | "verified";
+  /** @deprecated old dark-theme screens only; removed when the new screens land. */
+  zone: Zone;
+};
+/** @deprecated old dark-theme screens only. */
+export type Zone = "Oscillations" | "Waves" | "Rays" | "Light as a wave";
+/** @deprecated old screens; use ConceptCard | RemediationCard. */
+export type Card = ConceptCard & RemediationCard;
+
+export type Equation = { expr: string; meaning: string; vars: Record<string, string>; assumptions: string };
+
+export type ConceptCard = {
+  card_id: string; // "<concept>-K"
   concept: string;
-  p_learned: number;
-  attempts: number;
-  distinct_items: number;
-  last_correct: boolean;
-  mastered: boolean;
-  misconceptions: Record<string, "SUSPECTED" | "CONFIRMED">;
-  history: number[];
-};
-
-export type Card = {
-  card_id: string;
-  concept: string;
-  code: string | null;
   statement: string;
+  simple: string; // beginner explanation
+  formal: string; // scientifically formal explanation
+  equations: Equation[];
   analogy: string;
   steps: string[];
   worked_example: string;
+  alternatives: string[]; // used when the first explanation didn't help
+  visual: "shm-oscillator" | "lens-bench" | "refraction" | "";
+  source: string;
+  verify_flags: string[]; // non-empty => show "requires academic review"
+};
+
+export type RemediationCard = {
+  card_id: string; // "<code>-R"
+  concept: string;
+  code: string;
+  statement: string; // the idea that works
   wrong_idea: string;
   why_it_feels_right: string;
   why_wrong: string;
@@ -70,43 +72,267 @@ export type Card = {
   verify_flags: string[];
 };
 
-export class ApiError extends Error {}
+export type ExplainMode = "beginner" | "steps" | "worked" | "analogy" | "visual" | "practice";
+
+export type Lesson = {
+  concept: Concept;
+  card: ConceptCard;
+  misconceptions: { code: string; description: string; remediation_card_id: string }[];
+  doubts: { q: string; a: string }[];
+  /** Adaptive: what to show first for this learner, and why. Never repeats a mode that just failed. */
+  suggested_mode: ExplainMode;
+  mode_reason: string;
+};
+
+/* ---------------- questions & diagnosis ---------------- */
+
+type ItemBase = { item_id: string; concept: string; stem: string; transfer: boolean };
+export type McqItem = ItemBase & {
+  kind: "mcq";
+  options: Record<"A" | "B" | "C" | "D", string>;
+  reasons: Record<"r1" | "r2" | "r3", string>;
+};
+export type ShortItem = ItemBase & { kind: "short" };
+export type PublicItem = McqItem | ShortItem; // never contains answer keys
+
+export type AnswerBody = {
+  learner_id: string;
+  item_id: string;
+  confidence?: Confidence; // required for mcq, optional for short
+  option?: string; // mcq
+  reason_id?: string; // mcq
+  reason_text?: string; // mcq "explain in my own words"
+  answer_text?: string; // short (typed or voice transcript)
+};
+
+export type FollowUp = {
+  kind: "question" | "sibling" | "transfer" | "card" | "clarify";
+  prompt: string; // what the tutor asks/says next
+  item_id: string | null; // load with getItem() when set
+  card_id: string | null;
+};
+
+export type Feedback = {
+  response_id: number;
+  category: Category;
+  group: Group;
+  group_label: string;
+  rule_fired: string;
+  rule_text: string;
+  engine: "rules" | "llm"; // who produced the evidence; rules always make the final call
+  evidence: string[]; // short learner-facing evidence lines
+  confidence: number | null; // heuristic 0–1, NOT a calibrated probability
+  your_answer: string;
+  correct_answer: string | null; // null when the tutor wants the learner to reason first
+  feedback_text: string; // targeted teaching response
+  follow_up: FollowUp | null;
+  misconception_code: string | null;
+  misconception_status: "SUSPECTED" | "CONFIRMED" | null;
+  remediation_card_id: string;
+  followup_item_ids: string[];
+  sibling_scheduled: boolean;
+  needs_clarification: boolean;
+  clarify: { probes: string[]; reasons: Record<string, string>; remaining: number } | null;
+  mastery: { concept: string; p_learned: number; status: MasteryStatus };
+};
+
+export type Why = {
+  response_id: number;
+  item_id: string;
+  category: Category;
+  group: Group;
+  rule_fired: string;
+  rule_text: string;
+  engine: "rules" | "llm";
+  evidence: string[];
+  distractor_map_entry: Record<string, string> | null; // mcq only
+  reason: { reason_id: string; maps_to: string } | null;
+  reason_text: string | null;
+  classifier_confidence: number | null;
+  clarifications: number;
+  misconception_status: string | null;
+};
+
+/* ---------------- mastery ---------------- */
+
+export type MasteryStatus = "not_assessed" | "emerging" | "developing" | "demonstrated";
+export const MASTERY_LABEL: Record<MasteryStatus, string> = {
+  not_assessed: "Not assessed",
+  emerging: "Emerging",
+  developing: "Developing",
+  demonstrated: "Demonstrated understanding",
+};
+
+export type ConceptMastery = {
+  concept: string;
+  status: MasteryStatus;
+  status_reason: string; // plain-language why
+  enough_evidence: boolean; // false => show "Not enough evidence yet"
+  p_learned: number;
+  attempts: number;
+  distinct_items: number;
+  transfer_correct: boolean;
+  last_correct: boolean;
+  mastered: boolean;
+  misconceptions: Record<string, "SUSPECTED" | "CONFIRMED">;
+  history: number[];
+};
+
+export type Attempt = {
+  response_id: number;
+  item_id: string;
+  kind: "mcq" | "short";
+  answer: string;
+  category: Category;
+  group: Group;
+  misconception_code: string | null;
+  confidence: number | null;
+  engine: "rules" | "llm";
+  transfer: boolean;
+  novel: boolean; // first time this learner saw the item
+  counted: boolean; // false for AMBIGUOUS / UNDIAGNOSED / PARTIAL: did not move mastery
+  p_after: number | null;
+  created_at: string;
+};
+
+export type ConceptHistory = ConceptMastery & { reasons: string[]; attempts: Attempt[] };
+
+/* ---------------- assessment & report ---------------- */
+
+export type AssessmentKind = "pre" | "post";
+export type AssessmentSession = {
+  session_id: number;
+  kind: AssessmentKind;
+  items: PublicItem[]; // same fixed set for pre and post
+  answered: string[]; // item_ids already answered (resume support)
+  total: number;
+  completed: boolean;
+};
+export type AssessmentResult = { session_id: number; kind: AssessmentKind; correct: number; total: number; score_percentage: number };
+
+export type Report = {
+  include_demo: boolean;
+  questions: number;
+  learners_started_pre: number;
+  learners_completed_pre: number;
+  learners_completed_both: number; // the matched sample, n
+  pre_mean: number | null; // % over matched learners
+  post_mean: number | null;
+  change_pp: number | null; // percentage points, post − pre
+  per_concept: { concept: string; n: number; pre: number; post: number; change_pp: number }[];
+  missing: { learner: string; reason: string }[]; // anonymised labels
+  limitations: string[];
+};
+
+export type LearnerReport = {
+  pre: AssessmentResult | null;
+  post: AssessmentResult | null;
+  change_pp: number | null;
+  concepts: ConceptMastery[];
+  repeated_misconceptions: { code: string; description: string; count: number; concept: string }[];
+  recent: Attempt[];
+  revision_path: Recommendation[];
+};
+
+/* ---------------- recommendations, doubts, tutor ---------------- */
+
+export type Recommendation = {
+  kind: "misconception" | "revise" | "prerequisite" | "practice" | "improving" | "next";
+  concept: string;
+  title: string;
+  reason: string; // always explain why
+  card_id: string | null;
+  item_id: string | null;
+};
+export type Recommendations = { next_lesson: { concept: string; reason: string } | null; items: Recommendation[] };
+
+export type Doubt = { id: string; concept: string; q: string; a: string };
+export type Doubts = {
+  curated: true;
+  note: string; // "Curated examples written by the team, not measured trends."
+  doubts: Doubt[];
+  trends: { concept: string; code: string; description: string; learners: number }[] | null; // null until enough data
+};
+
+export type TutorAnswer = { answer: string; grounded_in: string[]; engine: "llm" | "rules"; refer_teacher: boolean };
+
+/* ---------------- modes, learners, voice ---------------- */
+
+export type Modes = {
+  llm: { live: boolean; model: string | null; note: string };
+  voice: { live: boolean; note: string };
+};
+export type Learner = { learner_id: string; display_name: string; is_demo: boolean };
+export type VoiceSession = { available: boolean; signed_url: string | null; reason: string | null };
+
+/* ---------------- client ---------------- */
+
+export class ApiError extends Error {
+  constructor(message: string, readonly status = 0) {
+    super(message);
+  }
+}
 
 async function call<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
   try {
     res = await fetch(`/api${path}`, {
       ...init,
-      headers: init?.body ? { "Content-Type": "application/json" } : undefined,
+      headers: { ...(init?.body ? { "Content-Type": "application/json" } : {}), ...(init?.headers ?? {}) },
     });
   } catch {
-    throw new ApiError("Can't reach the WaveLoop server. Start it with: uvicorn api.main:app");
+    throw new ApiError("Can't reach the LearnLoop server. Start it with: uvicorn api.main:app");
   }
   if (!res.ok) {
     const body = await res.json().catch(() => null);
-    throw new ApiError(typeof body?.detail === "string" ? body.detail : `Server answered ${res.status}.`);
+    throw new ApiError(typeof body?.detail === "string" ? body.detail : `Server answered ${res.status}.`, res.status);
   }
   return res.json() as Promise<T>;
 }
 
+const post = (body: unknown): RequestInit => ({ method: "POST", body: JSON.stringify(body) });
+const q = (params: Record<string, string | undefined>) => {
+  const s = new URLSearchParams(Object.entries(params).filter(([, v]) => v !== undefined) as [string, string][]);
+  return s.toString() ? `?${s}` : "";
+};
+
 export const api = {
-  concepts: () => call<Concept[]>("/concepts"),
+  modes: () => call<Modes>("/modes"), // 🛠
+  // learners 🛠
+  createLearner: () => call<Learner>("/learners", post({})),
+  demoLearners: () => call<Learner[]>("/learners/demo"),
+  resetDemo: (learner_id: string) => call<{ cleared: number }>("/demo/reset", post({ learner_id })),
+  // curriculum
+  topics: () => call<Topic[]>("/topics"), // 🛠
+  concepts: () => call<Concept[]>("/concepts"), // ✅ (fields extended 🛠)
+  lesson: (conceptId: string, learnerId?: string) =>
+    call<Lesson>(`/concepts/${conceptId}/lesson${q({ learner_id: learnerId })}`), // 🛠
+  card: (cardId: string) => call<ConceptCard | RemediationCard>(`/explain/${encodeURIComponent(cardId)}`), // ✅
+  // practice & diagnosis
   nextItem: (learnerId: string, concept?: string) =>
-    call<{ item: PublicItem | null }>(
-      `/items/next?learner_id=${encodeURIComponent(learnerId)}${concept ? `&concept=${concept}` : ""}`,
-    ),
-  respond: (body: {
-    learner_id: string;
-    item_id: string;
-    option: string;
-    reason_id?: string;
-    reason_text?: string;
-    confidence: "sure" | "unsure";
-  }) => call<Feedback>("/responses", { method: "POST", body: JSON.stringify(body) }),
-  clarify: (body: { response_id: number; reason_id?: string; text?: string }) =>
-    call<Feedback>("/clarify", { method: "POST", body: JSON.stringify(body) }),
-  mastery: (learnerId: string) =>
-    call<{ learner_id: string; concepts: ConceptMastery[] }>(`/mastery/${encodeURIComponent(learnerId)}`),
-  card: (cardId: string) => call<Card>(`/explain/${encodeURIComponent(cardId)}`),
-  why: (responseId: number) => call<Why>(`/diagnosis/${responseId}/why`),
+    call<{ item: PublicItem | null }>(`/items/next${q({ learner_id: learnerId, concept })}`), // ✅
+  getItem: (itemId: string) => call<PublicItem>(`/items/${itemId}`), // 🛠
+  respond: (body: AnswerBody) => call<Feedback>("/responses", post(body)), // ✅ (short answers + new fields 🛠)
+  clarify: (body: { response_id: number; reason_id?: string; text?: string }) => call<Feedback>("/clarify", post(body)), // ✅
+  why: (responseId: number) => call<Why>(`/diagnosis/${responseId}/why`), // ✅
+  // mastery
+  mastery: (learnerId: string) => call<{ learner_id: string; concepts: ConceptMastery[] }>(`/mastery/${encodeURIComponent(learnerId)}`), // ✅
+  history: (learnerId: string, conceptId: string) =>
+    call<ConceptHistory>(`/mastery/${encodeURIComponent(learnerId)}/${conceptId}/history`), // 🛠
+  // assessment & report 🛠
+  startAssessment: (learner_id: string, kind: AssessmentKind) => call<AssessmentSession>("/assessments", post({ learner_id, kind })),
+  answerAssessment: (sessionId: number, body: Omit<AnswerBody, "learner_id">) =>
+    call<{ answered: number; total: number }>(`/assessments/${sessionId}/answers`, post(body)),
+  completeAssessment: (sessionId: number) => call<AssessmentResult>(`/assessments/${sessionId}/complete`, post({})),
+  report: (includeDemo = false) => call<Report>(`/report${q({ include_demo: includeDemo ? "true" : undefined })}`),
+  learnerReport: (learnerId: string) => call<LearnerReport>(`/report/learner/${encodeURIComponent(learnerId)}`),
+  // self-learning 🛠
+  recommendations: (learnerId: string) => call<Recommendations>(`/recommendations/${encodeURIComponent(learnerId)}`),
+  doubts: (query?: string, concept?: string) => call<Doubts>(`/doubts${q({ q: query, concept })}`),
+  ask: (body: { learner_id: string; concept: string; question: string }) => call<TutorAnswer>("/tutor/ask", post(body)),
+  // voice 🛠 (used by the VoiceTutor component, not by screens directly)
+  voiceSession: (learnerId: string, concept?: string) =>
+    call<VoiceSession>(`/voice/session${q({ learner_id: learnerId, concept })}`),
+  // teacher review 🛠 (needs the reviewer token from api/.env)
+  review: (token: string) => call<unknown>("/review", { headers: { "X-Reviewer-Token": token } }),
 };

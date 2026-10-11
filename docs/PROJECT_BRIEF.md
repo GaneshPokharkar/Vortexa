@@ -1,4 +1,12 @@
-# WaveLoop AI — Project Brief
+# LearnLoop AI (formerly WaveLoop) — Project Brief
+
+> **Pivot (master build prompt, latest):** the product is now **LearnLoop AI — Adaptive AI Tutor & Misconception
+> Detector**. Decisions: keep FastAPI + Vite/React; SHM is the deep primary topic (concepts C1–C5), Optics the
+> extension (C6 refraction/TIR, C7 lenses); waves content archived in `data/archive/`; light white/blue theme with
+> Lucide icons; Claude (Anthropic API) analyses free-text answers server-side with rules as the deterministic
+> baseline; ElevenLabs Agents for voice; both multiple-choice (three-tier) and short free-text answers; six answer
+> groups A–F; mastery shown as Not assessed / Emerging / Developing / Demonstrated. Work split and API contract:
+> `docs/HANDOFF.md` and `web/src/lib/api.ts`. Where older sections below conflict with this note, this note wins.
 
 Read this first in every build session. It is the single source of truth for scope and rules.
 

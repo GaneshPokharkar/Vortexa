@@ -20,7 +20,7 @@ export default function Learn() {
     Promise.all([api.card(cardId), api.concepts()])
       .then(([c, all]) => {
         if (!live) return;
-        setCard(c);
+        setCard(c as Card);
         setConcept(all.find((x) => x.concept_id === conceptId) ?? null);
       })
       .catch((e) => live && setError(e));
