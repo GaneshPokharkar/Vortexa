@@ -46,6 +46,7 @@ def main() -> int:
                 bad = {c for c in item.get("distractor_map", {}).values() if c not in codes | {CORRECT, SLIP, UNMAPPED}}
                 bad |= {r["maps_to"] for r in item.get("reasons", {}).values() if r["maps_to"] not in codes | {CORRECT}}
                 bad |= {p["code"] for p in item.get("patterns", []) if p["code"] not in codes}
+                bad |= {s["trap"] for s in item.get("steps", []) if s["trap"] not in codes | {SLIP}}
                 if item.get("concept") != cid or bad:
                     rejected.append(f"{item.get('item_id')}: concept {item.get('concept')!r}, unknown codes {sorted(bad)}")
                 else:

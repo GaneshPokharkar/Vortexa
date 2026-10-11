@@ -128,7 +128,9 @@ function TestRunner({ session, onDone }: { session: AssessmentSession; onDone: (
     }
   };
 
-  const answeredCount = new Set([...saved, ...(ready ? [item.item_id] : [])]).size;
+  const isAnswered = (idx: number) => saved.has(items[idx].item_id) || (idx === i && ready);
+  const answeredCount = items.filter((_, idx) => isAnswered(idx)).length;
+  const firstSkipped = items.findIndex((_, idx) => !isAnswered(idx));
   const last = i === items.length - 1;
 
   return (
@@ -140,6 +142,20 @@ function TestRunner({ session, onDone }: { session: AssessmentSession; onDone: (
       <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-surface-2" role="progressbar" aria-valuemin={0} aria-valuemax={items.length} aria-valuenow={answeredCount} aria-label="Answered">
         <div className="h-full rounded-full bg-blue transition-[width]" style={{ width: `${(100 * answeredCount) / items.length}%` }} />
       </div>
+      <nav aria-label="Jump to a question" className="mt-3 flex flex-wrap gap-1.5">
+        {items.map((it, idx) => (
+          <button key={it.item_id} type="button" disabled={busy} onClick={() => saveAndGo(idx)}
+            aria-current={idx === i ? "step" : undefined} aria-label={`Question ${idx + 1}, ${isAnswered(idx) ? "answered" : "not answered yet"}`}
+            className={`num size-8 rounded-full text-[13px] font-bold transition-colors ${
+              isAnswered(idx) ? "bg-blue text-white" : "border-2 border-dashed border-sun bg-sun-soft text-[#9a5b00]"} ${
+              idx === i ? "ring-2 ring-ink ring-offset-2" : ""}`}>
+            {idx + 1}
+          </button>
+        ))}
+      </nav>
+      {answeredCount < items.length && (
+        <p className="mt-2 text-[13px] text-muted">Dashed circles are questions you haven't answered yet. Tap one to go there.</p>
+      )}
 
       <section className="mt-6 rounded-xl border border-line bg-surface px-5 py-6 sm:px-7">
         <p className="read text-[19px] leading-snug text-ink">{item.stem}</p>
@@ -183,9 +199,13 @@ function TestRunner({ session, onDone }: { session: AssessmentSession; onDone: (
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <Button variant="ghost" disabled={i === 0 || busy} onClick={() => saveAndGo(i - 1)}><ArrowLeft className="size-4" aria-hidden="true" /> Back</Button>
         {last ? (
-          <Button onClick={finish} disabled={busy || answeredCount < items.length}>
-            {answeredCount < items.length ? `Answer all ${items.length} to submit` : "Submit the test"}
-          </Button>
+          answeredCount < items.length ? (
+            <Button onClick={() => saveAndGo(firstSkipped)} disabled={busy}>
+              Go to question {firstSkipped + 1} ({items.length - answeredCount} left) <ArrowRight className="size-4" aria-hidden="true" />
+            </Button>
+          ) : (
+            <Button onClick={finish} disabled={busy}>Submit the test</Button>
+          )
         ) : (
           <Button onClick={() => saveAndGo(i + 1)} disabled={busy}>{ready ? "Save and next" : "Skip for now"} <ArrowRight className="size-4" aria-hidden="true" /></Button>
         )}

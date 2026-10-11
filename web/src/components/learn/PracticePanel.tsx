@@ -5,8 +5,8 @@ import { HEADLINE, confidenceWords } from "../../lib/groups";
 import { Speak, recorded } from "../../voice/Speak";
 import { CorrectionVisual } from "../../visuals";
 import { DialoguePanel } from "../DialoguePanel";
-import { Button, Empty, ErrorNote, GroupBadge, Loading } from "../ui";
-import { StepByStepAnalysis } from "./StepByStepAnalysis";
+import { Button, Confetti, Empty, ErrorNote, GroupBadge, Loading } from "../ui";
+import { StepCheckPanel } from "./StepCheck";
 import { WhyDrawer } from "./WhyDrawer";
 
 type Stage = { kind: "loading" } | { kind: "none" } | { kind: "question"; item: PublicItem } | { kind: "feedback"; item: PublicItem; fb: Feedback };
@@ -42,7 +42,7 @@ export function PracticePanel({ learnerId, conceptId, onAnswered }: { learnerId:
       <QuestionCard item={stage.item} learnerId={learnerId} locked={stage.kind === "feedback"} onResult={(fb) => done(stage.item, fb)}
         answered={stage.kind === "feedback" ? stage.fb.your_answer : null} />
       {stage.kind === "feedback" && (
-        <FeedbackCard fb={stage.fb} item={stage.item} learnerId={learnerId} conceptId={conceptId} onNext={(id) => load(id)}
+        <FeedbackCard fb={stage.fb} learnerId={learnerId} conceptId={conceptId} onNext={(id) => load(id)}
           onUpdate={(fb) => done(stage.item, fb)} />
       )}
     </div>
@@ -53,7 +53,7 @@ export function PracticePanel({ learnerId, conceptId, onAnswered }: { learnerId:
 
 function Choice({ name, checked, onChange, children }: { name: string; checked: boolean; onChange: () => void; children: ReactNode }) {
   return (
-    <label className={`flex cursor-pointer items-start gap-3 rounded-lg border px-3.5 py-2.5 text-[15.5px] transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-blue ${
+    <label className={`flex cursor-pointer items-start gap-3 rounded-xl border-2 px-3.5 py-2.5 text-[15.5px] font-semibold transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-blue ${
       checked ? "border-blue bg-blue-soft/60 text-ink" : "border-line bg-surface text-ink hover:border-line-strong"}`}>
       <input type="radio" name={name} checked={checked} onChange={onChange} className="sr-only" />
       {children}
@@ -95,9 +95,10 @@ function QuestionCard({ item, learnerId, locked, answered, onResult }: {
   };
 
   return (
-    <form onSubmit={submit} className="rounded-xl border border-line bg-surface px-5 py-5 sm:px-6">
-      <p className="text-[13.5px] text-muted">
-        Practice · {item.kind === "short" ? "short answer" : "choose an answer, then a reason"}{item.transfer ? " · application question" : ""}
+    <form onSubmit={submit} className="rounded-2xl border border-line bg-surface px-5 py-5 shadow-[0_2px_0_var(--ll-line)] sm:px-6">
+      <p className="flex flex-wrap items-center gap-2 text-[13.5px] text-muted">
+        <span className="rounded-full bg-sun-soft px-2.5 py-0.5 font-extrabold text-[#9a5b00]">Your turn!</span>
+        {item.kind === "short" ? "Type your answer and why" : "Pick an answer, then tell me why"}{item.transfer ? " · real-life question" : ""}
       </p>
       <p className="read mt-2 text-[19px] leading-snug text-ink">{item.stem}</p>
 
@@ -162,8 +163,8 @@ function QuestionCard({ item, learnerId, locked, answered, onResult }: {
 
 /* ---------------- feedback ---------------- */
 
-function FeedbackCard({ fb, item, learnerId, conceptId, onNext, onUpdate }: {
-  fb: Feedback; item: PublicItem; learnerId: string; conceptId: string; onNext: (itemId?: string | null) => void; onUpdate: (fb: Feedback) => void;
+function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
+  fb: Feedback; learnerId: string; conceptId: string; onNext: (itemId?: string | null) => void; onUpdate: (fb: Feedback) => void;
 }) {
   const [why, setWhy] = useState(false);
   const [talk, setTalk] = useState(false);
@@ -179,11 +180,12 @@ function FeedbackCard({ fb, item, learnerId, conceptId, onNext, onUpdate }: {
   };
 
   return (
-    <section aria-live="polite" className={`overflow-hidden rounded-xl border bg-surface ${borderByGroup[fb.group]}`}>
+    <section aria-live="polite" className={`pop-in relative overflow-hidden rounded-2xl border-2 bg-surface ${borderByGroup[fb.group]}`}>
       <div className="px-5 pt-5 sm:px-6">
+        {fb.group === "A" && <Confetti key={fb.response_id} />}
         <GroupBadge group={fb.group} size="lg" />
         <div className="mt-3 flex items-start gap-2">
-          <p className="text-[21px] font-semibold leading-snug text-ink">{HEADLINE[fb.category]}</p>
+          <p className="text-[22px] font-extrabold leading-snug text-ink">{HEADLINE[fb.category]}</p>
           {spoken && <Speak id={spoken} iconOnly />}
         </div>
         <p className="read mt-2 text-[16.5px] text-ink-2">{fb.feedback_text}</p>
@@ -197,7 +199,7 @@ function FeedbackCard({ fb, item, learnerId, conceptId, onNext, onUpdate }: {
 
       {fb.visual_correction && <div className="px-5 pt-4 sm:px-6"><CorrectionVisual correction={fb.visual_correction} /></div>}
 
-      {fb.step_by_step && <div className="px-5 pt-4 sm:px-6"><StepByStepAnalysis analysis={fb.step_by_step} correctAnswerSteps={item.steps?.map(s => s.correct_answer)} /></div>}
+      {fb.step_check && <div className="px-5 pt-4 sm:px-6"><StepCheckPanel fb={fb} check={fb.step_check} onUpdate={onUpdate} /></div>}
 
       {fb.follow_up && fb.follow_up.kind === "clarify" ? (
         <Clarify fb={fb} onUpdate={onUpdate} />
@@ -271,7 +273,7 @@ function Clarify({ fb, onUpdate }: { fb: Feedback; onUpdate: (fb: Feedback) => v
   return (
     <form onSubmit={send} className="px-5 py-5 sm:px-6">
       {(fb.clarify?.probes ?? [fb.follow_up?.prompt]).filter(Boolean).map((p) => (
-        <p key={p} className="read rounded-lg border-l-2 border-ge bg-ge-soft/50 px-4 py-2.5 text-[17px] text-ink">{p}</p>
+        <p key={p} className="read rounded-xl border border-ge/25 bg-ge-soft/60 px-4 py-2.5 text-[17px] text-ink">{p}</p>
       ))}
       {Object.keys(reasons).length > 0 && (
         <div className="mt-3 grid gap-2">

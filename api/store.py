@@ -68,6 +68,13 @@ class Diagnosis(SQLModel, table=True):
     p_after: Optional[float] = None
 
 
+class StepPick(SQLModel, table=True):
+    """The step where a learner says their working went wrong. Self-report only: never changes mastery."""
+    __tablename__ = "step_picks"
+    response_id: int = Field(foreign_key="responses.id", primary_key=True)
+    step: int
+
+
 class Mastery(SQLModel, table=True):
     __tablename__ = "mastery"
     learner_id: str = Field(foreign_key="learners.id", primary_key=True)
@@ -162,9 +169,9 @@ def reset_learner(session: Session, learner_id: str) -> int:
     """Delete every record of one learner (used for demo learners only)."""
     rows = session.exec(select(Response).where(Response.learner_id == learner_id)).all()
     for r in rows:
-        d = session.get(Diagnosis, r.id)
-        if d:
-            session.delete(d)
+        for row in (session.get(Diagnosis, r.id), session.get(StepPick, r.id)):
+            if row:
+                session.delete(row)
     session.commit()
     for dlg in session.exec(select(Dialogue).where(Dialogue.learner_id == learner_id)).all():
         for t in session.exec(select(DialogueTurn).where(DialogueTurn.dialogue_id == dlg.id)).all():

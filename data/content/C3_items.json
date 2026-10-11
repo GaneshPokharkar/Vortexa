@@ -45,6 +45,23 @@
       "r3": {"text": "ω = √(g/L) and the period is just 1/ω, so I take one by omega.", "maps_to": "S10"}
     },
     "calc": "T = 2π√(0.64/π²) = 2π(0.8/π) = 1.6 s (same at 3° and 6°). S8: 2×1.6 = 3.2 s. SLIP (no root): 2π(0.64/π²) = 1.28/π ≈ 0.41 s. S10: ω = π/0.8 ≈ 3.93 rad/s, 1/ω ≈ 0.25 s.",
+    "steps": [
+      {
+        "text": "Amplitude: for small swings the period doesn't depend on amplitude, so going from 3° to 6° changes nothing.",
+        "trap": "S8",
+        "trap_text": "thinking a bigger swing takes longer, so doubling the period to 3.2 s."
+      },
+      {
+        "text": "Formula: T = 2π√(L/g) = 2π√(0.64/π²).",
+        "trap": "S10",
+        "trap_text": "using ω, or 1/ω, as if it were the period (1/ω ≈ 0.25 s)."
+      },
+      {
+        "text": "Square root: √(0.64/π²) = 0.8/π, so T = 2π × 0.8/π = 1.6 s.",
+        "trap": "SLIP",
+        "trap_text": "forgetting the square root: 2π × 0.64/π² ≈ 0.41 s."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY"]
   },
   {

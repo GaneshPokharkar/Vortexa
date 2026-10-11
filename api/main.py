@@ -20,7 +20,7 @@ from api.ai import llm, voice  # noqa: E402
 from api.content import Item, Option, ReasonId, load_content  # noqa: E402
 from api.engine.grading import GROUP, GROUP_LABEL  # noqa: E402
 from api.store import (  # noqa: E402
-    DEMO_LEARNERS, AssessmentSession, Diagnosis, Dialogue, Learner, Response, attempts, create_learner, db, ensure_learner,
+    DEMO_LEARNERS, AssessmentSession, Diagnosis, Dialogue, Learner, Response, StepPick, attempts, create_learner, db, ensure_learner,
     init_db, mastery, misconception_statuses, next_item, reset_learner,
 )
 
@@ -188,6 +188,25 @@ def clarify(body: ClarifyIn, session: Session = Depends(get_session)):
     if not body.reason_id and not (body.text or "").strip():
         raise HTTPException(422, "Pick a reason or type a reply.")
     tutor.clarify(session, r, d, reason_id=body.reason_id, text=body.text)
+    return tutor.feedback(session, r, d, _mastery_row(session, r.learner_id, r.concept))
+
+
+class StepIn(BaseModel):
+    step: int = Field(ge=1)
+
+
+@app.post("/responses/{response_id}/step")
+def pick_step(response_id: int, body: StepIn, session: Session = Depends(get_session)):
+    r, d = session.get(Response, response_id), session.get(Diagnosis, response_id)
+    if r is None or d is None:
+        raise HTTPException(404, "Unknown response.")
+    item = _item(r.item_id)
+    if not tutor.shows_steps(item, d):
+        raise HTTPException(409, "This answer has no worked steps to compare.")
+    if body.step > len(item.steps):
+        raise HTTPException(422, f"This question has {len(item.steps)} steps.")
+    session.merge(StepPick(response_id=r.id, step=body.step))
+    session.commit()
     return tutor.feedback(session, r, d, _mastery_row(session, r.learner_id, r.concept))
 
 

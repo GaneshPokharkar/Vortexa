@@ -78,32 +78,17 @@ export type Lesson = {
   mode_reason: string;
 };
 
-/** One step in a multi-step problem solution. */
-export type ProblemStep = {
-  step_number: number;
-  description: string; // what this step requires (e.g., "Calculate initial velocity")
-  correct_answer: string; // the correct answer for this step
-  working: string; // expected reasoning/working
-};
-
-/** Step-by-step analysis showing where student diverged from correct path. */
-export type StepByStepAnalysis = {
-  has_steps: boolean;
-  total_steps: number;
-  divergence_point: number | null; // 1-indexed step where student first went wrong, null if all correct
-  steps: Array<{
-    step_number: number;
-    description: string;
-    correct_answer: string;
-    student_answer: string | null;
-    is_correct: boolean;
-    misconception_code: string | null;
-  }>;
+/** Worked steps after a wrong answer. The learner picks where they went off track; then the rules say where the answer did. */
+export type StepCheck = {
+  steps: string[];
+  picked: number | null;
+  traced: number | null; // step the answer traces to; null until the learner has picked, or if it traces to none
+  analysis: { step: number; code: string | null; lines: string[] } | null;
 };
 
 /* ---------------- questions & diagnosis ---------------- */
 
-type ItemBase = { item_id: string; concept: string; stem: string; transfer: boolean; steps?: ProblemStep[] };
+type ItemBase = { item_id: string; concept: string; stem: string; transfer: boolean };
 export type McqItem = ItemBase & {
   kind: "mcq";
   options: Record<"A" | "B" | "C" | "D", string>;
@@ -163,7 +148,7 @@ export type Feedback = {
   feedback_text: string; // targeted teaching response
   follow_up: FollowUp | null;
   visual_correction: VisualCorrection | null;
-  step_by_step: StepByStepAnalysis | null; // step-by-step analysis for multi-step problems
+  step_check: StepCheck | null;
   pipeline: PipelineStage[];
   misconception_code: string | null;
   misconception_status: "SUSPECTED" | "CONFIRMED" | null;
@@ -415,6 +400,7 @@ export const api = {
   getItem: (itemId: string) => call<PublicItem>(`/items/${itemId}`),
   respond: (body: AnswerBody) => call<Feedback>("/responses", post(body)),
   clarify: (body: { response_id: number; reason_id?: string; text?: string }) => call<Feedback>("/clarify", post(body)),
+  pickStep: (responseId: number, step: number) => call<Feedback>(`/responses/${responseId}/step`, post({ step })),
   why: (responseId: number) => call<Why>(`/diagnosis/${responseId}/why`),
   // mastery
   mastery: (learnerId: string) => call<{ learner_id: string; concepts: ConceptMastery[] }>(`/mastery/${encodeURIComponent(learnerId)}`),

@@ -14,15 +14,17 @@ from sqlmodel import Session, select
 
 from api import engine as eng
 from api.ai import llm
-from api.content import CORRECT, Item, load_content
+from api.content import CORRECT, SLIP, Item, load_content
 from api.engine.grading import (
     AMBIGUOUS, CORRECT_CATEGORIES, FALSE_POSITIVE, FRAGILE, GROUP, GROUP_LABEL, LACK_OF_KNOWLEDGE, MISCONCEPTION,
     OFF_TOPIC, PARTIAL, SCIENTIFIC, SLIP_CATEGORIES, UNDIAGNOSED,
 )
 from api import orchestrator
 from api.store import (
-    Diagnosis, Response, apply_response, current_p, dump, misconception_statuses, prior_slip_code, sibling_for, tries,
+    Diagnosis, Response, StepPick, apply_response, current_p, dump, misconception_statuses, prior_slip_code, sibling_for,
+    tries,
 )
+from api.engine.short import parse_numbers
 
 CLARIFIABLE = {AMBIGUOUS, PARTIAL, OFF_TOPIC}
 
@@ -217,6 +219,55 @@ def your_answer(r: Response) -> str:
     return out
 
 
+WRONG = {MISCONCEPTION, LACK_OF_KNOWLEDGE} | SLIP_CATEGORIES
+
+
+def shows_steps(item: Item, d: Diagnosis) -> bool:
+    return bool(item.steps) and d.category in WRONG
+
+
+def traced_step(item: Item, r: Response, d: Diagnosis) -> Optional[int]:
+    """The first step whose usual mistake produces this answer, or None if the answer doesn't trace to one."""
+    code = SLIP if d.category in SLIP_CATEGORIES else (d.option_code if item.kind == "mcq" else d.misconception_code)
+    hits = [n for n, s in enumerate(item.steps, 1) if s.trap == code]
+    if item.kind == "short" and code == SLIP and item.numeric:  # several slips: match the learner's number
+        nums = parse_numbers(r.answer_text or "")
+        hits = [n for n in hits if item.steps[n - 1].value is not None
+                and any(abs(x - item.steps[n - 1].value) <= item.numeric.tolerance for x in nums)]
+    return hits[0] if hits else None
+
+
+def step_analysis(item: Item, picked: int, traced: Optional[int]) -> dict:
+    focal = traced or picked
+    s = item.steps[focal - 1]
+    if traced is None:
+        lines = [f"At step {picked}, the usual mistake is: {s.trap_text}"]
+    elif traced == picked:
+        lines = [f"Yes, step {picked} is where your answer went off track: {s.trap_text}"]
+    elif traced < picked:
+        lines = [f"Your answer actually went off track earlier, at step {traced}: {s.trap_text}",
+                 f"The later steps were built on that, which is why step {picked} looked wrong."]
+    else:
+        lines = [f"Step {picked} looks fine. Your answer went off track later, at step {traced}: {s.trap_text}"]
+    m = load_content().misconceptions.get(s.trap)
+    lines.append(f"The idea behind it: {m.description}" if m else
+                 "That's a careless step, not a wrong idea. Redo that line slowly and check signs, squares and units.")
+    return {"step": focal, "code": m.code if m else None, "lines": lines}
+
+
+def step_check(session: Session, item: Item, r: Response, d: Diagnosis) -> Optional[dict]:
+    if not shows_steps(item, d):
+        return None
+    pick = session.get(StepPick, r.id)
+    traced = traced_step(item, r, d)
+    return {
+        "steps": [s.text for s in item.steps],
+        "picked": pick.step if pick else None,
+        "traced": traced if pick else None,  # hidden until the learner has looked for themselves
+        "analysis": step_analysis(item, pick.step, traced) if pick else None,
+    }
+
+
 def feedback(session: Session, r: Response, d: Diagnosis, mastery_row: dict) -> dict:
     content = load_content()
     item = content.items[r.item_id]
@@ -238,7 +289,7 @@ def feedback(session: Session, r: Response, d: Diagnosis, mastery_row: dict) -> 
         "feedback_text": _teaching_text(item, d),
         "follow_up": json.loads(d.follow_up),
         "visual_correction": json.loads(d.visual),
-        "step_by_step": None,  # TODO: implement step-by-step analysis for multi-step problems
+        "step_check": step_check(session, item, r, d),
         "pipeline": json.loads(d.pipeline),
         "misconception_code": d.misconception_code,
         "misconception_status": misconception_statuses(session, r.learner_id).get(d.misconception_code or ""),
@@ -279,49 +330,65 @@ def suggested_mode(session: Session, learner_id: Optional[str], concept: str) ->
 
 # ---------------- grounded Q&A ----------------
 
-_WORD = re.compile(r"[a-zα-ω²]+")
+_WORD = re.compile(r"[a-z0-9α-ω²]+")
+# Shorthand students type; each maps to the words the course material uses.
+_ALIASES = {
+    "acc": "acceleration", "accn": "acceleration", "accel": "acceleration", "vel": "velocity", "disp": "displacement",
+    "amp": "amplitude", "freq": "frequency", "0": "zero", "ke": "kinetic energy", "pe": "potential energy",
+    "eqm": "mean", "equilibrium": "mean", "centre": "mean", "center": "mean", "middle": "mean",
+    "tir": "total internal reflection", "ri": "refractive index",
+}
 
 
 def _tokens(s: str) -> set[str]:
     stop = eng.diagnosis.STOP_WORDS
-    return {w for w in _WORD.findall(s.lower()) if w not in stop and len(w) > 2}
+    words = (t for w in _WORD.findall(s.lower()) for t in _ALIASES.get(w, w).split())
+    return {w[:7] for w in words if w not in stop and len(w) > 2}  # ponytail: 7-char prefix as a stemmer
 
 
-def ask(concept: str, question: str) -> dict:
+def _sources(concept: str) -> dict[str, str]:
     content = load_content()
     c = content.concept(concept)
     card = content.cards[f"{concept}-K"]
-    sources: dict[str, str] = {
-        card.card_id: " ".join([card.statement, card.simple, card.formal, card.analogy, card.worked_example,
-                                " ".join(card.steps), " ".join(e.expr for e in card.equations)]),
-    }
+    sources = {card.card_id: " ".join([card.statement, card.simple, card.formal, card.analogy, card.worked_example,
+                                       " ".join(card.steps), " ".join(e.expr for e in card.equations)])}
     for n, d in enumerate(c.doubts, 1):
         sources[f"{concept}-D{n}"] = f"Q: {d.q}\nA: {d.a}"
     for m in content.misconceptions.values():
         rc = content.cards.get(m.remediation_card_id)
         if m.concept == concept and rc:
             sources[rc.card_id] = f"{rc.wrong_idea} {rc.why_wrong} {rc.statement}"
+    return sources
 
-    answer = llm.answer(question, sources)
+
+def ask(concept: str, question: str) -> dict:
+    """Answer from the whole course, preferring this concept's material, so a C1 page can still answer a C2 doubt."""
+    content = load_content()
+    owner = {sid: c.concept_id for c in content.concepts for sid in _sources(c.concept_id)}
+    sources = {sid: text for c in content.concepts for sid, text in _sources(c.concept_id).items()}
+    q = _tokens(question)
+
+    def score(sid: str) -> float:
+        bonus = (0.05 if owner[sid] == concept else 0) + (0.02 if "-D" in sid else 0)  # ties: this concept, then doubts
+        return len(q & _tokens(sources[sid])) / (len(q) or 1) + bonus
+
+    ranked = sorted(sources, key=score, reverse=True)
+    answer = llm.answer(question, {sid: sources[sid] for sid in ranked[:6]})
     if answer:
         return answer
-    # Rules fallback: closest curated doubt, else the concept card, else refer to the teacher.
-    q = _tokens(question)
-    best, score = None, 0.0
-    for sid, text in sources.items():
-        t = _tokens(text)
-        s = len(q & t) / (len(q) or 1)
-        if s > score:
-            best, score = sid, s
-    if best is None or score < 0.34:
+    best = ranked[0]
+    if score(best) < 0.4:
         return {"answer": "I'm not sure the course material covers that. Please ask your teacher, and meanwhile "
                           "try the explanation modes above.", "grounded_in": [], "engine": "rules", "refer_teacher": True}
-    text = sources[best]
-    if best.startswith(f"{concept}-D"):
-        text = text.split("\nA: ", 1)[1]
-    elif best == card.card_id:
+    if "-D" in best:
+        doubt_q, doubt_a = sources[best][3:].split("\nA: ", 1)
+        text = f"Closest question in the course: “{doubt_q}” {doubt_a}"
+    elif best.endswith("-K"):
+        card = content.cards[best]
         text = card.simple or card.statement
     else:
         rc = content.cards[best]
         text = f"{rc.why_wrong} {rc.statement}"
+    if owner[best] != concept:
+        text = f"(From {content.concept(owner[best]).name}) {text}"
     return {"answer": text, "grounded_in": [best], "engine": "rules", "refer_teacher": False}

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* LearnLoop design tokens. Light, quiet, textbook-like: navy ink on white and pale blue, one blue accent.
-   The --ll-* names are shared with web/src/visuals. */
+/* LearnLoop design tokens. Light and friendly: navy ink on white and pale blue, blue for actions,
+   warm accents for concepts and celebrations. The --ll-* names are shared with web/src/visuals. */
 :root {
   --ll-bg: #f5f9ff;
   --ll-surface: #ffffff;
@@ -14,6 +14,18 @@
   --ll-blue: #2563eb;
   --ll-blue-ink: #1d4ed8;
   --ll-blue-soft: #dbeafe;
+
+  /* friendly accents: concept tiles, stars, confetti */
+  --ll-sun: #f5a524;
+  --ll-sun-soft: #fff4d6;
+  --ll-coral: #f26d5b;
+  --ll-coral-soft: #ffe8e3;
+  --ll-mint: #12a578;
+  --ll-mint-soft: #ddf6ec;
+  --ll-grape: #8b5cf6;
+  --ll-grape-soft: #efe9ff;
+  --ll-teal: #0e9fb5;
+  --ll-teal-soft: #dcf4f8;
 
   /* answer groups A–F */
   --ll-a: #15803d;
@@ -29,8 +41,9 @@
   --ll-f: #64748b;
   --ll-f-soft: #f1f4f8;
 
-  --font-ui: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-read: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-ui: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-read: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --font-math: "Source Serif 4", Georgia, "Times New Roman", serif;
   color-scheme: light;
 }
 
@@ -46,6 +59,14 @@
   --color-blue: var(--ll-blue);
   --color-blue-ink: var(--ll-blue-ink);
   --color-blue-soft: var(--ll-blue-soft);
+  --color-sun: var(--ll-sun);
+  --color-sun-soft: var(--ll-sun-soft);
+  --color-coral: var(--ll-coral);
+  --color-coral-soft: var(--ll-coral-soft);
+  --color-mint: var(--ll-mint);
+  --color-mint-soft: var(--ll-mint-soft);
+  --color-grape: var(--ll-grape);
+  --color-grape-soft: var(--ll-grape-soft);
   --color-ga: var(--ll-a);
   --color-ga-soft: var(--ll-a-soft);
   --color-gb: var(--ll-b);
@@ -73,7 +94,11 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--ll-bg);
+  background:
+    radial-gradient(40rem 22rem at 100% 0%, var(--ll-sun-soft), transparent 70%),
+    radial-gradient(36rem 24rem at 0% 0%, var(--ll-blue-soft), transparent 70%),
+    var(--ll-bg);
+  background-repeat: no-repeat;
 }
 
 h1, h2, h3, h4 {
@@ -96,7 +121,7 @@ p {
 
 /* Inline physics: variables in italic serif, like a textbook. */
 .math {
-  font-family: var(--font-read);
+  font-family: var(--font-math);
   font-style: italic;
   white-space: nowrap;
 }
@@ -115,7 +140,30 @@ p {
   background: var(--ll-blue-soft);
 }
 
+/* Celebration: a short confetti burst and a gentle pop when feedback arrives. */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+  opacity: 0;
+  animation: confetti 1.2s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+@keyframes confetti {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translate(var(--dx), calc(var(--dy) + 70px)) rotate(var(--rot)); opacity: 0; }
+}
+.pop-in {
+  animation: pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes pop-in {
+  from { transform: scale(0.97) translateY(6px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .confetti { display: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;

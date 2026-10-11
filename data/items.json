@@ -35,6 +35,23 @@
    }
   },
   "calc": "A = 0.12/2 = 0.06 m; mean is 0.06 m from P; |x| = 0.06 - 0.02 = 0.04 m. SLIP D: added instead of subtracted, 0.06 + 0.02 = 0.08 m.",
+  "steps": [
+   {
+    "text": "Amplitude: the extremes are 12 cm apart, so A = 12 ÷ 2 = 6 cm.",
+    "trap": "S1",
+    "trap_text": "taking the full 12 cm between the extremes as the amplitude."
+   },
+   {
+    "text": "Mean position: halfway between P and Q, so 6 cm from P. Displacement is measured from here.",
+    "trap": "S3",
+    "trap_text": "measuring displacement from P, where it started, instead of from the mean (giving 2 cm)."
+   },
+   {
+    "text": "Displacement: the block is 2 cm from P, so |x| = 6 − 2 = 4 cm.",
+    "trap": "SLIP",
+    "trap_text": "adding instead of subtracting: 6 + 2 = 8 cm."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Option A pairs S1 amplitude with the correct displacement; reviewer to confirm an S1 student would still place the mean midway."
@@ -894,6 +911,23 @@
    }
   },
   "calc": "T = 2π√(0.64/π²) = 2π(0.8/π) = 1.6 s (same at 3° and 6°). S8: 2×1.6 = 3.2 s. SLIP (no root): 2π(0.64/π²) = 1.28/π ≈ 0.41 s. S10: ω = π/0.8 ≈ 3.93 rad/s, 1/ω ≈ 0.25 s.",
+  "steps": [
+   {
+    "text": "Amplitude: for small swings the period doesn't depend on amplitude, so going from 3° to 6° changes nothing.",
+    "trap": "S8",
+    "trap_text": "thinking a bigger swing takes longer, so doubling the period to 3.2 s."
+   },
+   {
+    "text": "Formula: T = 2π√(L/g) = 2π√(0.64/π²).",
+    "trap": "S10",
+    "trap_text": "using ω, or 1/ω, as if it were the period (1/ω ≈ 0.25 s)."
+   },
+   {
+    "text": "Square root: √(0.64/π²) = 0.8/π, so T = 2π × 0.8/π = 1.6 s.",
+    "trap": "SLIP",
+    "trap_text": "forgetting the square root: 2π × 0.64/π² ≈ 0.41 s."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY"
   ]
@@ -1614,6 +1648,23 @@
    }
   },
   "calc": "E = ½kA² = ½ × 80 × 0.05² = 0.1 J; PE = ½kx² = ½ × 80 × 0.03² = 0.036 J; KE = E − PE = 0.064 J (D drops the ½: 0.128 J, 0.2 J)",
+  "steps": [
+   {
+    "text": "Total energy: E = ½kA² = ½ × 80 × 0.05² = 0.1 J.",
+    "trap": "SLIP",
+    "trap_text": "dropping the ½: kA² = 0.2 J."
+   },
+   {
+    "text": "Potential energy at x = 0.03 m: PE = ½kx² = ½ × 80 × 0.03² = 0.036 J.",
+    "trap": "S14",
+    "trap_text": "taking this PE as the kinetic energy, as if KE and PE peak at the same place."
+   },
+   {
+    "text": "Kinetic energy: KE = E − PE = 0.1 − 0.036 = 0.064 J. The total stays 0.1 J everywhere.",
+    "trap": "S13",
+    "trap_text": "thinking the total changes as the block moves, so calling the total 0.064 J."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY"
   ]
@@ -1850,6 +1901,25 @@
    "UNCLEAR": "Can you give one number in joules for the total energy at x = 0.05 m?"
   },
   "calc": "E = ½kA² = ½ × 200 × 0.1² = 1.0 J; PE(0.05) = ½ × 200 × 0.05² = 0.25 J; KE = 0.75 J; v = √(2 × 0.75 / 0.5) = √3 ≈ 1.73 m/s",
+  "steps": [
+   {
+    "text": "Total energy is the same at every point, so x = 0.05 m isn't needed: E = ½kA².",
+    "trap": "S13",
+    "trap_text": "thinking the total energy depends on where the block is, and working it out from x."
+   },
+   {
+    "text": "Square the amplitude: A² = 0.1² = 0.01 m².",
+    "trap": "SLIP",
+    "trap_text": "not squaring A: ½ × 200 × 0.1 = 10 J.",
+    "value": 10.0
+   },
+   {
+    "text": "E = ½ × 200 × 0.01 = 1.0 J.",
+    "trap": "SLIP",
+    "trap_text": "dropping the ½: 200 × 0.01 = 2 J.",
+    "value": 2.0
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "S15 pattern '0.5 j' reflects linear-in-x thinking (half amplitude, half energy); check the numeric grader tests slips/patterns before rejecting 0.5 as plain wrong.",
@@ -2144,6 +2214,23 @@
    }
   },
   "calc": "i = 90° − 60° = 30°; sin r = sin 30° / 1.5 = 0.333, r = 19.5°. (Using 60°: sin r = 0.577, r = 35.3°, or 54.7° from the surface.)",
+  "steps": [
+   {
+    "text": "Angle of incidence from the normal: i = 90° − 60° = 30°.",
+    "trap": "R7",
+    "trap_text": "using the 60° to the surface as the angle of incidence."
+   },
+   {
+    "text": "Snell's law, air into glass: sin r = sin 30° ÷ 1.5 = 0.333.",
+    "trap": "R4",
+    "trap_text": "expecting total internal reflection; it can't happen going from air into denser glass."
+   },
+   {
+    "text": "r = sin⁻¹(0.333) ≈ 19.5° from the normal.",
+    "trap": "R7",
+    "trap_text": "giving the angle from the surface (90° − r) instead of from the normal."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY"
   ],
@@ -2351,6 +2438,24 @@
    "UNCLEAR": "Which angle did you use in Snell's law, and which line did you measure it from?"
   },
   "calc": "i = 90° − 50° = 40°; sin r = (4/3) × sin 40° = 0.857, r ≈ 59.0°",
+  "steps": [
+   {
+    "text": "Angle of incidence from the normal: i = 90° − 50° = 40°.",
+    "trap": "R7",
+    "trap_text": "using the 50° to the surface as the angle of incidence."
+   },
+   {
+    "text": "Snell's law, water into air: (4/3) × sin 40° = sin r, so sin r = 1.333 × 0.643 = 0.857.",
+    "trap": "SLIP",
+    "trap_text": "dividing by 4/3 instead of multiplying, which gives r ≈ 28.8°.",
+    "value": 28.8
+   },
+   {
+    "text": "r = sin⁻¹(0.857) ≈ 59° from the normal: the ray bends away from the normal.",
+    "trap": "R7",
+    "trap_text": "giving the angle from the surface (31°) instead of from the normal."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY"
   ],
@@ -2665,6 +2770,25 @@
    "UNCLEAR": "What value of v did you get, with its sign, and what does that sign tell you?"
   },
   "calc": "1/v = 1/f + 1/u = 1/15 + 1/(−20) = 1/60 -> v = +60 cm; m = v/u = 60/(−20) = −3",
+  "steps": [
+   {
+    "text": "Signs (Cartesian): u = −20 cm (object in front of the lens), f = +15 cm (convex).",
+    "trap": "SLIP",
+    "trap_text": "using u = +20 cm, which gives 1/v = 7/60 and v ≈ 8.6 cm.",
+    "value": 8.57
+   },
+   {
+    "text": "Lens formula: 1/v = 1/f + 1/u = 1/15 − 1/20 = 1/60, so v = +60 cm.",
+    "trap": "SLIP",
+    "trap_text": "flipping the sign of v to −60 cm (an image on the object's side).",
+    "value": -60.0
+   },
+   {
+    "text": "v is positive, so the image is real, 60 cm behind the lens. It forms there with or without a screen.",
+    "trap": "R6",
+    "trap_text": "thinking a real image only exists when a screen is there to catch it."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook",

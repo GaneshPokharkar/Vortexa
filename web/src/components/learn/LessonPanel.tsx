@@ -56,7 +56,7 @@ export function LessonPanel({ lesson }: { lesson: Lesson }) {
         {mode === "simple" && <p className="read text-[18.5px] text-ink">{alt < 0 ? card.simple || card.statement : card.alternatives[alt]}</p>}
         {mode === "formal" && <p className="read text-[17px] text-ink">{card.formal}</p>}
         {mode === "analogy" && <p className="read text-[18px] text-ink">{card.analogy}</p>}
-        {mode === "worked" && <p className="read rounded-lg border-l-2 border-blue bg-bg px-4 py-3 text-[17px] text-ink">{card.worked_example}</p>}
+        {mode === "worked" && <p className="read rounded-xl border border-blue/20 bg-blue-soft/40 px-4 py-3 text-[17px] text-ink">{card.worked_example}</p>}
         {mode === "steps" && (
           <ol className="space-y-3">
             {card.steps.map((s, i) => (

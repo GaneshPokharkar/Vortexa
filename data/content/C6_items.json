@@ -418,6 +418,23 @@
       }
     },
     "calc": "i = 90° − 60° = 30°; sin r = sin 30° / 1.5 = 0.333, r = 19.5°. (Using 60°: sin r = 0.577, r = 35.3°, or 54.7° from the surface.)",
+    "steps": [
+      {
+        "text": "Angle of incidence from the normal: i = 90° − 60° = 30°.",
+        "trap": "R7",
+        "trap_text": "using the 60° to the surface as the angle of incidence."
+      },
+      {
+        "text": "Snell's law, air into glass: sin r = sin 30° ÷ 1.5 = 0.333.",
+        "trap": "R4",
+        "trap_text": "expecting total internal reflection; it can't happen going from air into denser glass."
+      },
+      {
+        "text": "r = sin⁻¹(0.333) ≈ 19.5° from the normal.",
+        "trap": "R7",
+        "trap_text": "giving the angle from the surface (90° − r) instead of from the normal."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY"
     ],
@@ -487,6 +504,24 @@
       "UNCLEAR": "Which angle did you use in Snell's law, and which line did you measure it from?"
     },
     "calc": "i = 90° − 50° = 40°; sin r = (4/3) × sin 40° = 0.857, r ≈ 59.0°",
+    "steps": [
+      {
+        "text": "Angle of incidence from the normal: i = 90° − 50° = 40°.",
+        "trap": "R7",
+        "trap_text": "using the 50° to the surface as the angle of incidence."
+      },
+      {
+        "text": "Snell's law, water into air: (4/3) × sin 40° = sin r, so sin r = 1.333 × 0.643 = 0.857.",
+        "trap": "SLIP",
+        "trap_text": "dividing by 4/3 instead of multiplying, which gives r ≈ 28.8°.",
+        "value": 28.8
+      },
+      {
+        "text": "r = sin⁻¹(0.857) ≈ 59° from the normal: the ray bends away from the normal.",
+        "trap": "R7",
+        "trap_text": "giving the angle from the surface (31°) instead of from the normal."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY"
     ],

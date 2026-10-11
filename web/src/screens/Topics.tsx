@@ -1,24 +1,15 @@
 import { ArrowRight, ClipboardCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ButtonLink, ErrorNote, Loading, PageHeader } from "../components/ui";
+import { ButtonLink, ConceptTile, ErrorNote, Loading, PageHeader, Stars } from "../components/ui";
 import { api, type Concept, type ConceptMastery, type LearnerReport, type Topic } from "../lib/api";
-import { STATUS } from "../lib/groups";
+import { STATUS, forYou } from "../lib/groups";
 import { useLearner } from "../lib/learner";
 
 function Meter({ m }: { m: ConceptMastery | undefined }) {
   const step = m ? STATUS[m.status].step : 0;
-  const label = !m || !m.enough_evidence ? (m && m.attempts ? "Not enough evidence yet" : "Not assessed") : STATUS[m.status].label;
-  return (
-    <span className="flex items-center gap-2.5" aria-label={`Status: ${label}`}>
-      <span className="flex gap-1" aria-hidden="true">
-        {[1, 2, 3].map((s) => (
-          <span key={s} className="h-1.5 w-6 rounded-full" style={{ background: s <= step ? STATUS.demonstrated.color : "var(--ll-line)" }} />
-        ))}
-      </span>
-      <span className="text-[13.5px] text-muted">{label}</span>
-    </span>
-  );
+  const label = !m || !m.enough_evidence ? (m && m.attempts ? "Keep practising" : "Not started") : STATUS[m.status].label;
+  return <Stars step={m && m.enough_evidence ? step : 0} label={label} />;
 }
 
 export default function Topics() {
@@ -39,12 +30,12 @@ export default function Topics() {
 
   return (
     <div>
-      <PageHeader title="Choose a concept">Start with Simple Harmonic Motion; Optics uses the same tutor as an extension.</PageHeader>
+      <PageHeader title="What do you want to learn today?">Pick an idea. Start at the top of Simple Harmonic Motion; Optics is a bonus round.</PageHeader>
 
       {!data.report.pre && (
-        <div className="mb-8 flex flex-wrap items-center gap-4 rounded-xl border border-blue/25 bg-blue-soft/50 px-5 py-4">
-          <ClipboardCheck className="size-5 text-blue-ink" aria-hidden="true" />
-          <p className="flex-1 text-[15px] text-ink">Take the short pre-test first, so your report can show what changed after practice.</p>
+        <div className="mb-8 flex flex-wrap items-center gap-4 rounded-2xl border-2 border-sun/40 bg-sun-soft px-5 py-4">
+          <ClipboardCheck className="size-6 text-sun" aria-hidden="true" />
+          <p className="flex-1 text-[15px] font-semibold text-ink">Quick warm-up first! A short pre-test lets you see how much you grow.</p>
           <ButtonLink to="/assessment" variant="secondary">Take the pre-test</ButtonLink>
         </div>
       )}
@@ -52,26 +43,24 @@ export default function Topics() {
       {data.topics.map((t) => (
         <section key={t.topic_id} className="mb-10" aria-labelledby={`t-${t.topic_id}`}>
           <div className="flex items-baseline gap-3">
-            <h2 id={`t-${t.topic_id}`} className="text-[20px] font-semibold">{t.title}</h2>
-            <span className="text-[13.5px] text-muted">{t.primary ? "Main module" : "Extension"}</span>
+            <h2 id={`t-${t.topic_id}`} className="text-[22px] font-extrabold">{t.title}</h2>
+            <span className={`rounded-full px-2.5 py-0.5 text-[12.5px] font-bold ${t.primary ? "bg-blue-soft text-blue-ink" : "bg-grape-soft text-grape"}`}>{t.primary ? "Main topic" : "Bonus"}</span>
           </div>
           <p className="mt-1 text-[15px] text-muted">{t.description}</p>
-          <ul className="mt-4 divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface">
+          <ul className="mt-4 grid gap-3">
             {data.concepts.filter((c) => c.topic_id === t.topic_id).map((c) => {
               const m = byId.get(c.concept_id);
               return (
                 <li key={c.concept_id}>
-                  <Link to={`/learn/${c.concept_id}`} className="grid items-center gap-x-6 gap-y-2 px-5 py-4 hover:bg-bg md:grid-cols-[minmax(0,1fr)_14rem_auto]">
+                  <Link to={`/learn/${c.concept_id}`} className="grid items-center gap-x-5 gap-y-3 rounded-2xl border border-line bg-surface px-5 py-4 shadow-[0_2px_0_var(--ll-line)] transition-[border-color,transform] hover:-translate-y-0.5 hover:border-blue md:grid-cols-[auto_minmax(0,1fr)_13rem_auto]">
+                    <ConceptTile id={c.concept_id} />
                     <span>
-                      <span className="flex items-baseline gap-2.5">
-                        <span className="num text-[13.5px] text-muted">{c.concept_id}</span>
-                        <span className="text-[16px] font-medium text-ink">{c.name}</span>
-                      </span>
-                      <span className="mt-1 block text-[14px] text-muted">{c.learning_objective}</span>
+                      <span className="block text-[17px] font-bold text-ink">{c.name}</span>
+                      <span className="mt-0.5 block text-[14px] text-muted">{forYou(c.learning_objective)}</span>
                     </span>
                     <Meter m={m} />
-                    <span className="inline-flex items-center gap-1.5 text-[14.5px] font-medium text-blue-ink">
-                      {m && m.attempts ? "Continue" : "Start"} <ArrowRight className="size-4" aria-hidden="true" />
+                    <span className="inline-flex items-center gap-1.5 text-[15px] font-bold text-blue-ink">
+                      {m && m.attempts ? "Keep going" : "Let's go"} <ArrowRight className="size-4" aria-hidden="true" />
                     </span>
                   </Link>
                 </li>

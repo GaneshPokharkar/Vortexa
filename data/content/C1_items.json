@@ -35,6 +35,23 @@
       }
     },
     "calc": "A = 0.12/2 = 0.06 m; mean is 0.06 m from P; |x| = 0.06 - 0.02 = 0.04 m. SLIP D: added instead of subtracted, 0.06 + 0.02 = 0.08 m.",
+    "steps": [
+      {
+        "text": "Amplitude: the extremes are 12 cm apart, so A = 12 ÷ 2 = 6 cm.",
+        "trap": "S1",
+        "trap_text": "taking the full 12 cm between the extremes as the amplitude."
+      },
+      {
+        "text": "Mean position: halfway between P and Q, so 6 cm from P. Displacement is measured from here.",
+        "trap": "S3",
+        "trap_text": "measuring displacement from P, where it started, instead of from the mean (giving 2 cm)."
+      },
+      {
+        "text": "Displacement: the block is 2 cm from P, so |x| = 6 − 2 = 4 cm.",
+        "trap": "SLIP",
+        "trap_text": "adding instead of subtracting: 6 + 2 = 8 cm."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Option A pairs S1 amplitude with the correct displacement; reviewer to confirm an S1 student would still place the mean midway."

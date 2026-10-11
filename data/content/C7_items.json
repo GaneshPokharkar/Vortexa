@@ -238,6 +238,25 @@
       "UNCLEAR": "What value of v did you get, with its sign, and what does that sign tell you?"
     },
     "calc": "1/v = 1/f + 1/u = 1/15 + 1/(−20) = 1/60 -> v = +60 cm; m = v/u = 60/(−20) = −3",
+    "steps": [
+      {
+        "text": "Signs (Cartesian): u = −20 cm (object in front of the lens), f = +15 cm (convex).",
+        "trap": "SLIP",
+        "trap_text": "using u = +20 cm, which gives 1/v = 7/60 and v ≈ 8.6 cm.",
+        "value": 8.57
+      },
+      {
+        "text": "Lens formula: 1/v = 1/f + 1/u = 1/15 − 1/20 = 1/60, so v = +60 cm.",
+        "trap": "SLIP",
+        "trap_text": "flipping the sign of v to −60 cm (an image on the object's side).",
+        "value": -60.0
+      },
+      {
+        "text": "v is positive, so the image is real, 60 cm behind the lens. It forms there with or without a screen.",
+        "trap": "R6",
+        "trap_text": "thinking a real image only exists when a screen is there to catch it."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook",

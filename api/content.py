@@ -73,6 +73,13 @@ class Numeric(BaseModel):
     slips: list[Slip] = []
 
 
+class Step(BaseModel):
+    text: str  # one line of the worked solution
+    trap: str  # misconception code or SLIP: the usual way this step goes wrong
+    trap_text: str
+    value: Optional[float] = None  # final answer this trap leads to, for matching numeric short answers
+
+
 class Item(BaseModel):
     item_id: str
     concept: str
@@ -83,6 +90,7 @@ class Item(BaseModel):
     sibling_of: Optional[str] = None
     setup: Optional[dict[str, float]] = None  # the question's physical numbers, used by the visual-correction stage
     calc: str = ""
+    steps: list[Step] = []  # worked solution, shown after a wrong answer
     verify_flags: list[str] = []
     # multiple choice (three-tier)
     options: Optional[dict[Option, str]] = None

@@ -21,6 +21,23 @@
       "r3": {"text": "½kx² is the KE part because PE is biggest in the middle, so near the middle the block has less KE.", "maps_to": "S14"}
     },
     "calc": "E = ½kA² = ½ × 80 × 0.05² = 0.1 J; PE = ½kx² = ½ × 80 × 0.03² = 0.036 J; KE = E − PE = 0.064 J (D drops the ½: 0.128 J, 0.2 J)",
+    "steps": [
+      {
+        "text": "Total energy: E = ½kA² = ½ × 80 × 0.05² = 0.1 J.",
+        "trap": "SLIP",
+        "trap_text": "dropping the ½: kA² = 0.2 J."
+      },
+      {
+        "text": "Potential energy at x = 0.03 m: PE = ½kx² = ½ × 80 × 0.03² = 0.036 J.",
+        "trap": "S14",
+        "trap_text": "taking this PE as the kinetic energy, as if KE and PE peak at the same place."
+      },
+      {
+        "text": "Kinetic energy: KE = E − PE = 0.1 − 0.036 = 0.064 J. The total stays 0.1 J everywhere.",
+        "trap": "S13",
+        "trap_text": "thinking the total changes as the block moves, so calling the total 0.064 J."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY"]
   },
   {
@@ -147,6 +164,25 @@
       "UNCLEAR": "Can you give one number in joules for the total energy at x = 0.05 m?"
     },
     "calc": "E = ½kA² = ½ × 200 × 0.1² = 1.0 J; PE(0.05) = ½ × 200 × 0.05² = 0.25 J; KE = 0.75 J; v = √(2 × 0.75 / 0.5) = √3 ≈ 1.73 m/s",
+    "steps": [
+      {
+        "text": "Total energy is the same at every point, so x = 0.05 m isn't needed: E = ½kA².",
+        "trap": "S13",
+        "trap_text": "thinking the total energy depends on where the block is, and working it out from x."
+      },
+      {
+        "text": "Square the amplitude: A² = 0.1² = 0.01 m².",
+        "trap": "SLIP",
+        "trap_text": "not squaring A: ½ × 200 × 0.1 = 10 J.",
+        "value": 10.0
+      },
+      {
+        "text": "E = ½ × 200 × 0.01 = 1.0 J.",
+        "trap": "SLIP",
+        "trap_text": "dropping the ½: 200 × 0.01 = 2 J.",
+        "value": 2.0
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "S15 pattern '0.5 j' reflects linear-in-x thinking (half amplitude, half energy); check the numeric grader tests slips/patterns before rejecting 0.5 as plain wrong.", "Plain substring matching would let '0.5 j' fire on inputs like '10.5 j'; grader should match numbers on word boundaries."]
   },
   {
