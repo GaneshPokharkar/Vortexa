@@ -283,20 +283,20 @@ def sibling_for(session: Session, learner_id: str, item_id: str) -> Optional[str
     return min(sibs, key=lambda i: tried.get(i.item_id, 0)).item_id if sibs else None
 
 
-def next_item(session: Session, learner_id: str, concept: Optional[str] = None) -> Optional[str]:
+def next_item(session: Session, learner_id: str, concept: Optional[str] = None, kind: Optional[str] = None) -> Optional[str]:
     """Slip rule 5 sibling first; else the least-tried practice item of `concept` if given (the learner chose it),
     or of the first concept not yet demonstrated."""
     content = load_content()
     tried = tries(session, learner_id)
 
     slip = pending_slip(session, learner_id)
-    if slip and concept in (None, content.items[slip[0]].concept):
+    if slip and concept in (None, content.items[slip[0]].concept) and kind in (None, "mcq"):
         sib = sibling_for(session, learner_id, slip[0])
         if sib:
             return sib
 
     def pick(cid: str) -> Optional[str]:
-        pool = [i for i in content.items.values() if i.concept == cid and not i.is_assessment]
+        pool = [i for i in content.items.values() if i.concept == cid and not i.is_assessment and kind in (None, i.kind)]
         return min(pool, key=lambda i: tried.get(i.item_id, 0)).item_id if pool else None
 
     if concept:

@@ -168,6 +168,9 @@ def grade_short(item: Item, text: str, confidence: str = "sure", llm: Optional[L
                            llm.confidence, llm.label, "llm")
 
     # 6. No usable evidence.
+    if re.search(r"[ऀ-ॿ]", t):  # Devanagari (Marathi/Hindi): the English keyword rules can't judge it
+        return ShortResult("AMBIGUOUS", "short:unmatched", None,
+                           ["The tutor couldn't match this answer yet. Try saying it again, or in English."], None, "UNCLEAR")
     on_topic = any(w in t for w in DOMAIN_WORDS)
     if not on_topic or words == 0:
         return ShortResult("OFF_TOPIC", "short:off-topic", None,

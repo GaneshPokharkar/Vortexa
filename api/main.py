@@ -129,8 +129,9 @@ def explain(card_id: str):
 # ---------------- practice & diagnosis ----------------
 
 @app.get("/items/next")
-def items_next(learner_id: str, concept: Optional[str] = None, session: Session = Depends(get_session)):
-    item_id = next_item(session, learner_id, concept)
+def items_next(learner_id: str, concept: Optional[str] = None, kind: Optional[Literal["mcq", "short"]] = None,
+               session: Session = Depends(get_session)):
+    item_id = next_item(session, learner_id, concept, kind)
     return {"item": load_content().items[item_id].public() if item_id else None}
 
 
