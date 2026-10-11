@@ -42,3 +42,18 @@ export function confidenceWords(c: number | null): string | null {
 }
 
 export const pct = (p: number) => `${Math.floor(p * 100)}%`;
+
+/** One plain line that leads the feedback, per engine category. */
+export const HEADLINE: Record<Category, string> = {
+  SCIENTIFIC: "That's right, and your reason holds up.",
+  FRAGILE: "Right, even though you weren't sure.",
+  PARTIAL: "Right answer. Now tell the tutor why.",
+  FALSE_POSITIVE: "Right answer, but the reason is a common wrong idea.",
+  MISCONCEPTION: "Not quite: this is a common wrong idea.",
+  LACK_OF_KNOWLEDGE: "Not there yet. Let's look at it another way.",
+  SLIP: "Your reasoning was right; the answer slipped.",
+  COMPUTATIONAL_SLIP: "Right method, small slip in the working.",
+  AMBIGUOUS: "The tutor needs one more detail.",
+  UNDIAGNOSED: "The tutor couldn't tell, so this one doesn't count.",
+  OFF_TOPIC: "Let's stay with the question.",
+};

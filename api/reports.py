@@ -172,7 +172,7 @@ def learner_report(session: Session, learner_id: str) -> dict:
         AssessmentSession.learner_id == learner_id, AssessmentSession.kind == kind)).first()
     pre, post = result(get("pre")), result(get("post"))
     counts: dict[str, int] = {}
-    for code, in session.exec(select(Diagnosis.misconception_code).join(Response).where(
+    for code in session.exec(select(Diagnosis.misconception_code).join(Response).where(
             Response.learner_id == learner_id, Diagnosis.misconception_code != None)).all():  # noqa: E711
         counts[code] = counts.get(code, 0) + 1
     repeated = [{"code": k, "description": content.misconceptions[k].description, "count": v,

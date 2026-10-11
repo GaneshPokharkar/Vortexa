@@ -5,7 +5,9 @@ import { api, type Learner } from "./lib/api";
 import { learnerName, useLearner } from "./lib/learner";
 import { lazy, Suspense } from "react";
 import Landing from "./screens/Landing";
+import Learn from "./screens/Learn";
 import Teacher from "./screens/Teacher";
+import Topics from "./screens/Topics";
 
 const DevOverlays = import.meta.env.DEV ? lazy(() => import("./screens/DevOverlays")) : null;
 
@@ -27,16 +29,16 @@ function Wordmark() {
 const NAV = [
   { to: "/home", label: "Home" },
   { to: "/topics", label: "Learn" },
-  { to: "/assessment", label: "Pre / post test" },
+  { to: "/assessment", label: "Tests" },
   { to: "/report", label: "Report" },
-  { to: "/doubts", label: "Common doubts" },
+  { to: "/doubts", label: "Doubts" },
 ];
 
 function ModeBadges() {
   const { modes } = useLearner();
   if (!modes) return null;
   return (
-    <div className="hidden items-center gap-1.5 lg:flex">
+    <div className="hidden items-center gap-1.5 xl:flex">
       <span
         title={modes.llm.note}
         className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12.5px] ${
@@ -44,7 +46,7 @@ function ModeBadges() {
         }`}
       >
         <Cpu className="size-3.5" aria-hidden="true" />
-        {modes.llm.live ? "Claude connected" : "Demo diagnosis engine"}
+        {modes.llm.live ? "Claude on" : "Demo engine"}
       </span>
       <span
         title={modes.voice.note}
@@ -53,7 +55,7 @@ function ModeBadges() {
         }`}
       >
         <AudioLines className="size-3.5" aria-hidden="true" />
-        {modes.voice.live ? "Voice ready" : "Voice not configured"}
+        {modes.voice.live ? "Voice on" : "Voice off"}
       </span>
     </div>
   );
@@ -186,8 +188,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<NeedsLearner><NotBuiltYet what="Your dashboard" /></NeedsLearner>} />
-        <Route path="/topics" element={<NeedsLearner><NotBuiltYet what="Topic selection" /></NeedsLearner>} />
-        <Route path="/learn/:conceptId" element={<NeedsLearner><NotBuiltYet what="The learning workspace" /></NeedsLearner>} />
+        <Route path="/topics" element={<NeedsLearner><Topics /></NeedsLearner>} />
+        <Route path="/learn/:conceptId" element={<NeedsLearner><Learn /></NeedsLearner>} />
         <Route path="/assessment" element={<NeedsLearner><NotBuiltYet what="The pre/post test" /></NeedsLearner>} />
         <Route path="/report" element={<NeedsLearner><NotBuiltYet what="The learning report" /></NeedsLearner>} />
         <Route path="/doubts" element={<NotBuiltYet what="Common doubts" />} />

@@ -239,3 +239,13 @@ def test_review_requires_token(client, monkeypatch):
     assert client.get("/review", headers={"X-Reviewer-Token": "nope"}).status_code == 401
     body = client.get("/review", headers={"X-Reviewer-Token": "t0ken"}).json()
     assert body["items"] and "answer_key" in body["items"][-1]
+
+
+def test_learner_report_lists_repeated_misconceptions(client):
+    # Regression: the report crashed for any learner with misconceptions on record.
+    for item, text in (("C2-Q1", "At the extreme position, because that is the farthest point."),
+                       ("C2-Q1", "It is fastest at the extreme, the farthest point")):
+        say(client, "rep", item, text)
+    r = client.get("/report/learner/rep")
+    assert r.status_code == 200
+    assert any(m["code"] == "S4" and m["count"] >= 2 for m in r.json()["repeated_misconceptions"])
