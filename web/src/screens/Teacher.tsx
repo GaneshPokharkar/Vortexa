@@ -2,7 +2,7 @@ import { KeyRound, Lock } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ContentReview } from "../components/ContentReview";
 import { Button, Empty, ErrorNote, Loading, PageHeader } from "../components/ui";
-import { ApiError, api, type ClassMap, type TeacherFlag } from "../lib/api";
+import { ApiError, api, type ClassMap, type StepPickRow, type TeacherFlag } from "../lib/api";
 
 const KEY = "learnloop.reviewer";
 
@@ -20,6 +20,12 @@ const STATUS_STYLE: Record<TeacherFlag["status"], { label: string; cls: string }
   resolved: { label: "Resolved", cls: "bg-ga-soft text-ga" },
 };
 
+const VERDICT_STYLE: Record<StepPickRow["verdict"], { label: string; cls: string }> = {
+  match: { label: "Match", cls: "bg-ga-soft text-ga" },
+  mismatch: { label: "Mismatch", cls: "bg-gb-soft text-gb" },
+  no_trace: { label: "No trace", cls: "bg-surface-2 text-muted" },
+};
+
 export default function Teacher() {
   const [token, setToken] = useState(readToken);
   const [draft, setDraft] = useState("");
@@ -27,19 +33,19 @@ export default function Teacher() {
   const [error, setError] = useState<unknown>(null);
   const [concept, setConcept] = useState("all");
   const [tab, setTab] = useState<"map" | "review">("map");
+  const [demo, setDemo] = useState(false);
 
   useEffect(() => {
     if (!token) return;
-    setData(null);
     setError(null);
-    api.teacherMap(token).then(setData).catch((e) => {
+    api.teacherMap(token, demo).then(setData).catch((e) => {
       if (e instanceof ApiError && e.status === 401) {
         setToken("");
         try { sessionStorage.removeItem(KEY); } catch { /* ignore */ }
       }
       setError(e);
     });
-  }, [token]);
+  }, [token, demo]);
 
   const students = useMemo(() => {
     if (!data) return [];
@@ -90,6 +96,8 @@ export default function Teacher() {
   if (!data) return <Loading what="the class map" />;
 
   const maxStudents = Math.max(1, ...data.concepts.flatMap((c) => c.misconceptions.map((m) => m.active + m.resolved)));
+  const steps = data.steps;
+  const sc = steps.self_check;
 
   return (
     <div>
@@ -164,6 +172,80 @@ export default function Teacher() {
               </li>
             ))}
           </ul>
+        )}
+      </section>
+
+      <section aria-labelledby="steps" className="mt-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 id="steps" className="text-[18px] font-semibold">Step self-check</h2>
+          <label className="inline-flex items-center gap-2 text-[14px] text-ink-2">
+            <input type="checkbox" checked={demo} onChange={(e) => setDemo(e.target.checked)} className="size-4 accent-[var(--ll-blue)]" />
+            Include demo learners (not real students)
+          </label>
+        </div>
+        <p className="mt-1 text-[14px] text-muted">{steps.note}</p>
+
+        <div className="mt-4 rounded-xl border border-line bg-surface px-5 py-4">
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] text-ink-2">
+            <span className="num text-[22px] font-semibold text-ink">n = {sc.n}</span>
+            {sc.n === 1 ? "pick" : "picks"} with a traced step
+            {sc.preliminary && <span className="rounded-full bg-gc-soft px-2 py-0.5 text-[12.5px] font-medium text-gc">Preliminary · n &lt; 10</span>}
+          </p>
+          <p className="mt-1 text-[14.5px] text-ink-2">
+            Self-check accuracy{" "}
+            <span className="num font-medium text-ink">{sc.accuracy === null ? "—" : `${Math.round(sc.accuracy * 100)}%`}</span>
+            <span className="text-muted"> · {sc.matches} of {sc.n} picks on the traced step</span>
+          </p>
+        </div>
+
+        {steps.questions.length === 0 ? (
+          <div className="mt-4"><Empty title="No step picks yet">Picks appear after a wrong answer on a question with worked steps, once the student taps a step.</Empty></div>
+        ) : (
+          <>
+            <div className="mt-4 rounded-xl border border-line bg-surface">
+              <h3 className="border-b border-line px-5 py-3 text-[16px] font-semibold">By question: most picked vs most traced step</h3>
+              <ul className="divide-y divide-line">
+                {steps.questions.map((q) => {
+                  const off = q.picked && q.traced && q.picked.step !== q.traced.step;
+                  return (
+                    <li key={q.item_id} className="grid gap-x-4 gap-y-1 px-5 py-3 text-[14.5px] text-ink-2 sm:grid-cols-[6rem_minmax(0,1fr)_auto]">
+                      <span className="num font-medium text-ink">{q.item_id}</span>
+                      <span>
+                        picked step <span className="num text-ink">{q.picked?.step ?? "—"}</span> ({q.picked?.count ?? 0}/{q.n})
+                        {" · "}traced step <span className="num text-ink">{q.traced?.step ?? "—"}</span> ({q.traced?.count ?? 0}/{q.n_traced})
+                      </span>
+                      <span className="flex items-center gap-2 text-[13px] text-muted sm:justify-end">
+                        {off && <span className="rounded-full bg-gb-soft px-2 py-0.5 font-medium text-gb">Misjudged step</span>}
+                        n = {q.n}{q.n < 10 && " · preliminary"}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <ul className="mt-4 space-y-4">
+              {steps.students.map((s) => (
+                <li key={s.label} className="rounded-xl border border-line bg-surface">
+                  <p className="flex items-center gap-2 border-b border-line px-5 py-3 font-medium text-ink">
+                    {s.label}
+                    {s.is_demo && <span className="rounded bg-gc-soft px-1.5 text-[11.5px] font-medium text-gc">Demo</span>}
+                  </p>
+                  <ul className="divide-y divide-line">
+                    {s.picks.map((p, i) => (
+                      <li key={i} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 px-5 py-3 text-[14.5px] text-ink-2">
+                        <span>
+                          <span className="num mr-1.5 font-medium text-ink">{p.item_id}:</span>
+                          picked step {p.picked} · {p.traced === null ? "answer traces to no step" : <>answer traced to step {p.traced}{p.code && <> (<span className="num">{p.code}</span>)</>}</>}
+                        </span>
+                        <span className={`rounded-full px-2 py-0.5 text-[13px] font-medium ${VERDICT_STYLE[p.verdict].cls}`}>{VERDICT_STYLE[p.verdict].label}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </section>
     </div>

@@ -1,6 +1,6 @@
 import { AudioLines, ChevronDown, Cpu, FlaskConical, LogOut, Trash2, UserRound } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Link, NavLink, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, NavLink, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { api, type Learner } from "./lib/api";
 import { learnerName, useLearner } from "./lib/learner";
 import { lazy, Suspense } from "react";
@@ -135,9 +135,11 @@ function LearnerMenu() {
 }
 
 function Shell({ children }: { children: ReactNode }) {
+  // On large screens the learning page fits the window; its two columns scroll on their own.
+  const fitted = useLocation().pathname.startsWith("/learn/");
   const { learner } = useLearner();
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className={`flex min-h-screen flex-col ${fitted ? "lg:h-dvh lg:min-h-0 lg:overflow-hidden" : ""}`}>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded focus:bg-surface focus:px-3 focus:py-2">
         Skip to content
       </a>
@@ -162,9 +164,9 @@ function Shell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 pb-20 sm:px-6">{children}</main>
+      <main id="main" className={`mx-auto w-full max-w-6xl flex-1 px-4 pb-20 sm:px-6 ${fitted ? "lg:flex lg:min-h-0 lg:flex-col lg:pb-0" : ""}`}>{children}</main>
 
-      <footer className="border-t border-line bg-surface">
+      <footer className={`border-t border-line bg-surface ${fitted ? "lg:hidden" : ""}`}>
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-5 text-[14px] text-muted sm:px-6">
           <p>LearnLoop supports your teacher. It does not replace them.</p>
           <div className="flex gap-4">

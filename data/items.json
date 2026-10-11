@@ -49,6 +49,7 @@
    {
     "text": "Displacement: the block is 2 cm from P, so |x| = 6 − 2 = 4 cm.",
     "trap": "SLIP",
+    "habit": "SIGN",
     "trap_text": "adding instead of subtracting: 6 + 2 = 8 cm."
    }
   ],
@@ -93,6 +94,23 @@
    }
   },
   "calc": "A = 1.6/2 = 0.8 m (distance measured along the arc for small swings).",
+  "steps": [
+   {
+    "text": "Mean position: the lowest point, midway between the two extremes. Displacement is measured from here.",
+    "trap": "S3",
+    "trap_text": "measuring displacement from the point where Priya was let go instead of from the lowest point."
+   },
+   {
+    "text": "Amplitude: the extremes are 1.6 m apart, so A = 1.6 ÷ 2 = 0.8 m.",
+    "trap": "S1",
+    "trap_text": "taking the full 1.6 m between the extremes as the amplitude."
+   },
+   {
+    "text": "SHM: this works because the swings are small. Very large swings still repeat, but they are not SHM.",
+    "trap": "S2",
+    "trap_text": "thinking anything that repeats regularly is SHM, whatever the size of the swing."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Option D relies on 'large-angle pendulum is periodic but not SHM'; confirm this is within HSC scope."
@@ -134,6 +152,24 @@
    }
   },
   "calc": "Stroke = 0.014 - (-0.002) = 0.016 m; A = 0.008 m; mean = (0.014 + (-0.002))/2 = 0.006 m above plate. SLIP C: sign dropped, 14 - 2 = 12 mm, A = 6 mm, mean 8 mm.",
+  "steps": [
+   {
+    "text": "Positions: top = +14 mm, bottom = −2 mm (below the plate), so the stroke is 14 − (−2) = 16 mm.",
+    "trap": "SLIP",
+    "habit": "SIGN",
+    "trap_text": "dropping the minus sign on the bottom point: 14 − 2 = 12 mm, which gives an amplitude of 6 mm."
+   },
+   {
+    "text": "Amplitude: half the stroke, A = 16 ÷ 2 = 8 mm.",
+    "trap": "S1",
+    "trap_text": "taking the full 16 mm stroke as the amplitude."
+   },
+   {
+    "text": "Mean position: the midpoint, (14 + (−2)) ÷ 2 = 6 mm above the plate. Displacement is measured from here.",
+    "trap": "S3",
+    "trap_text": "measuring displacement from the topmost point, where the stroke starts, instead of from the mean."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Real sewing-machine needle motion is only approximately SHM (crank-driven); stem says 'approximately'."
@@ -266,6 +302,34 @@
    "UNCLEAR": "What number did you get for the amplitude, and in which unit?"
   },
   "calc": "A = 0.10 m / 2 = 0.05 m. Follow-up: x = 0.05 - 0.03 = 0.02 m.",
+  "steps": [
+   {
+    "text": "Mean position: midway between the extremes. Amplitude is measured from there, so it is half the gap.",
+    "trap": "S1",
+    "trap_text": "taking the full distance between the extremes as the amplitude."
+   },
+   {
+    "text": "Units: the gap is 10 cm = 0.10 m.",
+    "trap": "SLIP",
+    "habit": "UNIT",
+    "trap_text": "staying in centimetres and answering 5 instead of 0.05 m.",
+    "value": 5.0
+   },
+   {
+    "text": "Amplitude: A = 0.10 ÷ 2 = 0.05 m.",
+    "trap": "SLIP",
+    "habit": "HALF",
+    "trap_text": "leaving out the ÷ 2 and giving the whole 0.10 m.",
+    "value": 0.1
+   },
+   {
+    "text": "Check: 0.05 m out from the mean on each side, and 0.05 + 0.05 = 0.10 m, the full gap.",
+    "trap": "SLIP",
+    "habit": "ARITH",
+    "trap_text": "halving a second time and getting 0.025 m.",
+    "value": 0.025
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "S1 phrase 'full distance' may appear in a correct answer like 'half of the full distance'; numeric value should take priority."
@@ -870,6 +934,18 @@
    }
   },
   "calc": "T = 2π√(L/g) for both; independent of bob mass and of small amplitude, so both finish 10 oscillations together.",
+  "steps": [
+   {
+    "text": "Formula: T = 2π√(L/g). Only length and g are in it, and both strings are the same length.",
+    "trap": "S9",
+    "trap_text": "thinking the heavier (or lighter) bob swings faster; mass isn't in the formula."
+   },
+   {
+    "text": "Amplitude: 3° and 6° are both small, so the different swings don't change T either. Both finish 10 oscillations together.",
+    "trap": "S8",
+    "trap_text": "thinking the bigger swing takes longer for each oscillation."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Assumes negligible air drag on both bobs and both angles within the small-angle regime."
@@ -925,6 +1001,7 @@
    {
     "text": "Square root: √(0.64/π²) = 0.8/π, so T = 2π × 0.8/π = 1.6 s.",
     "trap": "SLIP",
+    "habit": "ROOT",
     "trap_text": "forgetting the square root: 2π × 0.64/π² ≈ 0.41 s."
    }
   ],
@@ -968,6 +1045,24 @@
    }
   },
   "calc": "T ∝ √m: T₂ = 0.5 × √4 = 1.0 s. SLIP (T ∝ m, forgot root): 0.5 × 4 = 2.0 s.",
+  "steps": [
+   {
+    "text": "Spring–mass period: T = 2π√(m/k). The springs (k) are the same, so T ∝ √m.",
+    "trap": "S9",
+    "trap_text": "thinking only the springs decide the period, so the load changes nothing (0.5 s)."
+   },
+   {
+    "text": "Mass × 4: T₂ = 0.5 × √4 = 0.5 × 2 = 1.0 s.",
+    "trap": "SLIP",
+    "habit": "ROOT",
+    "trap_text": "forgetting the square root: 0.5 × 4 = 2.0 s."
+   },
+   {
+    "text": "Bounce size (amplitude) isn't in T, so it is still 1.0 s over a speed breaker.",
+    "trap": "S8",
+    "trap_text": "thinking a bigger bounce takes longer."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Real vehicle suspension has dampers and non-ideal springs; idealised as a single spring–mass system with k unchanged."
@@ -1108,6 +1203,27 @@
    "UNCLEAR": "Please give one number in seconds for the time of one full oscillation."
   },
   "calc": "T = 2π/ω = 2π/(10π) = 0.2 s; f = 5 Hz. Slip 1/ω = 1/(10π) ≈ 0.0318 s.",
+  "steps": [
+   {
+    "text": "Link ω to f: ω = 2πf, so f = 10π ÷ 2π = 5 Hz.",
+    "trap": "S10",
+    "trap_text": "treating ω itself as the frequency (f = 10π)."
+   },
+   {
+    "text": "Period: T = 2π/ω = 2π/(10π) = 0.2 s.",
+    "trap": "SLIP",
+    "habit": "ARITH",
+    "trap_text": "using T = 1/ω = 1/(10π) ≈ 0.032 s, leaving out the 2π.",
+    "value": 0.032
+   },
+   {
+    "text": "Check: T = 1/f = 1/5 = 0.2 s. The question asks for the period, not the 5 Hz frequency.",
+    "trap": "SLIP",
+    "habit": "ARITH",
+    "trap_text": "stopping at f = 5 Hz and giving that as the period.",
+    "value": 5.0
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Check that the grader's numeric tolerance (0.01 s) does not swallow the 0.032 s slip; it does not at |0.2 − 0.032|."
@@ -1255,6 +1371,18 @@
    }
   },
   "calc": "F = −kx: |F(2 cm)| / |F(4 cm)| = 2/4 = 1/2, direction −x (toward mean)",
+  "steps": [
+   {
+    "text": "Direction: F = −kx, so at x = +2 cm the force points in −x, toward the mean, whichever way the block is moving.",
+    "trap": "S12",
+    "trap_text": "thinking the force points the way the block is moving (right)."
+   },
+   {
+    "text": "Size: |F| ∝ x, so |F(2 cm)| ÷ |F(4 cm)| = 2/4 = 1/2.",
+    "trap": "S11",
+    "trap_text": "thinking the force is the same at every point because k is the same."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "'Later ... moving right' is valid: after release from +4 cm the block passes the mean, reaches −4 cm, and returns rightward through +2 cm on its way out to +4 cm"
@@ -1296,6 +1424,18 @@
    }
   },
   "calc": "Small angles: F ≈ −(mg/L)x, so |F| at x = A is twice |F| at x = A/2",
+  "steps": [
+   {
+    "text": "Direction: for small angles F ≈ −(mg/L)x, pointing back toward the lowest point, not along the motion.",
+    "trap": "S12",
+    "trap_text": "thinking the force acts the way the bob is moving, toward the right extreme."
+   },
+   {
+    "text": "Size: |F| ∝ x, so at the extreme (x = A) it is twice what it is at x = A/2.",
+    "trap": "S11",
+    "trap_text": "thinking gravity's pull back is the same at every point of the swing."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Restoring force here means the tangential component of gravity; proportionality holds only for small angles (sin θ ≈ θ)"
@@ -1337,6 +1477,18 @@
    }
   },
   "calc": "a = −ω²x with ω² = 25 s⁻² gives ω = 5 rad/s, T = 2π/5 ≈ 1.26 s",
+  "steps": [
+   {
+    "text": "SHM test: a = −ω²x, so a must point opposite to x, back toward equilibrium.",
+    "trap": "S12",
+    "trap_text": "accepting a = +25x, where a points the same way as x, away from equilibrium."
+   },
+   {
+    "text": "a must also grow in step with x: a fixed 2 m/s² doesn't, but a = −25x does (ω² = 25 s⁻², ω = 5 rad/s).",
+    "trap": "S11",
+    "trap_text": "thinking any steady push back toward equilibrium gives SHM."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Mount 4 is periodic but not simple harmonic (a not proportional to x); Mount 2 oscillates but is not SHM"
@@ -1483,6 +1635,19 @@
    "UNCLEAR": "Is the force at 6 cm larger, smaller, or the same as at 2 cm, and by how much?"
   },
   "calc": "|F6|/|F2| = 6/2 = 3",
+  "steps": [
+   {
+    "text": "Restoring force: F = −kx, so its size is proportional to the displacement.",
+    "trap": "S11",
+    "trap_text": "thinking the force is the same at every displacement because it's the same spring."
+   },
+   {
+    "text": "Compare: |F₆| ÷ |F₂| = 6/2 = 3, so the force at 6 cm is three times the force at 2 cm.",
+    "trap": "SLIP",
+    "habit": "ARITH",
+    "trap_text": "subtracting 6 − 2 instead of dividing, so missing that the force triples."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "A student writing 'not the same in both' would also hit the S11 phrase 'same in both'; engine negation handling to check"
@@ -1652,6 +1817,7 @@
    {
     "text": "Total energy: E = ½kA² = ½ × 80 × 0.05² = 0.1 J.",
     "trap": "SLIP",
+    "habit": "HALF",
     "trap_text": "dropping the ½: kA² = 0.2 J."
    },
    {
@@ -1746,6 +1912,18 @@
    }
   },
   "calc": "KE/E = (A² − x²)/A² = 1 − ¼ = ¾ at x = A/2; E = 0.30 / 0.75 = 0.40 J",
+  "steps": [
+   {
+    "text": "Total energy E stays the same throughout, so the 0.30 J of KE at x = A/2 is only part of it.",
+    "trap": "S13",
+    "trap_text": "taking the KE at that moment (0.30 J) as the total."
+   },
+   {
+    "text": "At x = A/2: PE = ½kx² = ¼ of ½kA², so KE = ¾E, and E = 0.30 ÷ 0.75 = 0.40 J.",
+    "trap": "S15",
+    "trap_text": "thinking energy goes in a straight line with x, so half the amplitude means half the energy (0.60 J)."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "D (KE = ¼E) mixes up KE and PE fractions; left UNMAPPED rather than forced onto S14."
@@ -1910,12 +2088,14 @@
    {
     "text": "Square the amplitude: A² = 0.1² = 0.01 m².",
     "trap": "SLIP",
+    "habit": "SQUARE",
     "trap_text": "not squaring A: ½ × 200 × 0.1 = 10 J.",
     "value": 10.0
    },
    {
     "text": "E = ½ × 200 × 0.01 = 1.0 J.",
     "trap": "SLIP",
+    "habit": "HALF",
     "trap_text": "dropping the ½: 200 × 0.01 = 2 J.",
     "value": 2.0
    }
@@ -2167,6 +2347,24 @@
    }
   },
   "calc": "sin r = (4/3) × sin 40° = 1.333 × 0.643 = 0.857 -> r ≈ 59.0°",
+  "steps": [
+   {
+    "text": "Snell's law, water into air: sin r = (4/3) × sin 40° = 1.333 × 0.643 = 0.857.",
+    "trap": "SLIP",
+    "habit": "ARITH",
+    "trap_text": "multiplying the angle instead of its sine: 40° × 4/3 ≈ 53.3°."
+   },
+   {
+    "text": "0.857 is less than 1, so the ray does get out: no total internal reflection at 40°.",
+    "trap": "R4",
+    "trap_text": "thinking light from under water is always totally reflected at the surface."
+   },
+   {
+    "text": "r = sin⁻¹(0.857) ≈ 59.0°, bigger than 40°: going into air it bends away from the normal.",
+    "trap": "R3",
+    "trap_text": "expecting it to bend toward the normal, which gives 28.8°."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "A uses sin r = (3/4) sin 40° = 0.482 -> 28.8° (bending toward normal); C is the slip of multiplying the angle, 40° × 4/3 ≈ 53.3°; 40° < C ≈ 48.6° so no TIR"
@@ -2302,6 +2500,27 @@
    "UNCLEAR": "Can you give the speed in the glass with its unit, and say in one word whether it bends toward or away from the normal?"
   },
   "calc": "v = c/n = 3.0 × 10⁸ / 1.5 = 2.0 × 10⁸ m/s",
+  "steps": [
+   {
+    "text": "Light slows down in glass: its speed there is v = c/n, not c.",
+    "trap": "SLIP",
+    "habit": "ARITH",
+    "trap_text": "keeping the vacuum speed, 3.0 × 10⁸ m/s, inside the glass.",
+    "value": 300000000.0
+   },
+   {
+    "text": "v = 3.0 × 10⁸ ÷ 1.5 = 2.0 × 10⁸ m/s.",
+    "trap": "SLIP",
+    "habit": "ARITH",
+    "trap_text": "multiplying by n instead of dividing: 4.5 × 10⁸ m/s.",
+    "value": 450000000.0
+   },
+   {
+    "text": "Leaving glass for air it moves into a rarer medium and speeds up, so it bends away from the normal.",
+    "trap": "R3",
+    "trap_text": "thinking light always bends toward the normal."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "CORRECT follow-up answer: f = c/λ = 3.0 × 10⁸ / 600 × 10⁻⁹ = 5.0 × 10¹⁴ Hz (unchanged); λ_glass = 600/1.5 = 400 nm"
@@ -2368,6 +2587,19 @@
    "UNCLEAR": "Does the torch light go into the pond, or is all of it reflected? Say which, and why."
   },
   "calc": "sin r = sin 80° / (4/3) = 0.985 × 0.75 = 0.739 -> r ≈ 47.6° (enters the water)",
+  "steps": [
+   {
+    "text": "TIR needs light going from a denser medium into a rarer one. Here it goes from air into water, so TIR can't happen.",
+    "trap": "R4",
+    "trap_text": "thinking TIR can happen in either direction once the angle is big enough."
+   },
+   {
+    "text": "Snell's law, air into water: sin r = sin 80° ÷ (4/3) = 0.985 × 0.75 = 0.739, so r ≈ 47.6° and the ray enters the water.",
+    "trap": "SLIP",
+    "habit": "ARITH",
+    "trap_text": "multiplying by 4/3 instead of dividing, which makes sin r bigger than 1 and looks like TIR."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "Water n = 4/3 assumed; some light is partially reflected at any surface, which is not TIR"
@@ -2447,6 +2679,7 @@
    {
     "text": "Snell's law, water into air: (4/3) × sin 40° = sin r, so sin r = 1.333 × 0.643 = 0.857.",
     "trap": "SLIP",
+    "habit": "ARITH",
     "trap_text": "dividing by 4/3 instead of multiplying, which gives r ≈ 28.8°.",
     "value": 28.8
    },
@@ -2607,6 +2840,24 @@
    }
   },
   "calc": "1/v = 1/f + 1/u = 1/20 + 1/(-30) = 1/60, so v = +60 cm; m = v/u = 60/(-30) = -2",
+  "steps": [
+   {
+    "text": "Signs (Cartesian): u = −30 cm (candle in front of the lens), f = +20 cm (convex).",
+    "trap": "SLIP",
+    "habit": "SIGN",
+    "trap_text": "using u = +30 cm, which gives v = 12 cm."
+   },
+   {
+    "text": "Lens formula: 1/v = 1/20 − 1/30 = 1/60, so v = +60 cm. Positive v: the rays really meet there, screen or not.",
+    "trap": "R6",
+    "trap_text": "thinking no image forms without a screen."
+   },
+   {
+    "text": "Top half covered: every point of the candle still sends rays through the bottom half, so the full image forms, only dimmer.",
+    "trap": "R5",
+    "trap_text": "thinking covering half the lens cuts off half the image."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "D uses the sign slip 1/20 + 1/30 = 1/12, giving 12 cm"
@@ -2693,6 +2944,24 @@
    }
   },
   "calc": "1/v = 1/f + 1/u = 1/10 + 1/(-15) = 1/30, so v = +30 cm; m = v/u = 30/(-15) = -2",
+  "steps": [
+   {
+    "text": "Signs (Cartesian): u = −15 cm (bulb in front of the lens), f = +10 cm (convex).",
+    "trap": "SLIP",
+    "habit": "SIGN",
+    "trap_text": "using u = +15 cm, which gives v = 6 cm."
+   },
+   {
+    "text": "Lens formula: 1/v = 1/10 − 1/15 = 1/30, so v = +30 cm; m = 30/(−15) = −2, inverted and twice the size. It forms with or without a screen.",
+    "trap": "R6",
+    "trap_text": "thinking the image only forms once a screen is placed at 30 cm."
+   },
+   {
+    "text": "Lower half taped: rays from every point of the bulb still pass through the top half, so the full image forms, only dimmer.",
+    "trap": "R5",
+    "trap_text": "thinking covering half the lens cuts off half the image."
+   }
+  ],
   "verify_flags": [
    "TODO_VERIFY",
    "D uses the sign slip 1/10 + 1/15 = 1/6, giving 6 cm"
@@ -2774,12 +3043,14 @@
    {
     "text": "Signs (Cartesian): u = −20 cm (object in front of the lens), f = +15 cm (convex).",
     "trap": "SLIP",
+    "habit": "SIGN",
     "trap_text": "using u = +20 cm, which gives 1/v = 7/60 and v ≈ 8.6 cm.",
     "value": 8.57
    },
    {
     "text": "Lens formula: 1/v = 1/f + 1/u = 1/15 − 1/20 = 1/60, so v = +60 cm.",
     "trap": "SLIP",
+    "habit": "SIGN",
     "trap_text": "flipping the sign of v to −60 cm (an image on the object's side).",
     "value": -60.0
    },

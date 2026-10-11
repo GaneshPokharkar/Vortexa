@@ -21,6 +21,18 @@
       "r3": {"text": "It's the same spring with the same k, so the pull back is the same at every point.", "maps_to": "S11"}
     },
     "calc": "F = −kx: |F(2 cm)| / |F(4 cm)| = 2/4 = 1/2, direction −x (toward mean)",
+    "steps": [
+      {
+        "text": "Direction: F = −kx, so at x = +2 cm the force points in −x, toward the mean, whichever way the block is moving.",
+        "trap": "S12",
+        "trap_text": "thinking the force points the way the block is moving (right)."
+      },
+      {
+        "text": "Size: |F| ∝ x, so |F(2 cm)| ÷ |F(4 cm)| = 2/4 = 1/2.",
+        "trap": "S11",
+        "trap_text": "thinking the force is the same at every point because k is the same."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "'Later ... moving right' is valid: after release from +4 cm the block passes the mean, reaches −4 cm, and returns rightward through +2 cm on its way out to +4 cm"]
   },
   {
@@ -45,6 +57,18 @@
       "r3": {"text": "For small swings the restoring force is proportional to displacement and points back to the bottom, so doubling the distance doubles it.", "maps_to": "CORRECT"}
     },
     "calc": "Small angles: F ≈ −(mg/L)x, so |F| at x = A is twice |F| at x = A/2",
+    "steps": [
+      {
+        "text": "Direction: for small angles F ≈ −(mg/L)x, pointing back toward the lowest point, not along the motion.",
+        "trap": "S12",
+        "trap_text": "thinking the force acts the way the bob is moving, toward the right extreme."
+      },
+      {
+        "text": "Size: |F| ∝ x, so at the extreme (x = A) it is twice what it is at x = A/2.",
+        "trap": "S11",
+        "trap_text": "thinking gravity's pull back is the same at every point of the swing."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "Restoring force here means the tangential component of gravity; proportionality holds only for small angles (sin θ ≈ θ)"]
   },
   {
@@ -69,6 +93,18 @@
       "r3": {"text": "As long as the push back is steady and toward equilibrium, it's SHM, so the fixed 2 m/s² one works.", "maps_to": "S11"}
     },
     "calc": "a = −ω²x with ω² = 25 s⁻² gives ω = 5 rad/s, T = 2π/5 ≈ 1.26 s",
+    "steps": [
+      {
+        "text": "SHM test: a = −ω²x, so a must point opposite to x, back toward equilibrium.",
+        "trap": "S12",
+        "trap_text": "accepting a = +25x, where a points the same way as x, away from equilibrium."
+      },
+      {
+        "text": "a must also grow in step with x: a fixed 2 m/s² doesn't, but a = −25x does (ω² = 25 s⁻², ω = 5 rad/s).",
+        "trap": "S11",
+        "trap_text": "thinking any steady push back toward equilibrium gives SHM."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "Mount 4 is periodic but not simple harmonic (a not proportional to x); Mount 2 oscillates but is not SHM"]
   },
   {
@@ -143,6 +179,19 @@
       "UNCLEAR": "Is the force at 6 cm larger, smaller, or the same as at 2 cm, and by how much?"
     },
     "calc": "|F6|/|F2| = 6/2 = 3",
+    "steps": [
+      {
+        "text": "Restoring force: F = −kx, so its size is proportional to the displacement.",
+        "trap": "S11",
+        "trap_text": "thinking the force is the same at every displacement because it's the same spring."
+      },
+      {
+        "text": "Compare: |F₆| ÷ |F₂| = 6/2 = 3, so the force at 6 cm is three times the force at 2 cm.",
+        "trap": "SLIP",
+        "habit": "ARITH",
+        "trap_text": "subtracting 6 − 2 instead of dividing, so missing that the force triples."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "A student writing 'not the same in both' would also hit the S11 phrase 'same in both'; engine negation handling to check"]
   },
   {

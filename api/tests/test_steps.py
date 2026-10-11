@@ -55,3 +55,31 @@ def test_no_steps_for_a_correct_answer(client):
 def test_step_out_of_range(client):
     fb = respond(client, {"learner_id": "steps-range", "item_id": "C1-P1", "option": "D", "reason_id": "r1", "confidence": "sure"})
     assert client.post(f"/responses/{fb['response_id']}/step", json={"step": 4}).status_code == 422
+
+
+def stepped_items():
+    from api.content import load_content
+    return [i for i in load_content().items.values() if i.steps]
+
+
+def test_every_wrong_option_traces_to_a_step():
+    for item in stepped_items():
+        traps = {s.trap for s in item.steps}
+        for opt, code in (item.distractor_map or {}).items():
+            if code not in ("CORRECT", "UNMAPPED"):
+                assert code in traps, f"{item.item_id} option {opt} ({code}) has no step"
+
+
+def test_every_numeric_slip_has_a_slip_step():
+    for item in stepped_items():
+        if item.kind == "short" and item.numeric:
+            values = [s.value for s in item.steps if s.trap == "SLIP" and s.value is not None]
+            for slip in item.numeric.slips:
+                assert any(abs(v - slip.value) <= item.numeric.tolerance for v in values), \
+                    f"{item.item_id} slip {slip.value} has no SLIP step"
+
+
+def test_habit_only_on_slip_steps():
+    for item in stepped_items():
+        for n, s in enumerate(item.steps, 1):
+            assert (s.habit is not None) == (s.trap == "SLIP"), f"{item.item_id} step {n}"

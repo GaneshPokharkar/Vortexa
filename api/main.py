@@ -240,6 +240,11 @@ def why(response_id: int, session: Session = Depends(get_session)):
 
 # ---------------- mastery ----------------
 
+@app.get("/habits/{learner_id}")
+def get_habits(learner_id: str, session: Session = Depends(get_session)):
+    return {"learner_id": learner_id, "habits": tutor.habits(session, learner_id)}
+
+
 @app.get("/mastery/{learner_id}")
 def get_mastery(learner_id: str, session: Session = Depends(get_session)):
     return {"learner_id": learner_id, "concepts": mastery(session, learner_id)}
@@ -403,8 +408,8 @@ def dialogue_turn(dialogue_id: int, body: DialogueReplyIn, session: Session = De
 # ---------------- teacher views (reviewer token) ----------------
 
 @app.get("/teacher/map", dependencies=[Depends(require_reviewer)])
-def teacher_map(session: Session = Depends(get_session)):
-    return teacher.class_map(session)
+def teacher_map(include_demo: bool = False, session: Session = Depends(get_session)):
+    return teacher.class_map(session, include_demo)
 
 
 @app.get("/review", dependencies=[Depends(require_reviewer)])

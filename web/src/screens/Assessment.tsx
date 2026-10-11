@@ -1,7 +1,6 @@
-import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardCheck, Lock, PartyPopper, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Button, ButtonLink, ErrorNote, Loading, PageHeader } from "../components/ui";
+import { Button, ButtonLink, Confetti, ErrorNote, Loading, PageHeader, Panel } from "../components/ui";
 import { api, type AssessmentKind, type AssessmentResult, type AssessmentSession, type LearnerReport } from "../lib/api";
 import { useLearner } from "../lib/learner";
 
@@ -35,54 +34,86 @@ export default function Assessment() {
   if (!report) return <Loading what="your tests" />;
 
   return (
-    <div>
-      <PageHeader title="Pre-test and post-test">
-        The same questions before and after practice, scored the same way, so your report can show what changed.
-        You won't see answers during a test.
+    <div className="pb-10">
+      <PageHeader title="Your tests">
+        Same questions before and after you practise, scored the same way. That's how your report shows what changed.
+        You won't see the answers during a test.
       </PageHeader>
 
       {result && (
-        <div role="status" className="mb-8 flex flex-wrap items-center gap-4 rounded-xl border border-ga/30 bg-ga-soft px-5 py-4">
-          <CheckCircle2 className="size-5 text-ga" aria-hidden="true" />
-          <p className="flex-1 text-[15.5px] text-ink">
-            {result.kind === "pre" ? "Pre-test" : "Post-test"} saved: <span className="num font-semibold">{result.correct} of {result.total}</span>{" "}
-            (<span className="num">{result.score_percentage}%</span>).{" "}
-            {result.kind === "pre" ? "Now practise; take the post-test when you're ready." : "Your report now shows the change."}
-          </p>
-          {result.kind === "pre" ? <ButtonLink to="/topics" variant="secondary">Start practising</ButtonLink>
-            : <ButtonLink to="/report" variant="secondary">See my report</ButtonLink>}
-        </div>
+        <Panel className="pop-in relative mb-8 overflow-hidden border-mint/40 bg-[linear-gradient(135deg,var(--ll-mint-soft),var(--ll-surface)_60%,var(--ll-sun-soft))] px-6 py-6">
+          <Confetti />
+          <div role="status" className="relative flex flex-wrap items-center gap-5">
+            <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-mint text-white" aria-hidden="true">
+              <PartyPopper className="size-7" />
+            </span>
+            <div className="min-w-0 flex-1 basis-56">
+              <p className="text-[14px] font-bold uppercase tracking-wide text-mint">{result.kind === "pre" ? "Pre-test" : "Post-test"} saved</p>
+              <p className="mt-1 text-[22px] font-extrabold leading-tight text-ink">
+                You got <span className="num">{result.correct} of {result.total}</span> (<span className="num">{result.score_percentage}%</span>)
+              </p>
+              <p className="mt-1 text-[15px] text-ink-2">
+                {result.kind === "pre" ? "Great, that's your starting point. Now practise, then take the post-test when you're ready." : "All done! Your report now shows the change."}
+              </p>
+            </div>
+            {result.kind === "pre"
+              ? <ButtonLink to="/topics" className="px-5 py-3 text-[16px]">Start practising <ArrowRight className="size-4" aria-hidden="true" /></ButtonLink>
+              : <ButtonLink to="/report" className="px-5 py-3 text-[16px]">See my report <ArrowRight className="size-4" aria-hidden="true" /></ButtonLink>}
+          </div>
+        </Panel>
       )}
 
       <div className="grid gap-5 md:grid-cols-2">
-        <TestCard title="Pre-test" when="Before you practise" res={report.pre}
-          action={!report.pre && <Button onClick={() => start("pre")}><ClipboardCheck className="size-4" aria-hidden="true" /> Start or resume the pre-test</Button>} />
-        <TestCard title="Post-test" when="After practice, same questions" res={report.post}
+        <TestCard title="Pre-test" when="Before you practise" tone="sun" res={report.pre}
+          action={!report.pre && <Button onClick={() => start("pre")} className="px-5 py-3 text-[16px]"><ClipboardCheck className="size-4" aria-hidden="true" /> Start the pre-test</Button>} />
+        <TestCard title="Post-test" when="After you practise. Same questions." tone="grape" res={report.post}
           action={!report.post && (report.pre
-            ? <Button onClick={() => start("post")}><ClipboardCheck className="size-4" aria-hidden="true" /> Start or resume the post-test</Button>
-            : <p className="text-[14.5px] text-muted">Opens after you finish the pre-test.</p>)} />
+            ? <Button onClick={() => start("post")} className="px-5 py-3 text-[16px]"><ClipboardCheck className="size-4" aria-hidden="true" /> Start the post-test</Button>
+            : <p className="flex items-center gap-2 text-[15px] font-semibold text-muted"><Lock className="size-4" aria-hidden="true" /> Opens after you finish the pre-test.</p>)} />
       </div>
+      {(!report.pre || !report.post) && <p className="mt-3 text-[14px] text-muted">Left a test halfway? Press start again and you'll pick up where you stopped.</p>}
       {report.pre && report.post && (
-        <p className="mt-6 text-[15px] text-ink-2">
-          Change: <span className="num font-semibold">{report.change_pp! > 0 ? "+" : ""}{report.change_pp} percentage points</span>.{" "}
-          <Link to="/report" className="text-blue-ink underline-offset-2 hover:underline">Open the full report</Link>
-        </p>
+        <Panel className="mt-6 flex flex-wrap items-center gap-4 border-blue/30 bg-blue-soft/50 px-6 py-5">
+          <TrendingUp className="size-6 text-blue-ink" aria-hidden="true" />
+          <p className="flex-1 text-[16px] text-ink">
+            Your change: <span className="num font-extrabold">{report.change_pp! > 0 ? "+" : ""}{report.change_pp} percentage points</span>
+          </p>
+          <ButtonLink to="/report" variant="secondary">Open the full report</ButtonLink>
+        </Panel>
       )}
     </div>
   );
 }
 
-function TestCard({ title, when, res, action }: { title: string; when: string; res: AssessmentResult | null; action: React.ReactNode }) {
+const TONE = {
+  sun: { tile: "bg-sun-soft text-sun", pill: "bg-sun-soft text-[#9a5b00]" },
+  grape: { tile: "bg-grape-soft text-grape", pill: "bg-grape-soft text-grape" },
+};
+
+function TestCard({ title, when, tone, res, action }: { title: string; when: string; tone: keyof typeof TONE; res: AssessmentResult | null; action: React.ReactNode }) {
+  const t = TONE[tone];
   return (
-    <section className="rounded-xl border border-line bg-surface px-5 py-5">
-      <p className="text-[13.5px] text-muted">{when}</p>
-      <h2 className="mt-1 text-[19px] font-semibold">{title}</h2>
+    <Panel className="px-6 py-6">
+      <div className="flex items-start gap-4">
+        <span className={`grid size-12 shrink-0 place-items-center rounded-2xl ${t.tile}`} aria-hidden="true">
+          <ClipboardCheck className="size-6" strokeWidth={2.2} />
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <h2 className="text-[20px] font-extrabold">{title}</h2>
+            {res
+              ? <span className="inline-flex items-center gap-1 rounded-full bg-ga-soft px-2.5 py-0.5 text-[12.5px] font-bold text-ga"><CheckCircle2 className="size-3.5" aria-hidden="true" /> Done</span>
+              : <span className={`rounded-full px-2.5 py-0.5 text-[12.5px] font-bold ${t.pill}`}>Not taken yet</span>}
+          </div>
+          <p className="mt-0.5 text-[14.5px] text-muted">{when}</p>
+        </div>
+      </div>
       {res ? (
-        <p className="mt-3 text-[15.5px] text-ink">
-          Done: <span className="num font-semibold">{res.correct} of {res.total}</span> · <span className="num">{res.score_percentage}%</span>
+        <p className="mt-4 text-[16px] text-ink">
+          You got <span className="num text-[22px] font-extrabold">{res.correct} of {res.total}</span> <span className="num text-muted">· {res.score_percentage}%</span>
         </p>
-      ) : <div className="mt-4">{action}</div>}
-    </section>
+      ) : <div className="mt-5">{action}</div>}
+    </Panel>
   );
 }
 

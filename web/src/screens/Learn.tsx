@@ -37,7 +37,7 @@ export default function Learn() {
   const st = mastery ? STATUS[mastery.status] : null;
 
   return (
-    <div className="pb-10 pt-7">
+    <div className="pb-10 pt-7 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:pb-4 lg:pt-4">
       <p className="text-[14px] text-muted">
         <Link to="/topics" className="hover:text-ink">{topic}</Link> · <span className="num">{lesson.concept.concept_id}</span>
       </p>
@@ -53,16 +53,18 @@ export default function Learn() {
           </span>
         )}
       </div>
-      <p className="mt-2 max-w-3xl text-[15.5px] text-muted">{forYou(lesson.concept.learning_objective)}</p>
+      <p className="mt-2 max-w-3xl text-[15.5px] text-muted lg:line-clamp-1" title={forYou(lesson.concept.learning_objective)}>{forYou(lesson.concept.learning_objective)}</p>
 
-      <div className="mt-7 grid items-start gap-7 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
-        <div className="flex flex-col gap-5">
+      <div className="mt-7 grid items-start gap-7 lg:mt-4 lg:min-h-0 lg:flex-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-stretch">
+        <div className="flex flex-col gap-5 lg:relative lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain lg:pb-4 lg:pr-2 lg:[&>*]:shrink-0">
           <LessonPanel lesson={lesson} />
           <Suspense fallback={null}>
             <VoiceTutor learnerId={learnerId} conceptId={conceptId} conceptName={lesson.concept.name} />
           </Suspense>
         </div>
-        <PracticePanel learnerId={learnerId} conceptId={conceptId} onAnswered={refresh} />
+        <div className="lg:relative lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain lg:pb-24 lg:pr-2">
+          <PracticePanel learnerId={learnerId} conceptId={conceptId} onAnswered={refresh} />
+        </div>
       </div>
       <AskChat learnerId={learnerId} conceptId={conceptId} conceptName={lesson.concept.name}
         suggestions={lesson.doubts.slice(0, 3).map((d) => d.q)} />

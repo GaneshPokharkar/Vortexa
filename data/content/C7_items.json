@@ -34,6 +34,24 @@
       }
     },
     "calc": "1/v = 1/f + 1/u = 1/20 + 1/(-30) = 1/60, so v = +60 cm; m = v/u = 60/(-30) = -2",
+    "steps": [
+      {
+        "text": "Signs (Cartesian): u = −30 cm (candle in front of the lens), f = +20 cm (convex).",
+        "trap": "SLIP",
+        "habit": "SIGN",
+        "trap_text": "using u = +30 cm, which gives v = 12 cm."
+      },
+      {
+        "text": "Lens formula: 1/v = 1/20 − 1/30 = 1/60, so v = +60 cm. Positive v: the rays really meet there, screen or not.",
+        "trap": "R6",
+        "trap_text": "thinking no image forms without a screen."
+      },
+      {
+        "text": "Top half covered: every point of the candle still sends rays through the bottom half, so the full image forms, only dimmer.",
+        "trap": "R5",
+        "trap_text": "thinking covering half the lens cuts off half the image."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "D uses the sign slip 1/20 + 1/30 = 1/12, giving 12 cm"
@@ -120,6 +138,24 @@
       }
     },
     "calc": "1/v = 1/f + 1/u = 1/10 + 1/(-15) = 1/30, so v = +30 cm; m = v/u = 30/(-15) = -2",
+    "steps": [
+      {
+        "text": "Signs (Cartesian): u = −15 cm (bulb in front of the lens), f = +10 cm (convex).",
+        "trap": "SLIP",
+        "habit": "SIGN",
+        "trap_text": "using u = +15 cm, which gives v = 6 cm."
+      },
+      {
+        "text": "Lens formula: 1/v = 1/10 − 1/15 = 1/30, so v = +30 cm; m = 30/(−15) = −2, inverted and twice the size. It forms with or without a screen.",
+        "trap": "R6",
+        "trap_text": "thinking the image only forms once a screen is placed at 30 cm."
+      },
+      {
+        "text": "Lower half taped: rays from every point of the bulb still pass through the top half, so the full image forms, only dimmer.",
+        "trap": "R5",
+        "trap_text": "thinking covering half the lens cuts off half the image."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "D uses the sign slip 1/10 + 1/15 = 1/6, giving 6 cm"
@@ -242,12 +278,14 @@
       {
         "text": "Signs (Cartesian): u = −20 cm (object in front of the lens), f = +15 cm (convex).",
         "trap": "SLIP",
+        "habit": "SIGN",
         "trap_text": "using u = +20 cm, which gives 1/v = 7/60 and v ≈ 8.6 cm.",
         "value": 8.57
       },
       {
         "text": "Lens formula: 1/v = 1/f + 1/u = 1/15 − 1/20 = 1/60, so v = +60 cm.",
         "trap": "SLIP",
+        "habit": "SIGN",
         "trap_text": "flipping the sign of v to −60 cm (an image on the object's side).",
         "value": -60.0
       },

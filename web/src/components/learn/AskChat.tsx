@@ -83,18 +83,13 @@ export function AskChat({ learnerId, conceptId, conceptName, suggestions }: {
                 : (
                   <Bubble key={k} side="tutor">
                     {m.reply.answer}
-                    <span className="mt-2 flex flex-wrap gap-1.5 text-[11.5px] font-bold">
-                      {m.reply.grounded_in.length > 0 && (
-                        <span className="rounded-full bg-surface-2 px-2 py-0.5 text-muted">
-                          {m.reply.engine === "llm" ? "Written by Claude from the course" : "From the course material"}
-                        </span>
-                      )}
-                      {m.reply.refer_teacher && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-sun-soft px-2 py-0.5 text-[#9a5b00]">
+                    {m.reply.refer_teacher && (
+                      <span className="mt-2 flex">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-sun-soft px-2 py-0.5 text-[11.5px] font-bold text-[#9a5b00]">
                           <GraduationCap className="size-3.5" aria-hidden="true" /> Ask your teacher too
                         </span>
-                      )}
-                    </span>
+                      </span>
+                    )}
                   </Bubble>
                 ))}
             {busy && <Bubble side="tutor"><span className="text-muted">Thinking…</span></Bubble>}

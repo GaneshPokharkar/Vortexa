@@ -1,5 +1,5 @@
-import { ArrowRight, BookOpen, MessageCircleQuestion, Users } from "lucide-react";
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { ArrowRight, BookOpen, Lightbulb, MessageCircleQuestion, Users } from "lucide-react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { api, type Feedback, type PublicItem, type RemediationCard } from "../../lib/api";
 import { HEADLINE, confidenceWords } from "../../lib/groups";
 import { Speak, recorded } from "../../voice/Speak";
@@ -173,6 +173,8 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
   const sure = confidenceWords(fb.confidence);
   const spoken = recorded(`result-${fb.category}`, HEADLINE[fb.category]);
   const closeWhy = useCallback(() => setWhy(false), []);
+  const top = useRef<HTMLElement>(null);
+  useEffect(() => { top.current?.scrollIntoView({ block: "start", behavior: "smooth" }); }, [fb.response_id]);
 
   const showCard = async () => {
     const c = await api.card(fb.remediation_card_id);
@@ -180,7 +182,7 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
   };
 
   return (
-    <section aria-live="polite" className={`pop-in relative overflow-hidden rounded-2xl border-2 bg-surface ${borderByGroup[fb.group]}`}>
+    <section ref={top} aria-live="polite" className={`pop-in scroll-mt-2 relative overflow-hidden rounded-2xl border-2 bg-surface ${borderByGroup[fb.group]}`}>
       <div className="px-5 pt-5 sm:px-6">
         {fb.group === "A" && <Confetti key={fb.response_id} />}
         <GroupBadge group={fb.group} size="lg" />
@@ -200,6 +202,15 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
       {fb.visual_correction && <div className="px-5 pt-4 sm:px-6"><CorrectionVisual correction={fb.visual_correction} /></div>}
 
       {fb.step_check && <div className="px-5 pt-4 sm:px-6"><StepCheckPanel fb={fb} check={fb.step_check} onUpdate={onUpdate} /></div>}
+
+      {fb.habit && (
+        <div className="px-5 pt-4 sm:px-6">
+          <p className="flex items-start gap-2.5 rounded-xl border border-sun/40 bg-sun-soft px-4 py-3 text-[15px] text-ink">
+            <Lightbulb className="mt-0.5 size-5 shrink-0 text-sun" aria-hidden="true" />
+            <span><span className="font-extrabold">Habit to watch:</span> you've been {fb.habit.label} on {fb.habit.count} questions. {fb.habit.tip}</span>
+          </p>
+        </div>
+      )}
 
       {fb.follow_up && fb.follow_up.kind === "clarify" ? (
         <Clarify fb={fb} onUpdate={onUpdate} />

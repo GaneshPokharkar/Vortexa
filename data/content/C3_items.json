@@ -21,6 +21,18 @@
       "r3": {"text": "The heavy bob gets pulled down with more force, so it comes back quicker.", "maps_to": "S9"}
     },
     "calc": "T = 2π√(L/g) for both; independent of bob mass and of small amplitude, so both finish 10 oscillations together.",
+    "steps": [
+      {
+        "text": "Formula: T = 2π√(L/g). Only length and g are in it, and both strings are the same length.",
+        "trap": "S9",
+        "trap_text": "thinking the heavier (or lighter) bob swings faster; mass isn't in the formula."
+      },
+      {
+        "text": "Amplitude: 3° and 6° are both small, so the different swings don't change T either. Both finish 10 oscillations together.",
+        "trap": "S8",
+        "trap_text": "thinking the bigger swing takes longer for each oscillation."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "Assumes negligible air drag on both bobs and both angles within the small-angle regime."]
   },
   {
@@ -59,6 +71,7 @@
       {
         "text": "Square root: √(0.64/π²) = 0.8/π, so T = 2π × 0.8/π = 1.6 s.",
         "trap": "SLIP",
+        "habit": "ROOT",
         "trap_text": "forgetting the square root: 2π × 0.64/π² ≈ 0.41 s."
       }
     ],
@@ -86,6 +99,24 @@
       "r3": {"text": "A bigger bounce means the tempo goes up and down more, so it takes more time.", "maps_to": "S8"}
     },
     "calc": "T ∝ √m: T₂ = 0.5 × √4 = 1.0 s. SLIP (T ∝ m, forgot root): 0.5 × 4 = 2.0 s.",
+    "steps": [
+      {
+        "text": "Spring–mass period: T = 2π√(m/k). The springs (k) are the same, so T ∝ √m.",
+        "trap": "S9",
+        "trap_text": "thinking only the springs decide the period, so the load changes nothing (0.5 s)."
+      },
+      {
+        "text": "Mass × 4: T₂ = 0.5 × √4 = 0.5 × 2 = 1.0 s.",
+        "trap": "SLIP",
+        "habit": "ROOT",
+        "trap_text": "forgetting the square root: 0.5 × 4 = 2.0 s."
+      },
+      {
+        "text": "Bounce size (amplitude) isn't in T, so it is still 1.0 s over a speed breaker.",
+        "trap": "S8",
+        "trap_text": "thinking a bigger bounce takes longer."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "Real vehicle suspension has dampers and non-ideal springs; idealised as a single spring–mass system with k unchanged."]
   },
   {
@@ -167,6 +198,27 @@
       "UNCLEAR": "Please give one number in seconds for the time of one full oscillation."
     },
     "calc": "T = 2π/ω = 2π/(10π) = 0.2 s; f = 5 Hz. Slip 1/ω = 1/(10π) ≈ 0.0318 s.",
+    "steps": [
+      {
+        "text": "Link ω to f: ω = 2πf, so f = 10π ÷ 2π = 5 Hz.",
+        "trap": "S10",
+        "trap_text": "treating ω itself as the frequency (f = 10π)."
+      },
+      {
+        "text": "Period: T = 2π/ω = 2π/(10π) = 0.2 s.",
+        "trap": "SLIP",
+        "habit": "ARITH",
+        "trap_text": "using T = 1/ω = 1/(10π) ≈ 0.032 s, leaving out the 2π.",
+        "value": 0.032
+      },
+      {
+        "text": "Check: T = 1/f = 1/5 = 0.2 s. The question asks for the period, not the 5 Hz frequency.",
+        "trap": "SLIP",
+        "habit": "ARITH",
+        "trap_text": "stopping at f = 5 Hz and giving that as the period.",
+        "value": 5.0
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "Check that the grader's numeric tolerance (0.01 s) does not swallow the 0.032 s slip; it does not at |0.2 − 0.032|."]
   },
   {

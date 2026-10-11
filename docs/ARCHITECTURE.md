@@ -23,7 +23,7 @@ data/  concepts, misconceptions, items, cards (JSON)                   ai/voice.
 ## One answer, end to end
 
 1. The learner answers (multiple choice with reason and confidence, or a typed or spoken short answer).
-2. **Evaluator**: rules decide right/wrong and whether there is a reason. In live mode Claude (`claude-opus-5-5`,
+2. **Evaluator**: rules decide right/wrong and whether there is a reason. In live mode Claude (`LEARNLOOP_MODEL`; this deployment uses `claude-haiku-4-5`,
    structured JSON, validated) evaluates free text independently; if Claude and the rules disagree with confidence
    ≥ 0.75, the learner gets a clarifying question. Neither side silently wins.
 3. **Diagnoser**: rules match the misconception (option/reason codes, or phrases with negation handling). Only if the
@@ -35,6 +35,20 @@ data/  concepts, misconceptions, items, cards (JSON)                   ai/voice.
    that writes mastery, updates BKT, except for unclear, partial, off-topic and undiagnosed answers, which never count.
 6. The feedback picks a follow-up: a different question aimed at that misconception, a sibling after a slip, an
    application question after a correct answer, or a clarifying question.
+7. **Step check** (questions with worked `steps`): after a wrong answer the learner taps the step where their working
+   went off track (`POST /responses/{id}/step`, stored in `step_picks`). `tutor.traced_step()` finds the step the
+   answer really traces to: the chosen option's code for multiple choice, or the number matched to a step's slip value
+   for short answers. The traced step is revealed only after the learner has picked. Self-report never changes mastery.
+8. **Mistake habits**: every slip step carries a habit (HALF, ROOT, SQUARE, SIGN, UNIT, ARITH). A habit seen on two
+   different questions is shown to the learner (`GET /habits/{learner_id}` and in the feedback). Read-only; slips stay
+   separate from misconceptions.
+
+## Asking the tutor
+
+The chat window (`POST /tutor/ask`) answers only from course material. It ranks sources from every concept, preferring
+the current one, after expanding student shorthand (acc, vel, 0, KE…). Claude writes the answer from the top sources and
+every number must appear in the cited material; without Claude, the closest course question and its answer are shown,
+or the learner is pointed to the teacher.
 
 ## Rules that never bend
 
@@ -50,13 +64,14 @@ data/  concepts, misconceptions, items, cards (JSON)                   ai/voice.
 ## Mastery
 
 Per concept, BKT with P(L0) = 0.25, T = 0.15, G = 0.10, S = 0.10. Status (in `engine/bkt.py`, one editable place):
-Not assessed → Emerging → Developing → Demonstrated understanding. *Demonstrated* needs P(L) ≥ 0.95, at least 3
+Not assessed → Emerging → Developing → Demonstrated understanding (students see: Not started → Just started →
+Getting there → Got it!, as 0–3 stars). *Demonstrated* needs P(L) ≥ 0.95, at least 3
 answers on 2 different questions, the last one right, no confirmed misconception, and a correct application question.
 Fewer than 2 answers shows "Not enough evidence yet".
 
 ## Data
 
 Tables: `learners`, `responses` (what was submitted), `diagnoses` (what was decided, trace, overlay), `mastery`,
-`assessment_sessions`, `assessments`, `dialogues`, `dialogue_turns`. Content lives in `data/*.json`, generated from
+`assessment_sessions`, `assessments`, `dialogues`, `dialogue_turns`, `step_picks`. Content lives in `data/*.json`, generated from
 `data/content/<concept>_*.json` by `scripts/load_content.py`, which validates every rule in
 `scripts/validate_content.py`.

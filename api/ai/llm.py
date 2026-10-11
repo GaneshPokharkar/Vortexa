@@ -54,13 +54,16 @@ def _json_call(system: str, user: str, schema: dict, max_tokens: int = 1024, eff
         return None
     import anthropic
 
+    output_config: dict = {"format": {"type": "json_schema", "schema": schema}}
+    if "haiku" not in MODEL:  # Haiku models reject the effort parameter
+        output_config["effort"] = effort
     try:
         response = _get_client().beta.messages.create(
             model=MODEL,
             max_tokens=max_tokens,
             system=system,
             messages=[{"role": "user", "content": user}],
-            output_config={"effort": effort, "format": {"type": "json_schema", "schema": schema}},
+            output_config=output_config,
             betas=["server-side-fallback-2026-07-01"],
             fallbacks="default",
         )

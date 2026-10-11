@@ -49,6 +49,7 @@
       {
         "text": "Displacement: the block is 2 cm from P, so |x| = 6 − 2 = 4 cm.",
         "trap": "SLIP",
+        "habit": "SIGN",
         "trap_text": "adding instead of subtracting: 6 + 2 = 8 cm."
       }
     ],
@@ -93,6 +94,23 @@
       }
     },
     "calc": "A = 1.6/2 = 0.8 m (distance measured along the arc for small swings).",
+    "steps": [
+      {
+        "text": "Mean position: the lowest point, midway between the two extremes. Displacement is measured from here.",
+        "trap": "S3",
+        "trap_text": "measuring displacement from the point where Priya was let go instead of from the lowest point."
+      },
+      {
+        "text": "Amplitude: the extremes are 1.6 m apart, so A = 1.6 ÷ 2 = 0.8 m.",
+        "trap": "S1",
+        "trap_text": "taking the full 1.6 m between the extremes as the amplitude."
+      },
+      {
+        "text": "SHM: this works because the swings are small. Very large swings still repeat, but they are not SHM.",
+        "trap": "S2",
+        "trap_text": "thinking anything that repeats regularly is SHM, whatever the size of the swing."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Option D relies on 'large-angle pendulum is periodic but not SHM'; confirm this is within HSC scope."
@@ -134,6 +152,24 @@
       }
     },
     "calc": "Stroke = 0.014 - (-0.002) = 0.016 m; A = 0.008 m; mean = (0.014 + (-0.002))/2 = 0.006 m above plate. SLIP C: sign dropped, 14 - 2 = 12 mm, A = 6 mm, mean 8 mm.",
+    "steps": [
+      {
+        "text": "Positions: top = +14 mm, bottom = −2 mm (below the plate), so the stroke is 14 − (−2) = 16 mm.",
+        "trap": "SLIP",
+        "habit": "SIGN",
+        "trap_text": "dropping the minus sign on the bottom point: 14 − 2 = 12 mm, which gives an amplitude of 6 mm."
+      },
+      {
+        "text": "Amplitude: half the stroke, A = 16 ÷ 2 = 8 mm.",
+        "trap": "S1",
+        "trap_text": "taking the full 16 mm stroke as the amplitude."
+      },
+      {
+        "text": "Mean position: the midpoint, (14 + (−2)) ÷ 2 = 6 mm above the plate. Displacement is measured from here.",
+        "trap": "S3",
+        "trap_text": "measuring displacement from the topmost point, where the stroke starts, instead of from the mean."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Real sewing-machine needle motion is only approximately SHM (crank-driven); stem says 'approximately'."
@@ -306,6 +342,34 @@
       "UNCLEAR": "What number did you get for the amplitude, and in which unit?"
     },
     "calc": "A = 0.10 m / 2 = 0.05 m. Follow-up: x = 0.05 - 0.03 = 0.02 m.",
+    "steps": [
+      {
+        "text": "Mean position: midway between the extremes. Amplitude is measured from there, so it is half the gap.",
+        "trap": "S1",
+        "trap_text": "taking the full distance between the extremes as the amplitude."
+      },
+      {
+        "text": "Units: the gap is 10 cm = 0.10 m.",
+        "trap": "SLIP",
+        "habit": "UNIT",
+        "trap_text": "staying in centimetres and answering 5 instead of 0.05 m.",
+        "value": 5.0
+      },
+      {
+        "text": "Amplitude: A = 0.10 ÷ 2 = 0.05 m.",
+        "trap": "SLIP",
+        "habit": "HALF",
+        "trap_text": "leaving out the ÷ 2 and giving the whole 0.10 m.",
+        "value": 0.1
+      },
+      {
+        "text": "Check: 0.05 m out from the mean on each side, and 0.05 + 0.05 = 0.10 m, the full gap.",
+        "trap": "SLIP",
+        "habit": "ARITH",
+        "trap_text": "halving a second time and getting 0.025 m.",
+        "value": 0.025
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "S1 phrase 'full distance' may appear in a correct answer like 'half of the full distance'; numeric value should take priority."

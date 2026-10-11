@@ -79,6 +79,9 @@ export type Lesson = {
 };
 
 /** Worked steps after a wrong answer. The learner picks where they went off track; then the rules say where the answer did. */
+/** A careless-working habit seen on at least two different questions. Never affects mastery. */
+export type Habit = { code: "HALF" | "ROOT" | "SQUARE" | "SIGN" | "UNIT" | "ARITH"; label: string; tip: string; count: number };
+
 export type StepCheck = {
   steps: string[];
   picked: number | null;
@@ -149,6 +152,7 @@ export type Feedback = {
   follow_up: FollowUp | null;
   visual_correction: VisualCorrection | null;
   step_check: StepCheck | null;
+  habit: Habit | null; // set when this answer's slip repeats a habit
   pipeline: PipelineStage[];
   misconception_code: string | null;
   misconception_status: "SUSPECTED" | "CONFIRMED" | null;
@@ -339,6 +343,17 @@ export type ReviewData = {
 export type ClassMap = {
   concepts: { concept: string; name: string; misconceptions: { code: string; description: string; active: number; resolved: number }[] }[];
   students: { label: string; is_demo: boolean; flags: TeacherFlag[] }[];
+  steps: TeacherSteps;
+  note: string;
+};
+
+/** Step picks (self-report) vs the step each answer traces to. Demo learners only when include_demo. */
+export type StepPickRow = { item_id: string; picked: number; traced: number | null; code: string | null; verdict: "match" | "mismatch" | "no_trace" };
+export type TeacherSteps = {
+  include_demo: boolean;
+  self_check: { n: number; matches: number; accuracy: number | null; preliminary: boolean };
+  questions: { item_id: string; n: number; n_traced: number; picked: { step: number; count: number } | null; traced: { step: number; count: number } | null }[];
+  students: { label: string; is_demo: boolean; picks: StepPickRow[] }[];
   note: string;
 };
 
@@ -400,6 +415,7 @@ export const api = {
   getItem: (itemId: string) => call<PublicItem>(`/items/${itemId}`),
   respond: (body: AnswerBody) => call<Feedback>("/responses", post(body)),
   clarify: (body: { response_id: number; reason_id?: string; text?: string }) => call<Feedback>("/clarify", post(body)),
+  habits: (learnerId: string) => call<{ learner_id: string; habits: Habit[] }>(`/habits/${encodeURIComponent(learnerId)}`),
   pickStep: (responseId: number, step: number) => call<Feedback>(`/responses/${responseId}/step`, post({ step })),
   why: (responseId: number) => call<Why>(`/diagnosis/${responseId}/why`),
   // mastery
@@ -422,7 +438,8 @@ export const api = {
     call<VoiceSession>(`/voice/session${q({ learner_id: learnerId, concept })}`),
   // teacher review (needs the reviewer token from api/.env)
   review: (token: string) => call<ReviewData>("/review", { headers: { "X-Reviewer-Token": token } }),
-  teacherMap: (token: string) => call<ClassMap>("/teacher/map", { headers: { "X-Reviewer-Token": token } }),
+  teacherMap: (token: string, includeDemo = false) =>
+    call<ClassMap>(`/teacher/map${q({ include_demo: includeDemo ? "true" : undefined })}`, { headers: { "X-Reviewer-Token": token } }),
   // Socratic dialogue with a confused peer
   startDialogue: (body: { learner_id: string; concept: string; code?: string }) => call<Dialogue>("/dialogues", post(body)),
   dialogue: (id: number) => call<Dialogue>(`/dialogues/${id}`),

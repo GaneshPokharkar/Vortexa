@@ -1,8 +1,8 @@
-import { ArrowRight, ClipboardCheck } from "lucide-react";
+import { ArrowRight, ClipboardCheck, Lightbulb } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ButtonLink, ConceptTile, ErrorNote, GroupBadge, Loading, Panel, Stars } from "../components/ui";
-import { api, type Concept, type LearnerReport, type Recommendations } from "../lib/api";
+import { api, type Concept, type Habit, type LearnerReport, type Recommendations } from "../lib/api";
 import { STATUS } from "../lib/groups";
 import { learnerName, useLearner } from "../lib/learner";
 
@@ -12,19 +12,19 @@ const KIND_LABEL: Record<string, string> = {
 
 export default function Home() {
   const { learner } = useLearner();
-  const [data, setData] = useState<{ rep: LearnerReport; recs: Recommendations; concepts: Map<string, Concept> } | null>(null);
+  const [data, setData] = useState<{ rep: LearnerReport; recs: Recommendations; concepts: Map<string, Concept>; habits: Habit[] } | null>(null);
   const [error, setError] = useState<unknown>(null);
 
   useEffect(() => {
     const id = learner!.learner_id;
-    Promise.all([api.learnerReport(id), api.recommendations(id), api.concepts()])
-      .then(([rep, recs, cs]) => setData({ rep, recs, concepts: new Map(cs.map((c) => [c.concept_id, c])) }))
+    Promise.all([api.learnerReport(id), api.recommendations(id), api.concepts(), api.habits(id)])
+      .then(([rep, recs, cs, h]) => setData({ rep, recs, concepts: new Map(cs.map((c) => [c.concept_id, c])), habits: h.habits }))
       .catch(setError);
   }, [learner]);
 
   if (error) return <div className="pt-10"><ErrorNote error={error} /></div>;
   if (!data) return <Loading what="your dashboard" />;
-  const { rep, recs, concepts } = data;
+  const { rep, recs, concepts, habits } = data;
   const next = recs.next_lesson;
   const who = learnerName(learner);
   const answered = rep.concepts.reduce((s, c) => s + c.attempts, 0);
@@ -64,6 +64,17 @@ export default function Home() {
           )}
         </Panel>
       </div>
+
+      {habits.length > 0 && (
+        <Panel className="mt-6 border-sun/40 bg-sun-soft px-6 py-5">
+          <h2 className="flex items-center gap-2 text-[17px] font-extrabold"><Lightbulb className="size-5 text-sun" aria-hidden="true" /> Habits to watch</h2>
+          <ul className="mt-2 space-y-1.5 text-[15px] text-ink">
+            {habits.map((h) => (
+              <li key={h.code}><span className="font-bold">You've been {h.label}</span> on {h.count} questions. {h.tip}</li>
+            ))}
+          </ul>
+        </Panel>
+      )}
 
       <Panel className="mt-6">
         <h2 className="border-b border-line px-6 py-3.5 text-[17px] font-extrabold">Your stars</h2>

@@ -9,6 +9,9 @@ VORTEXA 3.0 · problem **E-01**. A physics tutor for Maharashtra State Board HSC
   final call; Claude adds evidence for free-text answers; physics code draws a "your idea vs real physics" overlay.
 - A **confused classmate (Rohan)** argues the student's wrong idea back at them; a **teacher map** shows which ideas each
   student holds, in their own words.
+- After a wrong answer the student sees the **worked steps**, taps where their working went off track, and learns
+  where the answer really went wrong; repeated careless **habits** (a dropped ½, a missed √) are flagged.
+- An **Ask the tutor** chat answers doubts from the course material only.
 - **Pre/post tests** use the same questions; the report shows n, change in percentage points and its limits.
 - **Voice** (ElevenLabs Agents) and **Claude** are optional: without keys the app runs in a clearly labelled demo mode.
 
@@ -47,7 +50,7 @@ Copy `api/.env.example` to `api/.env` and fill in what you have:
 
 | Variable | What it does |
 |---|---|
-| `ANTHROPIC_API_KEY` | Enables Claude (`claude-opus-5-5` by default; change with `LEARNLOOP_MODEL`). `LEARNLOOP_LLM=off` forces demo mode. |
+| `ANTHROPIC_API_KEY` | Enables Claude (`claude-opus-5-5` by default; `LEARNLOOP_MODEL=claude-haiku-4-5` is much cheaper). `LEARNLOOP_LLM=off` forces demo mode. |
 | `ELEVENLABS_API_KEY`, `ELEVENLABS_AGENT_ID` | Enables the voice tutor. Create the agent with `docs/VOICE_AGENT.md`. |
 | `LEARNLOOP_REVIEWER_TOKEN` | Opens the teacher pages (`/teacher`): class misconception map and content review. |
 
@@ -56,8 +59,8 @@ Keys stay on the server: the browser only ever receives a short-lived ElevenLabs
 ## Tests
 
 ```bash
-.venv/Scripts/python -m pytest          # 77 backend tests: rules, scenarios A–K, orchestrator, overlays, dialogue
-cd web && npm test                      # 21 frontend tests: physics helpers, overlay geometry, display rules
+.venv/Scripts/python -m pytest          # 94 backend tests: rules, scenarios A–K, orchestrator, overlays, dialogue, steps, habits, Q&A, teacher
+cd web && npm test                      # 23 frontend tests: physics helpers, overlay geometry, display rules, speech lines
 cd web && npm run build                 # type-check + production build
 python scripts/validate_content.py      # content rules; add --table to print every question for review
 ```

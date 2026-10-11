@@ -25,6 +25,7 @@
       {
         "text": "Total energy: E = ½kA² = ½ × 80 × 0.05² = 0.1 J.",
         "trap": "SLIP",
+        "habit": "HALF",
         "trap_text": "dropping the ½: kA² = 0.2 J."
       },
       {
@@ -86,6 +87,18 @@
       "r3": {"text": "PE = ½kx² = ¼ of ½kA² at x = A/2, so KE is ¾ of the total, and ¾E = 0.30 J gives E = 0.40 J.", "maps_to": "CORRECT"}
     },
     "calc": "KE/E = (A² − x²)/A² = 1 − ¼ = ¾ at x = A/2; E = 0.30 / 0.75 = 0.40 J",
+    "steps": [
+      {
+        "text": "Total energy E stays the same throughout, so the 0.30 J of KE at x = A/2 is only part of it.",
+        "trap": "S13",
+        "trap_text": "taking the KE at that moment (0.30 J) as the total."
+      },
+      {
+        "text": "At x = A/2: PE = ½kx² = ¼ of ½kA², so KE = ¾E, and E = 0.30 ÷ 0.75 = 0.40 J.",
+        "trap": "S15",
+        "trap_text": "thinking energy goes in a straight line with x, so half the amplitude means half the energy (0.60 J)."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "D (KE = ¼E) mixes up KE and PE fractions; left UNMAPPED rather than forced onto S14."]
   },
   {
@@ -173,12 +186,14 @@
       {
         "text": "Square the amplitude: A² = 0.1² = 0.01 m².",
         "trap": "SLIP",
+        "habit": "SQUARE",
         "trap_text": "not squaring A: ½ × 200 × 0.1 = 10 J.",
         "value": 10.0
       },
       {
         "text": "E = ½ × 200 × 0.01 = 1.0 J.",
         "trap": "SLIP",
+        "habit": "HALF",
         "trap_text": "dropping the ½: 200 × 0.01 = 2 J.",
         "value": 2.0
       }

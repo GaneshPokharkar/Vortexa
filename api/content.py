@@ -78,6 +78,9 @@ class Step(BaseModel):
     trap: str  # misconception code or SLIP: the usual way this step goes wrong
     trap_text: str
     value: Optional[float] = None  # final answer this trap leads to, for matching numeric short answers
+    # Careless-working habit behind a SLIP trap: HALF (dropped ½), ROOT (missed √), SQUARE (missed square),
+    # SIGN (sign flip), UNIT (units / cm vs m), ARITH (other arithmetic).
+    habit: Optional[Literal["HALF", "ROOT", "SQUARE", "SIGN", "UNIT", "ARITH"]] = None
 
 
 class Item(BaseModel):

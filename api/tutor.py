@@ -268,6 +268,39 @@ def step_check(session: Session, item: Item, r: Response, d: Diagnosis) -> Optio
     }
 
 
+HABITS = {
+    "HALF": ("dropping the ½", "Look for every ½ in formulas like ½kA² and ½mv² before you submit."),
+    "ROOT": ("missing the square root", "When a formula has √, write the root down before you divide or multiply."),
+    "SQUARE": ("forgetting to square", "Squares hide in A², x² and ω². Tick each one as you use it."),
+    "SIGN": ("flipping a sign", "Write each sign (+ or −) with its number, especially u and v for lenses."),
+    "UNIT": ("mixing up units", "Turn cm into m (and degrees into radians when needed) before you calculate."),
+    "ARITH": ("making small arithmetic slips", "Redo the last line slowly, or estimate the answer first to catch a slip."),
+}
+
+
+def answer_habit(item: Item, r: Response, d: Diagnosis) -> Optional[str]:
+    """The careless-working habit behind a slip, read from the step the answer traces to."""
+    if d.category not in SLIP_CATEGORIES or not item.steps:
+        return None
+    n = traced_step(item, r, d)
+    return item.steps[n - 1].habit if n else None
+
+
+def habits(session: Session, learner_id: str) -> list[dict]:
+    """Habits seen on at least two different questions. Read-only: never touches mastery or diagnoses."""
+    content = load_content()
+    rows = session.exec(select(Response, Diagnosis).join(Diagnosis, Diagnosis.response_id == Response.id)
+                        .where(Response.learner_id == learner_id, Diagnosis.category.in_(SLIP_CATEGORIES))).all()
+    seen: dict[str, set[str]] = {}
+    for r, d in rows:
+        item = content.items.get(r.item_id)
+        code = answer_habit(item, r, d) if item else None
+        if code:
+            seen.setdefault(code, set()).add(r.item_id)
+    active = [{"code": c, "label": HABITS[c][0], "tip": HABITS[c][1], "count": len(ids)} for c, ids in seen.items() if len(ids) >= 2]
+    return sorted(active, key=lambda h: -h["count"])
+
+
 def feedback(session: Session, r: Response, d: Diagnosis, mastery_row: dict) -> dict:
     content = load_content()
     item = content.items[r.item_id]
@@ -290,6 +323,7 @@ def feedback(session: Session, r: Response, d: Diagnosis, mastery_row: dict) -> 
         "follow_up": json.loads(d.follow_up),
         "visual_correction": json.loads(d.visual),
         "step_check": step_check(session, item, r, d),
+        "habit": next((h for h in habits(session, r.learner_id) if h["code"] == answer_habit(item, r, d)), None),
         "pipeline": json.loads(d.pipeline),
         "misconception_code": d.misconception_code,
         "misconception_status": misconception_statuses(session, r.learner_id).get(d.misconception_code or ""),
