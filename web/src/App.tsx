@@ -4,7 +4,9 @@ import { Link, NavLink, Navigate, Route, Routes, useNavigate } from "react-route
 import { api, type Learner } from "./lib/api";
 import { learnerName, useLearner } from "./lib/learner";
 import { lazy, Suspense } from "react";
+import Assessment from "./screens/Assessment";
 import Landing from "./screens/Landing";
+import Report from "./screens/Report";
 import Learn from "./screens/Learn";
 import Teacher from "./screens/Teacher";
 import Topics from "./screens/Topics";
@@ -190,8 +192,8 @@ export default function App() {
         <Route path="/home" element={<NeedsLearner><NotBuiltYet what="Your dashboard" /></NeedsLearner>} />
         <Route path="/topics" element={<NeedsLearner><Topics /></NeedsLearner>} />
         <Route path="/learn/:conceptId" element={<NeedsLearner><Learn /></NeedsLearner>} />
-        <Route path="/assessment" element={<NeedsLearner><NotBuiltYet what="The pre/post test" /></NeedsLearner>} />
-        <Route path="/report" element={<NeedsLearner><NotBuiltYet what="The learning report" /></NeedsLearner>} />
+        <Route path="/assessment" element={<NeedsLearner><Assessment /></NeedsLearner>} />
+        <Route path="/report" element={<NeedsLearner><Report /></NeedsLearner>} />
         <Route path="/doubts" element={<NotBuiltYet what="Common doubts" />} />
         <Route path="/teacher" element={<Teacher />} />
         <Route path="/review" element={<Navigate to="/teacher" replace />} />
