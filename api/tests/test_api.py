@@ -95,6 +95,12 @@ def test_bkt_through_api_reaches_mastery(client):
     assert client.get("/items/next", params={"learner_id": "dev"}).json()["item"]["concept"] == "C2"
 
 
+def test_next_item_can_be_limited_to_a_concept(client):
+    item = client.get("/items/next", params={"learner_id": "fay", "concept": "C6"}).json()["item"]
+    assert item["concept"] == "C6"
+    assert client.get("/items/next", params={"learner_id": "fay", "concept": "C99"}).json()["item"] is None
+
+
 def test_assessment_items_rejected_from_practice(client):
     res = client.post("/responses", json={"learner_id": "eve", "item_id": "C1-A1", "option": "A",
                                           "reason_id": "r1", "confidence": "sure"})

@@ -128,7 +128,16 @@ data/            concepts.json, misconceptions.json, items.json, cards.json
 Endpoints: `GET /health`, `GET /concepts`, `GET /items/next?learner_id=`, `POST /responses`, `POST /clarify`,
 `GET /mastery/{learner_id}`, `GET /explain/{card_id}`, `GET /diagnosis/{response_id}/why`.
 
+`GET /items/next` takes an optional `concept` to practise one chosen concept (slip siblings still come first).
+
 Run: `.venv/Scripts/python -m pytest` · `.venv/Scripts/uvicorn api.main:app --reload` (port 8000).
+
+### Web (`/web`)
+
+`npm install` once, then `npm run dev` (port 5173; proxies `/api/*` to :8000) · `npm test` (Vitest) · `npm run build`.
+Routes: `/` Path · `/learn/:conceptId[?card=<code>-R]` Learn · `/practice[/:conceptId]` Question → Feedback / Clarify +
+"Why this diagnosis?" drawer · `/mastery`. Persona (Asha/Ben) is the only browser-stored state. Pure logic lives in
+`web/src/lib` (tested); the card source label says "verified" only when a card has no `verify_flags`.
 
 ## Phases
 

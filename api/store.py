@@ -177,8 +177,9 @@ def prior_slip_code(session: Session, learner_id: str, item_id: str) -> Optional
     return slip[1] if slip and eng.is_sibling(items[slip[0]], items[item_id]) else None
 
 
-def next_item(session: Session, learner_id: str) -> Optional[str]:
-    """Slip rule 5 sibling first; else the first unmastered concept's least-tried practice item."""
+def next_item(session: Session, learner_id: str, concept: Optional[str] = None) -> Optional[str]:
+    """Slip rule 5 sibling first; else the least-tried practice item of `concept` if given (the learner
+    chose it), or of the first unmastered concept."""
     content = load_content()
     tries: dict[str, int] = {}
     for item_id in session.exec(select(Response.item_id).where(Response.learner_id == learner_id)).all():
@@ -188,9 +189,12 @@ def next_item(session: Session, learner_id: str) -> Optional[str]:
     if slip:
         src = content.items[slip[0]]
         sibs = [i for i in content.items.values() if not i.is_assessment and eng.is_sibling(src, i)]
-        if sibs:
+        if sibs and concept in (None, src.concept):
             return min(sibs, key=lambda i: tries.get(i.item_id, 0)).item_id
 
+    if concept:
+        pool = [i for i in content.items.values() if i.concept == concept and not i.is_assessment]
+        return min(pool, key=lambda i: tries.get(i.item_id, 0)).item_id if pool else None
     for m in mastery(session, learner_id):
         if m["mastered"]:
             continue

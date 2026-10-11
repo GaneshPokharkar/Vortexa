@@ -105,8 +105,8 @@ def concepts():
 
 
 @app.get("/items/next")
-def items_next(learner_id: str, session: Session = Depends(get_session)):
-    item_id = next_item(session, learner_id)
+def items_next(learner_id: str, concept: Optional[str] = None, session: Session = Depends(get_session)):
+    item_id = next_item(session, learner_id, concept)
     return {"item": load_content().items[item_id].public() if item_id else None}
 
 
