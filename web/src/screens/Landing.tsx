@@ -1,6 +1,7 @@
 import { ArrowRight, BookOpenText, MessageCircleQuestion, ScanSearch, Sigma, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Films } from "../components/Films";
 import { Button, ErrorNote, GroupBadge } from "../components/ui";
 import { api, type Concept, type Group, type Learner, type Topic } from "../lib/api";
 import { useLearner } from "../lib/learner";
@@ -114,6 +115,8 @@ export default function Landing() {
           ))}
         </ol>
       </section>
+
+      <Films />
 
       <Modules />
 
