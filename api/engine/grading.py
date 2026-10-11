@@ -54,6 +54,8 @@ RULES = {
     "slip:5": "Wrong the same way again on the sibling item after a slip: upgraded to misconception.",
     "short:numeric-correct": "The number matches the answer key within tolerance.",
     "short:numeric-slip": "The number matches a known careless slip (right method, wrong arithmetic).",
+    "short:numeric-trace": "The number matches exactly one of the wrong ways of working that the mistake tracer computed.",
+    "short:numeric-trace-ambiguous": "The number fits more than one computed wrong way of working, so the tutor asks which.",
     "short:numeric-unmatched": "The number matches neither the answer nor a known slip, so the tutor asks how it was found.",
     "short:contradiction": "The answer contains both the correct idea and a known wrong idea, so the tutor asks first.",
     "short:correct": "The answer names the correct result and gives a reason.",

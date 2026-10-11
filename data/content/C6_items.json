@@ -34,6 +34,18 @@
       }
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Check for TIR with Snell's law, water into air: sin r = (4/3) × sin 30° = (4/3) × 0.5 = 0.667. That's less than 1, so the beam gets out.",
+        "trap": "R4",
+        "trap_text": "thinking light hitting the water surface from below is always totally reflected."
+      },
+      {
+        "text": "sin r = 0.667 is bigger than sin 30° = 0.5, so r > 30°: going into the rarer air the beam bends away from the normal.",
+        "trap": "R3",
+        "trap_text": "thinking light always bends toward the normal when it goes into a new medium."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "sin r = (4/3)(0.5) = 0.667 -> r ≈ 41.8° in air; 30° < C ≈ 48.6° so no TIR"
@@ -80,6 +92,18 @@
       }
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Critical angle, glass to air: sin C = 1/1.5 = 0.667, so C ≈ 41.8°. 25° is less than that, so the beam gets out: no total internal reflection.",
+        "trap": "R4",
+        "trap_text": "thinking light inside glass can always get trapped by total reflection at the surface."
+      },
+      {
+        "text": "Glass to air is denser to rarer: the beam speeds up and bends away from the normal, leaving at more than 25°.",
+        "trap": "R3",
+        "trap_text": "thinking light always bends toward the normal when it crosses glass."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "sin r = 1.5 × sin 25° = 1.5 × 0.423 = 0.634 -> r ≈ 39.3°; 25° < C ≈ 41.8° so no TIR"
@@ -126,6 +150,35 @@
       }
     },
     "calc": "sin r = (4/3) × sin 40° = 1.333 × 0.643 = 0.857 -> r ≈ 59.0°",
+    "trace": {
+      "formula": "asind(n*sind(i))",
+      "option_values": {"A": 28.8, "C": 53.3},
+      "inputs": {
+        "i": {
+          "value": 40,
+          "unit": "deg"
+        },
+        "n": {
+          "value": 1.3333333333333333
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "asind(sind(i)/n)",
+          "text": "divided by 4/3 instead of multiplying, as if the ray bent toward the normal",
+          "tags": [
+            "R3"
+          ]
+        },
+        {
+          "formula": "i*n",
+          "text": "multiplied the angle by 4/3 instead of its sine",
+          "tags": [
+            "ARITH"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Snell's law, water into air: sin r = (4/3) × sin 40° = 1.333 × 0.643 = 0.857.",
@@ -263,6 +316,36 @@
       "UNCLEAR": "Can you give the speed in the glass with its unit, and say in one word whether it bends toward or away from the normal?"
     },
     "calc": "v = c/n = 3.0 × 10⁸ / 1.5 = 2.0 × 10⁸ m/s",
+    "trace": {
+      "formula": "c/n",
+      "inputs": {
+        "c": {
+          "value": 300000000.0
+        },
+        "n": {
+          "value": 1.5
+        }
+      },
+      "allow": [
+        "muldiv"
+      ],
+      "alternatives": [
+        {
+          "formula": "c",
+          "text": "kept the vacuum speed inside the glass",
+          "tags": [
+            "ARITH"
+          ]
+        },
+        {
+          "formula": "n/c",
+          "text": "divided n by c instead of c by n",
+          "tags": [
+            "ARITH"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Light slows down in glass: its speed there is v = c/n, not c.",
@@ -376,57 +459,43 @@
   {
     "item_id": "C6-A2",
     "concept": "C6",
-    "kind": "short",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "transfer": false,
-    "stem": "A diver's torch underwater sends a ray up to the water surface at 60° to the normal (water n = 4/3, critical angle ≈ 48.6°). What happens to the ray at the surface, and why?",
-    "answer_key": "It is totally internally reflected back into the water.",
-    "expected_reasoning": "The ray goes from denser water toward rarer air, and 60° is greater than the critical angle of about 48.6°, so no refracted ray exists and all the light reflects back.",
-    "accept_any": [
-      "total internal reflection",
-      "totally internally reflected",
-      "totally reflected",
-      "tir",
-      "reflects back into the water",
-      "stays in the water",
-      "trapped"
-    ],
-    "reasoning_any": [
-      "denser to rarer",
-      "greater than the critical",
-      "more than critical",
-      "bigger than critical",
-      "above the critical",
-      "exceeds",
-      "48.6",
-      "sin c"
-    ],
-    "numeric": null,
-    "patterns": [
-      {
-        "code": "R3",
-        "any": [
-          "bends toward",
-          "bends towards",
-          "toward the normal",
-          "towards the normal",
-          "comes out",
-          "goes out into the air",
-          "escapes"
-        ]
+    "stem": "A diver's torch underwater sends a ray up to the water surface at 60° to the normal (water n = 4/3, critical angle ≈ 48.6°). What happens to the ray at the surface?",
+    "options": {
+      "A": "It comes out into the air, bending toward the normal",
+      "B": "It comes out into the air, bending away from the normal",
+      "C": "It is totally internally reflected back into the water",
+      "D": "Part of it comes out bent toward the normal and the rest reflects back"
+    },
+    "correct": "C",
+    "distractor_map": {
+      "A": "R3",
+      "B": "UNMAPPED",
+      "C": "CORRECT",
+      "D": "R3"
+    },
+    "reasons": {
+      "r1": {
+        "text": "Light always bends toward the normal when it crosses a surface, so the ray just comes out a bit bent.",
+        "maps_to": "R3"
+      },
+      "r2": {
+        "text": "It is going from denser water to rarer air, and 60° is more than the critical angle of 48.6°, so no ray can get out and all of it reflects back.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "Water and air both let light through, so the ray gets out, turning closer to the normal as it enters the air.",
+        "maps_to": "R3"
       }
-    ],
-    "follow_ups": {
-      "R3": "Is the ray going from denser to rarer or rarer to denser here, and which way does that make it bend if it does get out?",
-      "CORRECT_NO_REASON": "Which two conditions did you check to decide the ray stays trapped in the water?",
-      "CORRECT": "Diamond has n ≈ 2.42, so its critical angle is only about 24°. Why does that help a cut diamond sparkle more than glass?",
-      "UNCLEAR": "Does any of this ray leave the water into the air? Yes or no, and why?"
     },
     "calc": "sin C = 3/4 = 0.75 -> C ≈ 48.6°; (4/3) × sin 60° = 1.155 > 1, so no refracted ray",
     "verify_flags": [
       "TODO_VERIFY",
-      "Diamond follow-up: sin C = 1/2.42 = 0.413 -> C ≈ 24.4°"
+      "Diamond follow-up: sin C = 1/2.42 = 0.413 -> C ≈ 24.4°",
+      "Converted from short answer to MCQ for the MCQ-only tests; options and reasons need teacher review."
     ],
     "setup": {
       "n1": 1.3333333333333333,
@@ -470,6 +539,42 @@
       }
     },
     "calc": "i = 90° − 60° = 30°; sin r = sin 30° / 1.5 = 0.333, r = 19.5°. (Using 60°: sin r = 0.577, r = 35.3°, or 54.7° from the surface.)",
+    "trace": {
+      "formula": "asind(sind(90 - s)/n)",
+      "option_values": {"B": 35.3, "C": 54.7},
+      "inputs": {
+        "s": {
+          "value": 60,
+          "unit": "deg"
+        },
+        "n": {
+          "value": 1.5
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "asind(sind(s)/n)",
+          "text": "used the 60° to the surface as the angle of incidence",
+          "tags": [
+            "R7"
+          ]
+        },
+        {
+          "formula": "90 - asind(sind(s)/n)",
+          "text": "used the 60° to the surface and gave the answer from the surface too",
+          "tags": [
+            "R7"
+          ]
+        },
+        {
+          "formula": "90 - asind(sind(90 - s)/n)",
+          "text": "gave the angle of refraction from the surface instead of from the normal",
+          "tags": [
+            "R7"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Angle of incidence from the normal: i = 90° − 60° = 30°.",
@@ -556,6 +661,49 @@
       "UNCLEAR": "Which angle did you use in Snell's law, and which line did you measure it from?"
     },
     "calc": "i = 90° − 50° = 40°; sin r = (4/3) × sin 40° = 0.857, r ≈ 59.0°",
+    "trace": {
+      "formula": "asind(n*sind(90 - s))",
+      "inputs": {
+        "s": {
+          "value": 50,
+          "unit": "deg"
+        },
+        "n": {
+          "value": 1.3333333333333333
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "asind(sind(90 - s)/n)",
+          "text": "divided by 4/3 instead of multiplying, as if the ray bent toward the normal",
+          "tags": [
+            "R3"
+          ]
+        },
+        {
+          "formula": "90 - asind(n*sind(90 - s))",
+          "text": "gave the angle from the surface instead of from the normal",
+          "tags": [
+            "R7"
+          ]
+        },
+        {
+          "formula": "asind(sind(s)/n)",
+          "text": "used the 50° to the surface as the angle of incidence and divided by 4/3",
+          "tags": [
+            "R7",
+            "R3"
+          ]
+        },
+        {
+          "formula": "90 - s",
+          "text": "gave the angle of incidence (40°) without applying Snell's law",
+          "tags": [
+            "ARITH"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Angle of incidence from the normal: i = 90° − 50° = 40°.",

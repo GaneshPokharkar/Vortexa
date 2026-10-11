@@ -75,6 +75,21 @@ class StepPick(SQLModel, table=True):
     step: int
 
 
+class StepReview(SQLModel, table=True):
+    """What kind of mistake a step-check pick points to. Rules decide; Claude may only explain. Never changes mastery."""
+    __tablename__ = "step_reviews"
+    response_id: int = Field(foreign_key="responses.id", primary_key=True)
+    step: int
+    working: Optional[str] = None
+    kind: str  # conceptual | calculation
+    code: Optional[str] = None
+    habit: Optional[str] = None
+    engine: str = "rules"  # rules | rules+claude
+    confidence: Optional[float] = None
+    explanation: Optional[str] = None
+    needs_detail: bool = False
+
+
 class Mastery(SQLModel, table=True):
     __tablename__ = "mastery"
     learner_id: str = Field(foreign_key="learners.id", primary_key=True)
@@ -91,6 +106,7 @@ class AssessmentSession(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     learner_id: str = Field(foreign_key="learners.id", index=True)
     kind: str  # "pre" | "post"
+    topic: str = Field(default="ALL", index=True)  # SHM | OPTICS; "ALL" = the combined form used before topic tests
     started_at: datetime = Field(default_factory=_now)
     completed_at: Optional[datetime] = None
     total: int = 0
@@ -146,6 +162,11 @@ class DialogueTurn(SQLModel, table=True):
 
 def init_db() -> None:
     SQLModel.metadata.create_all(db)
+    # Additive migration for databases made before per-topic tests; existing rows keep topic "ALL".
+    with db.begin() as conn:
+        cols = [r[1] for r in conn.exec_driver_sql("PRAGMA table_info(assessment_sessions)")]
+        if "topic" not in cols:
+            conn.exec_driver_sql("ALTER TABLE assessment_sessions ADD COLUMN topic VARCHAR NOT NULL DEFAULT 'ALL'")
 
 
 def ensure_learner(session: Session, learner_id: str) -> Learner:
@@ -169,7 +190,7 @@ def reset_learner(session: Session, learner_id: str) -> int:
     """Delete every record of one learner (used for demo learners only)."""
     rows = session.exec(select(Response).where(Response.learner_id == learner_id)).all()
     for r in rows:
-        for row in (session.get(Diagnosis, r.id), session.get(StepPick, r.id)):
+        for row in (session.get(Diagnosis, r.id), session.get(StepPick, r.id), session.get(StepReview, r.id)):
             if row:
                 session.delete(row)
     session.commit()

@@ -63,6 +63,23 @@
       "r3": {"text": "The mean position is the important point of SHM, so both energies peak there.", "maps_to": "S14"}
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "At the extreme the bob is highest and at rest for an instant: PE is maximum, KE = 0.",
+        "trap": "S14",
+        "trap_text": "thinking KE is maximum at the extremes, or PE at the mean point."
+      },
+      {
+        "text": "At the mean point it is lowest and fastest: KE is maximum, PE is minimum. They can't both peak there.",
+        "trap": "S14",
+        "trap_text": "thinking KE and PE both reach their maximum at the mean point."
+      },
+      {
+        "text": "No air drag, so nothing is lost: KE rises by exactly the amount PE falls, and the total energy stays the same.",
+        "trap": "S13",
+        "trap_text": "thinking the total energy rises toward the mean because the bob is fastest there."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "Pendulum PE here is gravitational (mgh), which for small angles equals ½mω²x² with ω² = g/L; option C states S14 in its 'PE max at mean' form."]
   },
   {
@@ -80,13 +97,46 @@
       "D": "1.20 J, because at x = A/2 the KE is one-quarter of the total"
     },
     "correct": "C",
-    "distractor_map": {"A": "S13", "B": "S15", "C": "CORRECT", "D": "UNMAPPED"},
+    "distractor_map": {"A": "S13", "B": "S15", "C": "CORRECT", "D": "SLIP"},
     "reasons": {
       "r1": {"text": "Energy goes in a straight line with distance, so half the amplitude means half the energy has gone into the spring.", "maps_to": "S15"},
       "r2": {"text": "The logger reads 0.30 J, and the energy changes as the mass moves, so the total right now is just that.", "maps_to": "S13"},
       "r3": {"text": "PE = ½kx² = ¼ of ½kA² at x = A/2, so KE is ¾ of the total, and ¾E = 0.30 J gives E = 0.40 J.", "maps_to": "CORRECT"}
     },
     "calc": "KE/E = (A² − x²)/A² = 1 − ¼ = ¾ at x = A/2; E = 0.30 / 0.75 = 0.40 J",
+    "trace": {
+      "formula": "KE/(1 - (1/2)**2)",
+      "option_values": {"A": 0.3, "B": 0.6, "D": 1.2},
+      "inputs": {
+        "KE": {
+          "value": 0.3
+        }
+      },
+      "meaning": {
+        "square": {
+          "text": "used KE = ½E at half the amplitude, as if energy went in step with x, not x²",
+          "tags": [
+            "S15"
+          ]
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "KE",
+          "text": "took the KE at that moment as the total energy",
+          "tags": [
+            "S13"
+          ]
+        },
+        {
+          "formula": "KE/((1/2)**2)",
+          "text": "swapped the KE and PE fractions, taking KE as ¼E",
+          "tags": [
+            "ARITH"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Total energy E stays the same throughout, so the 0.30 J of KE at x = A/2 is only part of it.",
@@ -94,12 +144,18 @@
         "trap_text": "taking the KE at that moment (0.30 J) as the total."
       },
       {
-        "text": "At x = A/2: PE = ½kx² = ¼ of ½kA², so KE = ¾E, and E = 0.30 ÷ 0.75 = 0.40 J.",
+        "text": "At x = A/2: PE = ½kx² = ½k(A/2)² = ¼ of ½kA², so PE = ¼E.",
         "trap": "S15",
         "trap_text": "thinking energy goes in a straight line with x, so half the amplitude means half the energy (0.60 J)."
+      },
+      {
+        "text": "So KE = E − PE = ¾E, and E = 0.30 ÷ 0.75 = 0.40 J.",
+        "trap": "SLIP",
+        "trap_text": "swapping the KE and PE fractions, taking KE as ¼E, which gives 1.20 J.",
+        "habit": "ARITH"
       }
     ],
-    "verify_flags": ["TODO_VERIFY", "D (KE = ¼E) mixes up KE and PE fractions; left UNMAPPED rather than forced onto S14."]
+    "verify_flags": ["TODO_VERIFY", "D (KE = ¼E) swaps the KE and PE fractions; mapped to SLIP (careless step at step 3) rather than forced onto S14."]
   },
   {
     "item_id": "C5-A1",
@@ -150,6 +206,18 @@
       "UNCLEAR": "Does the total energy go up, go down, or stay the same between the extreme and the mean?"
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "PE: the spring stores PE = ½kx², which falls as x shrinks toward the mean and is zero there.",
+        "trap": "S14",
+        "trap_text": "thinking the PE increases toward the mean, or that PE and KE both peak there."
+      },
+      {
+        "text": "KE rises by exactly the amount PE falls, so KE + PE = ½kA² stays the same. On a smooth table no friction takes energy away.",
+        "trap": "S13",
+        "trap_text": "thinking the total energy increases (or decreases) as the block moves toward the mean."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "A correct answer like 'KE increases and PE decreases, total same' must not trip S13/S14; patterns are prefixed ('total ...', 'pe increases') to avoid that, but grader precedence (accept_any vs patterns) needs checking."]
   },
   {
@@ -177,6 +245,48 @@
       "UNCLEAR": "Can you give one number in joules for the total energy at x = 0.05 m?"
     },
     "calc": "E = ½kA² = ½ × 200 × 0.1² = 1.0 J; PE(0.05) = ½ × 200 × 0.05² = 0.25 J; KE = 0.75 J; v = √(2 × 0.75 / 0.5) = √3 ≈ 1.73 m/s",
+    "trace": {
+      "formula": "0.5*k*A**2",
+      "inputs": {
+        "k": {
+          "value": 200
+        },
+        "A": {
+          "value": 0.1,
+          "unit": "m"
+        },
+        "x": {
+          "value": 0.05,
+          "unit": "m"
+        }
+      },
+      "swaps": [
+        {
+          "use": "x",
+          "for": "A",
+          "text": "used x = 0.05 m instead of the amplitude A, as if the total energy depended on position",
+          "tags": [
+            "S13"
+          ]
+        }
+      ],
+      "alternatives": [
+        {
+          "formula": "0.5*k*(A**2 - x**2)",
+          "text": "gave the kinetic energy at x instead of the total energy",
+          "tags": [
+            "S13"
+          ]
+        },
+        {
+          "formula": "0.5*k*A",
+          "text": "made the energy grow in step with A (½kA), not with A²",
+          "tags": [
+            "S15"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Total energy is the same at every point, so x = 0.05 m isn't needed: E = ½kA².",
@@ -203,28 +313,43 @@
   {
     "item_id": "C5-A2",
     "concept": "C5",
-    "kind": "short",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "transfer": false,
-    "stem": "Sanya uses the same spring and block but releases it from twice the earlier distance, so the amplitude doubles. How does the total energy of the oscillation change, and why?",
-    "answer_key": "The total energy becomes four times as large.",
-    "expected_reasoning": "Total energy E = ½kA² depends on the square of the amplitude, so doubling A multiplies E by 2² = 4.",
-    "accept_any": ["four times", "4 times", "4x", "4 x", "quadruple", "quadruples", "fourfold", "four fold", "4 guna", "char guna"],
-    "reasoning_any": ["square", "squared", "a²", "a^2", "a square", "2²", "2 square", "half k a"],
-    "numeric": null,
-    "patterns": [
-      {"code": "S15", "any": ["energy doubles", "energy also doubles", "also doubles", "becomes double", "becomes twice", "twice the energy", "double the energy", "energy is 2 times", "energy becomes 2 times", "proportional to amplitude", "do guna"]},
-      {"code": "S13", "any": ["keeps changing", "not constant", "changes during", "more at the mean", "less at the extreme"]}
-    ],
-    "follow_ups": {
-      "S15": "Write E = ½kA². Put in 2A instead of A. What number multiplies the old energy?",
-      "S13": "For one fixed amplitude, is the total energy different at the extreme and at the mean? Why or why not?",
-      "CORRECT_NO_REASON": "Right. Which formula tells you it is four times and not two times?",
-      "CORRECT": "If you want only twice the energy, by what factor should you change the amplitude?",
-      "UNCLEAR": "Does the total energy become two times, four times, or stay the same when the amplitude doubles?"
+    "stem": "Sanya uses the same spring and block but releases it from twice the earlier distance, so the amplitude doubles. How does the total energy of the oscillation change?",
+    "options": {
+      "A": "It doubles",
+      "B": "It becomes four times as large",
+      "C": "It cannot be given as one value, because the total energy keeps changing during each oscillation",
+      "D": "It stays the same, because the same spring and block are used"
+    },
+    "correct": "B",
+    "distractor_map": {
+      "A": "S15",
+      "B": "CORRECT",
+      "C": "S13",
+      "D": "UNMAPPED"
+    },
+    "reasons": {
+      "r1": {
+        "text": "E = ½kA², so with 2A the energy is ½k(2A)² = 4 × ½kA².",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "Twice the pull means twice the energy; the energy goes up in step with the amplitude.",
+        "maps_to": "S15"
+      },
+      "r3": {
+        "text": "The total energy isn't one fixed number; it is more when the block zooms through the middle.",
+        "maps_to": "S13"
+      }
     },
     "calc": "E' / E = (2A)² / A² = 4",
-    "verify_flags": ["TODO_VERIFY", "Hinglish keywords ('4 guna', 'char guna', 'do guna') included for spoken answers; confirm the speech-to-text output spells them this way."]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Hinglish keywords ('4 guna', 'char guna', 'do guna') included for spoken answers; confirm the speech-to-text output spells them this way.",
+      "Converted from short answer to MCQ for the MCQ-only tests; options and reasons need teacher review."
+    ]
   }
 ]

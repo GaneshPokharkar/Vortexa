@@ -12,6 +12,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 from api.content import CORRECT, Item
+from api.engine import trace
 from api.engine.diagnosis import content_word_count, needs_clarification
 
 SUPERSCRIPT = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹⁻", "0123456789-")
@@ -112,6 +113,25 @@ def grade_short(item: Item, text: str, confidence: str = "sure", llm: Optional[L
                                    [f"Your value {s.value:g} {n.unit} is what you get if you {s.why.rstrip('.')}.".replace("  ", " "),
                                     "That looks like a slip in the working, not a wrong idea."],
                                    0.8, "UNCLEAR")
+        if item.trace and nums:
+            m = trace.match(item.trace, nums)
+            checked = len(trace.paths(item.trace))
+            if m and m.unique:
+                p = m.unique
+                ideas = [tag for tag in p.tags if tag not in trace.HABITS]
+                ev = [f"Your value {m.number:g} {n.unit} is exactly what you get if you {' and '.join(p.steps)}.".replace("  ", " "),
+                      f"The mistake tracer worked out {checked} wrong ways to solve this; only this one gives {m.number:g}."]
+                if ideas:
+                    return ShortResult("MISCONCEPTION", "short:numeric-trace", ideas[0], ev, 0.75, ideas[0])
+                return ShortResult("COMPUTATIONAL_SLIP", "short:numeric-trace", None,
+                                   ev + ["That looks like a slip in the working, not a wrong idea."], 0.75, "UNCLEAR")
+            if m:  # one number, several stories: ask which, don't guess
+                a = m.paths[0].steps
+                b = next(p.steps for p in m.paths if p.steps != a)
+                q = f"Your {m.number:g} {n.unit} fits two ways of working. Did you {' and '.join(a)}, or {' and '.join(b)}?"
+                return ShortResult("AMBIGUOUS", "short:numeric-trace-ambiguous", None,
+                                   [q, f"The mistake tracer worked out {checked} wrong ways to solve this; {len(m.paths)} give {m.number:g}."],
+                                   None, "ASK:" + q)
         if nums and not codes_found:
             return ShortResult("AMBIGUOUS", "short:numeric-unmatched", None,
                                [f"Your number ({nums[0]:g}) doesn't match the answer or a common slip."],

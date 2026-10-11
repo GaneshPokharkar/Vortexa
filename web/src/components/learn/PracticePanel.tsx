@@ -1,17 +1,20 @@
-import { ArrowRight, BookOpen, Lightbulb, MessageCircleQuestion, Users } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { ArrowRight, BookOpen, Lightbulb, MessageCircleQuestion, Route, Users } from "lucide-react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { api, type Feedback, type PublicItem, type RemediationCard } from "../../lib/api";
 import { HEADLINE, confidenceWords } from "../../lib/groups";
 import { Speak, recorded } from "../../voice/Speak";
 import { CorrectionVisual } from "../../visuals";
 import { DialoguePanel } from "../DialoguePanel";
 import { Button, Confetti, Empty, ErrorNote, GroupBadge, Loading } from "../ui";
-import { StepCheckPanel } from "./StepCheck";
+import { StepCheckPanel, type LessonLinks } from "./StepCheck";
 import { WhyDrawer } from "./WhyDrawer";
 
 type Stage = { kind: "loading" } | { kind: "none" } | { kind: "question"; item: PublicItem } | { kind: "feedback"; item: PublicItem; fb: Feedback };
 
-export function PracticePanel({ learnerId, conceptId, onAnswered }: { learnerId: string; conceptId: string; onAnswered: () => void }) {
+/** `startItem` opens a specific practice question first (e.g. from a link); otherwise the tutor picks the next one. */
+export function PracticePanel({ learnerId, conceptId, onAnswered, links, startItem }: {
+  learnerId: string; conceptId: string; onAnswered: () => void; links?: LessonLinks; startItem?: string;
+}) {
   const [stage, setStage] = useState<Stage>({ kind: "loading" });
   const [error, setError] = useState<unknown>(null);
 
@@ -26,7 +29,7 @@ export function PracticePanel({ learnerId, conceptId, onAnswered }: { learnerId:
     }
   }, [learnerId, conceptId]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { load(startItem); }, [load, startItem]);
 
   const done = (item: PublicItem, fb: Feedback) => {
     setStage({ kind: "feedback", item, fb });
@@ -42,7 +45,7 @@ export function PracticePanel({ learnerId, conceptId, onAnswered }: { learnerId:
       <QuestionCard item={stage.item} learnerId={learnerId} locked={stage.kind === "feedback"} onResult={(fb) => done(stage.item, fb)}
         answered={stage.kind === "feedback" ? stage.fb.your_answer : null} />
       {stage.kind === "feedback" && (
-        <FeedbackCard fb={stage.fb} learnerId={learnerId} conceptId={conceptId} onNext={(id) => load(id)}
+        <FeedbackCard fb={stage.fb} links={links} learnerId={learnerId} conceptId={conceptId} onNext={(id) => load(id)}
           onUpdate={(fb) => done(stage.item, fb)} />
       )}
     </div>
@@ -163,8 +166,8 @@ function QuestionCard({ item, learnerId, locked, answered, onResult }: {
 
 /* ---------------- feedback ---------------- */
 
-function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
-  fb: Feedback; learnerId: string; conceptId: string; onNext: (itemId?: string | null) => void; onUpdate: (fb: Feedback) => void;
+function FeedbackCard({ fb, links, learnerId, conceptId, onNext, onUpdate }: {
+  fb: Feedback; links?: LessonLinks; learnerId: string; conceptId: string; onNext: (itemId?: string | null) => void; onUpdate: (fb: Feedback) => void;
 }) {
   const [why, setWhy] = useState(false);
   const [talk, setTalk] = useState(false);
@@ -173,8 +176,6 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
   const sure = confidenceWords(fb.confidence);
   const spoken = recorded(`result-${fb.category}`, HEADLINE[fb.category]);
   const closeWhy = useCallback(() => setWhy(false), []);
-  const top = useRef<HTMLElement>(null);
-  useEffect(() => { top.current?.scrollIntoView({ block: "start", behavior: "smooth" }); }, [fb.response_id]);
 
   const showCard = async () => {
     const c = await api.card(fb.remediation_card_id);
@@ -182,7 +183,7 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
   };
 
   return (
-    <section ref={top} aria-live="polite" className={`pop-in scroll-mt-2 relative overflow-hidden rounded-2xl border-2 bg-surface ${borderByGroup[fb.group]}`}>
+    <section aria-live="polite" className={`pop-in relative overflow-hidden rounded-2xl border-2 bg-surface ${borderByGroup[fb.group]}`}>
       <div className="px-5 pt-5 sm:px-6">
         {fb.group === "A" && <Confetti key={fb.response_id} />}
         <GroupBadge group={fb.group} size="lg" />
@@ -201,7 +202,9 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
 
       {fb.visual_correction && <div className="px-5 pt-4 sm:px-6"><CorrectionVisual correction={fb.visual_correction} /></div>}
 
-      {fb.step_check && <div className="px-5 pt-4 sm:px-6"><StepCheckPanel fb={fb} check={fb.step_check} onUpdate={onUpdate} /></div>}
+      {fb.step_check && <div className="px-5 pt-4 sm:px-6"><StepCheckPanel fb={fb} check={fb.step_check} onUpdate={onUpdate} onNext={onNext} links={links} /></div>}
+
+      {fb.trace && <TraceCard trace={fb.trace} />}
 
       {fb.habit && (
         <div className="px-5 pt-4 sm:px-6">
@@ -306,5 +309,60 @@ function Clarify({ fb, onUpdate }: { fb: Feedback; onUpdate: (fb: Feedback) => v
       </div>
       {error ? <div className="mt-3"><ErrorNote error={error} /></div> : null}
     </form>
+  );
+}
+
+/** Numbers like 2×10⁸ or 5×10⁻⁹ stay readable; ordinary values get 3 significant figures. */
+const SUP: Record<string, string> = { "-": "⁻", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };
+function num(v: number): string {
+  if (v !== 0 && (Math.abs(v) >= 1e5 || Math.abs(v) < 1e-3)) {
+    const e = Math.floor(Math.log10(Math.abs(v)));
+    return `${+(v / 10 ** e).toPrecision(3)}×10${String(e).replace(/./g, (c) => SUP[c])}`;
+  }
+  return String(+v.toPrecision(3));
+}
+
+/** Mistake tracer: computed by code from the question's formula, so it is labelled as such (not as AI). */
+function TraceCard({ trace }: { trace: NonNullable<Feedback["trace"]> }) {
+  const unit = trace.unit ? ` ${trace.unit}` : "";
+  return (
+    <div className="px-5 pt-4 sm:px-6">
+      <div className="rounded-xl border border-blue/25 bg-blue-soft/40 px-4 py-3.5">
+        <p className="flex items-center gap-2 text-[15px] font-extrabold text-ink">
+          <Route className="size-5 text-blue" aria-hidden="true" /> Mistake tracer
+        </p>
+        <p className="mt-1 text-[14.5px] text-ink-2">
+          The tutor worked out <b className="num">{trace.checked}</b> wrong ways to solve this question and the number each one gives.
+        </p>
+        {trace.number !== null && trace.matched.length === 1 && (
+          <p className="mt-1.5 text-[15px] text-ink">
+            Your <b className="num">{num(trace.number)}{unit}</b> matches exactly one: you probably <b>{trace.matched[0].text}</b>.
+          </p>
+        )}
+        {trace.number !== null && trace.matched.length > 1 && (
+          <p className="mt-1.5 text-[15px] text-ink">
+            Your <b className="num">{num(trace.number)}{unit}</b> fits {trace.matched.length} of them, so the tutor asks which one you did instead of guessing.
+          </p>
+        )}
+        {trace.number === null && (
+          <p className="mt-1.5 text-[15px] text-ink">Your number didn't match any of them, so the tutor can't tell how you worked it out from the number alone.</p>
+        )}
+        <details className="mt-2">
+          <summary className="cursor-pointer text-[14px] font-bold text-blue-ink">See all {trace.checked} wrong answers and where each comes from</summary>
+          <ul className="mt-2 max-h-64 space-y-1 overflow-y-auto pr-1 text-[14px]">
+            {trace.paths.map((p) => {
+              const yours = trace.number !== null && trace.matched.some((m) => m.text === p.text);
+              return (
+                <li key={p.text} className={`grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3 rounded-lg px-2 py-1 ${yours ? "bg-sun-soft font-semibold" : ""}`}>
+                  <span className="num text-right text-ink">{num(p.value)}{unit}</span>
+                  <span className="text-ink-2">{p.text}{yours && " ← yours"}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mt-2 text-[12.5px] text-muted">Computed from the question's formula by LearnLoop's mistake tracer (rules, not AI).</p>
+        </details>
+      </div>
+    </div>
   );
 }

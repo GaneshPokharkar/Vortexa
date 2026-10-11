@@ -274,6 +274,18 @@
       "UNCLEAR": "Which place do you mean: the end where she let go, the opposite end, or somewhere between them?"
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Release point: she let go at one end, so that point is an extreme, x = +A. It is where the motion starts, not where displacement is zero.",
+        "trap": "S3",
+        "trap_text": "taking the release point as zero displacement because that's where it started."
+      },
+      {
+        "text": "Reference: displacement is measured from the mean position, midway between the two ends, where the spring is at its natural length and the net force is zero. So x = 0 there.",
+        "trap": "S3",
+        "trap_text": "measuring displacement from an end of the motion instead of from the mean."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "A correct answer such as 'at the middle, not at the end' contains both 'middle' and 'at the end'; the engine must resolve this overlap (e.g., negation handling or accept_any priority)."
@@ -342,6 +354,35 @@
       "UNCLEAR": "What number did you get for the amplitude, and in which unit?"
     },
     "calc": "A = 0.10 m / 2 = 0.05 m. Follow-up: x = 0.05 - 0.03 = 0.02 m.",
+    "trace": {
+      "formula": "d/2",
+      "inputs": {
+        "d": {
+          "value": 0.1,
+          "unit": "m"
+        }
+      },
+      "allow": [
+        "muldiv"
+      ],
+      "meaning": {
+        "half": {
+          "text": "took the full distance between the extremes as the amplitude",
+          "tags": [
+            "S1"
+          ]
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "d/4",
+          "text": "halved twice",
+          "tags": [
+            "ARITH"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Mean position: midway between the extremes. Amplitude is measured from there, so it is half the gap.",
@@ -378,66 +419,43 @@
   {
     "item_id": "C1-A2",
     "concept": "C1",
-    "kind": "short",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "transfer": false,
-    "stem": "Aarav says a ball bouncing straight up and down on the floor is in SHM because it repeats at equal time intervals. Is he right? Give a reason.",
-    "answer_key": "No; the bouncing is periodic but not SHM.",
-    "expected_reasoning": "SHM needs a restoring force proportional to displacement and directed towards a mean position (F = -kx); the ball's force in the air is a constant mg, so it is periodic but not simple harmonic.",
-    "accept_any": [
-      "not shm",
-      "not an shm",
-      "not in shm",
-      "isn't shm",
-      "not simple harmonic",
-      "he is wrong",
-      "he's wrong",
-      "not right",
-      "not correct",
-      "only periodic",
-      "just periodic",
-      "periodic but not"
-    ],
-    "reasoning_any": [
-      "proportional",
-      "restoring force",
-      "towards the mean",
-      "mean position",
-      "constant force",
-      "force is constant",
-      "gravity is constant",
-      "-kx",
-      "f = -kx",
-      "mg"
-    ],
-    "numeric": null,
-    "patterns": [
-      {
-        "code": "S2",
-        "any": [
-          "he is right",
-          "he's right",
-          "he is correct",
-          "yes it is",
-          "it is shm",
-          "is in shm",
-          "periodic means shm",
-          "so it is shm",
-          "repeats so shm"
-        ]
+    "stem": "Aarav says a ball bouncing straight up and down on the floor is in SHM because it repeats at equal time intervals. Is he right?",
+    "options": {
+      "A": "Yes; any motion that repeats at equal time intervals is SHM",
+      "B": "No; it is periodic, but the force on the ball in the air is a constant mg, not a restoring force proportional to its displacement from a mean position",
+      "C": "Yes; the ball keeps coming back to the floor, so the floor is its mean position",
+      "D": "No; it is not periodic at all, because each bounce takes a different time"
+    },
+    "correct": "B",
+    "distractor_map": {
+      "A": "S2",
+      "B": "CORRECT",
+      "C": "S2",
+      "D": "UNMAPPED"
+    },
+    "reasons": {
+      "r1": {
+        "text": "SHM needs a force that pulls back toward a mean position and grows with the distance from it; in the air the ball only feels a constant mg.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "It repeats again and again at equal intervals, and that is exactly what SHM means.",
+        "maps_to": "S2"
+      },
+      "r3": {
+        "text": "It goes up and comes back down the same way every time, so it has to be simple harmonic.",
+        "maps_to": "S2"
       }
-    ],
-    "follow_ups": {
-      "S2": "Besides repeating, what must be true about the force on a body for its motion to be called SHM?",
-      "CORRECT_NO_REASON": "What exactly does SHM need that the bouncing ball's motion lacks?",
-      "CORRECT": "Is a simple pendulum swinging out to 60 degrees from the vertical in SHM? Why or why not?",
-      "UNCLEAR": "Do you think the bouncing ball is in SHM: yes or no?"
     },
     "calc": "",
     "verify_flags": [
       "TODO_VERIFY",
-      "'mg' in reasoning_any is a short token; check substring matching does not fire on unrelated words."
+      "'mg' in reasoning_any is a short token; check substring matching does not fire on unrelated words.",
+      "Converted from short answer to MCQ for the MCQ-only tests; options and reasons need teacher review."
     ]
   }
 ]

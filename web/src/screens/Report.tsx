@@ -2,17 +2,21 @@ import { AlertTriangle, ArrowRight, Info, Repeat, Route, Users } from "lucide-re
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ButtonLink, ConceptTile, Empty, ErrorNote, GroupBadge, Loading, PageHeader, Panel, Stars } from "../components/ui";
-import { api, type Concept, type LearnerReport, type Report as ClassReport } from "../lib/api";
+import { api, type Concept, type LearnerReport, type Report as ClassReport, type TestTopic } from "../lib/api";
 import { STATUS } from "../lib/groups";
 import { useLearner } from "../lib/learner";
 
 type Tab = "mine" | "class";
 
-export default function Report() {
+/** Scope of a report: one topic's tests and ideas, with links that stay inside that topic's workspace. */
+type Scope = { topic: TestTopic; concepts?: string[]; base: string };
+
+export default function Report({ topic = "ALL", concepts, base = "", embedded = false }: Partial<Scope> & { embedded?: boolean }) {
   const [tab, setTab] = useState<Tab>("mine");
+  const scope = { topic, concepts, base };
   return (
-    <div className="pb-10">
-      <PageHeader title="Your learning report">Your scores, what changed and why. We always tell you how many students a number is based on, and what it can't show.</PageHeader>
+    <div className={embedded ? "" : "pb-10"}>
+      {!embedded && <PageHeader title="Your learning report">Your scores, what changed and why. We always tell you how many students a number is based on, and what it can't show.</PageHeader>}
       <div role="tablist" aria-label="Report" className="mb-6 inline-flex rounded-xl border-2 border-line bg-surface p-1">
         {([["mine", "My report"], ["class", "Class report"]] as const).map(([id, label]) => (
           <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)}
@@ -21,7 +25,7 @@ export default function Report() {
           </button>
         ))}
       </div>
-      {tab === "mine" ? <Mine /> : <ClassView />}
+      {tab === "mine" ? <Mine {...scope} /> : <ClassView {...scope} />}
     </div>
   );
 }
@@ -38,18 +42,20 @@ function Stat({ label, value, sub, tone }: { label: string; value: string; sub: 
   );
 }
 
-function Mine() {
+function Mine({ topic, concepts, base }: Scope) {
   const { learner } = useLearner();
+  const inScope = (concept: string) => !concepts || concepts.includes(concept);
   const [r, setR] = useState<LearnerReport | null>(null);
   const [names, setNames] = useState<Map<string, Concept>>(new Map());
   const [error, setError] = useState<unknown>(null);
   useEffect(() => {
-    Promise.all([api.learnerReport(learner!.learner_id), api.concepts()])
+    Promise.all([api.learnerReport(learner!.learner_id, topic), api.concepts()])
       .then(([rep, cs]) => { setR(rep); setNames(new Map(cs.map((c) => [c.concept_id, c]))); })
       .catch(setError);
-  }, [learner]);
+  }, [learner, topic]);
   if (error) return <ErrorNote error={error} />;
   if (!r) return <Loading what="your report" />;
+  const recent = r.recent.filter((a) => inScope(a.item_id.split("-")[0]));
 
   return (
     <div className="grid gap-6">
@@ -64,16 +70,16 @@ function Mine() {
       {(!r.pre || !r.post) && (
         <p className="-mt-2 text-[15px] text-ink-2">
           {!r.pre ? "Take the pre-test to start your comparison." : "Take the post-test after practising to see the change."}{" "}
-          <Link to="/assessment" className="font-bold text-blue-ink underline-offset-2 hover:underline">Go to the tests</Link>
+          <Link to={`${base}/test`} className="font-bold text-blue-ink underline-offset-2 hover:underline">Go to the tests</Link>
         </p>
       )}
 
       <Panel>
         <h2 className="border-b border-line px-6 py-3.5 text-[17px] font-extrabold">How each idea is going</h2>
         <ul className="divide-y divide-line">
-          {r.concepts.map((m) => (
+          {r.concepts.filter((m) => inScope(m.concept)).map((m) => (
             <li key={m.concept} className="grid items-center gap-x-6 gap-y-1.5 px-6 py-3.5 md:grid-cols-[minmax(0,18rem)_13rem_minmax(0,1fr)]">
-              <Link to={`/learn/${m.concept}`} className="flex min-w-0 items-center gap-3 text-[15px] font-semibold text-ink hover:text-blue-ink">
+              <Link to={`${base}/learn/${m.concept}`} className="flex min-w-0 items-center gap-3 text-[15px] font-semibold text-ink hover:text-blue-ink">
                 <ConceptTile id={m.concept} size="sm" /><span>{names.get(m.concept)?.name ?? m.concept}</span>
               </Link>
               <Stars size="sm" step={m.enough_evidence ? STATUS[m.status].step : 0}
@@ -89,11 +95,11 @@ function Mine() {
           <h2 className="flex items-center gap-2 border-b border-line px-6 py-3.5 text-[17px] font-extrabold">
             <Route className="size-5 text-blue" aria-hidden="true" /> What to revise next
           </h2>
-          {r.revision_path.length === 0 ? <p className="px-6 py-5 text-muted">Nothing yet. Answer a few questions first.</p> : (
+          {r.revision_path.filter((x) => inScope(x.concept)).length === 0 ? <p className="px-6 py-5 text-muted">Nothing yet. Answer a few questions first.</p> : (
             <ul className="divide-y divide-line">
-              {r.revision_path.slice(0, 6).map((x, n) => (
+              {r.revision_path.filter((x) => inScope(x.concept)).slice(0, 6).map((x, n) => (
                 <li key={n} className="px-6 py-3.5">
-                  <Link to={`/learn/${x.concept}`} className="flex items-center justify-between gap-3 text-[15px] font-bold text-ink hover:text-blue-ink">
+                  <Link to={`${base}/learn/${x.concept}`} className="flex items-center justify-between gap-3 text-[15px] font-bold text-ink hover:text-blue-ink">
                     {x.title} <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
                   </Link>
                   <p className="mt-0.5 text-[14px] text-muted">Why: {x.reason}</p>
@@ -106,9 +112,9 @@ function Mine() {
           <h2 className="flex items-center gap-2 border-b border-line px-6 py-3.5 text-[17px] font-extrabold">
             <Repeat className="size-5 text-coral" aria-hidden="true" /> Wrong ideas that keep coming back
           </h2>
-          {r.repeated_misconceptions.length === 0 ? <p className="px-6 py-5 text-muted">None so far. No wrong idea has shown up more than once.</p> : (
+          {r.repeated_misconceptions.filter((m) => inScope(m.concept)).length === 0 ? <p className="px-6 py-5 text-muted">None so far. No wrong idea has shown up more than once.</p> : (
             <ul className="divide-y divide-line">
-              {r.repeated_misconceptions.map((m) => (
+              {r.repeated_misconceptions.filter((m) => inScope(m.concept)).map((m) => (
                 <li key={m.code} className="flex items-start justify-between gap-3 px-6 py-3.5 text-[15px] text-ink">
                   <span>{m.description}</span>
                   <span className="num shrink-0 rounded-full bg-coral-soft px-2.5 py-0.5 text-[13px] font-bold text-ink">{m.count} times</span>
@@ -121,14 +127,14 @@ function Mine() {
 
       <Panel>
         <h2 className="border-b border-line px-6 py-3.5 text-[17px] font-extrabold">Recent answers</h2>
-        {r.recent.length === 0 ? <p className="px-6 py-5 text-muted">No answers yet. Your first one will show up here.</p> : (
+        {recent.length === 0 ? <p className="px-6 py-5 text-muted">No answers yet. Your first one will show up here.</p> : (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[34rem] text-left text-[14.5px]">
               <thead className="text-[13px] font-bold text-muted">
                 <tr><th className="px-6 py-2.5">Question</th><th className="px-3 py-2.5">Your answer</th><th className="px-3 py-2.5">Result</th><th className="px-6 py-2.5">Counted</th></tr>
               </thead>
               <tbody className="divide-y divide-line">
-                {[...r.recent].reverse().map((a) => (
+                {[...recent].reverse().map((a) => (
                   <tr key={a.response_id}>
                     <td className="num px-6 py-2.5 text-muted">{a.item_id}{a.transfer ? " · application" : ""}</td>
                     <td className="read max-w-md px-3 py-2.5 text-ink-2">{a.answer}</td>
@@ -145,11 +151,11 @@ function Mine() {
   );
 }
 
-function ClassView() {
+function ClassView({ topic, base }: Scope) {
   const [demo, setDemo] = useState(false);
   const [r, setR] = useState<ClassReport | null>(null);
   const [error, setError] = useState<unknown>(null);
-  useEffect(() => { setR(null); api.report(demo).then(setR).catch(setError); }, [demo]);
+  useEffect(() => { setR(null); api.report(demo, topic).then(setR).catch(setError); }, [demo, topic]);
   if (error) return <ErrorNote error={error} />;
   if (!r) return <Loading what="the class report" />;
   const preliminary = r.limitations.some((l) => /preliminary/i.test(l));
@@ -181,7 +187,7 @@ function ClassView() {
       </Panel>
 
       {r.learners_completed_both === 0 ? (
-        <Empty title="No matched pre/post results yet" action={<ButtonLink to="/assessment" variant="secondary">Go to the tests</ButtonLink>}>
+        <Empty title="No matched pre/post results yet" action={<ButtonLink to={`${base}/test`} variant="secondary">Go to the tests</ButtonLink>}>
           A change is only reported for students who finished both tests.
         </Empty>
       ) : (

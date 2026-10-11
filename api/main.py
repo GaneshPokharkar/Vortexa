@@ -100,6 +100,25 @@ def concepts():
     return [c.public() for c in load_content().concepts]
 
 
+@app.get("/topics/{topic_id}/summary")
+def topic_summary(topic_id: Literal["SHM", "OPTICS"]):
+    """Revision sheet for one topic: formulas, definitions, short summaries and common mistakes with corrections."""
+    c = load_content()
+    out = []
+    for concept in (x for x in c.concepts if x.topic_id == topic_id):
+        card = c.cards[f"{concept.concept_id}-K"]
+        mistakes = []
+        for m in (m for m in c.misconceptions.values() if m.concept == concept.concept_id):
+            rc = c.cards.get(m.remediation_card_id)
+            mistakes.append({"code": m.code, "wrong_idea": m.description,
+                             "why_wrong": rc.why_wrong if rc else "", "correct_idea": rc.statement if rc else ""})
+        out.append({"concept_id": concept.concept_id, "name": concept.name, "definition": card.statement,
+                    "summary": card.simple, "equations": [e.model_dump() for e in card.equations], "visual": card.visual,
+                    "mistakes": mistakes, "doubts": [d.model_dump() for d in concept.doubts],
+                    "reviewed": not card.verify_flags})
+    return {"topic_id": topic_id, "concepts": out}
+
+
 @app.get("/concepts/{concept_id}/lesson")
 def lesson(concept_id: str, learner_id: Optional[str] = None, session: Session = Depends(get_session)):
     c = load_content()
@@ -193,6 +212,7 @@ def clarify(body: ClarifyIn, session: Session = Depends(get_session)):
 
 class StepIn(BaseModel):
     step: int = Field(ge=1)
+    working: Optional[str] = Field(default=None, max_length=300)
 
 
 @app.post("/responses/{response_id}/step")
@@ -206,7 +226,24 @@ def pick_step(response_id: int, body: StepIn, session: Session = Depends(get_ses
     if body.step > len(item.steps):
         raise HTTPException(422, f"This question has {len(item.steps)} steps.")
     session.merge(StepPick(response_id=r.id, step=body.step))
+    session.merge(tutor.review_step(session, item, r, d, body.step, body.working))
     session.commit()
+    return tutor.feedback(session, r, d, _mastery_row(session, r.learner_id, r.concept))
+
+
+@app.post("/responses/{response_id}/reveal")
+def reveal_step(response_id: int, session: Session = Depends(get_session)):
+    """Show the step a wrong answer came from without the learner picking (not counted as a self-check pick)."""
+    r, d = session.get(Response, response_id), session.get(Diagnosis, response_id)
+    if r is None or d is None:
+        raise HTTPException(404, "Unknown response.")
+    item = _item(r.item_id)
+    traced = tutor.traced_step(item, r, d) if tutor.shows_steps(item, d) else None
+    if traced is None:
+        raise HTTPException(409, "This answer doesn't trace back to one step.")
+    if session.get(StepPick, r.id) is None:
+        session.merge(tutor.review_step(session, item, r, d, traced, None))
+        session.commit()
     return tutor.feedback(session, r, d, _mastery_row(session, r.learner_id, r.concept))
 
 
@@ -268,6 +305,7 @@ def history(learner_id: str, concept_id: str, session: Session = Depends(get_ses
 class StartIn(BaseModel):
     learner_id: str = Field(min_length=1, max_length=64)
     kind: Literal["pre", "post"]
+    topic: Literal["ALL", "SHM", "OPTICS"] = "ALL"
 
 
 class AssessAnswerIn(BaseModel):
@@ -289,7 +327,7 @@ def _session(session: Session, session_id: int) -> AssessmentSession:
 def start_assessment(body: StartIn, session: Session = Depends(get_session)):
     ensure_learner(session, body.learner_id)
     try:
-        s = reports.start(session, body.learner_id, body.kind)
+        s = reports.start(session, body.learner_id, body.kind, body.topic)
     except reports.AssessmentError as e:
         raise HTTPException(409, str(e))
     return reports.session_payload(session, s)
@@ -312,14 +350,17 @@ def complete_assessment(session_id: int, session: Session = Depends(get_session)
         raise HTTPException(409, str(e))
 
 
+Topic = Literal["ALL", "SHM", "OPTICS"]
+
+
 @app.get("/report")
-def report(include_demo: bool = False, session: Session = Depends(get_session)):
-    return reports.class_report(session, include_demo)
+def report(include_demo: bool = False, topic: Topic = "ALL", session: Session = Depends(get_session)):
+    return reports.class_report(session, include_demo, topic)
 
 
 @app.get("/report/learner/{learner_id}")
-def learner_report(learner_id: str, session: Session = Depends(get_session)):
-    return reports.learner_report(session, learner_id)
+def learner_report(learner_id: str, topic: Topic = "ALL", session: Session = Depends(get_session)):
+    return reports.learner_report(session, learner_id, topic)
 
 
 # ---------------- self-learning ----------------
@@ -338,13 +379,14 @@ class AskIn(BaseModel):
     learner_id: str = Field(min_length=1, max_length=64)
     concept: str
     question: str = Field(min_length=3, max_length=500)
+    visual: Optional[str] = Field(default=None, max_length=800)  # what the simulation on screen shows right now
 
 
 @app.post("/tutor/ask")
 def ask(body: AskIn):
     if body.concept not in {c.concept_id for c in load_content().concepts}:
         raise HTTPException(404, f"Unknown concept {body.concept}.")
-    return tutor.ask(body.concept, body.question)
+    return tutor.ask(body.concept, body.question, body.visual)
 
 
 # ---------------- voice ----------------

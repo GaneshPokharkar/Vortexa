@@ -1,7 +1,7 @@
 /**
  * Geometrical optics with the Cartesian sign convention:
  * light travels left → right, distances are measured from the optical centre,
- * a real object has u < 0 and a convex lens has f > 0.
+ * a real object has u < 0, a convex lens has f > 0 and a concave lens has f < 0.
  */
 export interface LensImage {
   /** image distance (same unit as u, f); ±Infinity when the image is at infinity */
@@ -20,8 +20,8 @@ const EPS = 1e-9;
 export function lensImage(u: number, f: number): LensImage {
   const denom = u + f;
   if (Math.abs(denom) < EPS * Math.max(1, Math.abs(f))) {
-    // Object at the focus: refracted rays emerge parallel. For a convex lens the
-    // image is real, inverted and highly magnified, formed at infinity.
+    // Object at the focus: refracted rays emerge parallel. Only a convex lens gets here
+    // with a real object (concave: u + f < 0 always). The image is real, inverted and highly magnified, formed at infinity.
     return { v: Infinity, m: -Infinity, real: true, erect: false, magnified: true, atInfinity: true };
   }
   const v = (u * f) / denom;

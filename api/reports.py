@@ -17,28 +17,36 @@ TRENDS_MIN_LEARNERS = 5  # never show a cross-learner trend backed by fewer lear
 
 # ---------------- assessment ----------------
 
-def form() -> list[Item]:
-    """The fixed pre/post form: every assessment item, same order every time."""
-    return [i for i in load_content().items.values() if i.is_assessment]
+TOPICS = ("SHM", "OPTICS")
+
+
+def form(topic: str = "ALL") -> list[Item]:
+    """The fixed pre/post form for one topic: its multiple-choice assessment items, same order every time."""
+    c = load_content()
+    return [i for i in c.items.values() if i.is_assessment and i.kind == "mcq"
+            and (topic == "ALL" or c.concept(i.concept).topic_id == topic)]
 
 
 class AssessmentError(Exception):
     pass
 
 
-def start(session: Session, learner_id: str, kind: str) -> AssessmentSession:
-    existing = session.exec(select(AssessmentSession).where(
-        AssessmentSession.learner_id == learner_id, AssessmentSession.kind == kind)).first()
+def _find(session: Session, learner_id: str, kind: str, topic: str) -> Optional[AssessmentSession]:
+    return session.exec(select(AssessmentSession).where(AssessmentSession.learner_id == learner_id,
+                                                        AssessmentSession.kind == kind, AssessmentSession.topic == topic)).first()
+
+
+def start(session: Session, learner_id: str, kind: str, topic: str = "ALL") -> AssessmentSession:
+    existing = _find(session, learner_id, kind, topic)
     if existing:
         if existing.completed_at:
             raise AssessmentError(f"The {kind}-test is already complete for this learner.")
         return existing  # resume
     if kind == "post":
-        pre = session.exec(select(AssessmentSession).where(
-            AssessmentSession.learner_id == learner_id, AssessmentSession.kind == "pre")).first()
+        pre = _find(session, learner_id, "pre", topic)
         if not pre or not pre.completed_at:
             raise AssessmentError("Finish the pre-test before the post-test.")
-    s = AssessmentSession(learner_id=learner_id, kind=kind, total=len(form()))
+    s = AssessmentSession(learner_id=learner_id, kind=kind, topic=topic, total=len(form(topic)))
     session.add(s)
     session.commit()
     session.refresh(s)
@@ -47,7 +55,7 @@ def start(session: Session, learner_id: str, kind: str) -> AssessmentSession:
 
 def session_payload(session: Session, s: AssessmentSession) -> dict:
     answered = session.exec(select(Assessment.item_id).where(Assessment.session_id == s.id)).all()
-    return {"session_id": s.id, "kind": s.kind, "items": [i.public() for i in form()], "answered": list(answered),
+    return {"session_id": s.id, "kind": s.kind, "topic": s.topic, "items": [i.public() for i in form(s.topic)], "answered": list(answered),
             "total": s.total, "completed": s.completed_at is not None}
 
 
@@ -65,7 +73,7 @@ def score_item(item: Item, option=None, reason_id=None, answer_text=None) -> tup
 def answer(session: Session, s: AssessmentSession, item_id: str, *, option=None, reason_id=None, answer_text=None) -> dict:
     if s.completed_at:
         raise AssessmentError("This assessment is already complete.")
-    item = next((i for i in form() if i.item_id == item_id), None)
+    item = next((i for i in form(s.topic) if i.item_id == item_id), None)
     if item is None:
         raise AssessmentError(f"{item_id} is not on the assessment form.")
     if item.kind == "mcq" and not option:
@@ -86,7 +94,7 @@ def answer(session: Session, s: AssessmentSession, item_id: str, *, option=None,
 
 def complete(session: Session, s: AssessmentSession) -> dict:
     rows = session.exec(select(Assessment).where(Assessment.session_id == s.id)).all()
-    missing = {i.item_id for i in form()} - {r.item_id for r in rows}
+    missing = {i.item_id for i in form(s.topic)} - {r.item_id for r in rows}
     if missing:
         raise AssessmentError(f"{len(missing)} question(s) still unanswered.")
     if not s.completed_at:
@@ -102,7 +110,8 @@ def complete(session: Session, s: AssessmentSession) -> dict:
 def result(s: Optional[AssessmentSession]) -> Optional[dict]:
     if not s or not s.completed_at:
         return None
-    return {"session_id": s.id, "kind": s.kind, "correct": s.correct, "total": s.total, "score_percentage": s.score_percentage}
+    return {"session_id": s.id, "kind": s.kind, "topic": s.topic, "correct": s.correct, "total": s.total,
+            "score_percentage": s.score_percentage}
 
 
 # ---------------- reports ----------------
@@ -111,12 +120,13 @@ def _pct(xs: list[float]) -> Optional[float]:
     return round(sum(xs) / len(xs), 1) if xs else None
 
 
-def class_report(session: Session, include_demo: bool = False) -> dict:
+def class_report(session: Session, include_demo: bool = False, topic: str = "ALL") -> dict:
     content = load_content()
     learners = session.exec(select(Learner)).all()
     ids = [l.id for l in learners if include_demo or not l.is_demo]
     labels = {lid: f"Learner {n}" for n, lid in enumerate(sorted(ids), 1)}  # anonymised
-    sessions = session.exec(select(AssessmentSession).where(AssessmentSession.learner_id.in_(ids))).all() if ids else []
+    sessions = session.exec(select(AssessmentSession).where(AssessmentSession.learner_id.in_(ids),
+                                                             AssessmentSession.topic == topic)).all() if ids else []
     by = {(s.learner_id, s.kind): s for s in sessions}
     started_pre = [lid for lid in ids if (lid, "pre") in by]
     done_pre = [lid for lid in started_pre if by[(lid, "pre")].completed_at]
@@ -129,7 +139,7 @@ def class_report(session: Session, include_demo: bool = False) -> dict:
     per_concept = []
     if both:
         rows = session.exec(select(Assessment, AssessmentSession).join(AssessmentSession)
-                            .where(AssessmentSession.learner_id.in_(both))).all()
+                            .where(AssessmentSession.learner_id.in_(both), AssessmentSession.topic == topic)).all()
         for c in content.concepts:
             pre = [a.answer_correct for a, s in rows if s.kind == "pre" and content.items[a.item_id].concept == c.concept_id]
             post = [a.answer_correct for a, s in rows if s.kind == "post" and content.items[a.item_id].concept == c.concept_id]
@@ -158,7 +168,7 @@ def class_report(session: Session, include_demo: bool = False) -> dict:
     if include_demo:
         limitations.append("Demo learners are included in this view; they are not real students.")
     return {
-        "include_demo": include_demo, "questions": len(form()),
+        "include_demo": include_demo, "topic": topic, "questions": len(form(topic)),
         "learners_started_pre": len(started_pre), "learners_completed_pre": len(done_pre),
         "learners_completed_both": n, "pre_mean": pre_mean, "post_mean": post_mean,
         "change_pp": round(post_mean - pre_mean, 1) if n else None,
@@ -166,11 +176,9 @@ def class_report(session: Session, include_demo: bool = False) -> dict:
     }
 
 
-def learner_report(session: Session, learner_id: str) -> dict:
+def learner_report(session: Session, learner_id: str, topic: str = "ALL") -> dict:
     content = load_content()
-    get = lambda kind: session.exec(select(AssessmentSession).where(  # noqa: E731
-        AssessmentSession.learner_id == learner_id, AssessmentSession.kind == kind)).first()
-    pre, post = result(get("pre")), result(get("post"))
+    pre, post = result(_find(session, learner_id, "pre", topic)), result(_find(session, learner_id, "post", topic))
     counts: dict[str, int] = {}
     for code in session.exec(select(Diagnosis.misconception_code).join(Response).where(
             Response.learner_id == learner_id, Diagnosis.misconception_code != None)).all():  # noqa: E711

@@ -114,7 +114,8 @@ def test_g_pre_post_use_same_items_and_score_correctly(client):
             body["answer_text"] = it.answer_key if n % 2 == 0 else "no idea"
         assert client.post(f"/assessments/{pre['session_id']}/answers", json=body).status_code == 200
     res = client.post(f"/assessments/{pre['session_id']}/complete").json()
-    assert res["total"] == len(form()) == 14
+    assert res["total"] == len(form()) == len(form("SHM")) + len(form("OPTICS"))
+    assert all(items[i["item_id"]].kind == "mcq" for i in pre["items"])  # tests are multiple choice only
     assert res["score_percentage"] == round(100 * res["correct"] / res["total"], 1)
     post = client.post("/assessments", json={"learner_id": learner, "kind": "post"}).json()
     assert [i["item_id"] for i in post["items"]] == [i["item_id"] for i in pre["items"]]
@@ -249,3 +250,24 @@ def test_learner_report_lists_repeated_misconceptions(client):
     r = client.get("/report/learner/rep")
     assert r.status_code == 200
     assert any(m["code"] == "S4" and m["count"] >= 2 for m in r.json()["repeated_misconceptions"])
+
+
+# Tests are per topic: SHM and Optics each have their own pre/post form, scored the same way.
+def test_g2_each_topic_has_its_own_pre_post(client):
+    learner = client.post("/learners", json={}).json()["learner_id"]
+    shm = client.post("/assessments", json={"learner_id": learner, "kind": "pre", "topic": "SHM"}).json()
+    opt = client.post("/assessments", json={"learner_id": learner, "kind": "pre", "topic": "OPTICS"}).json()
+    content = load_content()
+    assert {content.concept(content.items[i["item_id"]].concept).topic_id for i in shm["items"]} == {"SHM"}
+    assert {content.concept(content.items[i["item_id"]].concept).topic_id for i in opt["items"]} == {"OPTICS"}
+    assert all(content.items[i["item_id"]].kind == "mcq" for i in shm["items"] + opt["items"])
+    assert shm["session_id"] != opt["session_id"]
+    # the SHM post-test is locked until the SHM pre-test is complete, regardless of Optics
+    assert client.post("/assessments", json={"learner_id": learner, "kind": "post", "topic": "SHM"}).status_code == 409
+    for it in (content.items[i["item_id"]] for i in shm["items"]):
+        client.post(f"/assessments/{shm['session_id']}/answers", json={"item_id": it.item_id, "option": it.correct})
+    assert client.post(f"/assessments/{shm['session_id']}/complete").json()["score_percentage"] == 100.0
+    assert client.post("/assessments", json={"learner_id": learner, "kind": "post", "topic": "SHM"}).status_code == 200
+    assert client.post("/assessments", json={"learner_id": learner, "kind": "post", "topic": "OPTICS"}).status_code == 409
+    assert client.get(f"/report/learner/{learner}?topic=SHM").json()["pre"]["topic"] == "SHM"
+    assert client.get(f"/report/learner/{learner}?topic=OPTICS").json()["pre"] is None

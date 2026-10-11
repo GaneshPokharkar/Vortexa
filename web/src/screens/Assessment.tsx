@@ -1,26 +1,33 @@
 import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardCheck, Lock, PartyPopper, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button, ButtonLink, Confetti, ErrorNote, Loading, PageHeader, Panel } from "../components/ui";
-import { api, type AssessmentKind, type AssessmentResult, type AssessmentSession, type LearnerReport } from "../lib/api";
+import { api, type AssessmentKind, type AssessmentResult, type AssessmentSession, type LearnerReport, type TestTopic } from "../lib/api";
 import { useLearner } from "../lib/learner";
 
 type Answer = { option?: string; reason_id?: string; answer_text?: string };
 
-export default function Assessment() {
+/** Pre/post tests for one topic. `onFinished` lets the page show the report after a test. */
+export default function Assessment({ topic = "ALL", title = "Your tests", practiceHref = "/home", reportHref = "#results", onRunning }: {
+  topic?: TestTopic; title?: string; practiceHref?: string; reportHref?: string; onRunning?: (running: boolean) => void;
+}) {
   const { learner } = useLearner();
   const learnerId = learner!.learner_id;
   const [report, setReport] = useState<LearnerReport | null>(null);
   const [session, setSession] = useState<AssessmentSession | null>(null);
   const [result, setResult] = useState<AssessmentResult | null>(null);
   const [error, setError] = useState<unknown>(null);
+  useEffect(() => { onRunning?.(Boolean(session && !result)); }, [session, result, onRunning]);
+  const ReportLink = ({ children, variant }: { children: React.ReactNode; variant?: "secondary" }) => reportHref.startsWith("#")
+    ? <Button variant={variant} className={variant ? "" : "px-5 py-3 text-[16px]"} onClick={() => document.querySelector(reportHref)?.scrollIntoView({ behavior: "smooth" })}>{children}</Button>
+    : <ButtonLink to={reportHref} variant={variant} className={variant ? "" : "px-5 py-3 text-[16px]"}>{children}</ButtonLink>;
 
-  const loadReport = () => api.learnerReport(learnerId).then(setReport).catch(setError);
-  useEffect(() => { loadReport(); }, [learnerId]); // eslint-disable-line react-hooks/exhaustive-deps
+  const loadReport = () => api.learnerReport(learnerId, topic).then(setReport).catch(setError);
+  useEffect(() => { loadReport(); }, [learnerId, topic]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const start = async (kind: AssessmentKind) => {
     setError(null);
     try {
-      setSession(await api.startAssessment(learnerId, kind));
+      setSession(await api.startAssessment(learnerId, kind, topic));
     } catch (e) {
       setError(e);
     }
@@ -35,7 +42,7 @@ export default function Assessment() {
 
   return (
     <div className="pb-10">
-      <PageHeader title="Your tests">
+      <PageHeader title={title}>
         Same questions before and after you practise, scored the same way. That's how your report shows what changed.
         You won't see the answers during a test.
       </PageHeader>
@@ -57,8 +64,8 @@ export default function Assessment() {
               </p>
             </div>
             {result.kind === "pre"
-              ? <ButtonLink to="/topics" className="px-5 py-3 text-[16px]">Start practising <ArrowRight className="size-4" aria-hidden="true" /></ButtonLink>
-              : <ButtonLink to="/report" className="px-5 py-3 text-[16px]">See my report <ArrowRight className="size-4" aria-hidden="true" /></ButtonLink>}
+              ? <ButtonLink to={practiceHref} className="px-5 py-3 text-[16px]">Start practising <ArrowRight className="size-4" aria-hidden="true" /></ButtonLink>
+              : <ReportLink>See my report <ArrowRight className="size-4" aria-hidden="true" /></ReportLink>}
           </div>
         </Panel>
       )}
@@ -78,7 +85,7 @@ export default function Assessment() {
           <p className="flex-1 text-[16px] text-ink">
             Your change: <span className="num font-extrabold">{report.change_pp! > 0 ? "+" : ""}{report.change_pp} percentage points</span>
           </p>
-          <ButtonLink to="/report" variant="secondary">Open the full report</ButtonLink>
+          <ReportLink variant="secondary">See the full report</ReportLink>
         </Panel>
       )}
     </div>

@@ -77,6 +77,29 @@ describe("Thin lens, Cartesian convention", () => {
     expect(r.m).toBeCloseTo(-1, 9);
     expect(r.magnified).toBe(false);
   });
+
+  it("concave: u = -30, f = -15 -> v = -10, m = +1/3, virtual, erect, diminished", () => {
+    const r = lensImage(-30, -15);
+    expect(r.v).toBeCloseTo(-10, 9);
+    expect(r.m).toBeCloseTo(1 / 3, 9);
+    expect(r.real).toBe(false);
+    expect(r.erect).toBe(true);
+    expect(r.magnified).toBe(false);
+    expect(r.atInfinity).toBe(false);
+  });
+
+  it("concave: any real object gives v < 0, |v| < |f| and 0 < m < 1", () => {
+    for (const f of [-10, -15, -20]) {
+      for (let uAbs = 1; uAbs <= 200; uAbs += 0.5) {
+        const r = lensImage(-uAbs, f);
+        expect(r.v).toBeLessThan(0);
+        expect(Math.abs(r.v)).toBeLessThan(Math.abs(f)); // between F and the lens
+        expect(r.m).toBeGreaterThan(0);
+        expect(Math.abs(r.m)).toBeLessThan(1);
+        expect(r.real || r.atInfinity || r.magnified).toBe(false);
+      }
+    }
+  });
 });
 
 describe("Snell's law", () => {

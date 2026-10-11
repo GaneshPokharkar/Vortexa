@@ -85,8 +85,27 @@ export type Habit = { code: "HALF" | "ROOT" | "SQUARE" | "SIGN" | "UNIT" | "ARIT
 export type StepCheck = {
   steps: string[];
   picked: number | null;
-  traced: number | null; // step the answer traces to; null until the learner has picked, or if it traces to none
+  traced: number | null; // step the answer traces to; null until the learner picks or asks to be shown
+  traceable: boolean; // the answer does trace to one step, so "Just show me" can work
+  revealed: boolean; // the tutor showed the step ("Just show me") instead of the learner picking
   analysis: { step: number; code: string | null; lines: string[] } | null;
+  review: StepReview | null;
+};
+
+/** What kind of mistake the picked step points to. Rules decide; Claude may only explain. */
+export type StepReview = {
+  step: number;
+  kind: "conceptual" | "calculation";
+  code: string | null;
+  idea: string | null;
+  card_id: string | null;
+  habit: { code: Habit["code"]; label: string; tip: string } | null;
+  explanation: string | null;
+  engine: "rules" | "rules+claude";
+  working: string | null;
+  needs_detail: boolean;
+  question: string | null;
+  practice_item_id: string | null;
 };
 
 /* ---------------- questions & diagnosis ---------------- */
@@ -152,6 +171,12 @@ export type Feedback = {
   follow_up: FollowUp | null;
   visual_correction: VisualCorrection | null;
   step_check: StepCheck | null;
+  /** Mistake tracer, for wrong numeric answers: computed wrong paths and the one(s) this number fits. Rules, not AI. */
+  trace: {
+    checked: number; unit: string; number: number | null;
+    matched: { text: string; tags: string[] }[];
+    paths: { value: number; text: string; tags: string[] }[];
+  } | null;
   habit: Habit | null; // set when this answer's slip repeats a habit
   pipeline: PipelineStage[];
   misconception_code: string | null;
@@ -230,6 +255,20 @@ export type ConceptHistory = ConceptMastery & { reasons: string[]; attempts: Att
 /* ---------------- assessment & report ---------------- */
 
 export type AssessmentKind = "pre" | "post";
+/** Revision sheet for one topic (GET /topics/{id}/summary). */
+export type TopicSummary = {
+  topic_id: TopicId;
+  concepts: {
+    concept_id: string; name: string; definition: string; summary: string; visual: string | null; reviewed: boolean;
+    equations: { expr: string; meaning: string; vars: Record<string, string>; assumptions: string }[];
+    mistakes: { code: string; wrong_idea: string; why_wrong: string; correct_idea: string }[];
+    doubts: { q: string; a: string }[];
+  }[];
+};
+
+/** Tests are per topic; "ALL" is the combined form from before topic tests. */
+export type TestTopic = "ALL" | "SHM" | "OPTICS";
+
 export type AssessmentSession = {
   session_id: number;
   kind: AssessmentKind;
@@ -405,6 +444,7 @@ export const api = {
   resetDemo: (learner_id: string) => call<{ cleared: number }>("/demo/reset", post({ learner_id })),
   // curriculum
   topics: () => call<Topic[]>("/topics"),
+  topicSummary: (topic: TopicId) => call<TopicSummary>(`/topics/${topic}/summary`),
   concepts: () => call<Concept[]>("/concepts"),
   lesson: (conceptId: string, learnerId?: string) =>
     call<Lesson>(`/concepts/${conceptId}/lesson${q({ learner_id: learnerId })}`),
@@ -416,23 +456,28 @@ export const api = {
   respond: (body: AnswerBody) => call<Feedback>("/responses", post(body)),
   clarify: (body: { response_id: number; reason_id?: string; text?: string }) => call<Feedback>("/clarify", post(body)),
   habits: (learnerId: string) => call<{ learner_id: string; habits: Habit[] }>(`/habits/${encodeURIComponent(learnerId)}`),
-  pickStep: (responseId: number, step: number) => call<Feedback>(`/responses/${responseId}/step`, post({ step })),
+  revealStep: (responseId: number) => call<Feedback>(`/responses/${responseId}/reveal`, post({})),
+  pickStep: (responseId: number, step: number, working?: string) =>
+    call<Feedback>(`/responses/${responseId}/step`, post({ step, ...(working ? { working } : {}) })),
   why: (responseId: number) => call<Why>(`/diagnosis/${responseId}/why`),
   // mastery
   mastery: (learnerId: string) => call<{ learner_id: string; concepts: ConceptMastery[] }>(`/mastery/${encodeURIComponent(learnerId)}`),
   history: (learnerId: string, conceptId: string) =>
     call<ConceptHistory>(`/mastery/${encodeURIComponent(learnerId)}/${conceptId}/history`),
   // assessment & report
-  startAssessment: (learner_id: string, kind: AssessmentKind) => call<AssessmentSession>("/assessments", post({ learner_id, kind })),
+  startAssessment: (learner_id: string, kind: AssessmentKind, topic: TestTopic = "ALL") =>
+    call<AssessmentSession>("/assessments", post({ learner_id, kind, topic })),
   answerAssessment: (sessionId: number, body: Omit<AnswerBody, "learner_id">) =>
     call<{ answered: number; total: number }>(`/assessments/${sessionId}/answers`, post(body)),
   completeAssessment: (sessionId: number) => call<AssessmentResult>(`/assessments/${sessionId}/complete`, post({})),
-  report: (includeDemo = false) => call<Report>(`/report${q({ include_demo: includeDemo ? "true" : undefined })}`),
-  learnerReport: (learnerId: string) => call<LearnerReport>(`/report/learner/${encodeURIComponent(learnerId)}`),
+  report: (includeDemo = false, topic: TestTopic = "ALL") =>
+    call<Report>(`/report${q({ include_demo: includeDemo ? "true" : undefined, topic: topic === "ALL" ? undefined : topic })}`),
+  learnerReport: (learnerId: string, topic: TestTopic = "ALL") =>
+    call<LearnerReport>(`/report/learner/${encodeURIComponent(learnerId)}${q({ topic: topic === "ALL" ? undefined : topic })}`),
   // self-learning
   recommendations: (learnerId: string) => call<Recommendations>(`/recommendations/${encodeURIComponent(learnerId)}`),
   doubts: (query?: string, concept?: string) => call<Doubts>(`/doubts${q({ q: query, concept })}`),
-  ask: (body: { learner_id: string; concept: string; question: string }) => call<TutorAnswer>("/tutor/ask", post(body)),
+  ask: (body: { learner_id: string; concept: string; question: string; visual?: string }) => call<TutorAnswer>("/tutor/ask", post(body)),
   // voice (used by the VoiceTutor component)
   voiceSession: (learnerId: string, concept?: string) =>
     call<VoiceSession>(`/voice/session${q({ learner_id: learnerId, concept })}`),

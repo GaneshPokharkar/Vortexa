@@ -21,9 +21,10 @@ from api.engine.grading import (
 )
 from api import orchestrator
 from api.store import (
-    Diagnosis, Response, StepPick, apply_response, current_p, dump, misconception_statuses, prior_slip_code, sibling_for,
+    Diagnosis, Response, StepPick, StepReview, apply_response, current_p, dump, misconception_statuses, prior_slip_code, sibling_for,
     tries,
 )
+from api.engine import trace
 from api.engine.short import parse_numbers
 
 CLARIFIABLE = {AMBIGUOUS, PARTIAL, OFF_TOPIC}
@@ -44,6 +45,10 @@ def _mcq_evidence(item: Item, option: str, reason_id: Optional[str], reason_text
         ev.append(f"Option {option} comes from the right method with a careless step (sign, square, unit).")
     else:
         ev.append(f"Option {option} is not the correct answer.")
+    path = trace.option_path(item.trace, option) if item.trace and option != item.correct else None
+    if path:
+        value = item.trace["option_values"][option]
+        ev.append(f"Option {option} ({value:g}) is exactly what you get if you {' and '.join(path.steps)}.")
     if reason_id:
         rc = item.reasons[reason_id].maps_to
         ev.append("Your reason is the correct physics." if rc == CORRECT else
@@ -132,7 +137,8 @@ def follow_up(session: Session, learner_id: str, item: Item, category: str, code
     def fu(kind: str, prompt: str, item_id: Optional[str] = None, card_id: Optional[str] = None) -> dict:
         return {"kind": kind, "prompt": prompt, "item_id": item_id, "card_id": card_id}
 
-    short_prompt = item.follow_ups.get(key or "", "") if item.kind == "short" else ""
+    # "ASK:<question>" carries a question written for this exact answer (mistake tracer); otherwise use the item's prompts.
+    short_prompt = key[4:] if key and key.startswith("ASK:") else item.follow_ups.get(key or "", "") if item.kind == "short" else ""
     if category in (MISCONCEPTION, FALSE_POSITIVE) and code:
         m = content.misconceptions[code]
         targeted = [i for i in concept_items if code in i.codes()]
@@ -230,10 +236,18 @@ def traced_step(item: Item, r: Response, d: Diagnosis) -> Optional[int]:
     """The first step whose usual mistake produces this answer, or None if the answer doesn't trace to one."""
     code = SLIP if d.category in SLIP_CATEGORIES else (d.option_code if item.kind == "mcq" else d.misconception_code)
     hits = [n for n, s in enumerate(item.steps, 1) if s.trap == code]
+    if item.kind == "mcq" and code == SLIP and len(hits) > 1 and item.trace:  # several slip steps: the tracer's habit picks one
+        path = trace.option_path(item.trace, r.option)
+        hits = [n for n in hits if path and item.steps[n - 1].habit in path.tags] or hits
     if item.kind == "short" and code == SLIP and item.numeric:  # several slips: match the learner's number
         nums = parse_numbers(r.answer_text or "")
-        hits = [n for n in hits if item.steps[n - 1].value is not None
-                and any(abs(x - item.steps[n - 1].value) <= item.numeric.tolerance for x in nums)]
+        by_value = [n for n in hits if item.steps[n - 1].value is not None
+                    and any(abs(x - item.steps[n - 1].value) <= item.numeric.tolerance for x in nums)]
+        if not by_value and item.trace:  # no listed slip value: use the habit the mistake tracer found
+            m = trace.match(item.trace, nums)
+            habits = set(m.unique.tags) if m and m.unique else set()
+            by_value = [n for n in hits if item.steps[n - 1].habit in habits]
+        hits = by_value
     return hits[0] if hits else None
 
 
@@ -255,16 +269,76 @@ def step_analysis(item: Item, picked: int, traced: Optional[int]) -> dict:
     return {"step": focal, "code": m.code if m else None, "lines": lines}
 
 
+def review_step(session: Session, item: Item, r: Response, d: Diagnosis, picked: int,
+                working: Optional[str]) -> StepReview:
+    """Conceptual or calculation mistake? The rules trace decides; Claude may explain, and decides only when the
+    rules can't trace the answer. A confident disagreement asks the learner one question instead of overriding."""
+    content = load_content()
+    traced = traced_step(item, r, d)
+    s = item.steps[(traced or picked) - 1]
+    diagnosed = d.misconception_code if d.misconception_code in content.misconceptions else None
+    rules_know = traced is not None or diagnosed is not None
+    if traced is None and diagnosed:  # graded as a known wrong idea that no step names: the diagnosis decides
+        kind, code, habit = "conceptual", diagnosed, None
+    elif s.trap in content.misconceptions:
+        kind, code, habit = "conceptual", s.trap, None
+    else:
+        kind, code, habit = "calculation", None, s.habit
+    rv = StepReview(response_id=r.id, step=traced or picked, working=(working or "").strip() or None,
+                    kind=kind, code=code, habit=habit)
+    codes = {c: content.misconceptions[c].description for c in sorted(item.codes()) if c in content.misconceptions}
+    claude = llm.review_step(item, picked, your_answer(r), rv.working or "", codes,
+                             {k: v[0] for k, v in HABITS.items()})
+    if claude:
+        rv.engine, rv.confidence = "rules+claude", claude["confidence"]
+        if not rules_know:
+            rv.kind, rv.code, rv.habit, rv.explanation = claude["kind"], claude["code"], claude["habit"], claude["explanation"]
+        elif claude["kind"] != rv.kind and claude["confidence"] >= orchestrator.DISAGREE_CONFIDENCE:
+            rv.needs_detail = rv.working is None  # ask once; after the learner replies, the rules trace stands
+        else:
+            rv.explanation = claude["explanation"]
+    return rv
+
+
+def review_payload(session: Session, item: Item, r: Response, d: Diagnosis, rv: StepReview) -> dict:
+    content = load_content()
+    m = content.misconceptions.get(rv.code or "")
+    return {
+        "step": rv.step, "kind": rv.kind, "code": rv.code, "idea": m.description if m else None,
+        "card_id": m.remediation_card_id if m else None,
+        "habit": {"code": rv.habit, "label": HABITS[rv.habit][0], "tip": HABITS[rv.habit][1]} if rv.habit else None,
+        "explanation": rv.explanation, "engine": rv.engine, "working": rv.working,
+        "needs_detail": rv.needs_detail, "question": f"What did you get at step {rv.step}?" if rv.needs_detail else None,
+        "practice_item_id": (sibling_for(session, r.learner_id, item.item_id) or (json.loads(d.follow_up) or {}).get("item_id"))
+        if rv.kind == "calculation" else None,
+    }
+
+
+def reveal_analysis(item: Item, traced: int) -> dict:
+    s = item.steps[traced - 1]
+    m = load_content().misconceptions.get(s.trap)
+    lines = [f"Your answer comes from step {traced}. The mistake there: {s.trap_text}",
+             f"Steps 1 to {traced - 1} were fine." if traced > 1 else "It went off track at the very first step."]
+    lines.append(f"The idea behind it: {m.description}" if m else
+                 "That's a careless step, not a wrong idea. Redo that line slowly and check signs, squares and units.")
+    return {"step": traced, "code": m.code if m else None, "lines": lines}
+
+
 def step_check(session: Session, item: Item, r: Response, d: Diagnosis) -> Optional[dict]:
     if not shows_steps(item, d):
         return None
     pick = session.get(StepPick, r.id)
     traced = traced_step(item, r, d)
+    rv = session.get(StepReview, r.id)
+    revealed = pick is None and rv is not None  # "Just show me": the tutor showed the step, the learner didn't pick
     return {
         "steps": [s.text for s in item.steps],
         "picked": pick.step if pick else None,
-        "traced": traced if pick else None,  # hidden until the learner has looked for themselves
-        "analysis": step_analysis(item, pick.step, traced) if pick else None,
+        "traced": traced if (pick or revealed) else None,  # hidden until the learner looks or asks to be shown
+        "traceable": traced is not None,
+        "revealed": revealed,
+        "analysis": step_analysis(item, pick.step, traced) if pick else reveal_analysis(item, traced) if revealed and traced else None,
+        "review": review_payload(session, item, r, d, rv) if rv else None,
     }
 
 
@@ -297,8 +371,32 @@ def habits(session: Session, learner_id: str) -> list[dict]:
         code = answer_habit(item, r, d) if item else None
         if code:
             seen.setdefault(code, set()).add(r.item_id)
+    reviewed = session.exec(select(Response.item_id, StepReview.habit).join(StepReview, StepReview.response_id == Response.id)
+                            .where(Response.learner_id == learner_id, StepReview.kind == "calculation",
+                                   StepReview.habit.is_not(None))).all()
+    for item_id, code in reviewed:
+        seen.setdefault(code, set()).add(item_id)
     active = [{"code": c, "label": HABITS[c][0], "tip": HABITS[c][1], "count": len(ids)} for c, ids in seen.items() if len(ids) >= 2]
     return sorted(active, key=lambda h: -h["count"])
+
+
+def trace_payload(item: Item, r: Response, d: Diagnosis) -> Optional[dict]:
+    """For a wrong numeric answer: every wrong path the tracer computed, and which one(s) the student's number fits."""
+    if not item.trace or d.category in CORRECT_CATEGORIES or (item.kind == "mcq" and r.option == item.correct):
+        return None
+    every = trace.paths(item.trace)
+    if item.kind == "mcq":
+        value = item.trace.get("option_values", {}).get(r.option)
+        m = trace.match(item.trace, [value], trace.OPTION_TOL) if value is not None else None
+        unit = ""
+    else:
+        m = trace.match(item.trace, parse_numbers(r.answer_text or ""))
+        unit = item.numeric.unit if item.numeric else ""
+    return {
+        "checked": len(every), "unit": unit, "number": m.number if m else None,
+        "matched": [{"text": " and ".join(p.steps), "tags": list(p.tags)} for p in (m.paths if m else [])],
+        "paths": [{"value": p.value, "text": " and ".join(p.steps), "tags": list(p.tags)} for p in every],
+    }
 
 
 def feedback(session: Session, r: Response, d: Diagnosis, mastery_row: dict) -> dict:
@@ -323,6 +421,7 @@ def feedback(session: Session, r: Response, d: Diagnosis, mastery_row: dict) -> 
         "follow_up": json.loads(d.follow_up),
         "visual_correction": json.loads(d.visual),
         "step_check": step_check(session, item, r, d),
+        "trace": trace_payload(item, r, d),
         "habit": next((h for h in habits(session, r.learner_id) if h["code"] == answer_habit(item, r, d)), None),
         "pipeline": json.loads(d.pipeline),
         "misconception_code": d.misconception_code,
@@ -395,7 +494,7 @@ def _sources(concept: str) -> dict[str, str]:
     return sources
 
 
-def ask(concept: str, question: str) -> dict:
+def ask(concept: str, question: str, visual: Optional[str] = None) -> dict:
     """Answer from the whole course, preferring this concept's material, so a C1 page can still answer a C2 doubt."""
     content = load_content()
     owner = {sid: c.concept_id for c in content.concepts for sid in _sources(c.concept_id)}
@@ -407,7 +506,10 @@ def ask(concept: str, question: str) -> dict:
         return len(q & _tokens(sources[sid])) / (len(q) or 1) + bonus
 
     ranked = sorted(sources, key=score, reverse=True)
-    answer = llm.answer(question, {sid: sources[sid] for sid in ranked[:6]})
+    top = {sid: sources[sid] for sid in ranked[:6]}
+    if visual:  # the learner's current simulation state, so Claude can explain the picture they are looking at
+        top = {"SCREEN": f"What the simulation on the student's screen shows right now: {visual}", **top}
+    answer = llm.answer(question, top)
     if answer:
         return answer
     best = ranked[0]

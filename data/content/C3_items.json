@@ -57,6 +57,36 @@
       "r3": {"text": "ω = √(g/L) and the period is just 1/ω, so I take one by omega.", "maps_to": "S10"}
     },
     "calc": "T = 2π√(0.64/π²) = 2π(0.8/π) = 1.6 s (same at 3° and 6°). S8: 2×1.6 = 3.2 s. SLIP (no root): 2π(0.64/π²) = 1.28/π ≈ 0.41 s. S10: ω = π/0.8 ≈ 3.93 rad/s, 1/ω ≈ 0.25 s.",
+    "trace": {
+      "formula": "2*pi*sqrt(L/g)",
+      "option_values": {"A": 3.2, "B": 0.41, "C": 0.25},
+      "inputs": {
+        "L": {
+          "value": 0.64,
+          "unit": "m"
+        },
+        "g": {
+          "value": 9.869604401089358
+        }
+      },
+      "meaning": {
+        "twopi": {
+          "text": "used 1/ω instead of 2π/ω (treated ω like the frequency)",
+          "tags": [
+            "S10"
+          ]
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "2*(2*pi*sqrt(L/g))",
+          "text": "assumed doubling the swing angle doubles the period",
+          "tags": [
+            "S8"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Amplitude: for small swings the period doesn't depend on amplitude, so going from 3° to 6° changes nothing.",
@@ -99,6 +129,27 @@
       "r3": {"text": "A bigger bounce means the tempo goes up and down more, so it takes more time.", "maps_to": "S8"}
     },
     "calc": "T ∝ √m: T₂ = 0.5 × √4 = 1.0 s. SLIP (T ∝ m, forgot root): 0.5 × 4 = 2.0 s.",
+    "trace": {
+      "formula": "T1*sqrt(M)",
+      "option_values": {"B": 0.5, "C": 2.0},
+      "inputs": {
+        "T1": {
+          "value": 0.5
+        },
+        "M": {
+          "value": 4
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "T1",
+          "text": "decided the load can't change the period, only the springs can",
+          "tags": [
+            "S9"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Spring–mass period: T = 2π√(m/k). The springs (k) are the same, so T ∝ √m.",
@@ -168,6 +219,18 @@
       "UNCLEAR": "Will one oscillation of the new bob take more time, less time, or the same time as before?"
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Formula: for small angles T = 2π√(L/g). Only length and g are in it, and the length is unchanged.",
+        "trap": "S9",
+        "trap_text": "thinking the heavier iron bob changes the period; mass isn't in the formula."
+      },
+      {
+        "text": "Amplitude: pulled a little further is still a small angle, so the bigger swing doesn't change T either. The period stays the same.",
+        "trap": "S8",
+        "trap_text": "thinking the bigger swing takes longer for each oscillation."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "Same-size bob chosen so air drag is comparable; real heavy vs light bobs differ slightly due to drag."]
   },
   {
@@ -198,6 +261,45 @@
       "UNCLEAR": "Please give one number in seconds for the time of one full oscillation."
     },
     "calc": "T = 2π/ω = 2π/(10π) = 0.2 s; f = 5 Hz. Slip 1/ω = 1/(10π) ≈ 0.0318 s.",
+    "trace": {
+      "formula": "2*pi/w",
+      "inputs": {
+        "w": {
+          "value": 31.41592653589793
+        }
+      },
+      "meaning": {
+        "twopi": {
+          "text": "used T = 1/ω, leaving out the 2π (treating ω as the frequency)",
+          "tags": [
+            "S10"
+          ]
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "w/(2*pi)",
+          "text": "worked out the frequency f = ω/2π instead of the period",
+          "tags": [
+            "S10"
+          ]
+        },
+        {
+          "formula": "2*pi*w",
+          "text": "multiplied by ω instead of dividing (T = 2πω)",
+          "tags": [
+            "ARITH"
+          ]
+        },
+        {
+          "formula": "2*pi/10",
+          "text": "used ω = 10, forgetting the π in 10π",
+          "tags": [
+            "ARITH"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Link ω to f: ω = 2πf, so f = 10π ÷ 2π = 5 Hz.",
@@ -224,28 +326,43 @@
   {
     "item_id": "C3-A2",
     "concept": "C3",
-    "kind": "short",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "transfer": false,
-    "stem": "A block on a spring has a time period of 1.2 s. Anjali replaces it with a block 4 times as heavy on the same spring. What happens to the period, and why?",
-    "answer_key": "The period doubles to 2.4 s because T = 2π√(m/k) and √4 = 2.",
-    "expected_reasoning": "For a spring–mass system T = 2π√(m/k), so the period is proportional to √m; four times the mass gives twice the period.",
-    "accept_any": ["double", "twice", "2 times", "two times", "2.4", "2x"],
-    "reasoning_any": ["√m", "root m", "under root m", "square root", "m/k", "m by k", "proportional to root", "root 4"],
-    "numeric": null,
-    "patterns": [
-      {"code": "S9", "any": ["no change", "same period", "mass doesn't matter", "mass does not matter", "independent of mass", "only on spring", "only on k"]},
-      {"code": "S8", "any": ["depends on amplitude", "how far pulled", "depends on stretch", "bigger stretch", "more stretch"]}
-    ],
-    "follow_ups": {
-      "S9": "A heavier block feels the same spring force but has more inertia. Will it speed up and slow down more quickly or more slowly than the light one?",
-      "S8": "Nothing was said about how far the block is pulled. Does T = 2π√(m/k) contain the amplitude at all?",
-      "CORRECT_NO_REASON": "Why does 4 times the mass give 2 times the period and not 4 times?",
-      "CORRECT": "Anjali wants the heavy block to have a period of 1.2 s again. By what factor must she change the spring constant?",
-      "UNCLEAR": "Will the new period be longer, shorter or equal to 1.2 s? Say by how much."
+    "stem": "A block on a spring has a time period of 1.2 s. Anjali replaces it with a block 4 times as heavy on the same spring. What is the new time period?",
+    "options": {
+      "A": "2.4 s",
+      "B": "1.2 s, unchanged",
+      "C": "4.8 s",
+      "D": "It cannot be found without knowing how far the block is pulled before release"
+    },
+    "correct": "A",
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "S9",
+      "C": "UNMAPPED",
+      "D": "S8"
+    },
+    "reasons": {
+      "r1": {
+        "text": "The spring alone sets the period, so changing the block makes no difference.",
+        "maps_to": "S9"
+      },
+      "r2": {
+        "text": "T = 2π√(m/k), so 4 times the mass gives √4 = 2 times the period: 2.4 s.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "The period depends on how far the block is pulled out, and that isn't given.",
+        "maps_to": "S8"
+      }
     },
     "calc": "T₂ = 1.2 × √4 = 2.4 s.",
-    "verify_flags": ["TODO_VERIFY", "accept_any 'double' also matches 'doubled'; a student writing 'not double' would be mis-graded."]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "accept_any 'double' also matches 'doubled'; a student writing 'not double' would be mis-graded.",
+      "Converted from short answer to MCQ for the MCQ-only tests; options and reasons need teacher review."
+    ]
   }
 ]

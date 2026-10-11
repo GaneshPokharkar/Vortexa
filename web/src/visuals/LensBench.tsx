@@ -23,10 +23,13 @@ const U_MAX = 60;
 const px = (x: number) => CX + x * SX;
 const py = (y: number) => AXIS_Y - y * SY;
 
+type LensKind = "convex" | "concave";
+
 interface Ray {
   /** height where the ray meets the lens */
   yL: number;
   principal: boolean;
+  kind?: "parallel" | "centre" | "focal";
 }
 
 function natureText(real: boolean, erect: boolean, m: number, atInfinity: boolean) {
@@ -37,6 +40,8 @@ function natureText(real: boolean, erect: boolean, m: number, atInfinity: boolea
 }
 
 function objectPlace(uAbs: number, f: number): string {
+  if (f < 0)
+    return "Concave lens, object anywhere in front: the image is virtual, erect and diminished, between F₁ and the lens, on the same side as the object";
   const tol = 0.25;
   if (Math.abs(uAbs - 2 * f) < tol) return "Object at 2F₁";
   if (uAbs > 2 * f) return "Object beyond 2F₁";
@@ -47,7 +52,10 @@ function objectPlace(uAbs: number, f: number): string {
 
 export function LensBench() {
   const [uAbs, setUAbs] = useState(30);
-  const [f, setF] = useState(20);
+  const [fAbs, setFAbs] = useState(20);
+  const [lens, setLens] = useState<LensKind>("convex");
+  const concave = lens === "concave";
+  const f = concave ? -fAbs : fAbs;
   const [covered, setCovered] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
   const dragging = useRef(false);
@@ -57,13 +65,14 @@ export function LensBench() {
   const hImg = img.atInfinity ? 0 : img.m * H_OBJ;
 
   // All rays leave the object tip P = (u, H_OBJ). Thin lens: slope_out = slope_in − yL/f.
-  // Ray 3 lies on the line through P and F₁ = (−f, 0); it meets the lens at y = h·f/(f + u).
+  // Ray 3 lies on the line through P and the first focal point (−f, 0): F₁ for convex, F₂ on
+  // the far side for concave. It meets the lens at y = h·f/(f + u) and leaves parallel.
   const yFocal = img.atInfinity ? null : (H_OBJ * f) / (f + u);
   const principal: Ray[] = [
-    { yL: H_OBJ, principal: true }, // parallel to axis → through F₂
-    { yL: 0, principal: true }, // through optical centre, undeviated
+    { yL: H_OBJ, principal: true, kind: "parallel" }, // convex: through F₂; concave: as if from F₁
+    { yL: 0, principal: true, kind: "centre" }, // through optical centre, undeviated
   ];
-  if (yFocal !== null && Math.abs(yFocal) < 12) principal.push({ yL: yFocal, principal: true }); // via F₁ → parallel
+  if (yFocal !== null && Math.abs(yFocal) < 12) principal.push({ yL: yFocal, principal: true, kind: "focal" }); // → parallel
   const rays: Ray[] = covered
     ? [
         ...principal.filter((r) => r.yL < 0 && r.yL >= -LENS_HALF),
@@ -93,17 +102,23 @@ export function LensBench() {
   const imageOffBench = !img.atInfinity && Math.abs(img.v) > X_VISIBLE - 2;
   const nature = natureText(img.real, img.erect, img.m, img.atInfinity);
 
+  // One sentence with the full state: the AI tutor reads it to explain what the student sees.
   const aria =
-    `Optical bench with a convex lens of focal length ${fmt(f, 0)} cm. Object at u = ${fmtSigned(u, 0)} cm. ` +
+    `Optical bench with a ${lens} lens of focal length f = ${fmtSigned(f, 0)} cm and the object at u = ${fmtSigned(u, 0)} cm` +
     (img.atInfinity
-      ? "Object is at the focus, so the refracted rays are parallel and the image is at infinity."
-      : `Image at v = ${fmtSigned(img.v, 1)} cm, magnification ${fmtSigned(img.m, 2)}: ${nature}.`) +
-    (covered ? " Top half of the lens is covered; the full image still forms but is dimmer." : "");
+      ? ", which is at the focus, so the refracted rays are parallel and the image is at infinity (real, inverted, highly magnified)"
+      : `, giving the image at v = ${fmtSigned(img.v, 1)} cm with magnification m = ${fmtSigned(img.m, 2)}, ${nature.toLowerCase()}` +
+        (concave ? ", between F₁ and the lens, on the same side as the object" : "")) +
+    (covered ? "; the top half of the lens is covered, so the full image still forms but is dimmer" : "") +
+    ".";
 
-  const lensPath = `M ${px(0)} ${py(LENS_HALF)} Q ${px(0) + 16} ${AXIS_Y} ${px(0)} ${py(-LENS_HALF)} Q ${px(0) - 16} ${AXIS_Y} ${px(0)} ${py(LENS_HALF)} Z`;
+  const x0 = px(0);
+  const lensPath = concave
+    ? `M ${x0 - 12} ${py(LENS_HALF)} L ${x0 + 12} ${py(LENS_HALF)} Q ${x0 - 6} ${AXIS_Y} ${x0 + 12} ${py(-LENS_HALF)} L ${x0 - 12} ${py(-LENS_HALF)} Q ${x0 + 6} ${AXIS_Y} ${x0 - 12} ${py(LENS_HALF)} Z`
+    : `M ${x0} ${py(LENS_HALF)} Q ${x0 + 16} ${AXIS_Y} ${x0} ${py(-LENS_HALF)} Q ${x0 - 16} ${AXIS_Y} ${x0} ${py(LENS_HALF)} Z`;
 
   return (
-    <Frame label="Convex lens optical bench">
+    <Frame label={`${concave ? "Concave" : "Convex"} lens optical bench`}>
       <svg
         ref={svgRef}
         viewBox={`0 0 ${W} ${H}`}
@@ -121,7 +136,7 @@ export function LensBench() {
         {/* lens */}
         <path d={lensPath} fill={C.blueSoft} stroke={C.blue} strokeWidth={1.5} opacity={0.9} />
         <text x={px(0)} y={py(LENS_HALF) - 8} textAnchor="middle" fontSize={14} fill={C.ink}>
-          convex lens
+          {lens} lens
         </text>
         <circle cx={px(0)} cy={AXIS_Y} r={2.5} fill={C.ink} />
         <text x={px(0) + 5} y={AXIS_Y + 15} fontSize={14} fill={C.ink}>
@@ -137,12 +152,18 @@ export function LensBench() {
         )}
 
         {/* F and 2F on both sides */}
-        {[
-          { x: -2 * f, l: "2F₁" },
-          { x: -f, l: "F₁" },
-          { x: f, l: "F₂" },
-          { x: 2 * f, l: "2F₂" },
-        ].map((m) => (
+        {(concave
+          ? [
+              { x: -fAbs, l: "F₁" },
+              { x: fAbs, l: "F₂" },
+            ]
+          : [
+              { x: -2 * f, l: "2F₁" },
+              { x: -f, l: "F₁" },
+              { x: f, l: "F₂" },
+              { x: 2 * f, l: "2F₂" },
+            ]
+        ).map((m) => (
           <g key={m.l}>
             <line x1={px(m.x)} y1={AXIS_Y - 5} x2={px(m.x)} y2={AXIS_Y + 5} stroke={C.ink} strokeWidth={1.5} />
             <text x={px(m.x)} y={AXIS_Y + 20} textAnchor="middle" fontSize={14} fontWeight={600} fill={C.ink}>
@@ -157,6 +178,8 @@ export function LensBench() {
           const sOut = sIn - r.yL / f;
           const yEnd = r.yL + sOut * X_END;
           const width = r.principal ? 1.8 : 1.2;
+          // Backward extension for a virtual image; the concave parallel ray is traced back to F₁.
+          const xBack = concave && r.kind === "parallel" ? f : img.v;
           return (
             <g key={i}>
               <line x1={px(u)} y1={py(H_OBJ)} x2={px(0)} y2={py(r.yL)} stroke={SERIES.ray} strokeWidth={width} />
@@ -167,12 +190,25 @@ export function LensBench() {
                 <line
                   x1={px(0)}
                   y1={py(r.yL)}
-                  x2={px(img.v)}
-                  y2={py(hImg)}
+                  x2={px(xBack)}
+                  y2={py(r.yL + sOut * xBack)}
                   stroke={SERIES.ray}
                   strokeWidth={1.2}
                   strokeDasharray="5 4"
                   opacity={0.8}
+                />
+              )}
+              {concave && r.kind === "focal" && (
+                // where the incident ray was heading: F₂ on the far side
+                <line
+                  x1={px(0)}
+                  y1={py(r.yL)}
+                  x2={px(fAbs)}
+                  y2={AXIS_Y}
+                  stroke={SERIES.ray}
+                  strokeWidth={1.2}
+                  strokeDasharray="2 4"
+                  opacity={0.6}
                 />
               )}
             </g>
@@ -197,10 +233,11 @@ export function LensBench() {
               stroke={imgColor}
               strokeWidth={1.5}
             />
+            {/* concave image is small and sits among the rays: label it below the axis */}
             <text
-              x={px(img.v) + (imgLabelEnd ? -8 : 8)}
-              y={py(hImg) + (hImg > 0 ? -6 : 16)}
-              textAnchor={imgLabelEnd ? "end" : "start"}
+              x={concave ? px(img.v) : px(img.v) + (imgLabelEnd ? -8 : 8)}
+              y={concave ? AXIS_Y + 40 : py(hImg) + (hImg > 0 ? -6 : 16)}
+              textAnchor={concave ? "middle" : imgLabelEnd ? "end" : "start"}
               fontSize={14}
               fontWeight={600}
               fill={imgColor}
@@ -267,6 +304,31 @@ export function LensBench() {
           " Covering half the lens blocks some rays, but every point of the object still sends rays through the open half, so the whole image forms with less light."}
       </p>
 
+      <div
+        role="group"
+        aria-label="Lens type"
+        className="flex self-start rounded-lg overflow-hidden"
+        style={{ border: `1px solid ${C.blue}` }}
+      >
+        {(["convex", "concave"] as const).map((k) => (
+          <button
+            key={k}
+            type="button"
+            aria-pressed={lens === k}
+            onClick={() => setLens(k)}
+            className="llv-focus text-sm font-semibold px-4"
+            style={{
+              minHeight: 36,
+              cursor: "pointer",
+              border: "none",
+              background: lens === k ? C.blue : C.surface,
+              color: lens === k ? "#FFFFFF" : C.ink,
+            }}
+          >
+            {k === "convex" ? "Convex" : "Concave"}
+          </button>
+        ))}
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <RangeControl
           label="Object distance |u| (or drag the object)"
@@ -279,12 +341,12 @@ export function LensBench() {
           valueText={`object ${fmt(uAbs, 0)} centimetres left of the lens`}
         />
         <RangeControl
-          label="Focal length f"
-          value={f}
+          label={concave ? "Focal length |f| (f is negative)" : "Focal length f"}
+          value={fAbs}
           min={10}
           max={20}
           step={1}
-          onChange={setF}
+          onChange={setFAbs}
           display={`${fmt(f, 0)} cm`}
           valueText={`${fmt(f, 0)} centimetres`}
         />

@@ -154,6 +154,19 @@
       "UNCLEAR": "Can you describe the direction of the force relative to the mean position?"
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Restoring force: F = −kx, so it always points opposite to the displacement, whichever way the block is moving.",
+        "trap": "S12",
+        "trap_text": "thinking the force points the way the block is moving (away from the mean)."
+      },
+      {
+        "text": "At x = +3 cm, x is positive, so F points in −x, toward the mean. Here it is slowing the block down.",
+        "trap": "SLIP",
+        "habit": "SIGN",
+        "trap_text": "dropping the minus sign in F = −kx, so the force points in +x."
+      }
+    ],
     "verify_flags": ["TODO_VERIFY", "A correct answer like 'opposite to the direction of motion' contains the S12 phrase 'direction of motion'; engine should check accept_any before patterns or handle negation"]
   },
   {
@@ -197,37 +210,43 @@
   {
     "item_id": "C4-A2",
     "concept": "C4",
-    "kind": "short",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "transfer": false,
-    "stem": "A 2 kg block on a spring of force constant 200 N/m is 5 cm from its mean position. Find the magnitude of its acceleration and say which way it points.",
-    "answer_key": "The acceleration is 5 m/s², directed toward the mean position.",
-    "expected_reasoning": "ω² = k/m = 100 s⁻², so |a| = ω²x = 100 × 0.05 = 5 m/s², and a = −ω²x points opposite to the displacement, toward the mean.",
-    "accept_any": [],
-    "reasoning_any": ["k/m", "omega square", "ω²", "ω^2", "100", "-ω²x", "−ω²x", "toward mean", "towards mean", "towards the mean", "toward the mean", "opposite to displacement", "towards centre"],
-    "numeric": {
-      "value": 5.0,
-      "unit": "m/s²",
-      "tolerance": 0.05,
-      "slips": [
-        {"value": 0.5, "why": "forgot to square ω: used ωx = 10 × 0.05"},
-        {"value": 10.0, "why": "gave the force kx = 200 × 0.05 instead of dividing by m"},
-        {"value": 500.0, "why": "used x = 5 cm without converting to metres"}
-      ]
+    "stem": "A 2 kg block on a spring of force constant 200 N/m is 5 cm from its mean position. What are the magnitude and direction of its acceleration?",
+    "options": {
+      "A": "5 m/s², away from the mean position",
+      "B": "0.5 m/s², toward the mean position",
+      "C": "The same as its maximum value at the extremes, toward the mean position",
+      "D": "5 m/s², toward the mean position"
     },
-    "patterns": [
-      {"code": "S12", "any": ["away from mean", "away from the mean", "away from centre", "direction of motion", "outward", "outwards", "along displacement"]},
-      {"code": "S11", "any": ["same everywhere", "same at all", "same at every", "constant acceleration", "acceleration is constant", "same as extreme"]}
-    ],
-    "follow_ups": {
-      "S12": "If the acceleration pointed away from the mean, would the block ever come back? What would happen to x?",
-      "S11": "What would the acceleration be at 2.5 cm from the mean, and at the mean itself?",
-      "CORRECT_NO_REASON": "How did you get that value, and why does it point that way?",
-      "CORRECT": "If the amplitude is 10 cm, what is the maximum acceleration, and where does it occur?",
-      "UNCLEAR": "Can you give the size of the acceleration with its unit, and its direction relative to the mean?"
+    "correct": "D",
+    "distractor_map": {
+      "A": "S12",
+      "B": "SLIP",
+      "C": "S11",
+      "D": "CORRECT"
+    },
+    "reasons": {
+      "r1": {
+        "text": "The block is out on one side of the mean, so its acceleration points out to that side too, away from the mean.",
+        "maps_to": "S12"
+      },
+      "r2": {
+        "text": "ω² = k/m = 100, so a = −ω²x = −100 × 0.05 = −5 m/s²; the minus sign means it points back to the mean.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "The spring pulls just as hard everywhere, so the acceleration is the same at every point, the same as at the ends.",
+        "maps_to": "S11"
+      }
     },
     "calc": "ω² = 200/2 = 100 s⁻²; |a| = 100 × 0.05 = 5 m/s², toward mean",
-    "verify_flags": ["TODO_VERIFY", "tolerance assumed relative (5%); confirm engine convention"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "tolerance assumed relative (5%); confirm engine convention",
+      "Converted from short answer to MCQ for the MCQ-only tests; options and reasons need teacher review."
+    ]
   }
 ]

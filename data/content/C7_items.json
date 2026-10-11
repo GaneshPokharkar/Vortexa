@@ -97,6 +97,18 @@
       }
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Thumb on the left half: rays from every point of the tubelight still pass through the right half and meet at the same image points, so the image is complete, only dimmer.",
+        "trap": "R5",
+        "trap_text": "thinking covering half the lens cuts off half the image."
+      },
+      {
+        "text": "Notebook moved: the rays still meet at that spot in the air. The notebook only made the image visible; it didn't make it.",
+        "trap": "R6",
+        "trap_text": "thinking the image was only on the paper, so it vanishes without it."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Assumes the tubelight is far enough that the image forms near the focus on the same side as the notebook"
@@ -274,6 +286,51 @@
       "UNCLEAR": "What value of v did you get, with its sign, and what does that sign tell you?"
     },
     "calc": "1/v = 1/f + 1/u = 1/15 + 1/(−20) = 1/60 -> v = +60 cm; m = v/u = 60/(−20) = −3",
+    "trace": {
+      "formula": "1/(1/f + 1/u)",
+      "inputs": {
+        "u": {
+          "value": -20,
+          "unit": "cm",
+          "signed": true
+        },
+        "f": {
+          "value": 15,
+          "unit": "cm",
+          "signed": true
+        }
+      },
+      "meaning": {
+        "sign:u": {
+          "text": "used u = +20 cm (forgot that the object distance is negative)",
+          "tags": [
+            "SIGN"
+          ]
+        },
+        "sign:f": {
+          "text": "used f = −15 cm (treated the convex lens as concave)",
+          "tags": [
+            "SIGN"
+          ]
+        }
+      },
+      "alternatives": [
+        {
+          "formula": "1/f + 1/u",
+          "text": "stopped at 1/v = 1/60 and forgot to take the reciprocal",
+          "tags": [
+            "ARITH"
+          ]
+        },
+        {
+          "formula": "1/(1/f - 1/u)",
+          "text": "used the mirror formula 1/v + 1/u = 1/f instead of the lens formula",
+          "tags": [
+            "SIGN"
+          ]
+        }
+      ]
+    },
     "steps": [
       {
         "text": "Signs (Cartesian): u = −20 cm (object in front of the lens), f = +15 cm (convex).",
@@ -360,6 +417,18 @@
       "UNCLEAR": "Will Neha see the whole flame, half the flame, or nothing? And does the brightness change?"
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Every point of the flame sends rays to the whole lens, not to one half of it.",
+        "trap": "R5",
+        "trap_text": "thinking each half of the lens makes its own half of the image."
+      },
+      {
+        "text": "The uncovered left half still brings rays from every point of the flame to the same image points, so the full image stays at the same place; half the light is blocked, so it is dimmer.",
+        "trap": "R5",
+        "trap_text": "thinking covering half the lens cuts off half the image."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Brightness roughly halves; small changes in sharpness from aberrations are ignored"
@@ -368,62 +437,44 @@
   {
     "item_id": "C7-A2",
     "concept": "C7",
-    "kind": "short",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "transfer": false,
-    "stem": "In a camera, the lens forms a sharp real image on the sensor. Ishaan says, 'Take the sensor out and the lens stops forming any image.' Is he right? Give a reason.",
-    "answer_key": "No; the lens still forms the real image at the same place, the sensor only records it.",
-    "expected_reasoning": "A real image is the point where rays from each object point actually converge. The rays still meet there without the sensor and then spread out again; the sensor only catches that light.",
-    "accept_any": [
-      "not right",
-      "is wrong",
-      "he's wrong",
-      "still forms",
-      "still form",
-      "still converge",
-      "still meet",
-      "still there",
-      "still formed"
-    ],
-    "reasoning_any": [
-      "rays meet",
-      "rays converge",
-      "converge",
-      "only records",
-      "only catches",
-      "just records",
-      "screen only",
-      "sensor only",
-      "spread out"
-    ],
-    "numeric": null,
-    "patterns": [
-      {
-        "code": "R6",
-        "any": [
-          "he is right",
-          "he's right",
-          "needs the sensor",
-          "needs a screen",
-          "need a screen",
-          "no image without",
-          "stops forming",
-          "nothing to land on"
-        ]
+    "stem": "In a camera, the lens forms a sharp real image on the sensor. Ishaan says, 'Take the sensor out and the lens stops forming any image.' Is he right?",
+    "options": {
+      "A": "Yes; a real image exists only when a screen or sensor is there to catch it",
+      "B": "Yes; without the sensor the rays pass on and never meet anywhere",
+      "C": "No; the image is still formed, but it turns into a virtual image once the sensor is removed",
+      "D": "No; the rays still meet at the same place and form the real image there; the sensor only records it"
+    },
+    "correct": "D",
+    "distractor_map": {
+      "A": "R6",
+      "B": "R6",
+      "C": "UNMAPPED",
+      "D": "CORRECT"
+    },
+    "reasons": {
+      "r1": {
+        "text": "You only get an image when the light lands on something; with nothing there, there is no image.",
+        "maps_to": "R6"
+      },
+      "r2": {
+        "text": "The lens makes the rays from each point of the object actually meet at that spot; they meet there with or without the sensor, then spread out again.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "The sensor is what turns the light into a picture, so without it the lens has nothing to form the image on.",
+        "maps_to": "R6"
       }
-    ],
-    "follow_ups": {
-      "R6": "Where do rays from one point of the object meet when the sensor is in place, and does removing the sensor change where they meet?",
-      "CORRECT_NO_REASON": "If the lens already forms the image, what job does the sensor actually do?",
-      "CORRECT": "Why can a real image hanging in air be seen only from certain positions, while an image on a screen can be seen from all round the room?",
-      "UNCLEAR": "Do you think an image still exists at that spot after the sensor is taken out? Yes or no, and why?"
     },
     "calc": "",
     "verify_flags": [
       "TODO_VERIFY",
       "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook",
-      "Treats the camera lens as a single thin convex lens"
+      "Treats the camera lens as a single thin convex lens",
+      "Converted from short answer to MCQ for the MCQ-only tests; options and reasons need teacher review."
     ]
   }
 ]

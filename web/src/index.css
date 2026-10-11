@@ -162,8 +162,17 @@ p {
   to { transform: none; opacity: 1; }
 }
 
+/* Home topic cards: a spring-block in SHM (block and spring move together) and light flowing along the rays. */
+.shm-block { animation: shm-block 2.4s ease-in-out infinite alternate; }
+.shm-spring { transform-origin: 20px 48px; animation: shm-spring 2.4s ease-in-out infinite alternate; }
+@keyframes shm-block { from { transform: translateX(-50px); } to { transform: translateX(50px); } }
+@keyframes shm-spring { from { transform: scaleX(0.615); } to { transform: scaleX(1.385); } }
+.ray-flow { stroke-dasharray: 7 5; animation: ray-flow 1.2s linear infinite; }
+@keyframes ray-flow { to { stroke-dashoffset: -12; } }
+
 @media (prefers-reduced-motion: reduce) {
   .confetti { display: none; }
+  .shm-block, .shm-spring, .ray-flow { animation: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;

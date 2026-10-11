@@ -1,17 +1,17 @@
 import { AudioLines, ChevronDown, Cpu, FlaskConical, LogOut, Trash2, UserRound } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Link, NavLink, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import { api, type Learner } from "./lib/api";
 import { learnerName, useLearner } from "./lib/learner";
 import { lazy, Suspense } from "react";
-import Assessment from "./screens/Assessment";
-import Doubts from "./screens/Doubts";
 import Home from "./screens/Home";
 import Landing from "./screens/Landing";
-import Report from "./screens/Report";
-import Learn from "./screens/Learn";
 import Teacher from "./screens/Teacher";
-import Topics from "./screens/Topics";
+import ConceptView from "./screens/topic/ConceptView";
+import DoubtView from "./screens/topic/DoubtView";
+import SummaryView from "./screens/topic/SummaryView";
+import TestView from "./screens/topic/TestView";
+import TopicLayout, { LearnIndex, TopicOverview } from "./screens/topic/TopicLayout";
 
 const DevOverlays = import.meta.env.DEV ? lazy(() => import("./screens/DevOverlays")) : null;
 
@@ -30,13 +30,13 @@ function Wordmark() {
   );
 }
 
-const NAV = [
-  { to: "/home", label: "Home" },
-  { to: "/topics", label: "Learn" },
-  { to: "/assessment", label: "Tests" },
-  { to: "/report", label: "Report" },
-  { to: "/doubts", label: "Doubts" },
-];
+const TOPIC_NAMES: Record<string, string> = { SHM: "Simple Harmonic Motion", OPTICS: "Optics" };
+
+/** Only what makes sense here: Home, plus the topic you are in. */
+function useNav() {
+  const topic = useLocation().pathname.match(/^\/topic\/(SHM|OPTICS)/)?.[1];
+  return [{ to: "/home", label: "Home", end: true }, ...(topic ? [{ to: `/topic/${topic}`, label: TOPIC_NAMES[topic], end: false }] : [])];
+}
 
 function ModeBadges() {
   const { modes } = useLearner();
@@ -135,11 +135,10 @@ function LearnerMenu() {
 }
 
 function Shell({ children }: { children: ReactNode }) {
-  // On large screens the learning page fits the window; its two columns scroll on their own.
-  const fitted = useLocation().pathname.startsWith("/learn/");
   const { learner } = useLearner();
+  const nav = useNav();
   return (
-    <div className={`flex min-h-screen flex-col ${fitted ? "lg:h-dvh lg:min-h-0 lg:overflow-hidden" : ""}`}>
+    <div className="flex min-h-screen flex-col">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded focus:bg-surface focus:px-3 focus:py-2">
         Skip to content
       </a>
@@ -148,8 +147,8 @@ function Shell({ children }: { children: ReactNode }) {
           <Wordmark />
           {learner && (
             <nav aria-label="Main" className="order-last -mx-1 flex min-w-0 basis-full gap-0.5 overflow-x-auto [scrollbar-width:none] sm:order-none sm:flex-1 sm:basis-auto">
-              {NAV.map((n) => (
-                <NavLink key={n.to} to={n.to}
+              {nav.map((n) => (
+                <NavLink key={n.to} to={n.to} end={n.end}
                   className={({ isActive }) => `whitespace-nowrap rounded-md px-2 py-1.5 text-[14.5px] sm:px-2.5 transition-colors ${
                     isActive ? "bg-blue-soft font-medium text-blue-ink" : "text-ink-2 hover:bg-surface-2"}`}>
                   {n.label}
@@ -164,9 +163,9 @@ function Shell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main id="main" className={`mx-auto w-full max-w-6xl flex-1 px-4 pb-20 sm:px-6 ${fitted ? "lg:flex lg:min-h-0 lg:flex-col lg:pb-0" : ""}`}>{children}</main>
+      <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 pb-20 sm:px-6">{children}</main>
 
-      <footer className={`border-t border-line bg-surface ${fitted ? "lg:hidden" : ""}`}>
+      <footer className="border-t border-line bg-surface">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-5 text-[14px] text-muted sm:px-6">
           <p>LearnLoop supports your teacher. It does not replace them.</p>
           <div className="flex gap-4">
@@ -177,6 +176,18 @@ function Shell({ children }: { children: ReactNode }) {
       </footer>
     </div>
   );
+}
+
+function LegacyConcept() {
+  const { conceptId = "" } = useParams();
+  const [to, setTo] = useState<string | null>(null);
+  useEffect(() => {
+    api.concepts().then((cs) => {
+      const c = cs.find((x) => x.concept_id === conceptId);
+      setTo(c ? `/topic/${c.topic_id}/learn/${c.concept_id}` : "/home");
+    }).catch(() => setTo("/home"));
+  }, [conceptId]);
+  return to ? <Navigate to={to} replace /> : null;
 }
 
 function NeedsLearner({ children }: { children: ReactNode }) {
@@ -190,11 +201,17 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<NeedsLearner><Home /></NeedsLearner>} />
-        <Route path="/topics" element={<NeedsLearner><Topics /></NeedsLearner>} />
-        <Route path="/learn/:conceptId" element={<NeedsLearner><Learn /></NeedsLearner>} />
-        <Route path="/assessment" element={<NeedsLearner><Assessment /></NeedsLearner>} />
-        <Route path="/report" element={<NeedsLearner><Report /></NeedsLearner>} />
-        <Route path="/doubts" element={<Doubts />} />
+        <Route path="/topic/:topicId" element={<NeedsLearner><TopicLayout /></NeedsLearner>}>
+          <Route index element={<TopicOverview />} />
+          <Route path="learn" element={<LearnIndex />} />
+          <Route path="learn/:conceptId" element={<ConceptView />} />
+          <Route path="doubt" element={<DoubtView />} />
+          <Route path="test" element={<TestView />} />
+          <Route path="summary" element={<SummaryView />} />
+        </Route>
+        {/* Old addresses from before the topic workspaces. */}
+        <Route path="/learn/:conceptId" element={<LegacyConcept />} />
+        {["/topics", "/assessment", "/report", "/doubts"].map((p) => <Route key={p} path={p} element={<Navigate to="/home" replace />} />)}
         <Route path="/teacher" element={<Teacher />} />
         <Route path="/review" element={<Navigate to="/teacher" replace />} />
         {DevOverlays && <Route path="/dev/overlays" element={<Suspense fallback={null}><DevOverlays /></Suspense>} />}

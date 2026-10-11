@@ -69,7 +69,32 @@ def check(c: Content) -> list[str]:
             if practice_mcq and item.sibling_of != f"{concept}-P1":
                 errors.append(f"{item.item_id}: sibling_of must be {concept}-P1")
         errors += [f"{concept}: code {code} targeted by {k} wrong options (need >= 2)" for code, k in targeted.items() if k < 2]
-        errors += [f"{concept}: code {code} missing from short-answer patterns" for code in codes - in_patterns]
+        # Every idea must be detectable in practice: by a typed answer's patterns or a practice multiple-choice option/reason.
+        in_practice = {code for i in items if not i.is_assessment for code in i.codes()}
+        errors += [f"{concept}: code {code} not detectable by any practice question" for code in codes - in_patterns - in_practice]
+        for i in items:
+            if i.trace:
+                from api.engine.trace import paths, right_answer
+                got = right_answer(i.trace)
+                key = i.numeric.value if i.numeric else None
+                if i.kind == "mcq":  # the correct option's number is the answer
+                    import re as _re
+                    nums = _re.findall(r"-?\d+(?:\.\d+)?", i.options[i.correct])
+                    key = float(nums[0]) if nums else None
+                tol = i.numeric.tolerance if i.numeric else 0.02 * abs(key or 1)
+                if key is None or got is None or abs(got - key) > tol:
+                    errors.append(f"{i.item_id}: trace formula gives {got}, not the answer {key}")
+                habits = {"HALF", "ROOT", "SQUARE", "SIGN", "UNIT", "ARITH"}
+                bad = {t for p in paths(i.trace) for t in p.tags if t not in habits | set(c.misconceptions)}
+                if bad:
+                    errors.append(f"{i.item_id}: trace uses unknown tags {sorted(bad)}")
+                from api.engine.trace import option_path
+                for opt, value in i.trace.get("option_values", {}).items():
+                    path, code = option_path(i.trace, opt), (i.distractor_map or {}).get(opt)
+                    if path is None:
+                        errors.append(f"{i.item_id}: option {opt} ({value}) is not produced by exactly one traced mistake")
+                    elif not (code in path.tags or (code == "SLIP" and set(path.tags) & habits)):
+                        errors.append(f"{i.item_id}: option {opt} maps to {code} but its traced mistake is {path.tags}")
         card = c.cards.get(f"{concept}-K")
         if card is None:
             errors.append(f"{concept}: missing concept card {concept}-K")

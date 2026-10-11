@@ -5,6 +5,9 @@ VORTEXA 3.0 · problem **E-01**. A physics tutor for Maharashtra State Board HSC
 
 - **Simple Harmonic Motion** is the full module (concepts C1–C5); **Optics** (C6 refraction & TIR, C7 lenses) is the
   extension built on the same engine.
+- Students pick a topic, then one of four options: **Learn Visually** (interactive simulation first, then explanation,
+  solved example and a diagnosed question), **Solve My Doubt** (chat grounded in the course, voice where configured),
+  **Test My Understanding** (per-topic pre/post tests and report) and **Summary & My Progress**.
 - Every answer goes through a **3-agent pipeline**: Evaluator → Diagnoser → Visual corrector. Fixed rules make the
   final call; Claude adds evidence for free-text answers; physics code draws a "your idea vs real physics" overlay.
 - A **confused classmate (Rohan)** argues the student's wrong idea back at them; a **teacher map** shows which ideas each

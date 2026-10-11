@@ -35,6 +35,23 @@
       }
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Speed at x = +A: the block turns around there, so it is at rest for an instant, v = 0.",
+        "trap": "S4",
+        "trap_text": "thinking the speed is largest at the extreme because it is farthest from the centre."
+      },
+      {
+        "text": "Compare with x = 0: the block is fastest at the mean, so the speed is not the same at x = +A and x = 0.",
+        "trap": "S5",
+        "trap_text": "thinking the speed is the same everywhere because the motion repeats evenly."
+      },
+      {
+        "text": "Acceleration: a = −ω²x is largest in size at x = +A, pointing toward x = 0.",
+        "trap": "S6",
+        "trap_text": "thinking zero speed means zero acceleration."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY"
     ],
@@ -79,6 +96,24 @@
       }
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Speed: at the end of the swing the bob turns around, so v = 0 for an instant. Zero speed doesn't mean zero acceleration.",
+        "trap": "S6",
+        "trap_text": "thinking the bob is at rest, so its acceleration is zero too."
+      },
+      {
+        "text": "Size: for small angles a = −ω²x, so the acceleration is largest where the displacement is largest, at the end, and zero at the lowest point.",
+        "trap": "S7",
+        "trap_text": "thinking acceleration is largest at the lowest point, where the bob is fastest."
+      },
+      {
+        "text": "Direction: the minus sign in a = −ω²x means it points back toward the lowest point.",
+        "trap": "SLIP",
+        "habit": "SIGN",
+        "trap_text": "dropping the minus sign, so it points away from the lowest point."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Pendulum treated as small-angle SHM: at the extreme the acceleration is tangential (≈ g sinθ ≈ gθ) toward the mean; at the lowest point the centripetal term v²/L is ignored, as is standard for the SHM approximation."
@@ -124,6 +159,23 @@
       }
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Speed: the table is in SHM, not moving steadily. It is fastest at the mean and at rest for an instant at the extremes.",
+        "trap": "S5",
+        "trap_text": "thinking the table moves at a steady speed, so the coin could slip anywhere."
+      },
+      {
+        "text": "Acceleration: a = −ω²x, so its size grows with distance from the mean and is zero at the mean itself.",
+        "trap": "S7",
+        "trap_text": "thinking acceleration is greatest at the mean, where the table is fastest."
+      },
+      {
+        "text": "At the extremes x = ±A, so the acceleration is largest there even though the table is at rest. Friction has to work hardest there, so the coin slips first at the extremes.",
+        "trap": "S6",
+        "trap_text": "thinking zero speed at the extremes means zero acceleration."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Transfer context: coin slips when the needed friction m·ω²|x| exceeds μs·m·g, which first happens at |x| = A. Assumes ideal SHM of the table."
@@ -260,6 +312,18 @@
       "UNCLEAR": "Can you name the position — the mean position or an extreme position — where the oscillator moves fastest?"
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "At an extreme the oscillator stops for an instant to turn around: v = 0 and all its energy is potential.",
+        "trap": "S4",
+        "trap_text": "thinking the speed is largest at the extreme, the point farthest from the centre."
+      },
+      {
+        "text": "Toward the mean the restoring force speeds it up; past the mean it slows it down. So the speed is greatest at the mean, where PE = 0 and all the energy is kinetic (v = Aω).",
+        "trap": "S5",
+        "trap_text": "thinking the speed is the same everywhere."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "Keyword matching is substring-based: a correct answer that also says 'zero at the extreme position' will hit both accept_any and S4. Grader precedence must be decided (suggest: accept_any wins unless the S4 phrase is the stated answer).",
@@ -359,6 +423,18 @@
       "UNCLEAR": "Is the acceleration at the far end zero or not, and which way does it point?"
     },
     "calc": "",
+    "steps": [
+      {
+        "text": "Velocity: at the far end v = 0 for an instant. That only means the block is turning around, not that nothing acts on it.",
+        "trap": "S6",
+        "trap_text": "thinking zero velocity means zero acceleration."
+      },
+      {
+        "text": "Acceleration: the displacement is largest there, x = A, so F = −kx and a = −ω²x are largest, pointing toward the mean. So it is not zero.",
+        "trap": "S7",
+        "trap_text": "thinking the acceleration is greatest at the mean, where the block is fastest."
+      }
+    ],
     "verify_flags": [
       "TODO_VERIFY",
       "'yes' is a short S6 trigger and could fire on unrelated filler ('yes, so...'); review against real transcripts.",
@@ -372,85 +448,43 @@
   {
     "item_id": "C2-A2",
     "concept": "C2",
-    "kind": "short",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "transfer": false,
-    "stem": "Kavya's block on a spring oscillates in SHM with amplitude 0.05 m and angular frequency 10 rad/s. What is its speed as it passes the mean position? Give a reason.",
-    "answer_key": "0.5 m/s, the maximum speed, because v = Aω at the mean position.",
-    "expected_reasoning": "At x = 0, v = ω√(A² − x²) = Aω = 0.05 × 10 = 0.5 m/s; all the energy is kinetic there, so the speed is greatest.",
-    "accept_any": [],
-    "reasoning_any": [
-      "aω",
-      "a ω",
-      "a × ω",
-      "a*ω",
-      "amplitude times",
-      "omega",
-      "ω√",
-      "kinetic energy",
-      "all kinetic",
-      "x = 0",
-      "x=0",
-      "v max",
-      "vmax",
-      "v_max",
-      "no potential"
-    ],
-    "numeric": {
-      "value": 0.5,
-      "unit": "m/s",
-      "tolerance": 0.01,
-      "slips": [
-        {
-          "value": 5.0,
-          "why": "used ω²A (maximum acceleration, m/s²) instead of Aω"
-        },
-        {
-          "value": -0.5,
-          "why": "sign slip; speed is a magnitude"
-        }
-      ]
+    "stem": "Kavya's block on a spring oscillates in SHM with amplitude 0.05 m and angular frequency 10 rad/s. What is its speed as it passes the mean position?",
+    "options": {
+      "A": "0 m/s, because it moves fastest at the extreme positions",
+      "B": "5 m/s",
+      "C": "0.5 m/s, its maximum speed",
+      "D": "The same as at every other point, since the speed in SHM does not change"
     },
-    "patterns": [
-      {
-        "code": "S4",
-        "any": [
-          "zero at mean",
-          "zero at the mean",
-          "zero at centre",
-          "fastest at extreme",
-          "fastest at the extreme",
-          "fastest at the end",
-          "slowest at mean",
-          "slowest at the mean",
-          "stops at the mean",
-          "at rest at mean"
-        ]
+    "correct": "C",
+    "distractor_map": {
+      "A": "S4",
+      "B": "SLIP",
+      "C": "CORRECT",
+      "D": "S5"
+    },
+    "reasons": {
+      "r1": {
+        "text": "At the mean position all the energy is kinetic, so the speed is greatest there: v = Aω = 0.05 × 10 = 0.5 m/s.",
+        "maps_to": "CORRECT"
       },
-      {
-        "code": "S5",
-        "any": [
-          "speed is constant",
-          "constant speed",
-          "same everywhere",
-          "same speed",
-          "uniform speed",
-          "never changes"
-        ]
+      "r2": {
+        "text": "The block is fastest at the ends where it was pulled the most, so in the middle it is the slowest.",
+        "maps_to": "S4"
+      },
+      "r3": {
+        "text": "In SHM the block keeps moving at the same speed back and forth; only its direction changes.",
+        "maps_to": "S5"
       }
-    ],
-    "follow_ups": {
-      "S4": "At the mean position the spring is unstretched. Where has the stored spring energy gone?",
-      "S5": "Use v = ω√(A² − x²) to find the speed at x = 0.05 m. Is it the same as at x = 0?",
-      "CORRECT_NO_REASON": "Why does the block move fastest at the mean position rather than anywhere else?",
-      "CORRECT": "What is the block's speed when it is at x = 0.03 m?",
-      "UNCLEAR": "Can you give the speed at the mean position as a number with its unit?"
     },
     "calc": "v_max = Aω = 0.05 × 10 = 0.5 m/s (follow-up: at x = 0.03 m, v = 10√(0.0025 − 0.0009) = 10 × 0.04 = 0.4 m/s).",
     "verify_flags": [
       "TODO_VERIFY",
-      "An answer of 0 m/s is the S4 misconception, not a slip; it is caught by text patterns, not numeric.slips. Confirm the numeric grader routes 0 to S4 or UNCLEAR."
+      "An answer of 0 m/s is the S4 misconception, not a slip; it is caught by text patterns, not numeric.slips. Confirm the numeric grader routes 0 to S4 or UNCLEAR.",
+      "Converted from short answer to MCQ for the MCQ-only tests; options and reasons need teacher review."
     ],
     "setup": {
       "amplitude": 0.05,

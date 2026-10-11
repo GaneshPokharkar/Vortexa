@@ -4,7 +4,7 @@ import type { ExplainMode, Lesson } from "../../lib/api";
 import { VISUALS } from "../../visuals";
 import { Speak, SpeechLang, recorded } from "../../voice/Speak";
 
-type Mode = "simple" | "steps" | "worked" | "analogy" | "visual" | "formal";
+export type Mode = "simple" | "steps" | "worked" | "analogy" | "visual" | "formal";
 const MODES: { id: Mode; label: string }[] = [
   { id: "simple", label: "Simple" },
   { id: "steps", label: "Step by step" },
@@ -19,10 +19,12 @@ const FROM_SUGGESTION: Record<ExplainMode, Mode> = {
   beginner: "simple", steps: "steps", worked: "worked", analogy: "analogy", visual: "visual", practice: "simple",
 };
 
-export function LessonPanel({ lesson }: { lesson: Lesson }) {
+/** `exclude` hides tabs that the page shows as sections of their own (e.g. the simulation). */
+export function LessonPanel({ lesson, exclude = [] }: { lesson: Lesson; exclude?: Mode[] }) {
   const card = lesson.card;
-  const hasVisual = Boolean(card.visual && VISUALS[card.visual]);
-  const suggested = FROM_SUGGESTION[lesson.suggested_mode];
+  const hasVisual = Boolean(card.visual && VISUALS[card.visual]) && !exclude.includes("visual");
+  const preferred = FROM_SUGGESTION[lesson.suggested_mode];
+  const suggested = exclude.includes(preferred) ? "simple" : preferred;
   const [mode, setMode] = useState<Mode>(suggested === "visual" && !hasVisual ? "simple" : suggested);
   const [alt, setAlt] = useState(-1); // -1: main explanation; 0..n: alternative explanations
 
@@ -32,7 +34,7 @@ export function LessonPanel({ lesson }: { lesson: Lesson }) {
   }, [lesson.concept.concept_id, suggested, hasVisual]);
 
   const Visual = hasVisual ? VISUALS[card.visual] : null;
-  const modes = MODES.filter((m) => m.id !== "visual" || hasVisual);
+  const modes = MODES.filter((m) => (m.id !== "visual" || hasVisual) && !exclude.includes(m.id));
   const spoken = alt < 0 ? recorded(`lesson-${card.concept}`, card.simple) : null; // only the main explanation is recorded
 
   return (
@@ -46,7 +48,7 @@ export function LessonPanel({ lesson }: { lesson: Lesson }) {
           </button>
         ))}
       </div>
-      {lesson.suggested_mode !== "beginner" && (
+      {lesson.suggested_mode !== "beginner" && modes.some((m) => m.id === preferred) && (
         <p className="bg-surface-2 px-5 py-2.5 text-[13.5px] text-muted">
           Suggested for you: {modes.find((m) => m.id === suggested)?.label ?? "Practice"}. {lesson.mode_reason}
         </p>

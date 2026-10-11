@@ -21,9 +21,13 @@ const VOICES = [
 ] as const;
 type Voice = (typeof VOICES)[number]["id"];
 
+/** Which film explains which idea (0-based film index). Films on other topics are only on the landing page. */
+export const FILMS_FOR_CONCEPT: Record<string, number[]> = { C2: [0], C3: [0], C6: [3], C7: [3] };
+
 // ponytail: one MP4 per voice (3× the video bytes) instead of syncing a separate audio track to a silent video.
-export function Films() {
-  const [film, setFilm] = useState(0);
+export function Films({ only }: { only?: number[] } = {}) {
+  const list = only ?? FILMS.map((_, i) => i);
+  const [film, setFilm] = useState(list[0]);
   const [voice, setVoice] = useState<Voice>("en");
   const video = useRef<HTMLVideoElement>(null);
   const resume = useRef<{ t: number; play: boolean } | null>(null); // applied once the new file has loaded
@@ -48,7 +52,7 @@ export function Films() {
       <figcaption id="films" className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 px-1 text-[14px] text-muted">
         <span>See it in a minute: predict, watch, explain</span>
         <span className="num text-[13px]">
-          {film + 1} / {FILMS.length}
+          {list.indexOf(film) + 1} / {list.length}
         </span>
       </figcaption>
 
@@ -100,8 +104,8 @@ export function Films() {
       </div>
       <p className="mt-2 px-1 text-[14.5px] text-ink-2">{f.line}</p>
 
-      <ol className="mt-4 grid grid-cols-5 gap-2" aria-label="Films">
-        {FILMS.map((x, i) => (
+      {list.length > 1 && <ol className="mt-4 grid grid-cols-5 gap-2" aria-label="Films">
+        {list.map((i) => [FILMS[i], i] as const).map(([x, i]) => (
           <li key={x.title}>
             <button
               type="button"
@@ -118,7 +122,7 @@ export function Films() {
             </button>
           </li>
         ))}
-      </ol>
+      </ol>}
       <p className="mt-3 border-t border-line px-1 pt-3 text-[13px] text-muted">
         English, Hindi or Marathi voice. Subtitles in all three from the CC button.
       </p>

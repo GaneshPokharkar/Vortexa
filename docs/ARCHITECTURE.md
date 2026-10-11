@@ -20,6 +20,15 @@ data/  concepts, misconceptions, items, cards (JSON)                   ai/voice.
                                                                        store.py        tables; apply_response()
 ```
 
+## Screens
+
+`/home` shows exactly two topics. `/topic/:topicId` (SHM, OPTICS) is a workspace with four options:
+`learn` → `learn/:conceptId` (tabs: See it · Understand it · Solved example · Check yourself), `doubt` (grounded chat,
+"why was my last answer wrong?", voice), `test` (per-topic pre/post, same items, report) and `summary`
+(`GET /topics/{id}/summary`: formulas, definitions, mistakes with corrections, plus the learner's evidence). The chat
+sends the on-screen simulation's live description (`visual`) so the tutor can explain what the student is looking at.
+Tests are stored per topic (`assessment_sessions.topic`, added by an additive migration; older rows keep "ALL").
+
 ## One answer, end to end
 
 1. The learner answers (multiple choice with reason and confidence, or a typed or spoken short answer).
@@ -39,9 +48,23 @@ data/  concepts, misconceptions, items, cards (JSON)                   ai/voice.
    went off track (`POST /responses/{id}/step`, stored in `step_picks`). `tutor.traced_step()` finds the step the
    answer really traces to: the chosen option's code for multiple choice, or the number matched to a step's slip value
    for short answers. The traced step is revealed only after the learner has picked. Self-report never changes mastery.
+   The pick (and optional "what did you do?" text) then gets a **step review** (`step_reviews`): conceptual or
+   calculation. The rules trace decides, then the diagnosed misconception; Claude only explains (validated: allowed
+   codes and habits, quotes from the student's words, no new numbers) and decides alone only when the rules know
+   nothing. A confident disagreement asks the learner one question instead of overriding. Conceptual → simulation,
+   solved example and remediation card; calculation → habit tip and a similar question.
 8. **Mistake habits**: every slip step carries a habit (HALF, ROOT, SQUARE, SIGN, UNIT, ARITH). A habit seen on two
    different questions is shown to the learner (`GET /habits/{learner_id}` and in the feedback). Read-only; slips stay
    separate from misconceptions.
+
+## Mistake tracer (numeric answers)
+
+Six numeric questions carry their solution as a formula (`trace` in the content files). `api/engine/trace.py` applies
+known mistakes to it (dropped ½, missed square or root, × for ÷ where allowed, a flipped sign, cm for m, one quantity
+used for another, and wrong formulas the author lists), singly and in pairs, and computes each wrong number. A
+student's number that matches exactly one path is diagnosed as that idea (misconception code) or slip (habit); one that
+fits several asks which one they did; one that fits none is "unmatched". The validator checks that every formula gives
+the question's answer. Pure code, labelled "rules, not AI" in the app.
 
 ## Asking the tutor
 

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import logging
 import os
+import time
 
 import httpx
 
@@ -18,12 +19,20 @@ def _config() -> tuple[str | None, str | None]:
     return os.environ.get("ELEVENLABS_API_KEY"), os.environ.get("ELEVENLABS_AGENT_ID")
 
 
+_probe: dict = {"at": 0.0, "result": None}
+
+
 def status() -> dict:
+    """Voice is 'live' only if ElevenLabs really issues a session, not merely when a key is present."""
     key, agent = _config()
-    if key and agent:
-        return {"live": True, "note": "ElevenLabs voice tutor configured."}
-    missing = [n for n, v in (("ELEVENLABS_API_KEY", key), ("ELEVENLABS_AGENT_ID", agent)) if not v]
-    return {"live": False, "note": f"Voice not configured: set {' and '.join(missing)} in api/.env. Text tutoring works."}
+    if not (key and agent):
+        missing = [n for n, v in (("ELEVENLABS_API_KEY", key), ("ELEVENLABS_AGENT_ID", agent)) if not v]
+        return {"live": False, "note": f"Voice not configured: set {' and '.join(missing)} in api/.env. Text tutoring works."}
+    if _probe["result"] is None or time.monotonic() - _probe["at"] > 300:  # re-check at most every 5 minutes
+        s = signed_url()
+        _probe.update(at=time.monotonic(), result={"live": s["available"], "note": "ElevenLabs voice tutor ready." if s["available"]
+                                                   else f"Voice unavailable: {s['reason']} Text tutoring works."})
+    return _probe["result"]
 
 
 def signed_url() -> dict:

@@ -94,6 +94,7 @@ class Item(BaseModel):
     setup: Optional[dict[str, float]] = None  # the question's physical numbers, used by the visual-correction stage
     calc: str = ""
     steps: list[Step] = []  # worked solution, shown after a wrong answer
+    trace: Optional[dict] = None  # numeric solution as a formula, for the mistake tracer (api/engine/trace.py)
     verify_flags: list[str] = []
     # multiple choice (three-tier)
     options: Optional[dict[Option, str]] = None
