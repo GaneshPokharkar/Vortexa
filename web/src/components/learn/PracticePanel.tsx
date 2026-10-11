@@ -5,6 +5,7 @@ import { HEADLINE, confidenceWords } from "../../lib/groups";
 import { CorrectionVisual } from "../../visuals";
 import { DialoguePanel } from "../DialoguePanel";
 import { Button, Empty, ErrorNote, GroupBadge, Loading } from "../ui";
+import { StepByStepAnalysis } from "./StepByStepAnalysis";
 import { WhyDrawer } from "./WhyDrawer";
 
 type Stage = { kind: "loading" } | { kind: "none" } | { kind: "question"; item: PublicItem } | { kind: "feedback"; item: PublicItem; fb: Feedback };
@@ -40,7 +41,7 @@ export function PracticePanel({ learnerId, conceptId, onAnswered }: { learnerId:
       <QuestionCard item={stage.item} learnerId={learnerId} locked={stage.kind === "feedback"} onResult={(fb) => done(stage.item, fb)}
         answered={stage.kind === "feedback" ? stage.fb.your_answer : null} />
       {stage.kind === "feedback" && (
-        <FeedbackCard fb={stage.fb} learnerId={learnerId} conceptId={conceptId} onNext={(id) => load(id)}
+        <FeedbackCard fb={stage.fb} item={stage.item} learnerId={learnerId} conceptId={conceptId} onNext={(id) => load(id)}
           onUpdate={(fb) => done(stage.item, fb)} />
       )}
     </div>
@@ -160,8 +161,8 @@ function QuestionCard({ item, learnerId, locked, answered, onResult }: {
 
 /* ---------------- feedback ---------------- */
 
-function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
-  fb: Feedback; learnerId: string; conceptId: string; onNext: (itemId?: string | null) => void; onUpdate: (fb: Feedback) => void;
+function FeedbackCard({ fb, item, learnerId, conceptId, onNext, onUpdate }: {
+  fb: Feedback; item: PublicItem; learnerId: string; conceptId: string; onNext: (itemId?: string | null) => void; onUpdate: (fb: Feedback) => void;
 }) {
   const [why, setWhy] = useState(false);
   const [talk, setTalk] = useState(false);
@@ -190,6 +191,8 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
       </div>
 
       {fb.visual_correction && <div className="px-5 pt-4 sm:px-6"><CorrectionVisual correction={fb.visual_correction} /></div>}
+
+      {fb.step_by_step && <div className="px-5 pt-4 sm:px-6"><StepByStepAnalysis analysis={fb.step_by_step} correctAnswerSteps={item.steps?.map(s => s.correct_answer)} /></div>}
 
       {fb.follow_up && fb.follow_up.kind === "clarify" ? (
         <Clarify fb={fb} onUpdate={onUpdate} />

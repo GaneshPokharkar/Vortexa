@@ -78,9 +78,32 @@ export type Lesson = {
   mode_reason: string;
 };
 
+/** One step in a multi-step problem solution. */
+export type ProblemStep = {
+  step_number: number;
+  description: string; // what this step requires (e.g., "Calculate initial velocity")
+  correct_answer: string; // the correct answer for this step
+  working: string; // expected reasoning/working
+};
+
+/** Step-by-step analysis showing where student diverged from correct path. */
+export type StepByStepAnalysis = {
+  has_steps: boolean;
+  total_steps: number;
+  divergence_point: number | null; // 1-indexed step where student first went wrong, null if all correct
+  steps: Array<{
+    step_number: number;
+    description: string;
+    correct_answer: string;
+    student_answer: string | null;
+    is_correct: boolean;
+    misconception_code: string | null;
+  }>;
+};
+
 /* ---------------- questions & diagnosis ---------------- */
 
-type ItemBase = { item_id: string; concept: string; stem: string; transfer: boolean };
+type ItemBase = { item_id: string; concept: string; stem: string; transfer: boolean; steps?: ProblemStep[] };
 export type McqItem = ItemBase & {
   kind: "mcq";
   options: Record<"A" | "B" | "C" | "D", string>;
@@ -140,6 +163,7 @@ export type Feedback = {
   feedback_text: string; // targeted teaching response
   follow_up: FollowUp | null;
   visual_correction: VisualCorrection | null;
+  step_by_step: StepByStepAnalysis | null; // step-by-step analysis for multi-step problems
   pipeline: PipelineStage[];
   misconception_code: string | null;
   misconception_status: "SUSPECTED" | "CONFIRMED" | null;

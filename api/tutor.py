@@ -238,6 +238,7 @@ def feedback(session: Session, r: Response, d: Diagnosis, mastery_row: dict) -> 
         "feedback_text": _teaching_text(item, d),
         "follow_up": json.loads(d.follow_up),
         "visual_correction": json.loads(d.visual),
+        "step_by_step": None,  # TODO: implement step-by-step analysis for multi-step problems
         "pipeline": json.loads(d.pipeline),
         "misconception_code": d.misconception_code,
         "misconception_status": misconception_statuses(session, r.learner_id).get(d.misconception_code or ""),
