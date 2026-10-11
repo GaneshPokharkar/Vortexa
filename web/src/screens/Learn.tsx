@@ -1,5 +1,5 @@
 import { GraduationCap } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PracticePanel } from "../components/learn/PracticePanel";
 import { LessonPanel } from "../components/learn/LessonPanel";
@@ -7,6 +7,9 @@ import { Button, ErrorNote, Loading } from "../components/ui";
 import { api, type ConceptMastery, type Lesson, type TutorAnswer } from "../lib/api";
 import { STATUS } from "../lib/groups";
 import { useLearner } from "../lib/learner";
+
+// Loaded only on the learning page, so the voice SDK never weighs down the rest of the app.
+const VoiceTutor = lazy(() => import("../voice/VoiceTutor"));
 
 export default function Learn() {
   const { conceptId = "C1" } = useParams();
@@ -51,6 +54,9 @@ export default function Learn() {
       <div className="mt-7 grid items-start gap-7 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
         <div className="flex flex-col gap-5">
           <LessonPanel lesson={lesson} />
+          <Suspense fallback={null}>
+            <VoiceTutor learnerId={learnerId} conceptId={conceptId} conceptName={lesson.concept.name} />
+          </Suspense>
           <AskBox learnerId={learnerId} conceptId={conceptId} />
         </div>
         <PracticePanel learnerId={learnerId} conceptId={conceptId} onAnswered={refresh} />

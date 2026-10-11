@@ -9,6 +9,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@elevenlabs/react": "^1.17.0",
     "framer-motion": "^11.18.2",
     "lucide-react": "^1.55.0",
     "react": "^18.3.1",
