@@ -5,7 +5,7 @@ answer itself: it calls our `check_answer` tool, which runs the same 3-agent dia
 says what the backend returned.
 
 **Already created:** `LearnLoop tutor`, agent ID `agent_3101m4n30vtcfr3t489k0tt5wx4q`, voice *Sanika* (Marathi),
-LLM Gemini 2.5 Flash, English + Marathi + Hindi with language detection, the three client tools below, auth on,
+LLM **Claude Haiku 4.5**, English + Marathi + Hindi with language detection, the three client tools below, auth on,
 allowlist `localhost:5173` / `127.0.0.1:5173`, max 200 conversations a day. The API key must come from the same
 ElevenLabs workspace. Steps 1–4 are only needed to recreate it.
 
