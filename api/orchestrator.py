@@ -95,7 +95,7 @@ def run_short(item: Item, text: str, confidence: str = "sure") -> tuple[ShortRes
                             f"Rules {'accepted it' if result.engine == 'llm' else 'kept it as unclear'}.", _ms(t1)))
     else:
         found = f"misconception {result.code}" if result.code else "no misconception"
-        stages.append(Stage("diagnose", "Diagnoser", "rules", f"{found.capitalize()} ({result.rule_fired}).", _ms(t1)))
+        stages.append(Stage("diagnose", "Diagnoser", "rules", f"{found[0].upper()}{found[1:]} ({result.rule_fired}).", _ms(t1)))
 
     stages.append(_visualize(item, result.category, result.code))
     return result, [asdict(s) for s in stages]
