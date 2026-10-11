@@ -57,6 +57,14 @@ Option/reason codes: a misconception code, `"CORRECT"`, `"SLIP"` (right method, 
 - `concepts.json`: `concept_id, name, zone, summary`. Zones: Oscillations, Waves, Rays, Light as a wave.
 - Anything not fully verified carries `"TODO_VERIFY"` (or a specific note) in `verify_flags`.
 
+### Content workflow
+
+Edit drafts in `data/content/<concept>_items.json` (Prompt 0A format) and `<concept>_cards.json` (Prompt 0B format:
+concept_card, remediation_cards, exemplars incl. `CORRECT`, contrast_probes, verify_flags), then run
+`python scripts/load_content.py` — it rebuilds `data/*.json` (follow-ups computed, code-vs-CORRECT probe chosen per code,
+all probes + correct phrasings stored on the concept) and validates. `python scripts/validate_content.py --table`
+re-checks and prints every item for physics review. Do not hand-edit `data/*.json` content; the loader overwrites it.
+
 ## Rules (all in `api/engine/`, pure and typed, no I/O)
 
 ### Three-tier grading — answer, reason, confidence (Sure / Not sure)

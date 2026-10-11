@@ -1,0 +1,98 @@
+{
+  "concept_card": {
+    "card_id": "C5-K",
+    "concept": "C5",
+    "statement": "A plane mirror forms a virtual, erect, same-size image as far behind the mirror as you are in front.",
+    "analogy": "Like a twin behind a window, copying your every step.",
+    "steps": [
+      "Angle of incidence equals angle of reflection, from the normal",
+      "Image distance behind the mirror equals object distance in front",
+      "Step back and the image steps back too",
+      "So a full view needs a mirror half your height"
+    ],
+    "worked_example": "Sita, 1.5 m tall, stands 2 m away: image is 4 m from her; a 0.75 m mirror shows her fully."
+  },
+  "remediation_cards": [
+    {
+      "card_id": "R1-R",
+      "code": "R1",
+      "wrong_idea": "If I step back from the mirror, I'll see more of myself.",
+      "why_it_feels_right": "Stepping back from a window or a camera does show more, so a mirror seems the same.",
+      "why_wrong": "Your image steps back by the same amount, so light from your feet still reflects from the same spot on the mirror. The mirror covers the same part of you.",
+      "correct_idea": "How much of yourself you see depends on the mirror's size and height, not on your distance.",
+      "sim_moment": "Lens Bench"
+    },
+    {
+      "card_id": "R2-R",
+      "code": "R2",
+      "wrong_idea": "My image is right there on the mirror's surface.",
+      "why_it_feels_right": "The glass is the only thing you can touch, so the picture seems painted on it.",
+      "why_wrong": "Reflected rays spread out as if coming from a point behind the mirror, as far behind as you are in front. Your eyes trace them back there.",
+      "correct_idea": "The image is virtual and lies as far behind the mirror as the object is in front.",
+      "sim_moment": "Lens Bench"
+    }
+  ],
+  "exemplars": {
+    "R1": [
+      "if I go back I can see more of me",
+      "step back and your legs come into the mirror",
+      "farther away means more of you fits in",
+      "like a camera, move back and you get the full body",
+      "the mirror shows more when you're far from it",
+      "just stand far and you'll see your shoes",
+      "closer means only face, far means whole body",
+      "distance makes the view wider, so more of me shows",
+      "a small mirror is fine if you stand far enough",
+      "moving away from the mirror fits more of my body",
+      "thoda peeche jao toh poora dikhega",
+      "door khade hone se zyada body dikhti hai mirror mein"
+    ],
+    "R2": [
+      "the image is right on the glass",
+      "it's like a picture stuck on the mirror surface",
+      "my reflection is on the mirror, not behind it",
+      "the image is where the mirror is",
+      "distance to the image is same as distance to the mirror",
+      "the image can't be behind, there's just wall there",
+      "so the mirror has to be as tall as me to fit my image",
+      "the reflection sits flat on the glass",
+      "I'm 2 m from the mirror so my image is 2 m from me",
+      "image forms on the surface, that's where the light bounces",
+      "image toh mirror ke upar hi banti hai",
+      "reflection glass pe hi hai, peeche kuch nahi hai"
+    ],
+    "CORRECT": [
+      "the image is as far behind the mirror as I am in front",
+      "my image is double the distance from me, not on the glass",
+      "stepping back doesn't help, the image steps back too",
+      "you only need a mirror half your height",
+      "how much you see depends on the mirror's size and height, not how far you stand",
+      "angle in equals angle out from the normal, so the ray from my feet hits halfway down"
+    ]
+  },
+  "contrast_probes": [
+    {
+      "separates": ["R1", "R2"],
+      "probe": "If you step 1 m back from a mirror, what happens to your image?",
+      "reply_if_first": "It looks farther away and I can see more of my body in it.",
+      "reply_if_second": "Nothing, it stays right there on the glass."
+    },
+    {
+      "separates": ["R1", "CORRECT"],
+      "probe": "A small wall mirror shows you from head to chest. You walk three steps back. Down to where can you see now?",
+      "reply_if_first": "Lower down, maybe to my waist.",
+      "reply_if_second": "Still only down to my chest."
+    },
+    {
+      "separates": ["R2", "CORRECT"],
+      "probe": "You stand 1 m from a mirror. How far from you is your image?",
+      "reply_if_first": "1 m, because it's on the glass.",
+      "reply_if_second": "2 m, because it's 1 m behind the glass."
+    }
+  ],
+  "verify_flags": [
+    "TODO_VERIFY",
+    "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
+    "Half-height rule assumes a vertical plane mirror hung at the correct height."
+  ]
+}

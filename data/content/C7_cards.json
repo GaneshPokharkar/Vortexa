@@ -1,0 +1,97 @@
+{
+  "concept_card": {
+    "card_id": "C7-K",
+    "concept": "C7",
+    "statement": "A convex lens forms a full real image where rays meet, screen or not.",
+    "analogy": "Like a crowd using half the gates: everyone still gets out, slower.",
+    "steps": [
+      "Use 1/v − 1/u = 1/f, u negative.",
+      "Each object point lights the whole lens, so covering part only dims the image.",
+      "Rays meet at v anyway; a screen just scatters them."
+    ],
+    "worked_example": "u = −30 cm, f = +20 cm: 1/v = 1/20 − 1/30 = 1/60, v = +60 cm, m = −2 (real, inverted)."
+  },
+  "remediation_cards": [
+    {
+      "card_id": "R5-R",
+      "code": "R5",
+      "wrong_idea": "If I cover the top half of the lens, the top half of the image disappears.",
+      "why_it_feels_right": "Covering half a window hides half the view, so covering a lens seems to hide half the picture.",
+      "why_wrong": "Each object point sends rays to the whole lens, so the open half still brings light from every point to the image.",
+      "correct_idea": "Covering part of a lens still gives the full image, only dimmer.",
+      "sim_moment": "Lens Bench: switch on 'cover top half of lens' and watch the whole image stay, just fainter."
+    },
+    {
+      "card_id": "R6-R",
+      "code": "R6",
+      "wrong_idea": "If there's no screen, there's no real image. It just doesn't form.",
+      "why_it_feels_right": "In the lab we only ever notice the real image when it lands on the screen.",
+      "why_wrong": "Rays meet at the image point with or without a screen; an eye or camera beyond it sees the image in air.",
+      "correct_idea": "A real image forms where rays converge; a screen only scatters its light so it can be seen from many angles.",
+      "sim_moment": "Lens Bench: remove the screen and watch the rays still crossing at the image point."
+    }
+  ],
+  "exemplars": {
+    "R5": [
+      "cover half the lens and you get half the image, obviously",
+      "the top part of the picture will go missing",
+      "the paper blocks that half so that part of the candle won't show",
+      "only the bottom half will come on the screen",
+      "half lens means half image, simple",
+      "the covered part can't make its part of the image",
+      "you'll see the image cut off in the middle",
+      "light from the top of the object only goes through the top of the lens",
+      "one side of the image just disappears",
+      "it's like covering half a window, you lose half the view",
+      "aadha lens dhak diya toh aadhi image hi banegi",
+      "upar wala part block hai, toh image ka woh hissa nahi aayega"
+    ],
+    "R6": [
+      "no screen, no image",
+      "the image only forms when it hits the screen",
+      "take the screen away and the image is gone",
+      "a real image needs something to fall on",
+      "without the screen the light just passes, nothing forms",
+      "you can't have a real image in air, it needs a surface",
+      "the screen is what makes the image",
+      "the image is on the screen, not in the air",
+      "remove the paper and there's nothing at that spot anymore",
+      "a real image is like a projection, it needs a wall",
+      "screen hatao toh image khatam",
+      "parde ke bina real image banti hi nahi"
+    ],
+    "CORRECT": [
+      "the full image still forms, just dimmer, because every part of the lens gets light from every point",
+      "the rays still meet at the same spot even if there's no screen",
+      "covering half the lens cuts the light, not the picture",
+      "the screen just lets us see it, the image is there anyway",
+      "half the lens means less light, so a fainter but complete image",
+      "if you put your eye beyond the image you could see it in the air"
+    ]
+  },
+  "contrast_probes": [
+    {
+      "separates": ["R5", "R6"],
+      "probe": "Half the lens is covered and the screen is taken away. What is left at the spot where the image was?",
+      "reply_if_first": "Half an image is still there at that spot.",
+      "reply_if_second": "Nothing at all, because the screen is gone."
+    },
+    {
+      "separates": ["R5", "CORRECT"],
+      "probe": "The image is sharp on the screen. You stick paper over the top half of the lens. What changes on the screen?",
+      "reply_if_first": "Part of the image disappears and only half is left.",
+      "reply_if_second": "The whole image stays but gets dimmer."
+    },
+    {
+      "separates": ["R6", "CORRECT"],
+      "probe": "You remove the screen and put your eye some distance beyond where the image was, looking at the lens. Do you see the image?",
+      "reply_if_first": "No, without the screen there is nothing to see.",
+      "reply_if_second": "Yes, I see the inverted image hanging in the air."
+    }
+  ],
+  "verify_flags": [
+    "TODO_VERIFY",
+    "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
+    "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
+  ]
+}

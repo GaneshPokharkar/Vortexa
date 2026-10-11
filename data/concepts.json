@@ -3,54 +3,531 @@
   "concept_id": "C1",
   "name": "SHM: period and restoring force",
   "zone": "Oscillations",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "For small swings, a pendulum's period T = 2π√(L/g) depends only on length and g, not amplitude or bob mass.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "O1",
+     "O2"
+    ],
+    "probe": "If you pull the same pendulum further out before letting go, does each swing take more time or less time?",
+    "reply_if_first": "More time, because it has a longer path to cover.",
+    "reply_if_second": "Less time, because it moves faster."
+   },
+   {
+    "separates": [
+     "O1",
+     "O3"
+    ],
+    "probe": "Two pendulums of the same length are released from the same small angle, one with a light bob and one with a heavy bob; would they stay in step?",
+    "reply_if_first": "Yes, they start from the same angle so they cover the same distance and stay together.",
+    "reply_if_second": "No, the heavy one will swing at a different speed and drift apart."
+   },
+   {
+    "separates": [
+     "O2",
+     "O3"
+    ],
+    "probe": "What would you change to make a pendulum come back sooner: release it from higher up, or hang a heavier bob?",
+    "reply_if_first": "Release it from higher up so it goes faster.",
+    "reply_if_second": "Hang a heavier bob, since mass changes the swing time."
+   },
+   {
+    "separates": [
+     "O1",
+     "CORRECT"
+    ],
+    "probe": "A pendulum takes 2 s per swing at 4°; roughly how long does it take at 8°, still a small angle?",
+    "reply_if_first": "More than 2 s, maybe about 4 s, because it goes twice as far.",
+    "reply_if_second": "Still 2 s, because the time doesn't depend on how wide it swings."
+   },
+   {
+    "separates": [
+     "O2",
+     "CORRECT"
+    ],
+    "probe": "A bob released from 10° moves faster at the bottom than one released from 5°; does that mean it finishes its swing first?",
+    "reply_if_first": "Yes, faster means it gets back first.",
+    "reply_if_second": "No, it also has farther to go, so both take the same time."
+   },
+   {
+    "separates": [
+     "O3",
+     "CORRECT"
+    ],
+    "probe": "If you replace a 100 g bob with a 400 g bob on the same string, what happens to the period?",
+    "reply_if_first": "It changes, the heavier bob swings at a different rate.",
+    "reply_if_second": "It stays the same, because mass cancels and only L and g matter."
+   }
+  ],
+  "correct_exemplars": [
+   "same time, because amplitude isn't in the formula",
+   "bigger swing goes further but also faster, so it evens out",
+   "only length and g matter for a pendulum",
+   "mass cancels out, so heavy or light gives the same period",
+   "both come back together as long as the angle is small",
+   "T is 2π root L by g, nothing else"
+  ]
  },
  {
   "concept_id": "C2",
   "name": "SHM: velocity, acceleration, energy",
   "zone": "Oscillations",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "In SHM, speed peaks at the mean, acceleration peaks at the extremes, and total energy stays constant.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "O4",
+     "O5"
+    ],
+    "probe": "At the extreme point, which quantity of the block becomes zero: its acceleration or its total energy?",
+    "reply_if_first": "Its acceleration, because the block has stopped there.",
+    "reply_if_second": "Its total energy, because it has no speed there."
+   },
+   {
+    "separates": [
+     "O4",
+     "CORRECT"
+    ],
+    "probe": "At the extreme point the block is at rest for an instant. Is its acceleration there zero, or the largest in the whole cycle?",
+    "reply_if_first": "Zero, because it isn't moving.",
+    "reply_if_second": "The largest, because the spring is stretched the most there."
+   },
+   {
+    "separates": [
+     "O5",
+     "CORRECT"
+    ],
+    "probe": "Compare the block's total energy at the extreme point with its total energy at the mean position. Which is bigger?",
+    "reply_if_first": "The mean position, because it moves fastest there.",
+    "reply_if_second": "Neither, they are equal; only the KE and PE split is different."
+   }
+  ],
+  "correct_exemplars": [
+   "at the extreme v is zero but a is max, ω²A",
+   "it stops for an instant but the spring is pulling hardest there",
+   "acceleration is zero only at the mean, where speed is max",
+   "total energy stays ½kA², it just shifts between KE and PE",
+   "at the ends it's all potential energy, in the middle all kinetic",
+   "no damping, so the total energy doesn't change during the swing"
+  ]
  },
  {
   "concept_id": "C3",
   "name": "Waves are chained SHM; wave speed",
   "zone": "Waves",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "Each particle does SHM in place; the wave pattern moves at a speed set by the medium, not the source.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "W1",
+     "W2"
+    ],
+    "probe": "If you shake a rope faster, where does a red dot painted on its middle end up after a minute?",
+    "reply_if_first": "It gets carried down to the far end along with the wave.",
+    "reply_if_second": "It stays near its spot and just jiggles faster."
+   },
+   {
+    "separates": [
+     "W1",
+     "W3"
+    ],
+    "probe": "What decides how soon a pulse on a rope reaches the far end?",
+    "reply_if_first": "How fast the rope itself gets dragged forward.",
+    "reply_if_second": "How big the pulse is; a bigger one gets there sooner."
+   },
+   {
+    "separates": [
+     "W2",
+     "W3"
+    ],
+    "probe": "On the same rope, one pulse is tall but slowly made and the other is small but quickly made. Which reaches the end first?",
+    "reply_if_first": "The small, quickly made one.",
+    "reply_if_second": "The tall one."
+   },
+   {
+    "separates": [
+     "W1",
+     "CORRECT"
+    ],
+    "probe": "After a wave has fully passed a ribbon tied to the middle of a rope, where is the ribbon?",
+    "reply_if_first": "Further along the rope, closer to the far end.",
+    "reply_if_second": "Back at the same spot; it only went up and down."
+   },
+   {
+    "separates": [
+     "W2",
+     "CORRECT"
+    ],
+    "probe": "Same rope, same tension: you double how many times per second you shake it. What happens to the wave speed?",
+    "reply_if_first": "It doubles too.",
+    "reply_if_second": "It stays the same; the waves just get shorter."
+   },
+   {
+    "separates": [
+     "W3",
+     "CORRECT"
+    ],
+    "probe": "Same rope, same tension: you make the pulse twice as tall. Does it reach the far end sooner?",
+    "reply_if_first": "Yes, the bigger pulse gets there sooner.",
+    "reply_if_second": "No, it arrives at the same time, just taller."
+   }
+  ],
+  "correct_exemplars": [
+   "the rope just goes up and down, only the shape moves along",
+   "same rope, same tension, so same speed",
+   "speed depends on the medium, not on how I shake it",
+   "shaking faster only makes the waves shorter, not faster",
+   "a bigger wave has more energy but the same speed",
+   "the air just vibrates in place, the sound pattern is what travels"
+  ]
  },
  {
   "concept_id": "C4",
   "name": "Superposition, standing waves, beats",
   "zone": "Waves",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "Overlapping waves add displacements, then pass on unchanged; close frequencies beat at |f1 − f2|.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "W4",
+     "W5"
+    ],
+    "probe": "Two equal and opposite pulses meet in the middle of a rope. A second later, is there any pulse near the ends?",
+    "reply_if_first": "No, nothing is left, the rope just stays flat.",
+    "reply_if_second": "Yes, each pulse is back near the end it started from."
+   },
+   {
+    "separates": [
+     "W4",
+     "B1"
+    ],
+    "probe": "Forks of 300 Hz and 304 Hz sound together. What happens to the loudness, and how often?",
+    "reply_if_first": "It keeps fading away because the waves cancel and the sound energy gets used up.",
+    "reply_if_second": "It throbs about 604 times a second."
+   },
+   {
+    "separates": [
+     "W4",
+     "B2"
+    ],
+    "probe": "Forks of 300 Hz and 304 Hz sound together. What happens to the loudness, and how often?",
+    "reply_if_first": "It keeps fading away because the waves cancel and the sound energy gets used up.",
+    "reply_if_second": "It throbs about 302 times a second."
+   },
+   {
+    "separates": [
+     "W5",
+     "B1"
+    ],
+    "probe": "Forks of 300 Hz and 304 Hz face each other across a room. Where their sound waves meet in the middle, what happens?",
+    "reply_if_first": "The waves bounce off each other and head back toward their own forks.",
+    "reply_if_second": "You hear a throb about 604 times a second."
+   },
+   {
+    "separates": [
+     "W5",
+     "B2"
+    ],
+    "probe": "Forks of 300 Hz and 304 Hz face each other across a room. Where their sound waves meet in the middle, what happens?",
+    "reply_if_first": "The waves bounce off each other and head back toward their own forks.",
+    "reply_if_second": "You hear a throb about 302 times a second."
+   },
+   {
+    "separates": [
+     "B1",
+     "B2"
+    ],
+    "probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
+    "reply_if_first": "About 604.",
+    "reply_if_second": "About 302."
+   },
+   {
+    "separates": [
+     "W4",
+     "CORRECT"
+    ],
+    "probe": "At the instant two opposite pulses make the rope look flat, is the middle of the rope moving or still?",
+    "reply_if_first": "Still, the pulses have cancelled so nothing is happening there.",
+    "reply_if_second": "Moving fast, the energy is in its motion and the pulses come back out."
+   },
+   {
+    "separates": [
+     "W5",
+     "CORRECT"
+    ],
+    "probe": "Kabir sends a tall pulse and Meera a short one toward each other on a slinky. After they meet, which pulse reaches Meera's end?",
+    "reply_if_first": "The short one, it bounces back to her.",
+    "reply_if_second": "The tall one, it passes straight through."
+   },
+   {
+    "separates": [
+     "B1",
+     "CORRECT"
+    ],
+    "probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
+    "reply_if_first": "About 604.",
+    "reply_if_second": "About 4."
+   },
+   {
+    "separates": [
+     "B2",
+     "CORRECT"
+    ],
+    "probe": "Forks of 300 Hz and 304 Hz sound together. Which number gives the pitch you hear, and which gives how often it throbs?",
+    "reply_if_first": "Both are about 302.",
+    "reply_if_second": "Pitch about 302 Hz, throbbing 4 times a second."
+   }
+  ],
+  "correct_exemplars": [
+   "the beats are the difference, so 4 per second",
+   "they add while overlapping and then just carry on",
+   "the rope's flat but still moving, so the energy's still there",
+   "the pulses pass through each other unchanged",
+   "the average is the pitch, the difference is the beat rate",
+   "they go in and out of step, f1 minus f2 times a second"
+  ]
  },
  {
   "concept_id": "C5",
   "name": "Reflection and mirrors",
   "zone": "Rays",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "A plane mirror forms a virtual, erect, same-size image as far behind the mirror as you are in front.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "R1",
+     "R2"
+    ],
+    "probe": "If you step 1 m back from a mirror, what happens to your image?",
+    "reply_if_first": "It looks farther away and I can see more of my body in it.",
+    "reply_if_second": "Nothing, it stays right there on the glass."
+   },
+   {
+    "separates": [
+     "R1",
+     "CORRECT"
+    ],
+    "probe": "A small wall mirror shows you from head to chest. You walk three steps back. Down to where can you see now?",
+    "reply_if_first": "Lower down, maybe to my waist.",
+    "reply_if_second": "Still only down to my chest."
+   },
+   {
+    "separates": [
+     "R2",
+     "CORRECT"
+    ],
+    "probe": "You stand 1 m from a mirror. How far from you is your image?",
+    "reply_if_first": "1 m, because it's on the glass.",
+    "reply_if_second": "2 m, because it's 1 m behind the glass."
+   }
+  ],
+  "correct_exemplars": [
+   "the image is as far behind the mirror as I am in front",
+   "my image is double the distance from me, not on the glass",
+   "stepping back doesn't help, the image steps back too",
+   "you only need a mirror half your height",
+   "how much you see depends on the mirror's size and height, not how far you stand",
+   "angle in equals angle out from the normal, so the ray from my feet hits halfway down"
+  ]
  },
  {
   "concept_id": "C6",
   "name": "Refraction and total internal reflection",
   "zone": "Rays",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "Light bends toward the normal entering a denser medium, away entering a rarer one; TIR needs denser-to-rarer travel beyond the critical angle.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "R3",
+     "R4"
+    ],
+    "probe": "A ray from air hits a pond at 70° to the normal, more than water's critical angle. What happens to it at the surface?",
+    "reply_if_first": "You expect it to enter and bend toward the normal; good, but would you say the same for a ray leaving water into air?",
+    "reply_if_second": "You expect it to be totally reflected; check which side of the surface the light starts on, and where it is denser."
+   },
+   {
+    "separates": [
+     "R3",
+     "CORRECT"
+    ],
+    "probe": "A ray inside glass meets the glass-air surface at 20°. In the air, is its angle from the normal bigger or smaller than 20°?",
+    "reply_if_first": "You said smaller; ask yourself whether air is denser or rarer than glass, and what that does to the bending.",
+    "reply_if_second": "You said bigger; now, what would happen if that 20° grew past about 42°?"
+   },
+   {
+    "separates": [
+     "R4",
+     "CORRECT"
+    ],
+    "probe": "Can light coming from the air ever be totally internally reflected at a glass surface if you make the angle big enough?",
+    "reply_if_first": "You said yes; try it in Lens Bench from the air side at 80° and see whether any beam goes into the glass.",
+    "reply_if_second": "You said no; so what two things must be true for light to get trapped inside the glass?"
+   }
+  ],
+  "correct_exemplars": [
+   "denser to rarer it bends away, rarer to denser it bends toward",
+   "TIR only works going from the denser side out to the rarer side",
+   "you need denser to rarer and the angle bigger than critical, both",
+   "coming out of water into air it goes away from the normal",
+   "air into glass can never be TIR, it always gets in",
+   "if it hits straight along the normal it doesn't bend at all"
+  ]
  },
  {
   "concept_id": "C7",
   "name": "Lenses and image formation",
   "zone": "Rays",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "A convex lens forms a full real image where rays meet, screen or not.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "R5",
+     "R6"
+    ],
+    "probe": "Half the lens is covered and the screen is taken away. What is left at the spot where the image was?",
+    "reply_if_first": "Half an image is still there at that spot.",
+    "reply_if_second": "Nothing at all, because the screen is gone."
+   },
+   {
+    "separates": [
+     "R5",
+     "CORRECT"
+    ],
+    "probe": "The image is sharp on the screen. You stick paper over the top half of the lens. What changes on the screen?",
+    "reply_if_first": "Part of the image disappears and only half is left.",
+    "reply_if_second": "The whole image stays but gets dimmer."
+   },
+   {
+    "separates": [
+     "R6",
+     "CORRECT"
+    ],
+    "probe": "You remove the screen and put your eye some distance beyond where the image was, looking at the lens. Do you see the image?",
+    "reply_if_first": "No, without the screen there is nothing to see.",
+    "reply_if_second": "Yes, I see the inverted image hanging in the air."
+   }
+  ],
+  "correct_exemplars": [
+   "the full image still forms, just dimmer, because every part of the lens gets light from every point",
+   "the rays still meet at the same spot even if there's no screen",
+   "covering half the lens cuts the light, not the picture",
+   "the screen just lets us see it, the image is there anyway",
+   "half the lens means less light, so a fainter but complete image",
+   "if you put your eye beyond the image you could see it in the air"
+  ]
  },
  {
   "concept_id": "C8",
   "name": "Interference (Young's double slit)",
   "zone": "Light as a wave",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "Waves from two slits add or cancel, giving fringes of width beta = lambda D / d; energy is only redistributed.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "L1",
+     "L2"
+    ],
+    "probe": "When the slits are moved closer, what is the main thing that changes on the screen?",
+    "reply_if_first": "The fringes get narrower and more crowded.",
+    "reply_if_second": "More light energy gets made, so the bright fringes get brighter."
+   },
+   {
+    "separates": [
+     "L1",
+     "L3"
+    ],
+    "probe": "Ravi's screen now shows fewer, more crowded-looking fringes; did he move the slits closer or cover one slit?",
+    "reply_if_first": "He moved the slits closer, so the fringes squeezed together.",
+    "reply_if_second": "He covered one slit, so half the fringes went away."
+   },
+   {
+    "separates": [
+     "L2",
+     "L3"
+    ],
+    "probe": "After one slit is covered, what do you expect at the spot where the brightest fringe used to be?",
+    "reply_if_first": "Hardly any light, because that light was being made by the two beams interfering.",
+    "reply_if_second": "Still a bright fringe, the pattern is just cut down to half."
+   },
+   {
+    "separates": [
+     "L1",
+     "CORRECT"
+    ],
+    "probe": "If Ananya halves the gap between the slits, what happens to the fringe width?",
+    "reply_if_first": "It halves too.",
+    "reply_if_second": "It doubles, because beta = lambda D / d."
+   },
+   {
+    "separates": [
+     "L2",
+     "CORRECT"
+    ],
+    "probe": "The bright fringes are four times as bright as one slit alone; where did that extra light come from?",
+    "reply_if_first": "Interference created it.",
+    "reply_if_second": "It was taken from the dark fringes, so the total stays the same."
+   },
+   {
+    "separates": [
+     "L3",
+     "CORRECT"
+    ],
+    "probe": "If one slit is taped over, will you still see alternating bright and dark fringes?",
+    "reply_if_first": "Yes, just half of them.",
+    "reply_if_second": "No, the fringes vanish and only a broad band of light from the open slit remains."
+   }
+  ],
+  "correct_exemplars": [
+   "Fringe width is lambda D by d, so closer slits give wider fringes.",
+   "Interference only shifts light from dark bands to bright bands, total stays same.",
+   "Cover one slit and the fringes vanish, you just get a broad patch from that slit.",
+   "Bright where path difference is a whole number of wavelengths, dark at a half extra.",
+   "Bright ones go up to 4I0 and dark ones to zero, so it averages to 2I0.",
+   "Halving d doubles the fringe width."
+  ]
  },
  {
   "concept_id": "C9",
   "name": "Diffraction and polarization",
   "zone": "Light as a wave",
-  "summary": "TODO_VERIFY placeholder summary."
+  "summary": "A narrower slit gives a wider central maximum, and a tilted polaroid between crossed polaroids lets some light through.",
+  "contrast_probes": [
+   {
+    "separates": [
+     "L4",
+     "L5"
+    ],
+    "probe": "Which of these can make light reach a spot that was dark before: narrowing a slit, or adding a polaroid between two crossed polaroids?",
+    "reply_if_first": "Only the polaroid one — a narrower slit just makes the bright band thinner.",
+    "reply_if_second": "Only the narrower slit — a polaroid can only block light."
+   },
+   {
+    "separates": [
+     "L4",
+     "CORRECT"
+    ],
+    "probe": "You halve the slit width. Does the first dark band on the screen move closer to the centre or farther away?",
+    "reply_if_first": "Closer, because the whole pattern shrinks with the slit.",
+    "reply_if_second": "Farther, because sin θ = λ/a doubles when a is halved."
+   },
+   {
+    "separates": [
+     "L5",
+     "CORRECT"
+    ],
+    "probe": "Two crossed polaroids give a dark screen. You slide a third one at 45° between them. Does the screen stay dark or get some light?",
+    "reply_if_first": "It stays dark, because another polaroid can only block more.",
+    "reply_if_second": "It gets some light, I0/8, because the middle sheet turns the polarisation."
+   }
+  ],
+  "correct_exemplars": [
+   "narrower slit makes the light spread more, so the central band gets wider",
+   "width is 2λD by a, so smaller a means bigger width",
+   "the middle polaroid turns the polarisation, so some light gets through the last one",
+   "with the 45 degree one in between you get I0 by 8, not zero",
+   "first minimum is at sin theta equals lambda by a, so smaller a pushes it out",
+   "a polaroid passes the part along its axis, it doesn't just block"
+  ]
  }
 ]

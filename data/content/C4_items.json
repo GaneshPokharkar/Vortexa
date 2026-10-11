@@ -1,0 +1,110 @@
+[
+  {
+    "item_id": "C4-P1",
+    "concept": "C4",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "Priya tunes her sitar string against a 440 Hz tuning fork. Sounding both together, she hears the loudness throb. If the string is at 444 Hz, how many beats per second does she hear?",
+    "options": {
+      "A": "884 beats per second",
+      "B": "442 beats per second",
+      "C": "4 beats per second",
+      "D": "8 beats per second"
+    },
+    "correct": "C",
+    "distractor_map": {
+      "A": "B1",
+      "B": "B2",
+      "C": "CORRECT",
+      "D": "SLIP"
+    },
+    "reasons": {
+      "r1": {"text": "Both sounds are playing together, so I just add the two frequencies.", "maps_to": "B1"},
+      "r2": {"text": "The beat should be the middle value, halfway between 440 and 444.", "maps_to": "B2"},
+      "r3": {"text": "The two sounds drift in and out of step, and that happens as many times per second as their difference.", "maps_to": "CORRECT"}
+    },
+    "calc": "f_beat = |444 Hz - 440 Hz| = 4 Hz",
+    "verify_flags": ["TODO_VERIFY"]
+  },
+  {
+    "item_id": "C4-P2",
+    "concept": "C4",
+    "is_assessment": false,
+    "sibling_of": "C4-P1",
+    "stem": "In the school band, two flutes play notes of 512 Hz and 506 Hz together. Rohan hears the sound swell and fade. Which best describes what he hears?",
+    "options": {
+      "A": "A tone of about 509 Hz whose loudness swells 6 times per second",
+      "B": "A tone whose loudness swells 1018 times per second",
+      "C": "A tone whose loudness swells 509 times per second",
+      "D": "Loudness swells 6 times per second, and sound energy is destroyed in each quiet moment"
+    },
+    "correct": "A",
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "B1",
+      "C": "B2",
+      "D": "W4"
+    },
+    "reasons": {
+      "r1": {"text": "When it goes quiet the two waves have cancelled, so that bit of energy is just gone.", "maps_to": "W4"},
+      "r2": {"text": "The swelling happens at the difference, 6 times a second, and the note I hear is about the average.", "maps_to": "CORRECT"},
+      "r3": {"text": "Two flutes are playing at once, so the swells come at both frequencies added up.", "maps_to": "B1"}
+    },
+    "calc": "f_beat = 512 Hz - 506 Hz = 6 Hz; heard pitch = (512 + 506)/2 = 509 Hz",
+    "verify_flags": ["TODO_VERIFY", "Heard pitch = average holds only approximately, for close frequencies; in quiet moments energy is redistributed in space/time, not destroyed"]
+  },
+  {
+    "item_id": "C4-P3",
+    "concept": "C4",
+    "is_assessment": false,
+    "sibling_of": "C4-P1",
+    "stem": "At an evening bhajan, the two reeds playing one harmonium note are slightly off: 349 Hz and 352 Hz. Arjun hears the note throb. How many throbs per second does he hear?",
+    "options": {
+      "A": "701 throbs per second",
+      "B": "350.5 throbs per second",
+      "C": "0, because the two sounds cancel and the note dies out",
+      "D": "3 throbs per second"
+    },
+    "correct": "D",
+    "distractor_map": {
+      "A": "B1",
+      "B": "B2",
+      "C": "W4",
+      "D": "CORRECT"
+    },
+    "reasons": {
+      "r1": {"text": "The throbbing comes from the two reeds going in and out of step, which is 352 minus 349 times a second.", "maps_to": "CORRECT"},
+      "r2": {"text": "The throb should be at the average of the two reeds, somewhere in the middle.", "maps_to": "B2"},
+      "r3": {"text": "Both reeds sound together, so the throbs are the two frequencies added.", "maps_to": "B1"}
+    },
+    "calc": "f_beat = |352 Hz - 349 Hz| = 3 Hz",
+    "verify_flags": ["TODO_VERIFY", "Harmonium reed frequencies are illustrative, not real tuning values"]
+  },
+  {
+    "item_id": "C4-A1",
+    "concept": "C4",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "On sports day, Sana and Dev flick opposite ends of a long tug-of-war rope at the same instant. Sana's pulse is upward, Dev's is an equal downward one. They meet and the rope looks flat for a moment. What happens next?",
+    "options": {
+      "A": "Both pulses are gone for good; their energy was used up in cancelling",
+      "B": "Sana's pulse carries on toward Dev and Dev's carries on toward Sana, both unchanged",
+      "C": "The pulses rebound, so Sana's upward pulse heads back toward Sana",
+      "D": "The pulses rebound and return smaller, as some energy is lost in the collision"
+    },
+    "correct": "B",
+    "distractor_map": {
+      "A": "W4",
+      "B": "CORRECT",
+      "C": "W5",
+      "D": "W5"
+    },
+    "reasons": {
+      "r1": {"text": "They hit each other in the middle and bounce back, like two balls.", "maps_to": "W5"},
+      "r2": {"text": "Up plus down makes zero, so after that the pulses are finished.", "maps_to": "W4"},
+      "r3": {"text": "They only add while overlapping; after that each pulse keeps going as if nothing happened.", "maps_to": "CORRECT"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Assumes an ideal rope with negligible damping; real rope pulses shrink slowly from friction, not from meeting"]
+  }
+]

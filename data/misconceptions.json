@@ -3,345 +3,713 @@
   "code": "O1",
   "concept": "C1",
   "description": "A bigger swing (amplitude) takes longer.",
-  "exemplars": [],
+  "exemplars": [
+   "bigger swing, more distance, so more time",
+   "if I pull it further it'll take longer to come back",
+   "the 10 degree one has to travel more so it's slower to finish",
+   "longer path means longer time obviously",
+   "small swing finishes quicker because it doesn't go far",
+   "doubling the angle should double the time",
+   "it has more ground to cover so the period goes up",
+   "wider arc, more time, simple",
+   "the one pulled less will come back first",
+   "more amplitude means the period is bigger",
+   "zyada door kheecha toh time bhi zyada lagega",
+   "bada swing hai toh wapas aane mein der lagegi"
+  ],
   "remediation_card_id": "O1-R",
   "followup_item_ids": [
+   "C1-P1",
    "C1-P2",
    "C1-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "A pendulum takes 2 s per swing at 4°; roughly how long does it take at 8°, still a small angle?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
+   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
   ]
  },
  {
   "code": "O2",
   "concept": "C1",
   "description": "A bigger swing moves faster, so it finishes first.",
-  "exemplars": [],
+  "exemplars": [
+   "the bigger swing goes faster so it comes back first",
+   "it starts higher so it speeds up more and wins",
+   "more height means more speed, so less time",
+   "the wide one zooms through the bottom, it'll finish first",
+   "pull it further and it rushes back quicker",
+   "the small swing is slow, so it takes longer",
+   "higher release, faster bob, shorter period",
+   "it gets more energy so it completes the swing sooner",
+   "the one pulled more is quicker to return",
+   "bigger amplitude means it moves faster, so the period drops",
+   "upar se chhoda toh speed zyada, pehle aa jayega",
+   "chhota swing dheere chalta hai, isliye time zyada"
+  ],
   "remediation_card_id": "O2-R",
   "followup_item_ids": [
+   "C1-P1",
    "C1-P2",
    "C1-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "A bob released from 10° moves faster at the bottom than one released from 5°; does that mean it finishes its swing first?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
+   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
   ]
  },
  {
   "code": "O3",
   "concept": "C1",
   "description": "A heavier bob changes the period.",
-  "exemplars": [],
+  "exemplars": [
+   "the heavier bob will swing slower",
+   "heavy ball has more weight so it comes back faster",
+   "mass matters, heavier means different period",
+   "a light bob gets pushed around more so it's quicker",
+   "if I change the bob to a heavier one the time changes",
+   "gravity pulls the heavy one harder so it's faster",
+   "the 400 gram one is harder to move so more time",
+   "heavier things are lazier, they swing slow",
+   "just like a spring, more mass more period",
+   "the steel ball and the wooden ball won't match",
+   "bhaari bob hai toh dheere jhoolega",
+   "weight badhao toh period bhi badlega na"
+  ],
   "remediation_card_id": "O3-R",
   "followup_item_ids": [
-   "C1-P2",
+   "C1-P1",
    "C1-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "If you replace a 100 g bob with a 400 g bob on the same string, what happens to the period?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
+   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
   ]
  },
  {
   "code": "O4",
   "concept": "C2",
   "description": "Zero velocity means zero acceleration at the extreme.",
-  "exemplars": [],
+  "exemplars": [
+   "it stops at the end so acceleration is zero there",
+   "velocity zero means acceleration zero, right?",
+   "at the extreme nothing is moving so no acceleration",
+   "if it is at rest how can it accelerate",
+   "the block is stopped, so no force on it at that point",
+   "acceleration is max in the middle where it is fastest",
+   "at the top of the swing it just hangs, zero acceleration",
+   "speed is zero so a is zero too, same thing",
+   "it's not moving at the turning point so nothing is acting",
+   "zero velocity, zero acceleration, that's the extreme",
+   "extreme pe ruk gaya toh acceleration bhi zero hi hoga na",
+   "woh ruka hua hai, toh usspe force kaise lagega"
+  ],
   "remediation_card_id": "O4-R",
   "followup_item_ids": [
+   "C2-P1",
    "C2-P2",
    "C2-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "At the extreme point the block is at rest for an instant. Is its acceleration there zero, or the largest in the whole cycle?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
   ]
  },
  {
   "code": "O5",
   "concept": "C2",
   "description": "Total mechanical energy changes during the oscillation.",
-  "exemplars": [],
+  "exemplars": [
+   "energy is max at the mean because speed is max",
+   "at the ends it stops so it has no energy",
+   "total energy goes down when it slows near the extreme",
+   "it gets more energy every time it passes the middle",
+   "energy is highest at the extreme since the spring is stretched most",
+   "the total energy keeps changing as it moves",
+   "at the turning point the energy is zero for a moment",
+   "kinetic energy is the energy, so it changes with speed",
+   "when it is fastest it has the most total energy",
+   "energy goes up and down along with the position",
+   "mean pe speed max hai toh energy bhi max hogi na",
+   "extreme pe toh KE khatam, toh total energy kam ho gayi"
+  ],
   "remediation_card_id": "O5-R",
   "followup_item_ids": [
+   "C2-P1",
    "C2-P2",
    "C2-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "Compare the block's total energy at the extreme point with its total energy at the mean position. Which is bigger?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
   ]
  },
  {
   "code": "W1",
   "concept": "C3",
   "description": "The medium travels along with the wave.",
-  "exemplars": [],
+  "exemplars": [
+   "the rope goes along with the wave",
+   "the water moves forward with the ripple, that's how it reaches the shore",
+   "sound is just air travelling from the speaker to my ear",
+   "the wave pushes the string bits to the other end",
+   "the red dot will end up at the far side",
+   "the particles move along with the wave, right?",
+   "the air from the flute comes to us, that's why we hear it",
+   "the medium travels with it, otherwise how does the wave get there",
+   "the stuff gets carried forward, like a conveyor belt",
+   "the leaf will float off with the waves",
+   "wave ke saath rope bhi aage chali jaati hai",
+   "hawa hi toh speaker se kaan tak aati hai, wahi sound hai"
+  ],
   "remediation_card_id": "W1-R",
   "followup_item_ids": [
+   "C3-P1",
    "C3-P2",
    "C3-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "After a wave has fully passed a ribbon tied to the middle of a rope, where is the ribbon?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude-independence of v holds for small (linear) waves only",
+   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
+   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
   ]
  },
  {
   "code": "W2",
   "concept": "C3",
   "description": "Higher frequency makes the wave travel faster.",
-  "exemplars": [],
+  "exemplars": [
+   "shake it faster and the wave goes faster",
+   "higher frequency means higher speed",
+   "the high note reaches first because it vibrates more",
+   "more waves per second so it must travel quicker",
+   "if you wiggle fast the wave zooms",
+   "faster hand, faster wave, obviously",
+   "double the frequency, double the speed",
+   "the treble sound travels quicker than the bass",
+   "quick shakes make quick waves",
+   "it moves faster because the source is vibrating faster",
+   "jaldi jaldi hilao toh wave bhi jaldi pahunchegi",
+   "frequency badhegi toh speed bhi badhegi na"
+  ],
   "remediation_card_id": "W2-R",
   "followup_item_ids": [
+   "C3-P1",
    "C3-P2",
    "C3-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "Same rope, same tension: you double how many times per second you shake it. What happens to the wave speed?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude-independence of v holds for small (linear) waves only",
+   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
+   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
   ]
  },
  {
   "code": "W3",
   "concept": "C3",
   "description": "Bigger amplitude makes the wave travel faster.",
-  "exemplars": [],
+  "exemplars": [
+   "shake harder and the wave goes faster",
+   "bigger waves travel faster",
+   "the louder sound reaches first",
+   "more amplitude means more speed",
+   "a big jerk sends the pulse quicker",
+   "the taller pulse has more energy so it runs faster",
+   "if you hit it harder the sound gets there sooner",
+   "big push, fast wave",
+   "the stronger wave will win the race",
+   "louder means faster, it has more force behind it",
+   "zor se hilao toh wave tez jaayegi",
+   "badi wave hai toh jaldi pahunchegi"
+  ],
   "remediation_card_id": "W3-R",
   "followup_item_ids": [
    "C3-P2",
    "C3-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "Same rope, same tension: you make the pulse twice as tall. Does it reach the far end sooner?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude-independence of v holds for small (linear) waves only",
+   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
+   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
   ]
  },
  {
   "code": "W4",
   "concept": "C4",
   "description": "Overlapping pulses destroy each other; energy is lost when they cancel.",
-  "exemplars": [],
+  "exemplars": [
+   "they cancel out so they're just gone",
+   "up and down make zero, so the pulses die",
+   "the energy got used up when they cancelled",
+   "flat rope means no energy left",
+   "they destroy each other in the middle",
+   "once they cancel nothing comes out the other side",
+   "the waves kind of kill each other off",
+   "it goes quiet because the sound energy is lost",
+   "destructive interference means energy gets destroyed",
+   "after they meet the rope just stays still",
+   "dono pulse cancel ho gaye, energy khatam",
+   "rope flat hai toh energy kahan bachi, sab chali gayi"
+  ],
   "remediation_card_id": "W4-R",
   "followup_item_ids": [
    "C4-P2",
    "C4-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "At the instant two opposite pulses make the rope look flat, is the middle of the rope moving or still?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "code": "W5",
   "concept": "C4",
   "description": "Pulses bounce off each other like balls.",
-  "exemplars": [],
-  "remediation_card_id": "W5-R",
-  "followup_item_ids": [
-   "C4-P2",
-   "C4-P3"
+  "exemplars": [
+   "they hit and bounce back",
+   "like two balls colliding, they rebound",
+   "each pulse goes back to the person who sent it",
+   "they can't pass through each other, so they reflect",
+   "they collide in the middle and turn around",
+   "the pulses push each other back",
+   "they bounce off, maybe a bit smaller after",
+   "it's a collision, so they reverse direction",
+   "the upward one comes back to my side",
+   "they act like solid things and bump",
+   "dono pulse takra ke wapas aa jaate hain",
+   "ball jaisa, collide karke bounce ho jaata hai"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "remediation_card_id": "W5-R",
+  "followup_item_ids": [],
+  "contrast_probe": "Kabir sends a tall pulse and Meera a short one toward each other on a slinky. After they meet, which pulse reaches Meera's end?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "code": "B1",
   "concept": "C4",
   "description": "Beat frequency = f1 + f2.",
-  "exemplars": [],
+  "exemplars": [
+   "just add them, 440 plus 444",
+   "both are playing so the beats are the total",
+   "beat frequency is f1 plus f2",
+   "superposition means add, so add the frequencies",
+   "884 beats, you sum them",
+   "two sounds together means the frequencies stack up",
+   "more sources, more beats, so it's the sum",
+   "the combined frequency is the sum",
+   "the beats would be super fast, like hundreds a second, since you add",
+   "total vibrations per second from both together",
+   "dono frequency ko jod do, wahi beat hai",
+   "plus karna hai na, 512 aur 506 ko"
+  ],
   "remediation_card_id": "B1-R",
   "followup_item_ids": [
+   "C4-P1",
    "C4-P2",
    "C4-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "code": "B2",
   "concept": "C4",
   "description": "Beat frequency = the average of f1 and f2.",
-  "exemplars": [],
+  "exemplars": [
+   "it's the average of the two",
+   "add them and divide by two",
+   "the beat is somewhere in the middle",
+   "442, halfway between 440 and 444",
+   "the throb is at the mean frequency",
+   "beat frequency sits between both notes",
+   "you hear a middle note, so that's the beat",
+   "average, because the two sounds mix evenly",
+   "the beat number is like the middle value",
+   "f1 plus f2 over 2",
+   "dono ka average lo, bas",
+   "beech wala number hi beat frequency hai"
+  ],
   "remediation_card_id": "B2-R",
   "followup_item_ids": [
+   "C4-P1",
    "C4-P2",
    "C4-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "Forks of 300 Hz and 304 Hz sound together. Which number gives the pitch you hear, and which gives how often it throbs?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "code": "R1",
   "concept": "C5",
   "description": "Stepping back from a plane mirror lets you see more of yourself.",
-  "exemplars": [],
+  "exemplars": [
+   "if I go back I can see more of me",
+   "step back and your legs come into the mirror",
+   "farther away means more of you fits in",
+   "like a camera, move back and you get the full body",
+   "the mirror shows more when you're far from it",
+   "just stand far and you'll see your shoes",
+   "closer means only face, far means whole body",
+   "distance makes the view wider, so more of me shows",
+   "a small mirror is fine if you stand far enough",
+   "moving away from the mirror fits more of my body",
+   "thoda peeche jao toh poora dikhega",
+   "door khade hone se zyada body dikhti hai mirror mein"
+  ],
   "remediation_card_id": "R1-R",
   "followup_item_ids": [
+   "C5-P1",
    "C5-P2",
    "C5-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "A small wall mirror shows you from head to chest. You walk three steps back. Down to where can you see now?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
+   "Half-height rule assumes a vertical plane mirror hung at the correct height."
   ]
  },
  {
   "code": "R2",
   "concept": "C5",
   "description": "The image is on the mirror surface.",
-  "exemplars": [],
+  "exemplars": [
+   "the image is right on the glass",
+   "it's like a picture stuck on the mirror surface",
+   "my reflection is on the mirror, not behind it",
+   "the image is where the mirror is",
+   "distance to the image is same as distance to the mirror",
+   "the image can't be behind, there's just wall there",
+   "so the mirror has to be as tall as me to fit my image",
+   "the reflection sits flat on the glass",
+   "I'm 2 m from the mirror so my image is 2 m from me",
+   "image forms on the surface, that's where the light bounces",
+   "image toh mirror ke upar hi banti hai",
+   "reflection glass pe hi hai, peeche kuch nahi hai"
+  ],
   "remediation_card_id": "R2-R",
   "followup_item_ids": [
-   "C5-P2",
+   "C5-P1",
    "C5-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "You stand 1 m from a mirror. How far from you is your image?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
+   "Half-height rule assumes a vertical plane mirror hung at the correct height."
   ]
  },
  {
   "code": "R3",
   "concept": "C6",
   "description": "Light always bends toward the normal.",
-  "exemplars": [],
+  "exemplars": [
+   "it always bends towards the normal na",
+   "light bends toward the normal, that's the rule",
+   "going into any new medium it bends in toward the normal",
+   "whenever it crosses a surface it goes closer to the normal",
+   "coming out of water also it bends toward the normal",
+   "refraction means bending towards the normal right",
+   "glass to air, it'll still bend to the normal",
+   "the angle always gets smaller after refraction",
+   "every time it bends, it's toward that perpendicular line",
+   "doesn't matter which side, it turns toward the normal",
+   "light hamesha normal ki taraf hi mudti hai",
+   "medium badla toh normal ki taraf bend hoga, bas"
+  ],
   "remediation_card_id": "R3-R",
   "followup_item_ids": [
+   "C6-P1",
    "C6-P2",
    "C6-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "A ray inside glass meets the glass-air surface at 20°. In the air, is its angle from the normal bigger or smaller than 20°?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
+   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
   ]
  },
  {
   "code": "R4",
   "concept": "C6",
   "description": "Total internal reflection can happen at any angle or in either direction.",
-  "exemplars": [],
+  "exemplars": [
+   "if the angle's more than critical it just reflects totally",
+   "big angle means total internal reflection, that's it",
+   "it can happen going from air into water too",
+   "any surface can trap light if you tilt it enough",
+   "from outside the glass also it'll fully reflect at a big angle",
+   "air to glass at 60 degrees, that's total internal reflection",
+   "direction doesn't matter, only the angle matters",
+   "the water surface acts like a mirror from above too",
+   "critical angle crossed, so full reflection, whichever side",
+   "total reflection just needs a steep angle, nothing else",
+   "angle critical se bada hai toh TIR ho jayega, kisi bhi side se",
+   "hawa se paani mein bhi total reflection ho sakta hai na"
+  ],
   "remediation_card_id": "R4-R",
   "followup_item_ids": [
+   "C6-P1",
    "C6-P2",
    "C6-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "Can light coming from the air ever be totally internally reflected at a glass surface if you make the angle big enough?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
+   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
   ]
  },
  {
   "code": "R5",
   "concept": "C7",
   "description": "Covering half a lens cuts off half the image.",
-  "exemplars": [],
+  "exemplars": [
+   "cover half the lens and you get half the image, obviously",
+   "the top part of the picture will go missing",
+   "the paper blocks that half so that part of the candle won't show",
+   "only the bottom half will come on the screen",
+   "half lens means half image, simple",
+   "the covered part can't make its part of the image",
+   "you'll see the image cut off in the middle",
+   "light from the top of the object only goes through the top of the lens",
+   "one side of the image just disappears",
+   "it's like covering half a window, you lose half the view",
+   "aadha lens dhak diya toh aadhi image hi banegi",
+   "upar wala part block hai, toh image ka woh hissa nahi aayega"
+  ],
   "remediation_card_id": "R5-R",
   "followup_item_ids": [
+   "C7-P1",
    "C7-P2",
    "C7-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "The image is sharp on the screen. You stick paper over the top half of the lens. What changes on the screen?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
   ]
  },
  {
   "code": "R6",
   "concept": "C7",
   "description": "A real image exists only if there is a screen.",
-  "exemplars": [],
+  "exemplars": [
+   "no screen, no image",
+   "the image only forms when it hits the screen",
+   "take the screen away and the image is gone",
+   "a real image needs something to fall on",
+   "without the screen the light just passes, nothing forms",
+   "you can't have a real image in air, it needs a surface",
+   "the screen is what makes the image",
+   "the image is on the screen, not in the air",
+   "remove the paper and there's nothing at that spot anymore",
+   "a real image is like a projection, it needs a wall",
+   "screen hatao toh image khatam",
+   "parde ke bina real image banti hi nahi"
+  ],
   "remediation_card_id": "R6-R",
   "followup_item_ids": [
+   "C7-P1",
    "C7-P2",
    "C7-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "You remove the screen and put your eye some distance beyond where the image was, looking at the lens. Do you see the image?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
   ]
  },
  {
   "code": "L1",
   "concept": "C8",
   "description": "Closer slits give narrower fringes (fringe width proportional to d).",
-  "exemplars": [],
+  "exemplars": [
+   "Closer slits, so the fringes get closer and thinner too.",
+   "If the slits are near each other the pattern also squeezes, right?",
+   "Less gap between slits means less gap between fringes.",
+   "Fringe width goes with d, so smaller d, smaller width.",
+   "Bring the slits together and the bands crowd up.",
+   "I think everything just shrinks when the slits come closer.",
+   "Halve the slit gap, halve the fringe width.",
+   "d is small so beta is small, simple.",
+   "Spread the slits apart and the fringes spread out more.",
+   "Slits paas laao toh fringes bhi patli ho jaati hain.",
+   "d kam kiya toh fringe width bhi kam hogi na.",
+   "The fringes copy the slits, so closer slits, tighter fringes."
+  ],
   "remediation_card_id": "L1-R",
   "followup_item_ids": [
+   "C8-P1",
    "C8-P2",
    "C8-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "If Ananya halves the gap between the slits, what happens to the fringe width?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
+   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
+   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
   ]
  },
  {
   "code": "L2",
   "concept": "C8",
   "description": "Interference creates or destroys light energy.",
-  "exemplars": [],
+  "exemplars": [
+   "Interference makes the bright fringes, so it's making extra light.",
+   "At the dark fringes the light just gets destroyed.",
+   "Bright spots are four times brighter, so energy got added somewhere.",
+   "The two waves cancel and that light is just gone.",
+   "Constructive makes energy, destructive kills it.",
+   "Dark band means the light got cancelled out of existence.",
+   "Two beams meeting give a boost, like extra power.",
+   "So total light on the screen must be more than two slits give.",
+   "Where it's dark, energy is lost, that's why it's dark.",
+   "Interference se bright fringe pe extra energy ban jaati hai.",
+   "Dark fringe pe energy khatam ho gayi, destroy ho gayi.",
+   "Without interference you'd never get that much brightness, so it's making light."
+  ],
   "remediation_card_id": "L2-R",
   "followup_item_ids": [
+   "C8-P1",
    "C8-P2",
    "C8-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "The bright fringes are four times as bright as one slit alone; where did that extra light come from?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
+   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
+   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
   ]
  },
  {
   "code": "L3",
   "concept": "C8",
   "description": "Covering one slit leaves half the pattern.",
-  "exemplars": [],
+  "exemplars": [
+   "Cover one slit and you just get half the fringes.",
+   "Each slit makes its own half of the pattern.",
+   "Block one, and the fringes on that side go away.",
+   "One slit gone, so half the bright bands go.",
+   "The fringes stay, just fewer of them.",
+   "Like, half the pattern comes from each slit.",
+   "Tape one slit and the pattern gets cut in half.",
+   "You'd still see fringes, only every other one.",
+   "Each slit is in charge of some fringes, lose a slit, lose those.",
+   "Ek slit band karo toh aadhe fringes reh jaate hain.",
+   "Fringes toh rahenge, bas half ho jaayenge.",
+   "The open slit still gives its share of the fringes."
+  ],
   "remediation_card_id": "L3-R",
   "followup_item_ids": [
-   "C8-P2",
    "C8-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "If one slit is taped over, will you still see alternating bright and dark fringes?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
+   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
+   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
   ]
  },
  {
   "code": "L4",
   "concept": "C9",
   "description": "A narrower slit gives a narrower central maximum.",
-  "exemplars": [],
+  "exemplars": [
+   "thinner slit, thinner bright band, obviously",
+   "less gap means the light gets squeezed so the spot shrinks",
+   "central fringe width goes down when slit width goes down",
+   "narrow slit, narrow pattern",
+   "smaller opening so less room for the light to spread",
+   "the pattern is like a shadow of the slit so it shrinks with it",
+   "close the slit more and the bright part becomes a thin line",
+   "width of the central max is proportional to a, I think",
+   "squeeze the slit and the light gets more focused",
+   "like a torch through a smaller window, smaller patch",
+   "slit patla karoge toh bright band bhi patla ho jayega na",
+   "gap kam hai toh light kam failegi, simple"
+  ],
   "remediation_card_id": "L4-R",
   "followup_item_ids": [
+   "C9-P1",
    "C9-P2",
    "C9-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "You halve the slit width. Does the first dark band on the screen move closer to the centre or farther away?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Width 2λD/a uses the small-angle approximation",
+   "I0/8 assumes ideal polaroids with no extra absorption",
+   "Gate analogy is qualitative only"
   ]
  },
  {
   "code": "L5",
   "concept": "C9",
   "description": "Adding a polarizer can never increase the light that gets through.",
-  "exemplars": [],
+  "exemplars": [
+   "a polaroid only blocks light, it can't add any",
+   "more filters means more darkness, always",
+   "if two crossed ones give zero, a third one keeps it zero",
+   "you can't get light back once it's blocked",
+   "each sheet cuts the light, so three sheets cut more than two",
+   "zero times anything is zero, so still dark",
+   "the extra polaroid just removes more light",
+   "filters subtract, they never help light through",
+   "the middle sheet will make it even darker",
+   "adding a polarizer can never increase the intensity",
+   "teesra polaroid lagane se toh aur andhera hoga yaar",
+   "filter sirf light rokta hai, badhata thodi na hai"
+  ],
   "remediation_card_id": "L5-R",
   "followup_item_ids": [
+   "C9-P1",
    "C9-P2",
    "C9-P3"
   ],
-  "contrast_probe": "TODO_VERIFY",
+  "contrast_probe": "Two crossed polaroids give a dark screen. You slide a third one at 45° between them. Does the screen stay dark or get some light?",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Width 2λD/a uses the small-angle approximation",
+   "I0/8 assumes ideal polaroids with no extra absorption",
+   "Gate analogy is qualitative only"
   ]
  }
 ]

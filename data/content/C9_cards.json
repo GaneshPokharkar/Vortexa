@@ -1,0 +1,108 @@
+{
+  "concept_card": {
+    "card_id": "C9-K",
+    "concept": "C9",
+    "statement": "A narrower slit gives a wider central maximum, and a tilted polaroid between crossed polaroids lets some light through.",
+    "analogy": "Like a vertical gate then a horizontal gate: a slanted gate between lets some through.",
+    "steps": [
+      "First minima: a sin θ = ±λ, so central width ≈ 2λD/a.",
+      "Smaller a, wider band.",
+      "Polaroid: I = I0 cos²θ; unpolarised gives I0/2.",
+      "Crossed pair plus 45° middle sheet: (I0/2)cos²45°cos²45° = I0/8."
+    ],
+    "worked_example": "λ = 500 nm, a = 0.10 mm, D = 2.0 m: width = 2(500×10⁻⁹)(2.0)/(1.0×10⁻⁴) = 0.020 m = 20 mm."
+  },
+  "remediation_cards": [
+    {
+      "card_id": "L4-R",
+      "code": "L4",
+      "wrong_idea": "If I make the slit thinner, the bright spot on the screen gets thinner too.",
+      "why_it_feels_right": "For big openings a smaller window really does give a smaller patch of light.",
+      "why_wrong": "When the slit is only a few wavelengths wide, light diffracts; the first minima sit at sin θ = λ/a, so a smaller a pushes them outward.",
+      "correct_idea": "The central maximum width 2λD/a grows as the slit width a shrinks.",
+      "sim_moment": "Double Slit, 'cover one slit' mode: narrow the slit and watch the single-slit envelope (width 2λD/a) spread out."
+    },
+    {
+      "card_id": "L5-R",
+      "code": "L5",
+      "wrong_idea": "A polaroid only blocks light, so adding another one can only make things darker.",
+      "why_it_feels_right": "Every extra filter usually cuts more light, and one polaroid already halves unpolarised light.",
+      "why_wrong": "A polaroid also sets the direction of polarisation. Crossed polaroids give 0, but a 45° sheet between them turns the light so (I0/2)cos²45°cos²45° = I0/8 passes.",
+      "correct_idea": "A polaroid passes the component along its axis, so a tilted middle polaroid can increase the light through a crossed pair.",
+      "sim_moment": "none — use the three-polaroid demo"
+    }
+  ],
+  "exemplars": {
+    "L4": [
+      "thinner slit, thinner bright band, obviously",
+      "less gap means the light gets squeezed so the spot shrinks",
+      "central fringe width goes down when slit width goes down",
+      "narrow slit, narrow pattern",
+      "smaller opening so less room for the light to spread",
+      "the pattern is like a shadow of the slit so it shrinks with it",
+      "close the slit more and the bright part becomes a thin line",
+      "width of the central max is proportional to a, I think",
+      "squeeze the slit and the light gets more focused",
+      "like a torch through a smaller window, smaller patch",
+      "slit patla karoge toh bright band bhi patla ho jayega na",
+      "gap kam hai toh light kam failegi, simple"
+    ],
+    "L5": [
+      "a polaroid only blocks light, it can't add any",
+      "more filters means more darkness, always",
+      "if two crossed ones give zero, a third one keeps it zero",
+      "you can't get light back once it's blocked",
+      "each sheet cuts the light, so three sheets cut more than two",
+      "zero times anything is zero, so still dark",
+      "the extra polaroid just removes more light",
+      "filters subtract, they never help light through",
+      "the middle sheet will make it even darker",
+      "adding a polarizer can never increase the intensity",
+      "teesra polaroid lagane se toh aur andhera hoga yaar",
+      "filter sirf light rokta hai, badhata thodi na hai"
+    ],
+    "CORRECT": [
+      "narrower slit makes the light spread more, so the central band gets wider",
+      "width is 2λD by a, so smaller a means bigger width",
+      "the middle polaroid turns the polarisation, so some light gets through the last one",
+      "with the 45 degree one in between you get I0 by 8, not zero",
+      "first minimum is at sin theta equals lambda by a, so smaller a pushes it out",
+      "a polaroid passes the part along its axis, it doesn't just block"
+    ]
+  },
+  "contrast_probes": [
+    {
+      "separates": [
+        "L4",
+        "L5"
+      ],
+      "probe": "Which of these can make light reach a spot that was dark before: narrowing a slit, or adding a polaroid between two crossed polaroids?",
+      "reply_if_first": "Only the polaroid one — a narrower slit just makes the bright band thinner.",
+      "reply_if_second": "Only the narrower slit — a polaroid can only block light."
+    },
+    {
+      "separates": [
+        "L4",
+        "CORRECT"
+      ],
+      "probe": "You halve the slit width. Does the first dark band on the screen move closer to the centre or farther away?",
+      "reply_if_first": "Closer, because the whole pattern shrinks with the slit.",
+      "reply_if_second": "Farther, because sin θ = λ/a doubles when a is halved."
+    },
+    {
+      "separates": [
+        "L5",
+        "CORRECT"
+      ],
+      "probe": "Two crossed polaroids give a dark screen. You slide a third one at 45° between them. Does the screen stay dark or get some light?",
+      "reply_if_first": "It stays dark, because another polaroid can only block more.",
+      "reply_if_second": "It gets some light, I0/8, because the middle sheet turns the polarisation."
+    }
+  ],
+  "verify_flags": [
+    "TODO_VERIFY",
+    "Width 2λD/a uses the small-angle approximation",
+    "I0/8 assumes ideal polaroids with no extra absorption",
+    "Gate analogy is qualitative only"
+  ]
+}

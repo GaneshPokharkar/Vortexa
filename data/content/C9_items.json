@@ -1,0 +1,90 @@
+[
+  {
+    "item_id": "C9-P1",
+    "concept": "C9",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "In the school lab, Kavya makes a single slit narrower. Then she slides a third polaroid at 45° between two crossed polaroids lit by unpolarised light of intensity I0. What does she observe?",
+    "options": {
+      "A": "Central maximum gets narrower; I0/8 gets through the polaroids",
+      "B": "Central maximum gets wider; no light gets through the polaroids",
+      "C": "Central maximum gets wider; I0/8 gets through the polaroids",
+      "D": "Central maximum gets wider; I0/4 gets through the polaroids"
+    },
+    "correct": "C",
+    "distractor_map": {"A": "L4", "B": "L5", "C": "CORRECT", "D": "SLIP"},
+    "reasons": {
+      "r1": {"text": "A polaroid only blocks light, so putting one more in can't make the dark side bright.", "maps_to": "L5"},
+      "r2": {"text": "A thin slit spreads light more because width is 2λD/a, and the middle polaroid turns the light so some passes both.", "maps_to": "CORRECT"},
+      "r3": {"text": "Less gap squeezes the light, so the bright band also gets thinner.", "maps_to": "L4"}
+    },
+    "calc": "Width = 2λD/a rises as a falls; I = (I0/2)·cos²45°·cos²45° = (I0/2)(1/2)(1/2) = I0/8",
+    "verify_flags": ["TODO_VERIFY", "Ideal polaroids assumed (no absorption beyond Malus's law)", "Option D slip = cos instead of cos²: (I0/2)·cos45°·cos45° = I0/4"]
+  },
+  {
+    "item_id": "C9-P2",
+    "concept": "C9",
+    "is_assessment": false,
+    "sibling_of": "C9-P1",
+    "stem": "At a Pune science fair, Rohan narrows a razor-blade slit in front of a laser pointer. His friend Sana slips a polaroid at 45° between two crossed polaroids taped over a torch. What changes?",
+    "options": {
+      "A": "Laser's central bright patch shrinks; torch side lights up a little",
+      "B": "Central bright patch spreads out; torch side lights up a little",
+      "C": "Central bright patch spreads out; torch side stays dark",
+      "D": "Central bright patch vanishes; torch becomes as bright as with no sheets"
+    },
+    "correct": "B",
+    "distractor_map": {"A": "L4", "B": "CORRECT", "C": "L5", "D": "UNMAPPED"},
+    "reasons": {
+      "r1": {"text": "Smaller gap means smaller patch, the light just comes out thinner.", "maps_to": "L4"},
+      "r2": {"text": "The crossed sheets already block everything, and a sheet can only block more.", "maps_to": "L5"},
+      "r3": {"text": "The narrow slit bends light out more, and the tilted sheet turns the light so part of it gets past the last sheet.", "maps_to": "CORRECT"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Torch light assumed unpolarised"]
+  },
+  {
+    "item_id": "C9-P3",
+    "concept": "C9",
+    "is_assessment": false,
+    "sibling_of": "C9-P1",
+    "stem": "Ananya's single slit (λ = 600 nm, screen 1.5 m away, a = 0.12 mm) gives a 15 mm central band. She narrows it to a = 0.06 mm and slips a 45° polaroid between two crossed ones. Which is right?",
+    "options": {
+      "A": "Central band 7.5 mm; one-eighth of the incoming unpolarised light now passes",
+      "B": "Central band 30 mm; the crossed pair still passes no light",
+      "C": "Central band 30 mm; one-quarter of the incoming unpolarised light now passes",
+      "D": "Central band 30 mm; one-eighth of the incoming unpolarised light now passes"
+    },
+    "correct": "D",
+    "distractor_map": {"A": "L4", "B": "L5", "C": "SLIP", "D": "CORRECT"},
+    "reasons": {
+      "r1": {"text": "Width is 2λD/a so halving a doubles it to 30 mm, and half, then half, then half again gives one-eighth.", "maps_to": "CORRECT"},
+      "r2": {"text": "Half the slit, half the band, so 15 becomes 7.5 mm.", "maps_to": "L4"},
+      "r3": {"text": "Crossed means zero, and adding a sheet can't bring light back.", "maps_to": "L5"}
+    },
+    "calc": "w = 2λD/a = 2(600×10⁻⁹ m)(1.5 m)/(0.06×10⁻³ m) = 0.030 m = 30 mm; I = (I0/2)·cos²45°·cos²45° = I0/8",
+    "verify_flags": ["TODO_VERIFY", "Check: 2(600e-9)(1.5)/(0.12e-3) = 0.015 m = 15 mm for the original slit", "Ideal polaroids assumed"]
+  },
+  {
+    "item_id": "C9-A1",
+    "concept": "C9",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "At a Kochi exhibition, Neha narrows a slit in front of a laser. She also holds two polaroid sunglass lenses crossed in 64 W/m² of sunlight and slides a third lens at 45° between them. What does she find?",
+    "options": {
+      "A": "Laser's central band widens; 8 W/m² gets through the lenses",
+      "B": "Laser's central band narrows; 8 W/m² gets through the lenses",
+      "C": "Laser's central band widens; still 0 W/m² gets through the lenses",
+      "D": "Laser's central band widens; 16 W/m² gets through the lenses"
+    },
+    "correct": "A",
+    "distractor_map": {"A": "CORRECT", "B": "L4", "C": "L5", "D": "SLIP"},
+    "reasons": {
+      "r1": {"text": "Thin slit bends light more so the band widens, and 64 halves to 32, then ×½ and ×½ at the two 45° turns gives 8.", "maps_to": "CORRECT"},
+      "r2": {"text": "A narrower slit lets through a narrower beam, so the band on the wall shrinks.", "maps_to": "L4"},
+      "r3": {"text": "Lenses are filters, a third one can only cut more light, so it stays zero.", "maps_to": "L5"}
+    },
+    "calc": "I = (64/2)·cos²45°·cos²45° = 32 × 0.5 × 0.5 = 8 W/m²; width 2λD/a grows as a shrinks",
+    "verify_flags": ["TODO_VERIFY", "Sunlight treated as unpolarised and sunglass lenses as ideal polaroids", "Option D slip = forgot the first lens halves unpolarised light: 64 × 0.5 × 0.5 = 16 W/m²"]
+  }
+]

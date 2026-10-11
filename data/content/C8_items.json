@@ -1,0 +1,90 @@
+[
+  {
+    "item_id": "C8-P1",
+    "concept": "C8",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "Riya sets up a double slit with a red laser in her college lab. Keeping the laser and screen fixed, she swaps in slits that are half as far apart. What happens to the fringes?",
+    "options": {
+      "A": "They become half as wide",
+      "B": "They become twice as wide",
+      "C": "Same width, but brighter, because closer slits make extra light energy",
+      "D": "Same width; only the colour of the fringes changes"
+    },
+    "correct": "B",
+    "distractor_map": {"A": "L1", "B": "CORRECT", "C": "L2", "D": "UNMAPPED"},
+    "reasons": {
+      "r1": {"text": "Slits closer means the whole pattern squeezes, so the fringes get thinner.", "maps_to": "L1"},
+      "r2": {"text": "Fringe width is lambda D by d, so if d is halved the width doubles.", "maps_to": "CORRECT"},
+      "r3": {"text": "When the slits are closer the beams overlap more and interference makes more light.", "maps_to": "L2"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY"]
+  },
+  {
+    "item_id": "C8-P2",
+    "concept": "C8",
+    "is_assessment": false,
+    "sibling_of": "C8-P1",
+    "stem": "In his school lab, Arjun uses a 600 nm laser, a screen 1.5 m away and slits 0.30 mm apart, getting 3.0 mm fringes. He swaps in slits 0.15 mm apart, keeping everything else same. New fringe width?",
+    "options": {
+      "A": "1.5 mm",
+      "B": "0.60 mm",
+      "C": "6.0 mm",
+      "D": "3.0 mm, but the bright fringes get brighter because closer slits make extra light"
+    },
+    "correct": "C",
+    "distractor_map": {"A": "L1", "B": "SLIP", "C": "CORRECT", "D": "L2"},
+    "reasons": {
+      "r1": {"text": "Beta equals lambda D over d, and d got halved, so beta doubles to 6 mm.", "maps_to": "CORRECT"},
+      "r2": {"text": "Half the slit gap means half the fringe gap, so 1.5 mm.", "maps_to": "L1"},
+      "r3": {"text": "Width won't change, the interference just puts more energy into the bright bands.", "maps_to": "L2"}
+    },
+    "calc": "beta = lambda*D/d = (600e-9 m * 1.5 m)/(0.15e-3 m) = 6.0e-3 m = 6.0 mm",
+    "verify_flags": ["TODO_VERIFY", "SLIP option B (0.60 mm) is a power-of-ten slip on 6.0 mm"]
+  },
+  {
+    "item_id": "C8-P3",
+    "concept": "C8",
+    "is_assessment": false,
+    "sibling_of": "C8-P1",
+    "stem": "At a science fair in Pune, Kabir's double-slit fringes are too thin to see clearly. Without changing the laser or moving the screen, what should he do to make the fringes wider?",
+    "options": {
+      "A": "Use slits that are farther apart",
+      "B": "Cover one slit, so the half pattern left spreads out wider",
+      "C": "Use a stronger laser so interference adds more light to each fringe",
+      "D": "Use slits that are closer together"
+    },
+    "correct": "D",
+    "distractor_map": {"A": "L1", "B": "L3", "C": "L2", "D": "CORRECT"},
+    "reasons": {
+      "r1": {"text": "If one slit is blocked you only get half the fringes, so they have more room.", "maps_to": "L3"},
+      "r2": {"text": "Slits farther apart spread everything out, so the fringes get wider too.", "maps_to": "L1"},
+      "r3": {"text": "Fringe width goes as 1 by d, so a smaller slit gap gives wider fringes.", "maps_to": "CORRECT"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Assumes slit width and wavelength unchanged; a stronger laser changes brightness only, not fringe width"]
+  },
+  {
+    "item_id": "C8-A1",
+    "concept": "C8",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "During a power cut, Meera shines a battery laser through a double slit in her Chennai hostel and sees clear fringes on the wall. Her friend sticks tape over one slit. What does the wall show now?",
+    "options": {
+      "A": "The fringes vanish; a broad, dimmer patch of light from the open slit remains",
+      "B": "Only the half of the fringe pattern on the open slit's side remains",
+      "C": "The wall goes almost dark, since the light was being produced by the two beams interfering",
+      "D": "Every second bright fringe disappears, leaving half the fringes"
+    },
+    "correct": "A",
+    "distractor_map": {"A": "CORRECT", "B": "L3", "C": "L2", "D": "L3"},
+    "reasons": {
+      "r1": {"text": "The bright light came from interference, so without it there is hardly any light.", "maps_to": "L2"},
+      "r2": {"text": "Fringes need waves from both slits to meet, so with one slit there are no fringes, just its own spread-out light.", "maps_to": "CORRECT"},
+      "r3": {"text": "Each slit makes its own share of fringes, so one slit leaves half of them.", "maps_to": "L3"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Open slit gives its single-slit diffraction pattern: broad central band, centre intensity I0 instead of 4I0; looks uniform-ish only if slit is narrow"]
+  }
+]

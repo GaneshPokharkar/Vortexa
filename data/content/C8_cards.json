@@ -1,0 +1,159 @@
+{
+  "concept_card": {
+    "card_id": "C8-K",
+    "concept": "C8",
+    "statement": "Waves from two slits add or cancel, giving fringes of width beta = lambda D / d; energy is only redistributed.",
+    "analogy": "Like rearranging chairs: some rows fill, others empty, none added.",
+    "steps": [
+      "Bright at path difference n lambda, dark at (n + 1/2) lambda",
+      "beta = lambda D / d",
+      "Smaller d gives wider fringes",
+      "Bright reaches 4I0, dark 0, average 2I0",
+      "Cover one slit and fringes vanish"
+    ],
+    "worked_example": "lambda = 600 nm, D = 1.5 m, d = 0.30 mm: beta = (600e-9 x 1.5)/0.30e-3 = 3.0 mm."
+  },
+  "remediation_cards": [
+    {
+      "card_id": "L1-R",
+      "code": "L1",
+      "wrong_idea": "If the slits are closer, the fringes should be closer and thinner too.",
+      "why_it_feels_right": "It seems the pattern should shrink with the slits, like a smaller stamp making a smaller print.",
+      "why_wrong": "With closer slits the path difference grows more slowly along the screen, so you move farther to gain one wavelength. Hence beta = lambda D / d, which goes as 1/d.",
+      "correct_idea": "A smaller slit gap d gives wider fringes, since beta = lambda D / d.",
+      "sim_moment": "Double Slit: drag the d slider down and watch the fringes spread apart."
+    },
+    {
+      "card_id": "L2-R",
+      "code": "L2",
+      "wrong_idea": "Interference makes extra light at bright fringes and destroys light at dark ones.",
+      "why_it_feels_right": "Bright fringes really are up to four times as bright as one slit alone, so light seems added.",
+      "why_wrong": "Energy is conserved. Each slit gives I0, so 2I0 on average. Interference only moves energy: bright fringes reach 4I0, dark ones 0, and the average stays 2I0.",
+      "correct_idea": "Interference redistributes light energy across the screen; it never creates or destroys it.",
+      "sim_moment": "Double Slit: toggle 'cover one slit' and compare where the light goes with one slit versus two."
+    },
+    {
+      "card_id": "L3-R",
+      "code": "L3",
+      "wrong_idea": "Covering one slit just removes half the fringes.",
+      "why_it_feels_right": "It feels like each slit makes its own share of fringes.",
+      "why_wrong": "Every fringe needs waves from both slits meeting. With one slit nothing adds or cancels, so no fringes, only the broad single-slit diffraction pattern of the open slit.",
+      "correct_idea": "Fringes need both slits; cover one and the whole fringe pattern disappears.",
+      "sim_moment": "Double Slit: flip the 'cover one slit' toggle and watch all fringes merge into one broad band."
+    }
+  ],
+  "exemplars": {
+    "L1": [
+      "Closer slits, so the fringes get closer and thinner too.",
+      "If the slits are near each other the pattern also squeezes, right?",
+      "Less gap between slits means less gap between fringes.",
+      "Fringe width goes with d, so smaller d, smaller width.",
+      "Bring the slits together and the bands crowd up.",
+      "I think everything just shrinks when the slits come closer.",
+      "Halve the slit gap, halve the fringe width.",
+      "d is small so beta is small, simple.",
+      "Spread the slits apart and the fringes spread out more.",
+      "Slits paas laao toh fringes bhi patli ho jaati hain.",
+      "d kam kiya toh fringe width bhi kam hogi na.",
+      "The fringes copy the slits, so closer slits, tighter fringes."
+    ],
+    "L2": [
+      "Interference makes the bright fringes, so it's making extra light.",
+      "At the dark fringes the light just gets destroyed.",
+      "Bright spots are four times brighter, so energy got added somewhere.",
+      "The two waves cancel and that light is just gone.",
+      "Constructive makes energy, destructive kills it.",
+      "Dark band means the light got cancelled out of existence.",
+      "Two beams meeting give a boost, like extra power.",
+      "So total light on the screen must be more than two slits give.",
+      "Where it's dark, energy is lost, that's why it's dark.",
+      "Interference se bright fringe pe extra energy ban jaati hai.",
+      "Dark fringe pe energy khatam ho gayi, destroy ho gayi.",
+      "Without interference you'd never get that much brightness, so it's making light."
+    ],
+    "L3": [
+      "Cover one slit and you just get half the fringes.",
+      "Each slit makes its own half of the pattern.",
+      "Block one, and the fringes on that side go away.",
+      "One slit gone, so half the bright bands go.",
+      "The fringes stay, just fewer of them.",
+      "Like, half the pattern comes from each slit.",
+      "Tape one slit and the pattern gets cut in half.",
+      "You'd still see fringes, only every other one.",
+      "Each slit is in charge of some fringes, lose a slit, lose those.",
+      "Ek slit band karo toh aadhe fringes reh jaate hain.",
+      "Fringes toh rahenge, bas half ho jaayenge.",
+      "The open slit still gives its share of the fringes."
+    ],
+    "CORRECT": [
+      "Fringe width is lambda D by d, so closer slits give wider fringes.",
+      "Interference only shifts light from dark bands to bright bands, total stays same.",
+      "Cover one slit and the fringes vanish, you just get a broad patch from that slit.",
+      "Bright where path difference is a whole number of wavelengths, dark at a half extra.",
+      "Bright ones go up to 4I0 and dark ones to zero, so it averages to 2I0.",
+      "Halving d doubles the fringe width."
+    ]
+  },
+  "contrast_probes": [
+    {
+      "separates": [
+        "L1",
+        "L2"
+      ],
+      "probe": "When the slits are moved closer, what is the main thing that changes on the screen?",
+      "reply_if_first": "The fringes get narrower and more crowded.",
+      "reply_if_second": "More light energy gets made, so the bright fringes get brighter."
+    },
+    {
+      "separates": [
+        "L1",
+        "L3"
+      ],
+      "probe": "Ravi's screen now shows fewer, more crowded-looking fringes; did he move the slits closer or cover one slit?",
+      "reply_if_first": "He moved the slits closer, so the fringes squeezed together.",
+      "reply_if_second": "He covered one slit, so half the fringes went away."
+    },
+    {
+      "separates": [
+        "L2",
+        "L3"
+      ],
+      "probe": "After one slit is covered, what do you expect at the spot where the brightest fringe used to be?",
+      "reply_if_first": "Hardly any light, because that light was being made by the two beams interfering.",
+      "reply_if_second": "Still a bright fringe, the pattern is just cut down to half."
+    },
+    {
+      "separates": [
+        "L1",
+        "CORRECT"
+      ],
+      "probe": "If Ananya halves the gap between the slits, what happens to the fringe width?",
+      "reply_if_first": "It halves too.",
+      "reply_if_second": "It doubles, because beta = lambda D / d."
+    },
+    {
+      "separates": [
+        "L2",
+        "CORRECT"
+      ],
+      "probe": "The bright fringes are four times as bright as one slit alone; where did that extra light come from?",
+      "reply_if_first": "Interference created it.",
+      "reply_if_second": "It was taken from the dark fringes, so the total stays the same."
+    },
+    {
+      "separates": [
+        "L3",
+        "CORRECT"
+      ],
+      "probe": "If one slit is taped over, will you still see alternating bright and dark fringes?",
+      "reply_if_first": "Yes, just half of them.",
+      "reply_if_second": "No, the fringes vanish and only a broad band of light from the open slit remains."
+    }
+  ],
+  "verify_flags": [
+    "TODO_VERIFY",
+    "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
+    "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
+    "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
+  ]
+}

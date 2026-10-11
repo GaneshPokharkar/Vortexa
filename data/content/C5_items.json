@@ -1,0 +1,110 @@
+[
+  {
+    "item_id": "C5-P1",
+    "concept": "C5",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "Arjun is 1.6 m tall. He wants a plane mirror on his bedroom wall, hung at the right height, in which he can see himself from head to toe. What is the shortest mirror that will work?",
+    "options": {
+      "A": "1.6 m",
+      "B": "0.8 m",
+      "C": "Less than 0.8 m, if he stands far enough back",
+      "D": "3.2 m"
+    },
+    "correct": "B",
+    "distractor_map": {
+      "A": "R2",
+      "B": "CORRECT",
+      "C": "R1",
+      "D": "SLIP"
+    },
+    "reasons": {
+      "r1": {"text": "If he stands farther away, more of him fits in, so a smaller mirror is enough.", "maps_to": "R1"},
+      "r2": {"text": "Light from his feet bounces off the mirror halfway down to his eyes, so he only needs half his height, wherever he stands.", "maps_to": "CORRECT"},
+      "r3": {"text": "The image is on the glass, so the glass has to be as tall as he is.", "maps_to": "R2"}
+    },
+    "calc": "L_min = H/2 = 1.6 m / 2 = 0.8 m",
+    "verify_flags": ["TODO_VERIFY", "Assumes a vertical plane mirror with its top edge midway between Arjun's eyes and the top of his head."]
+  },
+  {
+    "item_id": "C5-P2",
+    "concept": "C5",
+    "is_assessment": false,
+    "sibling_of": "C5-P1",
+    "stem": "At a salon in Pune, Meera sees only her face down to her shoulders in a small mirror fixed on the wall. She takes two steps back. What part of herself does she see now?",
+    "options": {
+      "A": "More of herself, down to her waist",
+      "B": "Less of herself, only her face",
+      "C": "Still only her face down to her shoulders",
+      "D": "Her whole body, if she goes back far enough"
+    },
+    "correct": "C",
+    "distractor_map": {
+      "A": "R1",
+      "B": "UNMAPPED",
+      "C": "CORRECT",
+      "D": "R1"
+    },
+    "reasons": {
+      "r1": {"text": "Farther from the mirror means a wider view, so more of her fits in.", "maps_to": "R1"},
+      "r2": {"text": "Her image stays on the glass while she backs away, so the glass covers more of her.", "maps_to": "R2"},
+      "r3": {"text": "Her image moves back as much as she does, so the mirror still covers the same part of her.", "maps_to": "CORRECT"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Assumes the mirror stays fixed and Meera's eye height does not change as she steps back."]
+  },
+  {
+    "item_id": "C5-P3",
+    "concept": "C5",
+    "is_assessment": false,
+    "sibling_of": "C5-P1",
+    "stem": "Kabir, 1.7 m tall, is buying a mirror for his hostel room in Vellore. He will stand about 3 m from it. What is the shortest mirror, hung at the right height, that shows him head to toe?",
+    "options": {
+      "A": "1.7 m",
+      "B": "Less than 0.85 m, because standing 3 m back means he needs less mirror",
+      "C": "0.85 m only if he stands close; at 3 m he needs a longer one",
+      "D": "0.85 m"
+    },
+    "correct": "D",
+    "distractor_map": {
+      "A": "R2",
+      "B": "R1",
+      "C": "UNMAPPED",
+      "D": "CORRECT"
+    },
+    "reasons": {
+      "r1": {"text": "He needs half his height, and the distance doesn't matter because his image moves back with him.", "maps_to": "CORRECT"},
+      "r2": {"text": "His image sits on the mirror, so the mirror must be his full height.", "maps_to": "R2"},
+      "r3": {"text": "Standing far back lets more of him fit, so a shorter mirror will do.", "maps_to": "R1"}
+    },
+    "calc": "L_min = H/2 = 1.7 m / 2 = 0.85 m",
+    "verify_flags": ["TODO_VERIFY", "Assumes a vertical plane mirror with its top edge midway between Kabir's eyes and the top of his head."]
+  },
+  {
+    "item_id": "C5-A1",
+    "concept": "C5",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "Ananya stands 3 m in front of the big wall mirror in her dance class. Which statement is correct?",
+    "options": {
+      "A": "Her image is 3 m behind the mirror, so it is 6 m from her",
+      "B": "Her image is on the mirror surface, so it is 3 m from her",
+      "C": "If she moves back to 5 m, she will see more of her body in the same mirror",
+      "D": "Her image is 3 m behind the mirror, so it is 3 m from her"
+    },
+    "correct": "A",
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "R2",
+      "C": "R1",
+      "D": "SLIP"
+    },
+    "reasons": {
+      "r1": {"text": "What I see is right on the glass, so the image is just 3 m away.", "maps_to": "R2"},
+      "r2": {"text": "The image is as far behind the mirror as she is in front, so 3 m + 3 m = 6 m.", "maps_to": "CORRECT"},
+      "r3": {"text": "Moving back lets the mirror catch more of her body.", "maps_to": "R1"}
+    },
+    "calc": "Object-image distance = 2 x 3 m = 6 m",
+    "verify_flags": ["TODO_VERIFY"]
+  }
+]

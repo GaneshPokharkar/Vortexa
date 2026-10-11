@@ -4,31 +4,31 @@
   "concept": "C1",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for SHM: period and restoring force.",
+  "stem": "Riya ties two identical stones to equal-length threads on her balcony hook. She pulls one aside by 5° and the other by 10° (both small angles) and releases them together. Which stone comes back to its starting point first?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea O1",
-   "C": "Idea O2",
-   "D": "Careless slip"
+   "A": "The 10° stone, because it moves faster",
+   "B": "The 5° stone, because its path is shorter",
+   "C": "Both come back at the same time",
+   "D": "It depends on which stone is slightly heavier"
   },
-  "correct": "A",
+  "correct": "C",
   "distractor_map": {
-   "A": "CORRECT",
+   "A": "O2",
    "B": "O1",
-   "C": "O2",
-   "D": "SLIP"
+   "C": "CORRECT",
+   "D": "O3"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "A bigger swing (amplitude) takes longer.",
+    "text": "The 10° one has more distance to go, so it needs more time.",
     "maps_to": "O1"
    },
+   "r2": {
+    "text": "The 10° one goes farther but also moves faster, and these balance out, so the time is the same.",
+    "maps_to": "CORRECT"
+   },
    "r3": {
-    "text": "A bigger swing moves faster, so it finishes first.",
+    "text": "The 10° one starts higher so it rushes down faster and gets back first.",
     "maps_to": "O2"
    }
   },
@@ -42,35 +42,35 @@
   "concept": "C1",
   "is_assessment": false,
   "sibling_of": "C1-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for SHM: period and restoring force.",
+  "stem": "In the school lab, Neha's simple pendulum is 1.0 m long and swings with an amplitude of 4°. She restarts it with an amplitude of 8° (still a small angle). Take g = π² m/s². What is the period now?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea O2",
-   "C": "Idea O3",
-   "D": "Other"
+   "A": "4.0 s",
+   "B": "1.0 s",
+   "C": "0.64 s",
+   "D": "2.0 s"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
+   "A": "O1",
    "B": "O2",
-   "C": "O3",
-   "D": "UNMAPPED"
+   "C": "SLIP",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "Double the swing means double the path, so the time doubles too.",
+    "maps_to": "O1"
    },
    "r2": {
-    "text": "A bigger swing moves faster, so it finishes first.",
+    "text": "A wider swing gives more speed at the bottom, so it gets back sooner.",
     "maps_to": "O2"
    },
    "r3": {
-    "text": "A heavier bob changes the period.",
-    "maps_to": "O3"
+    "text": "The formula only has L and g, amplitude isn't in it, so the period doesn't change.",
+    "maps_to": "CORRECT"
    }
   },
-  "calc": "",
+  "calc": "T = 2π√(L/g) = 2π√(1.0/π²) = 2π/π = 2.0 s (same for 4° and 8°); SLIP C: 2π(L/g) without the root = 2/π ≈ 0.64 s",
   "verify_flags": [
    "TODO_VERIFY"
   ]
@@ -80,37 +80,38 @@
   "concept": "C1",
   "is_assessment": false,
   "sibling_of": "C1-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for SHM: period and restoring force.",
+  "stem": "Dadi's old pendulum wall clock in Pune is running down, so its pendulum's swing keeps getting smaller (always a small angle). What happens to the time taken for each swing?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea O3",
-   "C": "Idea O1",
-   "D": "Other"
+   "A": "It stays the same",
+   "B": "It gets shorter, so the clock runs fast",
+   "C": "It gets longer, so the clock runs slow",
+   "D": "It depends on how heavy the brass bob is"
   },
   "correct": "A",
   "distractor_map": {
    "A": "CORRECT",
-   "B": "O3",
-   "C": "O1",
-   "D": "UNMAPPED"
+   "B": "O1",
+   "C": "O2",
+   "D": "O3"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
+    "text": "A smaller swing covers less distance but also moves slower, so each swing takes the same time.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "A heavier bob changes the period.",
-    "maps_to": "O3"
+    "text": "A smaller swing has less to travel, so it finishes quicker.",
+    "maps_to": "O1"
    },
    "r3": {
-    "text": "A bigger swing (amplitude) takes longer.",
-    "maps_to": "O1"
+    "text": "A smaller swing moves slower, so it takes longer to finish.",
+    "maps_to": "O2"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Real clocks have a tiny amplitude-dependent (circular) error beyond small angles; ignored here as NCERT treats small-angle period as amplitude-independent."
   ]
  },
  {
@@ -118,37 +119,38 @@
   "concept": "C1",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for SHM: period and restoring force.",
+  "stem": "Ramesh, a mason, checks a wall with a 100 g plumb bob on a 0.25 m string; it swings gently (small angle). He swaps it for a 400 g bob on the same string. Take g = π² m/s². What is the new period?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea O1",
-   "C": "Idea O2",
-   "D": "Other"
+   "A": "2.0 s",
+   "B": "1.0 s",
+   "C": "0.5 s",
+   "D": "0.16 s"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "O1",
-   "C": "O2",
-   "D": "UNMAPPED"
+   "A": "O3",
+   "B": "CORRECT",
+   "C": "O3",
+   "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "The heavier bob gets pulled down harder, so it swings back quicker.",
+    "maps_to": "O3"
    },
    "r2": {
-    "text": "A bigger swing (amplitude) takes longer.",
-    "maps_to": "O1"
+    "text": "More mass means more pull but also more to move, so it cancels; only length and g matter.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "A bigger swing moves faster, so it finishes first.",
-    "maps_to": "O2"
+    "text": "Four times the mass is harder to move, so it swings slower, like a heavier load on a spring.",
+    "maps_to": "O3"
    }
   },
-  "calc": "",
+  "calc": "T = 2π√(L/g) = 2π√(0.25/π²) = 2π(0.5/π) = 1.0 s, mass does not appear; O3 A: ×√4 = 2.0 s; O3 C: ÷√4 = 0.5 s; SLIP D: 2π(0.25/π²) = 0.5/π ≈ 0.16 s",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Treats plumb bob as a point mass on a light string (simple pendulum)."
   ]
  },
  {
@@ -156,35 +158,35 @@
   "concept": "C2",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for SHM: velocity, acceleration, energy.",
+  "stem": "On a smooth lab table, Riya pulls a 0.5 kg block attached to a spring (k = 50 N/m) 0.1 m from its mean position and releases it. At that extreme point, which set of values is correct?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea O4",
-   "C": "Idea O5",
-   "D": "Careless slip"
+   "A": "v = 0, a = 0, total energy = 0.25 J",
+   "B": "v = 0, a = 10 m/s², total energy = 0.25 J",
+   "C": "v = 0, a = 1 m/s², total energy = 0.25 J",
+   "D": "v = 0, a = 10 m/s², total energy = 0 J"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "O4",
-   "C": "O5",
-   "D": "SLIP"
+   "A": "O4",
+   "B": "CORRECT",
+   "C": "SLIP",
+   "D": "O5"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "At the end the block stops, so it has no energy at that moment. The energy comes back when it starts moving again.",
+    "maps_to": "O5"
    },
    "r2": {
-    "text": "Zero velocity means zero acceleration at the extreme.",
-    "maps_to": "O4"
+    "text": "At the end the speed is zero, but the spring is stretched the most, so the pull and the acceleration are the biggest. All the energy is stored in the spring, so the total is still ½kA².",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "Total mechanical energy changes during the oscillation.",
-    "maps_to": "O5"
+    "text": "The block is not moving at the end, so there is nothing changing, so the acceleration must be zero there.",
+    "maps_to": "O4"
    }
   },
-  "calc": "",
+  "calc": "ω² = k/m = 50/0.5 = 100 s⁻²; a = ω²A = 100 × 0.1 = 10 m/s²; E = ½kA² = ½ × 50 × 0.1² = 0.25 J (SLIP C uses ωA = 10 × 0.1 = 1)",
   "verify_flags": [
    "TODO_VERIFY"
   ]
@@ -194,37 +196,38 @@
   "concept": "C2",
   "is_assessment": false,
   "sibling_of": "C2-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for SHM: velocity, acceleration, energy.",
+  "stem": "Meera swings on a jhoola in small arcs, close to SHM, with no air drag. At the highest point she stops for an instant. Which statement about that instant is correct?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea O5",
-   "C": "Idea O4",
-   "D": "Other"
+   "A": "Her acceleration is zero because she has stopped.",
+   "B": "Her total energy is less than at the bottom because she is not moving.",
+   "C": "Her acceleration is at its largest, pointing back toward the lowest point, and her total energy is the same as at the bottom.",
+   "D": "Her acceleration is at its largest, and her total energy is also at its largest because she is highest."
   },
-  "correct": "A",
+  "correct": "C",
   "distractor_map": {
-   "A": "CORRECT",
+   "A": "O4",
    "B": "O5",
-   "C": "O4",
-   "D": "UNMAPPED"
+   "C": "CORRECT",
+   "D": "O5"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "She is not moving at the top, so nothing is pushing her speed up or down. So no acceleration.",
+    "maps_to": "O4"
    },
    "r2": {
-    "text": "Total mechanical energy changes during the oscillation.",
+    "text": "At the top she has no speed, so she lost her kinetic energy. So the total energy has gone down at that point.",
     "maps_to": "O5"
    },
    "r3": {
-    "text": "Zero velocity means zero acceleration at the extreme.",
-    "maps_to": "O4"
+    "text": "At the top she is furthest from the middle, so the pull back is strongest. The kinetic energy just turned into potential energy, so the total did not change.",
+    "maps_to": "CORRECT"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Swing treated as a small-angle simple pendulum; at the extreme the acceleration is tangential (g sinθ) toward the mean, with zero centripetal part since v = 0."
   ]
  },
  {
@@ -232,12 +235,50 @@
   "concept": "C2",
   "is_assessment": false,
   "sibling_of": "C2-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for SHM: velocity, acceleration, energy.",
+  "stem": "Kabir's 2 kg toy cart, held between two springs on a smooth track, moves as x = 0.05 sin(4t) m. When the cart is at x = 0.05 m, what are its acceleration and total energy?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea O4",
-   "C": "Idea O5",
-   "D": "Other"
+   "A": "a = 0, E = 0.04 J",
+   "B": "a = 0.8 m/s², E = 0 J",
+   "C": "a = 0.8 m/s², E = 0.04 J now, but it rises to 0.08 J at the mean position",
+   "D": "a = 0.8 m/s², E = 0.04 J"
+  },
+  "correct": "D",
+  "distractor_map": {
+   "A": "O4",
+   "B": "O5",
+   "C": "O5",
+   "D": "CORRECT"
+  },
+  "reasons": {
+   "r1": {
+    "text": "x = 0.05 m is the end of the motion, so speed is zero but acceleration is ω²A, the biggest. Energy just moves between KE and PE, so the total stays ½mω²A².",
+    "maps_to": "CORRECT"
+   },
+   "r2": {
+    "text": "The cart stops at x = 0.05 m, so its acceleration is zero there.",
+    "maps_to": "O4"
+   },
+   "r3": {
+    "text": "The cart is stopped at the end, so its energy is low there. It gets more energy when it zooms through the middle.",
+    "maps_to": "O5"
+   }
+  },
+  "calc": "ω = 4 rad/s; a = ω²A = 16 × 0.05 = 0.8 m/s²; E = ½mω²A² = ½ × 2 × 16 × 0.05² = 0.04 J",
+  "verify_flags": [
+   "TODO_VERIFY"
+  ]
+ },
+ {
+  "item_id": "C2-A1",
+  "concept": "C2",
+  "is_assessment": true,
+  "sibling_of": null,
+  "stem": "In Shreya's college lab, water in a U-tube is disturbed and its level goes up and down in SHM. Assume no friction or viscosity. Which statement about the water column is correct?",
+  "options": {
+   "A": "When the level is highest, the column is at rest for an instant, but its acceleration is the largest.",
+   "B": "When the level is highest, the column is at rest, so the net force on it is zero.",
+   "C": "The total energy of the column is largest when it rushes through the mean level.",
+   "D": "The column moves fastest when the level is highest."
   },
   "correct": "A",
   "distractor_map": {
@@ -248,59 +289,22 @@
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Zero velocity means zero acceleration at the extreme.",
+    "text": "At the highest level the water stops, and when something stops there is no force on it.",
     "maps_to": "O4"
    },
-   "r3": {
-    "text": "Total mechanical energy changes during the oscillation.",
+   "r2": {
+    "text": "When the water is moving fastest it has the most energy, so total energy is biggest at the middle.",
     "maps_to": "O5"
+   },
+   "r3": {
+    "text": "At the highest level the water is furthest from the middle, so the restoring push is biggest, even though it is stopped for a moment.",
+    "maps_to": "CORRECT"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
-  ]
- },
- {
-  "item_id": "C2-A1",
-  "concept": "C2",
-  "is_assessment": true,
-  "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for SHM: velocity, acceleration, energy.",
-  "options": {
-   "A": "Correct idea",
-   "B": "Idea O5",
-   "C": "Idea O4",
-   "D": "Other"
-  },
-  "correct": "A",
-  "distractor_map": {
-   "A": "CORRECT",
-   "B": "O5",
-   "C": "O4",
-   "D": "UNMAPPED"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Total mechanical energy changes during the oscillation.",
-    "maps_to": "O5"
-   },
-   "r3": {
-    "text": "Zero velocity means zero acceleration at the extreme.",
-    "maps_to": "O4"
-   }
-  },
-  "calc": "",
-  "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Ideal U-tube (no viscosity) treated as SHM, restoring force from the level difference; check students know this setup from NCERT."
   ]
  },
  {
@@ -308,37 +312,38 @@
   "concept": "C3",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for Waves are chained SHM; wave speed.",
+  "stem": "Meera shakes one end of a long, tight rope 2 times per second, and the wave moves along at 6 m/s. Keeping the same rope and tension, she now shakes it 4 times per second. What happens?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea W1",
-   "C": "Idea W2",
-   "D": "Careless slip"
+   "A": "The wave now travels at 12 m/s",
+   "B": "The speed stays 6 m/s and the wavelength becomes 1.5 m",
+   "C": "The speed stays 6 m/s and the wavelength becomes 6 m",
+   "D": "The rope pieces get carried forward quicker, so the wave goes faster"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "W1",
-   "C": "W2",
-   "D": "SLIP"
+   "A": "W2",
+   "B": "CORRECT",
+   "C": "SLIP",
+   "D": "W1"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "She is shaking it faster, so the wave also has to move faster.",
+    "maps_to": "W2"
    },
    "r2": {
-    "text": "The medium travels along with the wave.",
-    "maps_to": "W1"
+    "text": "Same rope, same tension, so same speed. Only the waves get shorter because she shakes more often.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "Higher frequency makes the wave travel faster.",
-    "maps_to": "W2"
+    "text": "Faster shaking pushes the rope itself forward quicker, and the wave rides along with it.",
+    "maps_to": "W1"
    }
   },
-  "calc": "",
+  "calc": "v = √(T/μ) unchanged = 6 m/s; λ = v/f = 6/4 = 1.5 m (earlier 6/2 = 3 m)",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Assumes ideal uniform string; the 6 m/s value is given, T and μ not stated"
   ]
  },
  {
@@ -346,37 +351,38 @@
   "concept": "C3",
   "is_assessment": false,
   "sibling_of": "C3-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for Waves are chained SHM; wave speed.",
+  "stem": "At a Diwali mela, a flute player plays a 500 Hz note and a 1000 Hz note at the same instant. Priya stands 343 m away. Take the speed of sound in air as 343 m/s. Which note reaches her first?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea W2",
-   "C": "Idea W3",
-   "D": "Other"
+   "A": "The 1000 Hz note, because faster vibration means faster sound",
+   "B": "Whichever note is played louder",
+   "C": "Both reach her together, after about 1 s",
+   "D": "Neither, until the puff of air from the flute blows across to her"
   },
-  "correct": "A",
+  "correct": "C",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "W2",
-   "C": "W3",
-   "D": "UNMAPPED"
+   "A": "W2",
+   "B": "W3",
+   "C": "CORRECT",
+   "D": "W1"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
+    "text": "Sound speed depends on the air, not on the note, so both take the same time.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "Higher frequency makes the wave travel faster.",
+    "text": "The high note vibrates more times every second, so it must travel quicker.",
     "maps_to": "W2"
    },
    "r3": {
-    "text": "Bigger amplitude makes the wave travel faster.",
+    "text": "A louder note has more push behind it, so it gets there first.",
     "maps_to": "W3"
    }
   },
-  "calc": "",
+  "calc": "t = d/v = 343/343 = 1 s for both notes",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Uses 343 m/s for air at about 20 °C; NCERT also quotes 331 m/s at 0 °C"
   ]
  },
  {
@@ -384,37 +390,38 @@
   "concept": "C3",
   "is_assessment": false,
   "sibling_of": "C3-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for Waves are chained SHM; wave speed.",
+  "stem": "On sports day, Ravi and Anil each send one pulse along identical ropes tied to a post, with equal tension. Ravi jerks his hand much higher and much quicker than Anil. Whose pulse reaches the post first?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea W3",
-   "C": "Idea W1",
-   "D": "Other"
+   "A": "Ravi's, because his pulse is taller",
+   "B": "Ravi's, because he moved his hand quicker",
+   "C": "Ravi's, because his rope gets dragged towards the post more",
+   "D": "Both pulses reach the post at the same time"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "W3",
+   "A": "W3",
+   "B": "W2",
    "C": "W1",
-   "D": "UNMAPPED"
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "A big jerk pulls the rope along towards the post, so the pulse arrives sooner.",
+    "maps_to": "W1"
    },
    "r2": {
-    "text": "Bigger amplitude makes the wave travel faster.",
+    "text": "A taller pulse carries more energy, so it runs faster.",
     "maps_to": "W3"
    },
    "r3": {
-    "text": "The medium travels along with the wave.",
-    "maps_to": "W1"
+    "text": "The ropes and tension are the same, so the pulse speed is the same, no matter how he jerks.",
+    "maps_to": "CORRECT"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Treats pulses as linear; a very large jerk can slightly raise tension, ignored here"
   ]
  },
  {
@@ -422,37 +429,38 @@
   "concept": "C3",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for Waves are chained SHM; wave speed.",
+  "stem": "At Nagpur station, a worker taps a long steel rail with a hammer. Children 1 km down the line, with an ear on the rail, hear the tap. Which statement is correct?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea W1",
-   "C": "Idea W2",
-   "D": "Other"
+   "A": "Each bit of steel only vibrates about its own place; the disturbance travels to the children",
+   "B": "Bits of steel are pushed along the rail until they reach the children",
+   "C": "Hitting the rail harder would make the sound reach them sooner",
+   "D": "Tapping more times each second would make the sound reach them sooner"
   },
   "correct": "A",
   "distractor_map": {
    "A": "CORRECT",
    "B": "W1",
-   "C": "W2",
-   "D": "UNMAPPED"
+   "C": "W3",
+   "D": "W2"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "A harder hit gives the sound a stronger push, so it travels faster.",
+    "maps_to": "W3"
    },
    "r2": {
-    "text": "The medium travels along with the wave.",
-    "maps_to": "W1"
+    "text": "The steel stays where it is and just vibrates; only the vibration passes along.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "Higher frequency makes the wave travel faster.",
-    "maps_to": "W2"
+    "text": "The hammer shoves the steel forward, and that moving steel carries the sound to them.",
+    "maps_to": "W1"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Sound in steel is both longitudinal and transverse; statement A kept general on purpose"
   ]
  },
  {
@@ -460,35 +468,35 @@
   "concept": "C4",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for Superposition, standing waves, beats.",
+  "stem": "Priya tunes her sitar string against a 440 Hz tuning fork. Sounding both together, she hears the loudness throb. If the string is at 444 Hz, how many beats per second does she hear?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea W4",
-   "C": "Idea W5",
-   "D": "Careless slip"
+   "A": "884 beats per second",
+   "B": "442 beats per second",
+   "C": "4 beats per second",
+   "D": "8 beats per second"
   },
-  "correct": "A",
+  "correct": "C",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "W4",
-   "C": "W5",
+   "A": "B1",
+   "B": "B2",
+   "C": "CORRECT",
    "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "Both sounds are playing together, so I just add the two frequencies.",
+    "maps_to": "B1"
    },
    "r2": {
-    "text": "Overlapping pulses destroy each other; energy is lost when they cancel.",
-    "maps_to": "W4"
+    "text": "The beat should be the middle value, halfway between 440 and 444.",
+    "maps_to": "B2"
    },
    "r3": {
-    "text": "Pulses bounce off each other like balls.",
-    "maps_to": "W5"
+    "text": "The two sounds drift in and out of step, and that happens as many times per second as their difference.",
+    "maps_to": "CORRECT"
    }
   },
-  "calc": "",
+  "calc": "f_beat = |444 Hz - 440 Hz| = 4 Hz",
   "verify_flags": [
    "TODO_VERIFY"
   ]
@@ -498,37 +506,38 @@
   "concept": "C4",
   "is_assessment": false,
   "sibling_of": "C4-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for Superposition, standing waves, beats.",
+  "stem": "In the school band, two flutes play notes of 512 Hz and 506 Hz together. Rohan hears the sound swell and fade. Which best describes what he hears?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea W5",
-   "C": "Idea B1",
-   "D": "Other"
+   "A": "A tone of about 509 Hz whose loudness swells 6 times per second",
+   "B": "A tone whose loudness swells 1018 times per second",
+   "C": "A tone whose loudness swells 509 times per second",
+   "D": "Loudness swells 6 times per second, and sound energy is destroyed in each quiet moment"
   },
   "correct": "A",
   "distractor_map": {
    "A": "CORRECT",
-   "B": "W5",
-   "C": "B1",
-   "D": "UNMAPPED"
+   "B": "B1",
+   "C": "B2",
+   "D": "W4"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "When it goes quiet the two waves have cancelled, so that bit of energy is just gone.",
+    "maps_to": "W4"
    },
    "r2": {
-    "text": "Pulses bounce off each other like balls.",
-    "maps_to": "W5"
+    "text": "The swelling happens at the difference, 6 times a second, and the note I hear is about the average.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "Beat frequency = f1 + f2.",
+    "text": "Two flutes are playing at once, so the swells come at both frequencies added up.",
     "maps_to": "B1"
    }
   },
-  "calc": "",
+  "calc": "f_beat = 512 Hz - 506 Hz = 6 Hz; heard pitch = (512 + 506)/2 = 509 Hz",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = average holds only approximately, for close frequencies; in quiet moments energy is redistributed in space/time, not destroyed"
   ]
  },
  {
@@ -536,37 +545,38 @@
   "concept": "C4",
   "is_assessment": false,
   "sibling_of": "C4-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for Superposition, standing waves, beats.",
+  "stem": "At an evening bhajan, the two reeds playing one harmonium note are slightly off: 349 Hz and 352 Hz. Arjun hears the note throb. How many throbs per second does he hear?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea B1",
-   "C": "Idea B2",
-   "D": "Other"
+   "A": "701 throbs per second",
+   "B": "350.5 throbs per second",
+   "C": "0, because the two sounds cancel and the note dies out",
+   "D": "3 throbs per second"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "B1",
-   "C": "B2",
-   "D": "UNMAPPED"
+   "A": "B1",
+   "B": "B2",
+   "C": "W4",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
+    "text": "The throbbing comes from the two reeds going in and out of step, which is 352 minus 349 times a second.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "Beat frequency = f1 + f2.",
-    "maps_to": "B1"
+    "text": "The throb should be at the average of the two reeds, somewhere in the middle.",
+    "maps_to": "B2"
    },
    "r3": {
-    "text": "Beat frequency = the average of f1 and f2.",
-    "maps_to": "B2"
+    "text": "Both reeds sound together, so the throbs are the two frequencies added.",
+    "maps_to": "B1"
    }
   },
-  "calc": "",
+  "calc": "f_beat = |352 Hz - 349 Hz| = 3 Hz",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Harmonium reed frequencies are illustrative, not real tuning values"
   ]
  },
  {
@@ -574,37 +584,38 @@
   "concept": "C4",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for Superposition, standing waves, beats.",
+  "stem": "On sports day, Sana and Dev flick opposite ends of a long tug-of-war rope at the same instant. Sana's pulse is upward, Dev's is an equal downward one. They meet and the rope looks flat for a moment. What happens next?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea B2",
-   "C": "Idea W4",
-   "D": "Other"
+   "A": "Both pulses are gone for good; their energy was used up in cancelling",
+   "B": "Sana's pulse carries on toward Dev and Dev's carries on toward Sana, both unchanged",
+   "C": "The pulses rebound, so Sana's upward pulse heads back toward Sana",
+   "D": "The pulses rebound and return smaller, as some energy is lost in the collision"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "B2",
-   "C": "W4",
-   "D": "UNMAPPED"
+   "A": "W4",
+   "B": "CORRECT",
+   "C": "W5",
+   "D": "W5"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "They hit each other in the middle and bounce back, like two balls.",
+    "maps_to": "W5"
    },
    "r2": {
-    "text": "Beat frequency = the average of f1 and f2.",
-    "maps_to": "B2"
+    "text": "Up plus down makes zero, so after that the pulses are finished.",
+    "maps_to": "W4"
    },
    "r3": {
-    "text": "Overlapping pulses destroy each other; energy is lost when they cancel.",
-    "maps_to": "W4"
+    "text": "They only add while overlapping; after that each pulse keeps going as if nothing happened.",
+    "maps_to": "CORRECT"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Assumes an ideal rope with negligible damping; real rope pulses shrink slowly from friction, not from meeting"
   ]
  },
  {
@@ -612,37 +623,38 @@
   "concept": "C5",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for Reflection and mirrors.",
+  "stem": "Arjun is 1.6 m tall. He wants a plane mirror on his bedroom wall, hung at the right height, in which he can see himself from head to toe. What is the shortest mirror that will work?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R1",
-   "C": "Idea R2",
-   "D": "Careless slip"
+   "A": "1.6 m",
+   "B": "0.8 m",
+   "C": "Less than 0.8 m, if he stands far enough back",
+   "D": "3.2 m"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "R1",
-   "C": "R2",
+   "A": "R2",
+   "B": "CORRECT",
+   "C": "R1",
    "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Stepping back from a plane mirror lets you see more of yourself.",
+    "text": "If he stands farther away, more of him fits in, so a smaller mirror is enough.",
     "maps_to": "R1"
    },
+   "r2": {
+    "text": "Light from his feet bounces off the mirror halfway down to his eyes, so he only needs half his height, wherever he stands.",
+    "maps_to": "CORRECT"
+   },
    "r3": {
-    "text": "The image is on the mirror surface.",
+    "text": "The image is on the glass, so the glass has to be as tall as he is.",
     "maps_to": "R2"
    }
   },
-  "calc": "",
+  "calc": "L_min = H/2 = 1.6 m / 2 = 0.8 m",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Assumes a vertical plane mirror with its top edge midway between Arjun's eyes and the top of his head."
   ]
  },
  {
@@ -650,37 +662,38 @@
   "concept": "C5",
   "is_assessment": false,
   "sibling_of": "C5-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for Reflection and mirrors.",
+  "stem": "At a salon in Pune, Meera sees only her face down to her shoulders in a small mirror fixed on the wall. She takes two steps back. What part of herself does she see now?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R2",
-   "C": "Idea R1",
-   "D": "Other"
+   "A": "More of herself, down to her waist",
+   "B": "Less of herself, only her face",
+   "C": "Still only her face down to her shoulders",
+   "D": "Her whole body, if she goes back far enough"
   },
-  "correct": "A",
+  "correct": "C",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "R2",
-   "C": "R1",
-   "D": "UNMAPPED"
+   "A": "R1",
+   "B": "UNMAPPED",
+   "C": "CORRECT",
+   "D": "R1"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "Farther from the mirror means a wider view, so more of her fits in.",
+    "maps_to": "R1"
    },
    "r2": {
-    "text": "The image is on the mirror surface.",
+    "text": "Her image stays on the glass while she backs away, so the glass covers more of her.",
     "maps_to": "R2"
    },
    "r3": {
-    "text": "Stepping back from a plane mirror lets you see more of yourself.",
-    "maps_to": "R1"
+    "text": "Her image moves back as much as she does, so the mirror still covers the same part of her.",
+    "maps_to": "CORRECT"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Assumes the mirror stays fixed and Meera's eye height does not change as she steps back."
   ]
  },
  {
@@ -688,37 +701,38 @@
   "concept": "C5",
   "is_assessment": false,
   "sibling_of": "C5-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for Reflection and mirrors.",
+  "stem": "Kabir, 1.7 m tall, is buying a mirror for his hostel room in Vellore. He will stand about 3 m from it. What is the shortest mirror, hung at the right height, that shows him head to toe?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R1",
-   "C": "Idea R2",
-   "D": "Other"
+   "A": "1.7 m",
+   "B": "Less than 0.85 m, because standing 3 m back means he needs less mirror",
+   "C": "0.85 m only if he stands close; at 3 m he needs a longer one",
+   "D": "0.85 m"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
+   "A": "R2",
    "B": "R1",
-   "C": "R2",
-   "D": "UNMAPPED"
+   "C": "UNMAPPED",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
+    "text": "He needs half his height, and the distance doesn't matter because his image moves back with him.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "Stepping back from a plane mirror lets you see more of yourself.",
-    "maps_to": "R1"
+    "text": "His image sits on the mirror, so the mirror must be his full height.",
+    "maps_to": "R2"
    },
    "r3": {
-    "text": "The image is on the mirror surface.",
-    "maps_to": "R2"
+    "text": "Standing far back lets more of him fit, so a shorter mirror will do.",
+    "maps_to": "R1"
    }
   },
-  "calc": "",
+  "calc": "L_min = H/2 = 1.7 m / 2 = 0.85 m",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Assumes a vertical plane mirror with its top edge midway between Kabir's eyes and the top of his head."
   ]
  },
  {
@@ -726,35 +740,35 @@
   "concept": "C5",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for Reflection and mirrors.",
+  "stem": "Ananya stands 3 m in front of the big wall mirror in her dance class. Which statement is correct?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R2",
-   "C": "Idea R1",
-   "D": "Other"
+   "A": "Her image is 3 m behind the mirror, so it is 6 m from her",
+   "B": "Her image is on the mirror surface, so it is 3 m from her",
+   "C": "If she moves back to 5 m, she will see more of her body in the same mirror",
+   "D": "Her image is 3 m behind the mirror, so it is 3 m from her"
   },
   "correct": "A",
   "distractor_map": {
    "A": "CORRECT",
    "B": "R2",
    "C": "R1",
-   "D": "UNMAPPED"
+   "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "The image is on the mirror surface.",
+    "text": "What I see is right on the glass, so the image is just 3 m away.",
     "maps_to": "R2"
    },
+   "r2": {
+    "text": "The image is as far behind the mirror as she is in front, so 3 m + 3 m = 6 m.",
+    "maps_to": "CORRECT"
+   },
    "r3": {
-    "text": "Stepping back from a plane mirror lets you see more of yourself.",
+    "text": "Moving back lets the mirror catch more of her body.",
     "maps_to": "R1"
    }
   },
-  "calc": "",
+  "calc": "Object-image distance = 2 x 3 m = 6 m",
   "verify_flags": [
    "TODO_VERIFY"
   ]
@@ -764,37 +778,38 @@
   "concept": "C6",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for Refraction and total internal reflection.",
+  "stem": "Meera points a waterproof torch up from inside a fish tank. The beam hits the water surface at 30° to the normal (water n = 4/3). What does the beam do at the surface?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R3",
-   "C": "Idea R4",
-   "D": "Careless slip"
+   "A": "It comes out into the air bending toward the normal",
+   "B": "It comes out into the air bending away from the normal",
+   "C": "It is totally reflected back into the water",
+   "D": "It comes out into the air without bending at all"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "R3",
+   "A": "R3",
+   "B": "CORRECT",
    "C": "R4",
-   "D": "SLIP"
+   "D": "UNMAPPED"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Light always bends toward the normal.",
+    "text": "Light always bends toward the normal when it goes into a new medium.",
     "maps_to": "R3"
    },
+   "r2": {
+    "text": "Water to air means going into a rarer medium, so it bends away, and 30° is less than the critical angle so it still gets out.",
+    "maps_to": "CORRECT"
+   },
    "r3": {
-    "text": "Total internal reflection can happen at any angle or in either direction.",
+    "text": "Light hitting a water surface from below just reflects back fully, the angle doesn't really matter.",
     "maps_to": "R4"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "sin r = (4/3)(0.5) = 0.667 -> r ≈ 41.8° in air; 30° < C ≈ 48.6° so no TIR"
   ]
  },
  {
@@ -802,37 +817,38 @@
   "concept": "C6",
   "is_assessment": false,
   "sibling_of": "C6-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for Refraction and total internal reflection.",
+  "stem": "Inside Rohan's glass paperweight (n = 1.5), a laser beam reaches the flat top face at 25° to the normal. What happens as the beam passes out into the room air?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R4",
-   "C": "Idea R3",
-   "D": "Other"
+   "A": "It is totally reflected back into the paperweight",
+   "B": "It bends toward the normal, leaving at less than 25°",
+   "C": "It bends away from the normal, leaving at more than 25°",
+   "D": "It goes straight out because glass and air are both transparent"
   },
-  "correct": "A",
+  "correct": "C",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "R4",
-   "C": "R3",
+   "A": "R4",
+   "B": "R3",
+   "C": "CORRECT",
    "D": "UNMAPPED"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "Any time light crosses glass, it bends toward the normal, that's the rule.",
+    "maps_to": "R3"
    },
    "r2": {
-    "text": "Total internal reflection can happen at any angle or in either direction.",
+    "text": "Light inside glass can always get trapped by total reflection at the surface.",
     "maps_to": "R4"
    },
    "r3": {
-    "text": "Light always bends toward the normal.",
-    "maps_to": "R3"
+    "text": "Glass to air is dense to rare, so it bends away, and 25° is below 41.8° so it comes out.",
+    "maps_to": "CORRECT"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "sin r = 1.5 × sin 25° = 1.5 × 0.423 = 0.634 -> r ≈ 39.3°; 25° < C ≈ 41.8° so no TIR"
   ]
  },
  {
@@ -840,37 +856,38 @@
   "concept": "C6",
   "is_assessment": false,
   "sibling_of": "C6-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for Refraction and total internal reflection.",
+  "stem": "A lamp fixed at the bottom of a hotel swimming pool sends a ray up to the water surface at 40° to the normal (water n = 4/3). What happens to this ray?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R3",
-   "C": "Idea R4",
-   "D": "Other"
+   "A": "It enters the air at about 28.8° from the normal",
+   "B": "It is totally reflected back into the pool",
+   "C": "It enters the air at about 53.3° from the normal",
+   "D": "It enters the air at about 59.0° from the normal"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "R3",
-   "C": "R4",
-   "D": "UNMAPPED"
+   "A": "R3",
+   "B": "R4",
+   "C": "SLIP",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
+    "text": "Water to air it bends away, so n sin 40° gives sin r = 0.857, about 59°, and 40° is under the critical angle.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "Light always bends toward the normal.",
-    "maps_to": "R3"
+    "text": "Underwater light hitting the top just bounces back fully, the pool surface acts like a mirror.",
+    "maps_to": "R4"
    },
    "r3": {
-    "text": "Total internal reflection can happen at any angle or in either direction.",
-    "maps_to": "R4"
+    "text": "It should bend toward the normal, so the angle in air must come out smaller than 40°.",
+    "maps_to": "R3"
    }
   },
-  "calc": "",
+  "calc": "sin r = (4/3) × sin 40° = 1.333 × 0.643 = 0.857 -> r ≈ 59.0°",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "A uses sin r = (3/4) sin 40° = 0.482 -> 28.8° (bending toward normal); C is the slip of multiplying the angle, 40° × 4/3 ≈ 53.3°; 40° < C ≈ 48.6° so no TIR"
   ]
  },
  {
@@ -878,37 +895,38 @@
   "concept": "C6",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for Refraction and total internal reflection.",
+  "stem": "At a science fair, Kavya shines a laser from air onto a glass block (n = 1.5) at 60° to the normal, which is more than glass's critical angle of 41.8°. What happens at the surface?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R4",
-   "C": "Idea R3",
-   "D": "Other"
+   "A": "The beam enters the glass, bending toward the normal to about 35°",
+   "B": "Total internal reflection, because 60° is bigger than 41.8°",
+   "C": "The beam enters the glass without bending at all",
+   "D": "All the light reflects back into the air, as the glass acts like a mirror at large angles"
   },
   "correct": "A",
   "distractor_map": {
    "A": "CORRECT",
    "B": "R4",
-   "C": "R3",
-   "D": "UNMAPPED"
+   "C": "UNMAPPED",
+   "D": "R4"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Total internal reflection can happen at any angle or in either direction.",
+    "text": "Once the angle crosses the critical angle, total internal reflection happens, whichever side the light comes from.",
     "maps_to": "R4"
    },
+   "r2": {
+    "text": "Total reflection needs light going from glass to air; here it is air to glass, so it just refracts in and bends toward the normal.",
+    "maps_to": "CORRECT"
+   },
    "r3": {
-    "text": "Light always bends toward the normal.",
+    "text": "Light bends toward the normal at every surface, so it goes in bent toward the normal.",
     "maps_to": "R3"
    }
   },
-  "calc": "",
+  "calc": "sin r = sin 60° / 1.5 = 0.866 / 1.5 = 0.577 -> r ≈ 35.3°",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Some light is always partially reflected at the surface; option D says ALL light reflects, which is the wrong part. r3 (R3) reaches the right answer for the wrong reason, by design"
   ]
  },
  {
@@ -916,37 +934,38 @@
   "concept": "C7",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for Lenses and image formation.",
+  "stem": "Riya keeps a candle 30 cm in front of a convex lens of focal length 20 cm. She takes away the screen and sticks black paper over the top half of the lens. What happens to the image?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R5",
-   "C": "Idea R6",
-   "D": "Careless slip"
+   "A": "Only half of the candle's image forms, 60 cm behind the lens",
+   "B": "The full image still forms 60 cm behind the lens, only dimmer",
+   "C": "No image forms anywhere, because there is no screen",
+   "D": "The full image forms 12 cm behind the lens, only dimmer"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "R5",
+   "A": "R5",
+   "B": "CORRECT",
    "C": "R6",
    "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "Without a screen there is nothing to hold the image, so it doesn't form.",
+    "maps_to": "R6"
    },
    "r2": {
-    "text": "Covering half a lens cuts off half the image.",
-    "maps_to": "R5"
+    "text": "Every point of the candle still sends light through the open half, and those rays still meet at 60 cm.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "A real image exists only if there is a screen.",
-    "maps_to": "R6"
+    "text": "The paper blocks the top half of the lens, so that part of the picture is lost.",
+    "maps_to": "R5"
    }
   },
-  "calc": "",
+  "calc": "1/v = 1/f + 1/u = 1/20 + 1/(-30) = 1/60, so v = +60 cm; m = v/u = 60/(-30) = -2",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "D uses the sign slip 1/20 + 1/30 = 1/12, giving 12 cm"
   ]
  },
  {
@@ -954,37 +973,38 @@
   "concept": "C7",
   "is_assessment": false,
   "sibling_of": "C7-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for Lenses and image formation.",
+  "stem": "Arjun's magnifying glass makes a sharp image of the ceiling tubelight on his notebook. A friend's thumb covers the left half of the lens, and Arjun slides the notebook away. What about the image now?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R6",
-   "C": "Idea R5",
-   "D": "Other"
+   "A": "It vanishes, because the notebook was what made it",
+   "B": "Half of the tubelight's image is missing, at the same spot",
+   "C": "It moves along with the notebook to the new place",
+   "D": "A complete but dimmer image still forms in the air at the same spot"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "R6",
-   "C": "R5",
-   "D": "UNMAPPED"
+   "A": "R6",
+   "B": "R5",
+   "C": "UNMAPPED",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
+    "text": "Light from every part of the tubelight still goes through the open half and meets at the same spot, page or no page.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "A real image exists only if there is a screen.",
-    "maps_to": "R6"
+    "text": "The thumb blocks half the lens, so half the image goes dark.",
+    "maps_to": "R5"
    },
    "r3": {
-    "text": "Covering half a lens cuts off half the image.",
-    "maps_to": "R5"
+    "text": "The image was only on the paper. Take the paper away and it's gone.",
+    "maps_to": "R6"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Assumes the tubelight is far enough that the image forms near the focus on the same side as the notebook"
   ]
  },
  {
@@ -992,37 +1012,38 @@
   "concept": "C7",
   "is_assessment": false,
   "sibling_of": "C7-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for Lenses and image formation.",
+  "stem": "In the lab, Meera puts a bulb 15 cm in front of a convex lens of focal length 10 cm. Tape covers the lower half of the lens, and there is no screen on the bench. What is true about the image?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R5",
-   "C": "Idea R6",
-   "D": "Other"
+   "A": "Only the top half of the image forms, 30 cm from the lens",
+   "B": "No image forms until a screen is placed 30 cm from the lens",
+   "C": "A full, inverted, dimmer image forms 30 cm from the lens, twice the bulb's size",
+   "D": "A full, dimmer image forms 6 cm from the lens"
   },
-  "correct": "A",
+  "correct": "C",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "R5",
-   "C": "R6",
-   "D": "UNMAPPED"
+   "A": "R5",
+   "B": "R6",
+   "C": "CORRECT",
+   "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Covering half a lens cuts off half the image.",
+    "text": "Tape on the bottom half means the bottom half of the lens can't make its part of the picture.",
     "maps_to": "R5"
    },
-   "r3": {
-    "text": "A real image exists only if there is a screen.",
+   "r2": {
+    "text": "The light needs a screen to land on, otherwise there's no image yet.",
     "maps_to": "R6"
+   },
+   "r3": {
+    "text": "Rays from each point of the bulb still pass through the top half and cross at 30 cm, screen or not.",
+    "maps_to": "CORRECT"
    }
   },
-  "calc": "",
+  "calc": "1/v = 1/f + 1/u = 1/10 + 1/(-15) = 1/30, so v = +30 cm; m = v/u = 30/(-15) = -2",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "D uses the sign slip 1/10 + 1/15 = 1/6, giving 6 cm"
   ]
  },
  {
@@ -1030,12 +1051,12 @@
   "concept": "C7",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for Lenses and image formation.",
+  "stem": "At a science fair, a big convex lens forms a real image of a diya in mid-air; there is no screen. A price sticker covers half the lens. Kabir stands well beyond the image and looks back at the lens. What does he see?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea R6",
-   "C": "Idea R5",
-   "D": "Other"
+   "A": "The whole diya, upside down and a little dimmer",
+   "B": "Nothing, since a real image needs a screen to show up",
+   "C": "Only half the diya, because the sticker blocks the rest",
+   "D": "The diya upright and enlarged, like through a magnifying glass"
   },
   "correct": "A",
   "distractor_map": {
@@ -1046,21 +1067,22 @@
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "The sticker stops light from that half of the lens, so that half of the diya can't reach his eyes.",
+    "maps_to": "R5"
    },
    "r2": {
-    "text": "A real image exists only if there is a screen.",
-    "maps_to": "R6"
+    "text": "The rays really meet at the image spot and then carry on to his eyes, and each point still gets light through the free half.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "Covering half a lens cuts off half the image.",
-    "maps_to": "R5"
+    "text": "There's no screen, so the light never forms a picture he can look at.",
+    "maps_to": "R6"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Assumes Kabir's eye is at least about 25 cm beyond the image and inside the cone of rays leaving it; if the cone misses his eye he sees only the lens lit up"
   ]
  },
  {
@@ -1068,31 +1090,31 @@
   "concept": "C8",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for Interference (Young's double slit).",
+  "stem": "Riya sets up a double slit with a red laser in her college lab. Keeping the laser and screen fixed, she swaps in slits that are half as far apart. What happens to the fringes?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea L1",
-   "C": "Idea L2",
-   "D": "Careless slip"
+   "A": "They become half as wide",
+   "B": "They become twice as wide",
+   "C": "Same width, but brighter, because closer slits make extra light energy",
+   "D": "Same width; only the colour of the fringes changes"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "L1",
+   "A": "L1",
+   "B": "CORRECT",
    "C": "L2",
-   "D": "SLIP"
+   "D": "UNMAPPED"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Closer slits give narrower fringes (fringe width proportional to d).",
+    "text": "Slits closer means the whole pattern squeezes, so the fringes get thinner.",
     "maps_to": "L1"
    },
+   "r2": {
+    "text": "Fringe width is lambda D by d, so if d is halved the width doubles.",
+    "maps_to": "CORRECT"
+   },
    "r3": {
-    "text": "Interference creates or destroys light energy.",
+    "text": "When the slits are closer the beams overlap more and interference makes more light.",
     "maps_to": "L2"
    }
   },
@@ -1106,37 +1128,38 @@
   "concept": "C8",
   "is_assessment": false,
   "sibling_of": "C8-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for Interference (Young's double slit).",
+  "stem": "In his school lab, Arjun uses a 600 nm laser, a screen 1.5 m away and slits 0.30 mm apart, getting 3.0 mm fringes. He swaps in slits 0.15 mm apart, keeping everything else same. New fringe width?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea L2",
-   "C": "Idea L3",
-   "D": "Other"
+   "A": "1.5 mm",
+   "B": "0.60 mm",
+   "C": "6.0 mm",
+   "D": "3.0 mm, but the bright fringes get brighter because closer slits make extra light"
   },
-  "correct": "A",
+  "correct": "C",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "L2",
-   "C": "L3",
-   "D": "UNMAPPED"
+   "A": "L1",
+   "B": "SLIP",
+   "C": "CORRECT",
+   "D": "L2"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
+    "text": "Beta equals lambda D over d, and d got halved, so beta doubles to 6 mm.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "Interference creates or destroys light energy.",
-    "maps_to": "L2"
+    "text": "Half the slit gap means half the fringe gap, so 1.5 mm.",
+    "maps_to": "L1"
    },
    "r3": {
-    "text": "Covering one slit leaves half the pattern.",
-    "maps_to": "L3"
+    "text": "Width won't change, the interference just puts more energy into the bright bands.",
+    "maps_to": "L2"
    }
   },
-  "calc": "",
+  "calc": "beta = lambda*D/d = (600e-9 m * 1.5 m)/(0.15e-3 m) = 6.0e-3 m = 6.0 mm",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "SLIP option B (0.60 mm) is a power-of-ten slip on 6.0 mm"
   ]
  },
  {
@@ -1144,37 +1167,38 @@
   "concept": "C8",
   "is_assessment": false,
   "sibling_of": "C8-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for Interference (Young's double slit).",
+  "stem": "At a science fair in Pune, Kabir's double-slit fringes are too thin to see clearly. Without changing the laser or moving the screen, what should he do to make the fringes wider?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea L3",
-   "C": "Idea L1",
-   "D": "Other"
+   "A": "Use slits that are farther apart",
+   "B": "Cover one slit, so the half pattern left spreads out wider",
+   "C": "Use a stronger laser so interference adds more light to each fringe",
+   "D": "Use slits that are closer together"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
+   "A": "L1",
    "B": "L3",
-   "C": "L1",
-   "D": "UNMAPPED"
+   "C": "L2",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Covering one slit leaves half the pattern.",
+    "text": "If one slit is blocked you only get half the fringes, so they have more room.",
     "maps_to": "L3"
    },
-   "r3": {
-    "text": "Closer slits give narrower fringes (fringe width proportional to d).",
+   "r2": {
+    "text": "Slits farther apart spread everything out, so the fringes get wider too.",
     "maps_to": "L1"
+   },
+   "r3": {
+    "text": "Fringe width goes as 1 by d, so a smaller slit gap gives wider fringes.",
+    "maps_to": "CORRECT"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Assumes slit width and wavelength unchanged; a stronger laser changes brightness only, not fringe width"
   ]
  },
  {
@@ -1182,37 +1206,38 @@
   "concept": "C8",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for Interference (Young's double slit).",
+  "stem": "During a power cut, Meera shines a battery laser through a double slit in her Chennai hostel and sees clear fringes on the wall. Her friend sticks tape over one slit. What does the wall show now?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea L1",
-   "C": "Idea L2",
-   "D": "Other"
+   "A": "The fringes vanish; a broad, dimmer patch of light from the open slit remains",
+   "B": "Only the half of the fringe pattern on the open slit's side remains",
+   "C": "The wall goes almost dark, since the light was being produced by the two beams interfering",
+   "D": "Every second bright fringe disappears, leaving half the fringes"
   },
   "correct": "A",
   "distractor_map": {
    "A": "CORRECT",
-   "B": "L1",
+   "B": "L3",
    "C": "L2",
-   "D": "UNMAPPED"
+   "D": "L3"
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
+    "text": "The bright light came from interference, so without it there is hardly any light.",
+    "maps_to": "L2"
    },
    "r2": {
-    "text": "Closer slits give narrower fringes (fringe width proportional to d).",
-    "maps_to": "L1"
+    "text": "Fringes need waves from both slits to meet, so with one slit there are no fringes, just its own spread-out light.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "Interference creates or destroys light energy.",
-    "maps_to": "L2"
+    "text": "Each slit makes its own share of fringes, so one slit leaves half of them.",
+    "maps_to": "L3"
    }
   },
   "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Open slit gives its single-slit diffraction pattern: broad central band, centre intensity I0 instead of 4I0; looks uniform-ish only if slit is narrow"
   ]
  },
  {
@@ -1220,12 +1245,131 @@
   "concept": "C9",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder practice item P1 for Diffraction and polarization.",
+  "stem": "In the school lab, Kavya makes a single slit narrower. Then she slides a third polaroid at 45° between two crossed polaroids lit by unpolarised light of intensity I0. What does she observe?",
   "options": {
-   "A": "Correct idea",
-   "B": "Idea L4",
-   "C": "Idea L5",
-   "D": "Careless slip"
+   "A": "Central maximum gets narrower; I0/8 gets through the polaroids",
+   "B": "Central maximum gets wider; no light gets through the polaroids",
+   "C": "Central maximum gets wider; I0/8 gets through the polaroids",
+   "D": "Central maximum gets wider; I0/4 gets through the polaroids"
+  },
+  "correct": "C",
+  "distractor_map": {
+   "A": "L4",
+   "B": "L5",
+   "C": "CORRECT",
+   "D": "SLIP"
+  },
+  "reasons": {
+   "r1": {
+    "text": "A polaroid only blocks light, so putting one more in can't make the dark side bright.",
+    "maps_to": "L5"
+   },
+   "r2": {
+    "text": "A thin slit spreads light more because width is 2λD/a, and the middle polaroid turns the light so some passes both.",
+    "maps_to": "CORRECT"
+   },
+   "r3": {
+    "text": "Less gap squeezes the light, so the bright band also gets thinner.",
+    "maps_to": "L4"
+   }
+  },
+  "calc": "Width = 2λD/a rises as a falls; I = (I0/2)·cos²45°·cos²45° = (I0/2)(1/2)(1/2) = I0/8",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Ideal polaroids assumed (no absorption beyond Malus's law)",
+   "Option D slip = cos instead of cos²: (I0/2)·cos45°·cos45° = I0/4"
+  ]
+ },
+ {
+  "item_id": "C9-P2",
+  "concept": "C9",
+  "is_assessment": false,
+  "sibling_of": "C9-P1",
+  "stem": "At a Pune science fair, Rohan narrows a razor-blade slit in front of a laser pointer. His friend Sana slips a polaroid at 45° between two crossed polaroids taped over a torch. What changes?",
+  "options": {
+   "A": "Laser's central bright patch shrinks; torch side lights up a little",
+   "B": "Central bright patch spreads out; torch side lights up a little",
+   "C": "Central bright patch spreads out; torch side stays dark",
+   "D": "Central bright patch vanishes; torch becomes as bright as with no sheets"
+  },
+  "correct": "B",
+  "distractor_map": {
+   "A": "L4",
+   "B": "CORRECT",
+   "C": "L5",
+   "D": "UNMAPPED"
+  },
+  "reasons": {
+   "r1": {
+    "text": "Smaller gap means smaller patch, the light just comes out thinner.",
+    "maps_to": "L4"
+   },
+   "r2": {
+    "text": "The crossed sheets already block everything, and a sheet can only block more.",
+    "maps_to": "L5"
+   },
+   "r3": {
+    "text": "The narrow slit bends light out more, and the tilted sheet turns the light so part of it gets past the last sheet.",
+    "maps_to": "CORRECT"
+   }
+  },
+  "calc": "",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Torch light assumed unpolarised"
+  ]
+ },
+ {
+  "item_id": "C9-P3",
+  "concept": "C9",
+  "is_assessment": false,
+  "sibling_of": "C9-P1",
+  "stem": "Ananya's single slit (λ = 600 nm, screen 1.5 m away, a = 0.12 mm) gives a 15 mm central band. She narrows it to a = 0.06 mm and slips a 45° polaroid between two crossed ones. Which is right?",
+  "options": {
+   "A": "Central band 7.5 mm; one-eighth of the incoming unpolarised light now passes",
+   "B": "Central band 30 mm; the crossed pair still passes no light",
+   "C": "Central band 30 mm; one-quarter of the incoming unpolarised light now passes",
+   "D": "Central band 30 mm; one-eighth of the incoming unpolarised light now passes"
+  },
+  "correct": "D",
+  "distractor_map": {
+   "A": "L4",
+   "B": "L5",
+   "C": "SLIP",
+   "D": "CORRECT"
+  },
+  "reasons": {
+   "r1": {
+    "text": "Width is 2λD/a so halving a doubles it to 30 mm, and half, then half, then half again gives one-eighth.",
+    "maps_to": "CORRECT"
+   },
+   "r2": {
+    "text": "Half the slit, half the band, so 15 becomes 7.5 mm.",
+    "maps_to": "L4"
+   },
+   "r3": {
+    "text": "Crossed means zero, and adding a sheet can't bring light back.",
+    "maps_to": "L5"
+   }
+  },
+  "calc": "w = 2λD/a = 2(600×10⁻⁹ m)(1.5 m)/(0.06×10⁻³ m) = 0.030 m = 30 mm; I = (I0/2)·cos²45°·cos²45° = I0/8",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Check: 2(600e-9)(1.5)/(0.12e-3) = 0.015 m = 15 mm for the original slit",
+   "Ideal polaroids assumed"
+  ]
+ },
+ {
+  "item_id": "C9-A1",
+  "concept": "C9",
+  "is_assessment": true,
+  "sibling_of": null,
+  "stem": "At a Kochi exhibition, Neha narrows a slit in front of a laser. She also holds two polaroid sunglass lenses crossed in 64 W/m² of sunlight and slides a third lens at 45° between them. What does she find?",
+  "options": {
+   "A": "Laser's central band widens; 8 W/m² gets through the lenses",
+   "B": "Laser's central band narrows; 8 W/m² gets through the lenses",
+   "C": "Laser's central band widens; still 0 W/m² gets through the lenses",
+   "D": "Laser's central band widens; 16 W/m² gets through the lenses"
   },
   "correct": "A",
   "distractor_map": {
@@ -1236,135 +1380,23 @@
   },
   "reasons": {
    "r1": {
-    "text": "Correct reasoning.",
+    "text": "Thin slit bends light more so the band widens, and 64 halves to 32, then ×½ and ×½ at the two 45° turns gives 8.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "A narrower slit gives a narrower central maximum.",
+    "text": "A narrower slit lets through a narrower beam, so the band on the wall shrinks.",
     "maps_to": "L4"
    },
    "r3": {
-    "text": "Adding a polarizer can never increase the light that gets through.",
+    "text": "Lenses are filters, a third one can only cut more light, so it stays zero.",
     "maps_to": "L5"
    }
   },
-  "calc": "",
+  "calc": "I = (64/2)·cos²45°·cos²45° = 32 × 0.5 × 0.5 = 8 W/m²; width 2λD/a grows as a shrinks",
   "verify_flags": [
-   "TODO_VERIFY"
-  ]
- },
- {
-  "item_id": "C9-P2",
-  "concept": "C9",
-  "is_assessment": false,
-  "sibling_of": "C9-P1",
-  "stem": "TODO_VERIFY placeholder practice item P2 for Diffraction and polarization.",
-  "options": {
-   "A": "Correct idea",
-   "B": "Idea L5",
-   "C": "Idea L4",
-   "D": "Other"
-  },
-  "correct": "A",
-  "distractor_map": {
-   "A": "CORRECT",
-   "B": "L5",
-   "C": "L4",
-   "D": "UNMAPPED"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Adding a polarizer can never increase the light that gets through.",
-    "maps_to": "L5"
-   },
-   "r3": {
-    "text": "A narrower slit gives a narrower central maximum.",
-    "maps_to": "L4"
-   }
-  },
-  "calc": "",
-  "verify_flags": [
-   "TODO_VERIFY"
-  ]
- },
- {
-  "item_id": "C9-P3",
-  "concept": "C9",
-  "is_assessment": false,
-  "sibling_of": "C9-P1",
-  "stem": "TODO_VERIFY placeholder practice item P3 for Diffraction and polarization.",
-  "options": {
-   "A": "Correct idea",
-   "B": "Idea L4",
-   "C": "Idea L5",
-   "D": "Other"
-  },
-  "correct": "A",
-  "distractor_map": {
-   "A": "CORRECT",
-   "B": "L4",
-   "C": "L5",
-   "D": "UNMAPPED"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "A narrower slit gives a narrower central maximum.",
-    "maps_to": "L4"
-   },
-   "r3": {
-    "text": "Adding a polarizer can never increase the light that gets through.",
-    "maps_to": "L5"
-   }
-  },
-  "calc": "",
-  "verify_flags": [
-   "TODO_VERIFY"
-  ]
- },
- {
-  "item_id": "C9-A1",
-  "concept": "C9",
-  "is_assessment": true,
-  "sibling_of": null,
-  "stem": "TODO_VERIFY placeholder assessment item A1 for Diffraction and polarization.",
-  "options": {
-   "A": "Correct idea",
-   "B": "Idea L5",
-   "C": "Idea L4",
-   "D": "Other"
-  },
-  "correct": "A",
-  "distractor_map": {
-   "A": "CORRECT",
-   "B": "L5",
-   "C": "L4",
-   "D": "UNMAPPED"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Correct reasoning.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Adding a polarizer can never increase the light that gets through.",
-    "maps_to": "L5"
-   },
-   "r3": {
-    "text": "A narrower slit gives a narrower central maximum.",
-    "maps_to": "L4"
-   }
-  },
-  "calc": "",
-  "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Sunlight treated as unpolarised and sunglass lenses as ideal polaroids",
+   "Option D slip = forgot the first lens halves unpolarised light: 64 × 0.5 × 0.5 = 16 W/m²"
   ]
  }
 ]

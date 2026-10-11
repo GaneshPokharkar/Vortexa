@@ -1,0 +1,110 @@
+[
+  {
+    "item_id": "C7-P1",
+    "concept": "C7",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "Riya keeps a candle 30 cm in front of a convex lens of focal length 20 cm. She takes away the screen and sticks black paper over the top half of the lens. What happens to the image?",
+    "options": {
+      "A": "Only half of the candle's image forms, 60 cm behind the lens",
+      "B": "The full image still forms 60 cm behind the lens, only dimmer",
+      "C": "No image forms anywhere, because there is no screen",
+      "D": "The full image forms 12 cm behind the lens, only dimmer"
+    },
+    "correct": "B",
+    "distractor_map": {
+      "A": "R5",
+      "B": "CORRECT",
+      "C": "R6",
+      "D": "SLIP"
+    },
+    "reasons": {
+      "r1": {"text": "Without a screen there is nothing to hold the image, so it doesn't form.", "maps_to": "R6"},
+      "r2": {"text": "Every point of the candle still sends light through the open half, and those rays still meet at 60 cm.", "maps_to": "CORRECT"},
+      "r3": {"text": "The paper blocks the top half of the lens, so that part of the picture is lost.", "maps_to": "R5"}
+    },
+    "calc": "1/v = 1/f + 1/u = 1/20 + 1/(-30) = 1/60, so v = +60 cm; m = v/u = 60/(-30) = -2",
+    "verify_flags": ["TODO_VERIFY", "D uses the sign slip 1/20 + 1/30 = 1/12, giving 12 cm"]
+  },
+  {
+    "item_id": "C7-P2",
+    "concept": "C7",
+    "is_assessment": false,
+    "sibling_of": "C7-P1",
+    "stem": "Arjun's magnifying glass makes a sharp image of the ceiling tubelight on his notebook. A friend's thumb covers the left half of the lens, and Arjun slides the notebook away. What about the image now?",
+    "options": {
+      "A": "It vanishes, because the notebook was what made it",
+      "B": "Half of the tubelight's image is missing, at the same spot",
+      "C": "It moves along with the notebook to the new place",
+      "D": "A complete but dimmer image still forms in the air at the same spot"
+    },
+    "correct": "D",
+    "distractor_map": {
+      "A": "R6",
+      "B": "R5",
+      "C": "UNMAPPED",
+      "D": "CORRECT"
+    },
+    "reasons": {
+      "r1": {"text": "Light from every part of the tubelight still goes through the open half and meets at the same spot, page or no page.", "maps_to": "CORRECT"},
+      "r2": {"text": "The thumb blocks half the lens, so half the image goes dark.", "maps_to": "R5"},
+      "r3": {"text": "The image was only on the paper. Take the paper away and it's gone.", "maps_to": "R6"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Assumes the tubelight is far enough that the image forms near the focus on the same side as the notebook"]
+  },
+  {
+    "item_id": "C7-P3",
+    "concept": "C7",
+    "is_assessment": false,
+    "sibling_of": "C7-P1",
+    "stem": "In the lab, Meera puts a bulb 15 cm in front of a convex lens of focal length 10 cm. Tape covers the lower half of the lens, and there is no screen on the bench. What is true about the image?",
+    "options": {
+      "A": "Only the top half of the image forms, 30 cm from the lens",
+      "B": "No image forms until a screen is placed 30 cm from the lens",
+      "C": "A full, inverted, dimmer image forms 30 cm from the lens, twice the bulb's size",
+      "D": "A full, dimmer image forms 6 cm from the lens"
+    },
+    "correct": "C",
+    "distractor_map": {
+      "A": "R5",
+      "B": "R6",
+      "C": "CORRECT",
+      "D": "SLIP"
+    },
+    "reasons": {
+      "r1": {"text": "Tape on the bottom half means the bottom half of the lens can't make its part of the picture.", "maps_to": "R5"},
+      "r2": {"text": "The light needs a screen to land on, otherwise there's no image yet.", "maps_to": "R6"},
+      "r3": {"text": "Rays from each point of the bulb still pass through the top half and cross at 30 cm, screen or not.", "maps_to": "CORRECT"}
+    },
+    "calc": "1/v = 1/f + 1/u = 1/10 + 1/(-15) = 1/30, so v = +30 cm; m = v/u = 30/(-15) = -2",
+    "verify_flags": ["TODO_VERIFY", "D uses the sign slip 1/10 + 1/15 = 1/6, giving 6 cm"]
+  },
+  {
+    "item_id": "C7-A1",
+    "concept": "C7",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "At a science fair, a big convex lens forms a real image of a diya in mid-air; there is no screen. A price sticker covers half the lens. Kabir stands well beyond the image and looks back at the lens. What does he see?",
+    "options": {
+      "A": "The whole diya, upside down and a little dimmer",
+      "B": "Nothing, since a real image needs a screen to show up",
+      "C": "Only half the diya, because the sticker blocks the rest",
+      "D": "The diya upright and enlarged, like through a magnifying glass"
+    },
+    "correct": "A",
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "R6",
+      "C": "R5",
+      "D": "UNMAPPED"
+    },
+    "reasons": {
+      "r1": {"text": "The sticker stops light from that half of the lens, so that half of the diya can't reach his eyes.", "maps_to": "R5"},
+      "r2": {"text": "The rays really meet at the image spot and then carry on to his eyes, and each point still gets light through the free half.", "maps_to": "CORRECT"},
+      "r3": {"text": "There's no screen, so the light never forms a picture he can look at.", "maps_to": "R6"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Assumes Kabir's eye is at least about 25 cm beyond the image and inside the cone of rays leaving it; if the cone misses his eye he sees only the lens lit up"]
+  }
+]

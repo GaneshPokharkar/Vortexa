@@ -1,0 +1,90 @@
+[
+  {
+    "item_id": "C6-P1",
+    "concept": "C6",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "Meera points a waterproof torch up from inside a fish tank. The beam hits the water surface at 30° to the normal (water n = 4/3). What does the beam do at the surface?",
+    "options": {
+      "A": "It comes out into the air bending toward the normal",
+      "B": "It comes out into the air bending away from the normal",
+      "C": "It is totally reflected back into the water",
+      "D": "It comes out into the air without bending at all"
+    },
+    "correct": "B",
+    "distractor_map": {"A": "R3", "B": "CORRECT", "C": "R4", "D": "UNMAPPED"},
+    "reasons": {
+      "r1": {"text": "Light always bends toward the normal when it goes into a new medium.", "maps_to": "R3"},
+      "r2": {"text": "Water to air means going into a rarer medium, so it bends away, and 30° is less than the critical angle so it still gets out.", "maps_to": "CORRECT"},
+      "r3": {"text": "Light hitting a water surface from below just reflects back fully, the angle doesn't really matter.", "maps_to": "R4"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "sin r = (4/3)(0.5) = 0.667 -> r ≈ 41.8° in air; 30° < C ≈ 48.6° so no TIR"]
+  },
+  {
+    "item_id": "C6-P2",
+    "concept": "C6",
+    "is_assessment": false,
+    "sibling_of": "C6-P1",
+    "stem": "Inside Rohan's glass paperweight (n = 1.5), a laser beam reaches the flat top face at 25° to the normal. What happens as the beam passes out into the room air?",
+    "options": {
+      "A": "It is totally reflected back into the paperweight",
+      "B": "It bends toward the normal, leaving at less than 25°",
+      "C": "It bends away from the normal, leaving at more than 25°",
+      "D": "It goes straight out because glass and air are both transparent"
+    },
+    "correct": "C",
+    "distractor_map": {"A": "R4", "B": "R3", "C": "CORRECT", "D": "UNMAPPED"},
+    "reasons": {
+      "r1": {"text": "Any time light crosses glass, it bends toward the normal, that's the rule.", "maps_to": "R3"},
+      "r2": {"text": "Light inside glass can always get trapped by total reflection at the surface.", "maps_to": "R4"},
+      "r3": {"text": "Glass to air is dense to rare, so it bends away, and 25° is below 41.8° so it comes out.", "maps_to": "CORRECT"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "sin r = 1.5 × sin 25° = 1.5 × 0.423 = 0.634 -> r ≈ 39.3°; 25° < C ≈ 41.8° so no TIR"]
+  },
+  {
+    "item_id": "C6-P3",
+    "concept": "C6",
+    "is_assessment": false,
+    "sibling_of": "C6-P1",
+    "stem": "A lamp fixed at the bottom of a hotel swimming pool sends a ray up to the water surface at 40° to the normal (water n = 4/3). What happens to this ray?",
+    "options": {
+      "A": "It enters the air at about 28.8° from the normal",
+      "B": "It is totally reflected back into the pool",
+      "C": "It enters the air at about 53.3° from the normal",
+      "D": "It enters the air at about 59.0° from the normal"
+    },
+    "correct": "D",
+    "distractor_map": {"A": "R3", "B": "R4", "C": "SLIP", "D": "CORRECT"},
+    "reasons": {
+      "r1": {"text": "Water to air it bends away, so n sin 40° gives sin r = 0.857, about 59°, and 40° is under the critical angle.", "maps_to": "CORRECT"},
+      "r2": {"text": "Underwater light hitting the top just bounces back fully, the pool surface acts like a mirror.", "maps_to": "R4"},
+      "r3": {"text": "It should bend toward the normal, so the angle in air must come out smaller than 40°.", "maps_to": "R3"}
+    },
+    "calc": "sin r = (4/3) × sin 40° = 1.333 × 0.643 = 0.857 -> r ≈ 59.0°",
+    "verify_flags": ["TODO_VERIFY", "A uses sin r = (3/4) sin 40° = 0.482 -> 28.8° (bending toward normal); C is the slip of multiplying the angle, 40° × 4/3 ≈ 53.3°; 40° < C ≈ 48.6° so no TIR"]
+  },
+  {
+    "item_id": "C6-A1",
+    "concept": "C6",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "At a science fair, Kavya shines a laser from air onto a glass block (n = 1.5) at 60° to the normal, which is more than glass's critical angle of 41.8°. What happens at the surface?",
+    "options": {
+      "A": "The beam enters the glass, bending toward the normal to about 35°",
+      "B": "Total internal reflection, because 60° is bigger than 41.8°",
+      "C": "The beam enters the glass without bending at all",
+      "D": "All the light reflects back into the air, as the glass acts like a mirror at large angles"
+    },
+    "correct": "A",
+    "distractor_map": {"A": "CORRECT", "B": "R4", "C": "UNMAPPED", "D": "R4"},
+    "reasons": {
+      "r1": {"text": "Once the angle crosses the critical angle, total internal reflection happens, whichever side the light comes from.", "maps_to": "R4"},
+      "r2": {"text": "Total reflection needs light going from glass to air; here it is air to glass, so it just refracts in and bends toward the normal.", "maps_to": "CORRECT"},
+      "r3": {"text": "Light bends toward the normal at every surface, so it goes in bent toward the normal.", "maps_to": "R3"}
+    },
+    "calc": "sin r = sin 60° / 1.5 = 0.866 / 1.5 = 0.577 -> r ≈ 35.3°",
+    "verify_flags": ["TODO_VERIFY", "Some light is always partially reflected at the surface; option D says ALL light reflects, which is the wrong part. r3 (R3) reaches the right answer for the wrong reason, by design"]
+  }
+]

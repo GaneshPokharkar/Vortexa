@@ -15,11 +15,20 @@ Option = Literal["A", "B", "C", "D"]
 ReasonId = Literal["r1", "r2", "r3"]
 
 
+class Probe(BaseModel):
+    separates: list[str]  # two of: misconception codes / "CORRECT"
+    probe: str
+    reply_if_first: str = ""
+    reply_if_second: str = ""
+
+
 class Concept(BaseModel):
     concept_id: str
     name: str
     zone: str
     summary: str
+    contrast_probes: list[Probe] = []
+    correct_exemplars: list[str] = []
 
 
 class Reason(BaseModel):
@@ -98,6 +107,9 @@ class Content(BaseModel):
     misconceptions: dict[str, Misconception]
     items: dict[str, Item]
     cards: dict[str, Card]
+
+    def concept(self, concept_id: str) -> Concept:
+        return next(c for c in self.concepts if c.concept_id == concept_id)
 
     @model_validator(mode="after")
     def _cross_check(self) -> "Content":

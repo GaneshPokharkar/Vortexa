@@ -2,371 +2,524 @@
  {
   "card_id": "C1-K",
   "concept": "C1",
-  "statement": "TODO_VERIFY placeholder concept card for SHM: period and restoring force.",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "For small swings, a pendulum's period T = 2π√(L/g) depends only on length and g, not amplitude or bob mass.",
+  "analogy": "A bigger swing is a longer lap run faster, so lap time stays the same.",
+  "steps": [
+   "Restoring force ≈ -mg(x/L) for small angles",
+   "Divide by m: acceleration = -(g/L)x, mass cancels",
+   "This is SHM with ω = √(g/L)",
+   "So T = 2π√(L/g): no amplitude, no mass"
+  ],
+  "worked_example": "L = 1.0 m, g = π² m/s²: T = 2π√(1/π²) = 2.0 s, for a 3° or 6° swing, light or heavy bob.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
+   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
   ]
  },
  {
   "card_id": "O1-R",
   "concept": "C1",
   "code": "O1",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "A bigger swing (amplitude) takes longer.",
-  "why_wrong": "",
+  "statement": "For small swings, the period does not depend on amplitude.",
+  "wrong_idea": "If I pull it further, it has more distance to cover, so one swing takes longer.",
+  "why_it_feels_right": "Walking a longer distance normally takes more time.",
+  "why_wrong": "Pulling further also gives a bigger restoring force, so the bob moves faster. For small angles the extra speed exactly makes up for the extra distance.",
+  "sim_moment": "Pendulum Race",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
+   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
   ]
  },
  {
   "card_id": "O2-R",
   "concept": "C1",
   "code": "O2",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "A bigger swing moves faster, so it finishes first.",
-  "why_wrong": "",
+  "statement": "Bigger and smaller small swings take exactly the same time per oscillation.",
+  "wrong_idea": "The bigger swing goes faster at the bottom, so it finishes first.",
+  "why_it_feels_right": "You can see the wide-swinging bob whizzing past faster.",
+  "why_wrong": "It is faster, but it also has a longer path. For small angles speed and distance both scale with amplitude, so the time per swing stays the same.",
+  "sim_moment": "Pendulum Race",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
+   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
   ]
  },
  {
   "card_id": "O3-R",
   "concept": "C1",
   "code": "O3",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "A heavier bob changes the period.",
-  "why_wrong": "",
+  "statement": "A simple pendulum's period depends on L and g only, not on bob mass.",
+  "wrong_idea": "A heavier bob changes the period, it swings faster or slower than a light one.",
+  "why_it_feels_right": "Heavy things feel harder to move, and for a spring a heavier mass really does slow it (T = 2π√(m/k)).",
+  "why_wrong": "In a pendulum gravity supplies the restoring force, and it grows with mass. More pull and more inertia cancel, like all objects falling together.",
+  "sim_moment": "Pendulum Race",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
+   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
   ]
  },
  {
   "card_id": "C2-K",
   "concept": "C2",
-  "statement": "TODO_VERIFY placeholder concept card for SHM: velocity, acceleration, energy.",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "In SHM, speed peaks at the mean, acceleration peaks at the extremes, and total energy stays constant.",
+  "analogy": "Like money shifting between wallet and pocket: the split changes, the total doesn't.",
+  "steps": [
+   "v = ω√(A² − x²) is zero at the extremes.",
+   "a = −ω²x is largest at the extremes.",
+   "KE and PE trade places.",
+   "E = ½kA² everywhere."
+  ],
+  "worked_example": "m = 0.5 kg, k = 50 N/m, A = 0.1 m: ω = 10 rad/s; extreme a = 10 m/s², mean v = 1 m/s; E = 0.25 J throughout.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
   ]
  },
  {
   "card_id": "O4-R",
   "concept": "C2",
   "code": "O4",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Zero velocity means zero acceleration at the extreme.",
-  "why_wrong": "",
+  "statement": "At the extreme, velocity is zero but acceleration is maximum, ω²A, toward the mean.",
+  "wrong_idea": "It stops at the end, so the acceleration there must be zero.",
+  "why_it_feels_right": "Things at rest usually feel force-free, and zero speed sounds like nothing is happening.",
+  "why_wrong": "Acceleration is the rate of change of velocity. At the end the spring is stretched most, so a = −ω²x is largest; velocity is zero for only an instant.",
+  "sim_moment": "Pendulum Race",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
   ]
  },
  {
   "card_id": "O5-R",
   "concept": "C2",
   "code": "O5",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Total mechanical energy changes during the oscillation.",
-  "why_wrong": "",
+  "statement": "Total mechanical energy stays the same throughout an ideal oscillation; only the KE/PE split changes.",
+  "wrong_idea": "The energy is biggest in the middle where it moves fastest and drops at the ends.",
+  "why_it_feels_right": "You can see the speed, so kinetic energy feels like all of the energy.",
+  "why_wrong": "At the ends the kinetic energy has turned into potential energy, ½kx². With no damping nothing is lost, so KE + PE = ½kA² at every point.",
+  "sim_moment": "Pendulum Race",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
   ]
  },
  {
   "card_id": "C3-K",
   "concept": "C3",
-  "statement": "TODO_VERIFY placeholder concept card for Waves are chained SHM; wave speed.",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "Each particle does SHM in place; the wave pattern moves at a speed set by the medium, not the source.",
+  "analogy": "Stadium Mexican wave: fans only stand and sit, yet the wave runs round.",
+  "steps": [
+   "Particles oscillate about their own mean positions",
+   "Pattern and energy pass from particle to particle",
+   "Medium sets speed: v = √(T/μ) on a string",
+   "Source sets f; amplitude leaves v unchanged",
+   "Hence λ = v/f"
+  ],
+  "worked_example": "T = 100 N, μ = 0.01 kg/m: v = √(100/0.01) = 100 m/s; at 50 Hz, λ = 2 m.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude-independence of v holds for small (linear) waves only",
+   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
+   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
   ]
  },
  {
   "card_id": "W1-R",
   "concept": "C3",
   "code": "W1",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "The medium travels along with the wave.",
-  "why_wrong": "",
+  "statement": "The medium stays put and oscillates; the disturbance is what travels.",
+  "wrong_idea": "The wave carries the rope (or water, or air) along with it to the other end.",
+  "why_it_feels_right": "You can see something moving forward, and waves at the beach seem to push things to the shore.",
+  "why_wrong": "Each piece of the medium only moves up-down or back-forth about its own place. Only the pattern and energy move forward.",
+  "sim_moment": "Red-Dot Rope: the red dot bobs up and down as the wave runs past, never moving along.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude-independence of v holds for small (linear) waves only",
+   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
+   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
   ]
  },
  {
   "card_id": "W2-R",
   "concept": "C3",
   "code": "W2",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Higher frequency makes the wave travel faster.",
-  "why_wrong": "",
+  "statement": "Higher frequency gives shorter waves moving at the same speed.",
+  "wrong_idea": "If I shake the rope faster, the wave will run along it faster.",
+  "why_it_feels_right": "Moving your hand faster feels like more effort, so it seems the wave should be quicker too.",
+  "why_wrong": "On a string v = √(T/μ), set only by tension and mass per length. Shaking faster raises f, so λ = v/f shrinks instead.",
+  "sim_moment": "Red-Dot Rope: raise the frequency slider and see the crests bunch closer while the front still reaches the end at the same time.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude-independence of v holds for small (linear) waves only",
+   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
+   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
   ]
  },
  {
   "card_id": "W3-R",
   "concept": "C3",
   "code": "W3",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Bigger amplitude makes the wave travel faster.",
-  "why_wrong": "",
+  "statement": "Bigger amplitude means more energy, not more speed.",
+  "wrong_idea": "If I shake harder and make bigger waves, they will travel faster.",
+  "why_it_feels_right": "A bigger push usually makes things go faster, like throwing a ball harder.",
+  "why_wrong": "Amplitude does not appear in v = √(T/μ). A taller wave carries more energy, but on the same rope it moves at the same speed.",
+  "sim_moment": "Red-Dot Rope: raise the amplitude slider and see the taller pulse reach the end at the same moment as a small one.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Amplitude-independence of v holds for small (linear) waves only",
+   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
+   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
   ]
  },
  {
   "card_id": "C4-K",
   "concept": "C4",
-  "statement": "TODO_VERIFY placeholder concept card for Superposition, standing waves, beats.",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "Overlapping waves add displacements, then pass on unchanged; close frequencies beat at |f1 − f2|.",
+  "analogy": "Like two queues crossing at a railway gate: they mix briefly, then walk on.",
+  "steps": [
+   "Add displacements point by point while waves overlap.",
+   "Afterwards each wave keeps its shape and direction.",
+   "A flat string is still moving: energy is kinetic, not lost.",
+   "Beat rate = |f1 − f2|; heard pitch ≈ (f1 + f2)/2.",
+   "Fixed string: nodes λ/2 apart, fundamental = v/2L."
+  ],
+  "worked_example": "Forks 256 Hz, 260 Hz: 4 beats per second, pitch ≈ 258 Hz.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "card_id": "W4-R",
   "concept": "C4",
   "code": "W4",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Overlapping pulses destroy each other; energy is lost when they cancel.",
-  "why_wrong": "",
+  "statement": "Cancellation is only momentary; the energy stays in the rope as motion and both pulses carry on.",
+  "wrong_idea": "When the two pulses cancel, they destroy each other and the energy is gone.",
+  "why_it_feels_right": "The rope looks completely flat, so it seems nothing is left.",
+  "why_wrong": "Flat is not still. At that instant every bit of the rope is moving fast, so all the energy is kinetic. A moment later both pulses reappear.",
+  "sim_moment": "Red-Dot Rope",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "card_id": "W5-R",
   "concept": "C4",
   "code": "W5",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Pulses bounce off each other like balls.",
-  "why_wrong": "",
+  "statement": "Pulses pass through each other and come out unchanged.",
+  "wrong_idea": "The two pulses hit each other and bounce back like balls.",
+  "why_it_feels_right": "Things we see colliding, like cricket balls or marbles, bounce off each other.",
+  "why_wrong": "A pulse is not an object; it is a shape moving along the rope. Where two meet, displacements simply add. Send a tall and a short pulse: the tall one ends up at the far end.",
+  "sim_moment": "Red-Dot Rope",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "card_id": "B1-R",
   "concept": "C4",
   "code": "B1",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Beat frequency = f1 + f2.",
-  "why_wrong": "",
+  "statement": "Beat frequency = |f1 − f2|.",
+  "wrong_idea": "Beat frequency is f1 + f2, because both sounds play together.",
+  "why_it_feels_right": "Superposition means adding, so adding the frequencies feels natural.",
+  "why_wrong": "We add displacements, not frequencies. Loudness swells when the waves fall into step and fades when they fall out of step, which happens |f1 − f2| times per second. 440 Hz and 444 Hz give 4 beats, not 884.",
+  "sim_moment": "Beats You Can Hear",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "card_id": "B2-R",
   "concept": "C4",
   "code": "B2",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Beat frequency = the average of f1 and f2.",
-  "why_wrong": "",
+  "statement": "The average is the pitch; the beat rate is |f1 − f2|.",
+  "wrong_idea": "The beat frequency is the average of the two frequencies.",
+  "why_it_feels_right": "You really do hear a note near the average, so that number seems like the answer.",
+  "why_wrong": "The average, (f1 + f2)/2, is the pitch you hear. The beat is how often the loudness throbs, which is the difference. 506 Hz and 512 Hz: pitch about 509 Hz, beats 6 per second.",
+  "sim_moment": "Beats You Can Hear",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
   ]
  },
  {
   "card_id": "C5-K",
   "concept": "C5",
-  "statement": "TODO_VERIFY placeholder concept card for Reflection and mirrors.",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "A plane mirror forms a virtual, erect, same-size image as far behind the mirror as you are in front.",
+  "analogy": "Like a twin behind a window, copying your every step.",
+  "steps": [
+   "Angle of incidence equals angle of reflection, from the normal",
+   "Image distance behind the mirror equals object distance in front",
+   "Step back and the image steps back too",
+   "So a full view needs a mirror half your height"
+  ],
+  "worked_example": "Sita, 1.5 m tall, stands 2 m away: image is 4 m from her; a 0.75 m mirror shows her fully.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
+   "Half-height rule assumes a vertical plane mirror hung at the correct height."
   ]
  },
  {
   "card_id": "R1-R",
   "concept": "C5",
   "code": "R1",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Stepping back from a plane mirror lets you see more of yourself.",
-  "why_wrong": "",
+  "statement": "How much of yourself you see depends on the mirror's size and height, not on your distance.",
+  "wrong_idea": "If I step back from the mirror, I'll see more of myself.",
+  "why_it_feels_right": "Stepping back from a window or a camera does show more, so a mirror seems the same.",
+  "why_wrong": "Your image steps back by the same amount, so light from your feet still reflects from the same spot on the mirror. The mirror covers the same part of you.",
+  "sim_moment": "Lens Bench",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
+   "Half-height rule assumes a vertical plane mirror hung at the correct height."
   ]
  },
  {
   "card_id": "R2-R",
   "concept": "C5",
   "code": "R2",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "The image is on the mirror surface.",
-  "why_wrong": "",
+  "statement": "The image is virtual and lies as far behind the mirror as the object is in front.",
+  "wrong_idea": "My image is right there on the mirror's surface.",
+  "why_it_feels_right": "The glass is the only thing you can touch, so the picture seems painted on it.",
+  "why_wrong": "Reflected rays spread out as if coming from a point behind the mirror, as far behind as you are in front. Your eyes trace them back there.",
+  "sim_moment": "Lens Bench",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
+   "Half-height rule assumes a vertical plane mirror hung at the correct height."
   ]
  },
  {
   "card_id": "C6-K",
   "concept": "C6",
-  "statement": "TODO_VERIFY placeholder concept card for Refraction and total internal reflection.",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "Light bends toward the normal entering a denser medium, away entering a rarer one; TIR needs denser-to-rarer travel beyond the critical angle.",
+  "analogy": "A cycle rolling slantwise onto sand turns one way; back onto road, the other way.",
+  "steps": [
+   "Compare n on both sides",
+   "Denser side: ray nearer the normal",
+   "Denser to rarer? sin C = n2/n1",
+   "TIR only if incidence angle exceeds C"
+  ],
+  "worked_example": "Glass to air, n = 1.5: sin C = 1/1.5, C ≈ 41.8°. At 45° inside: TIR. At 30°: exits at 48.6°.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
+   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
   ]
  },
  {
   "card_id": "R3-R",
   "concept": "C6",
   "code": "R3",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Light always bends toward the normal.",
-  "why_wrong": "",
+  "statement": "Light bends toward the normal entering a denser medium and away from it entering a rarer one.",
+  "wrong_idea": "Whenever light goes into something new, it bends toward the normal.",
+  "why_it_feels_right": "Most diagrams show air into glass or water, where it really does bend toward the normal.",
+  "why_wrong": "The direction matters: going into a rarer medium like air, light speeds up and bends away from the normal.",
+  "sim_moment": "Lens Bench, laser-in-glass mode: watch the beam leave the glass into air and swing away from the normal.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
+   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
   ]
  },
  {
   "card_id": "R4-R",
   "concept": "C6",
   "code": "R4",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Total internal reflection can happen at any angle or in either direction.",
-  "why_wrong": "",
+  "statement": "TIR needs denser-to-rarer travel and an incidence angle above the critical angle.",
+  "wrong_idea": "If the angle is big enough, light totally reflects at any surface, from either side.",
+  "why_it_feels_right": "Glass and water look shiny from both sides, and 'more than critical' is easy to remember alone.",
+  "why_wrong": "From air into glass a refracted ray always exists; only light already in the denser medium can be trapped.",
+  "sim_moment": "Lens Bench TIR mode: past 41.8° inside the glass the beam is trapped; aimed in from air, it always enters.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
+   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
   ]
  },
  {
   "card_id": "C7-K",
   "concept": "C7",
-  "statement": "TODO_VERIFY placeholder concept card for Lenses and image formation.",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "A convex lens forms a full real image where rays meet, screen or not.",
+  "analogy": "Like a crowd using half the gates: everyone still gets out, slower.",
+  "steps": [
+   "Use 1/v − 1/u = 1/f, u negative.",
+   "Each object point lights the whole lens, so covering part only dims the image.",
+   "Rays meet at v anyway; a screen just scatters them."
+  ],
+  "worked_example": "u = −30 cm, f = +20 cm: 1/v = 1/20 − 1/30 = 1/60, v = +60 cm, m = −2 (real, inverted).",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
   ]
  },
  {
   "card_id": "R5-R",
   "concept": "C7",
   "code": "R5",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Covering half a lens cuts off half the image.",
-  "why_wrong": "",
+  "statement": "Covering part of a lens still gives the full image, only dimmer.",
+  "wrong_idea": "If I cover the top half of the lens, the top half of the image disappears.",
+  "why_it_feels_right": "Covering half a window hides half the view, so covering a lens seems to hide half the picture.",
+  "why_wrong": "Each object point sends rays to the whole lens, so the open half still brings light from every point to the image.",
+  "sim_moment": "Lens Bench: switch on 'cover top half of lens' and watch the whole image stay, just fainter.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
   ]
  },
  {
   "card_id": "R6-R",
   "concept": "C7",
   "code": "R6",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "A real image exists only if there is a screen.",
-  "why_wrong": "",
+  "statement": "A real image forms where rays converge; a screen only scatters its light so it can be seen from many angles.",
+  "wrong_idea": "If there's no screen, there's no real image. It just doesn't form.",
+  "why_it_feels_right": "In the lab we only ever notice the real image when it lands on the screen.",
+  "why_wrong": "Rays meet at the image point with or without a screen; an eye or camera beyond it sees the image in air.",
+  "sim_moment": "Lens Bench: remove the screen and watch the rays still crossing at the image point.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
   ]
  },
  {
   "card_id": "C8-K",
   "concept": "C8",
-  "statement": "TODO_VERIFY placeholder concept card for Interference (Young's double slit).",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "Waves from two slits add or cancel, giving fringes of width beta = lambda D / d; energy is only redistributed.",
+  "analogy": "Like rearranging chairs: some rows fill, others empty, none added.",
+  "steps": [
+   "Bright at path difference n lambda, dark at (n + 1/2) lambda",
+   "beta = lambda D / d",
+   "Smaller d gives wider fringes",
+   "Bright reaches 4I0, dark 0, average 2I0",
+   "Cover one slit and fringes vanish"
+  ],
+  "worked_example": "lambda = 600 nm, D = 1.5 m, d = 0.30 mm: beta = (600e-9 x 1.5)/0.30e-3 = 3.0 mm.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
+   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
+   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
   ]
  },
  {
   "card_id": "L1-R",
   "concept": "C8",
   "code": "L1",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Closer slits give narrower fringes (fringe width proportional to d).",
-  "why_wrong": "",
+  "statement": "A smaller slit gap d gives wider fringes, since beta = lambda D / d.",
+  "wrong_idea": "If the slits are closer, the fringes should be closer and thinner too.",
+  "why_it_feels_right": "It seems the pattern should shrink with the slits, like a smaller stamp making a smaller print.",
+  "why_wrong": "With closer slits the path difference grows more slowly along the screen, so you move farther to gain one wavelength. Hence beta = lambda D / d, which goes as 1/d.",
+  "sim_moment": "Double Slit: drag the d slider down and watch the fringes spread apart.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
+   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
+   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
   ]
  },
  {
   "card_id": "L2-R",
   "concept": "C8",
   "code": "L2",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Interference creates or destroys light energy.",
-  "why_wrong": "",
+  "statement": "Interference redistributes light energy across the screen; it never creates or destroys it.",
+  "wrong_idea": "Interference makes extra light at bright fringes and destroys light at dark ones.",
+  "why_it_feels_right": "Bright fringes really are up to four times as bright as one slit alone, so light seems added.",
+  "why_wrong": "Energy is conserved. Each slit gives I0, so 2I0 on average. Interference only moves energy: bright fringes reach 4I0, dark ones 0, and the average stays 2I0.",
+  "sim_moment": "Double Slit: toggle 'cover one slit' and compare where the light goes with one slit versus two.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
+   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
+   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
   ]
  },
  {
   "card_id": "L3-R",
   "concept": "C8",
   "code": "L3",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Covering one slit leaves half the pattern.",
-  "why_wrong": "",
+  "statement": "Fringes need both slits; cover one and the whole fringe pattern disappears.",
+  "wrong_idea": "Covering one slit just removes half the fringes.",
+  "why_it_feels_right": "It feels like each slit makes its own share of fringes.",
+  "why_wrong": "Every fringe needs waves from both slits meeting. With one slit nothing adds or cancels, so no fringes, only the broad single-slit diffraction pattern of the open slit.",
+  "sim_moment": "Double Slit: flip the 'cover one slit' toggle and watch all fringes merge into one broad band.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
+   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
+   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
   ]
  },
  {
   "card_id": "C9-K",
   "concept": "C9",
-  "statement": "TODO_VERIFY placeholder concept card for Diffraction and polarization.",
-  "analogy": "",
-  "steps": [],
-  "worked_example": "",
-  "wrong_idea": "",
-  "why_wrong": "",
+  "statement": "A narrower slit gives a wider central maximum, and a tilted polaroid between crossed polaroids lets some light through.",
+  "analogy": "Like a vertical gate then a horizontal gate: a slanted gate between lets some through.",
+  "steps": [
+   "First minima: a sin θ = ±λ, so central width ≈ 2λD/a.",
+   "Smaller a, wider band.",
+   "Polaroid: I = I0 cos²θ; unpolarised gives I0/2.",
+   "Crossed pair plus 45° middle sheet: (I0/2)cos²45°cos²45° = I0/8."
+  ],
+  "worked_example": "λ = 500 nm, a = 0.10 mm, D = 2.0 m: width = 2(500×10⁻⁹)(2.0)/(1.0×10⁻⁴) = 0.020 m = 20 mm.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Width 2λD/a uses the small-angle approximation",
+   "I0/8 assumes ideal polaroids with no extra absorption",
+   "Gate analogy is qualitative only"
   ]
  },
  {
   "card_id": "L4-R",
   "concept": "C9",
   "code": "L4",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "A narrower slit gives a narrower central maximum.",
-  "why_wrong": "",
+  "statement": "The central maximum width 2λD/a grows as the slit width a shrinks.",
+  "wrong_idea": "If I make the slit thinner, the bright spot on the screen gets thinner too.",
+  "why_it_feels_right": "For big openings a smaller window really does give a smaller patch of light.",
+  "why_wrong": "When the slit is only a few wavelengths wide, light diffracts; the first minima sit at sin θ = λ/a, so a smaller a pushes them outward.",
+  "sim_moment": "Double Slit, 'cover one slit' mode: narrow the slit and watch the single-slit envelope (width 2λD/a) spread out.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Width 2λD/a uses the small-angle approximation",
+   "I0/8 assumes ideal polaroids with no extra absorption",
+   "Gate analogy is qualitative only"
   ]
  },
  {
   "card_id": "L5-R",
   "concept": "C9",
   "code": "L5",
-  "statement": "TODO_VERIFY placeholder remediation card.",
-  "wrong_idea": "Adding a polarizer can never increase the light that gets through.",
-  "why_wrong": "",
+  "statement": "A polaroid passes the component along its axis, so a tilted middle polaroid can increase the light through a crossed pair.",
+  "wrong_idea": "A polaroid only blocks light, so adding another one can only make things darker.",
+  "why_it_feels_right": "Every extra filter usually cuts more light, and one polaroid already halves unpolarised light.",
+  "why_wrong": "A polaroid also sets the direction of polarisation. Crossed polaroids give 0, but a 45° sheet between them turns the light so (I0/2)cos²45°cos²45° = I0/8 passes.",
+  "sim_moment": "none — use the three-polaroid demo",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Width 2λD/a uses the small-angle approximation",
+   "I0/8 assumes ideal polaroids with no extra absorption",
+   "Gate analogy is qualitative only"
   ]
  }
 ]

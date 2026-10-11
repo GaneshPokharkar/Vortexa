@@ -62,9 +62,11 @@ def _item(item_id: str) -> Item:
 
 def _clarify_payload(d: Diagnosis, item: Item) -> dict:
     content = load_content()
-    codes = [c for c in (d.option_code, d.reason_code) if c in content.misconceptions]
+    codes = list(dict.fromkeys(c for c in (d.option_code, d.reason_code) if c in content.misconceptions))
+    pair = next((p.probe for p in content.concept(item.concept).contrast_probes if set(p.separates) == set(codes)), None)
     return {
-        "probes": [content.misconceptions[c].contrast_probe for c in dict.fromkeys(codes)],
+        # Two conflicting codes: one probe that separates them. Otherwise each code's probe against the correct idea.
+        "probes": [pair] if len(codes) == 2 and pair else [content.misconceptions[c].contrast_probe for c in codes],
         "reasons": item.public()["reasons"],
         "remaining": eng.MAX_CLARIFICATIONS - d.clarifications,
     }

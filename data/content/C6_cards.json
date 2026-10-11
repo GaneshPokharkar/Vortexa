@@ -1,0 +1,109 @@
+{
+  "concept_card": {
+    "card_id": "C6-K",
+    "concept": "C6",
+    "statement": "Light bends toward the normal entering a denser medium, away entering a rarer one; TIR needs denser-to-rarer travel beyond the critical angle.",
+    "analogy": "A cycle rolling slantwise onto sand turns one way; back onto road, the other way.",
+    "steps": [
+      "Compare n on both sides",
+      "Denser side: ray nearer the normal",
+      "Denser to rarer? sin C = n2/n1",
+      "TIR only if incidence angle exceeds C"
+    ],
+    "worked_example": "Glass to air, n = 1.5: sin C = 1/1.5, C ≈ 41.8°. At 45° inside: TIR. At 30°: exits at 48.6°."
+  },
+  "remediation_cards": [
+    {
+      "card_id": "R3-R",
+      "code": "R3",
+      "wrong_idea": "Whenever light goes into something new, it bends toward the normal.",
+      "why_it_feels_right": "Most diagrams show air into glass or water, where it really does bend toward the normal.",
+      "why_wrong": "The direction matters: going into a rarer medium like air, light speeds up and bends away from the normal.",
+      "correct_idea": "Light bends toward the normal entering a denser medium and away from it entering a rarer one.",
+      "sim_moment": "Lens Bench, laser-in-glass mode: watch the beam leave the glass into air and swing away from the normal."
+    },
+    {
+      "card_id": "R4-R",
+      "code": "R4",
+      "wrong_idea": "If the angle is big enough, light totally reflects at any surface, from either side.",
+      "why_it_feels_right": "Glass and water look shiny from both sides, and 'more than critical' is easy to remember alone.",
+      "why_wrong": "From air into glass a refracted ray always exists; only light already in the denser medium can be trapped.",
+      "correct_idea": "TIR needs denser-to-rarer travel and an incidence angle above the critical angle.",
+      "sim_moment": "Lens Bench TIR mode: past 41.8° inside the glass the beam is trapped; aimed in from air, it always enters."
+    }
+  ],
+  "exemplars": {
+    "R3": [
+      "it always bends towards the normal na",
+      "light bends toward the normal, that's the rule",
+      "going into any new medium it bends in toward the normal",
+      "whenever it crosses a surface it goes closer to the normal",
+      "coming out of water also it bends toward the normal",
+      "refraction means bending towards the normal right",
+      "glass to air, it'll still bend to the normal",
+      "the angle always gets smaller after refraction",
+      "every time it bends, it's toward that perpendicular line",
+      "doesn't matter which side, it turns toward the normal",
+      "light hamesha normal ki taraf hi mudti hai",
+      "medium badla toh normal ki taraf bend hoga, bas"
+    ],
+    "R4": [
+      "if the angle's more than critical it just reflects totally",
+      "big angle means total internal reflection, that's it",
+      "it can happen going from air into water too",
+      "any surface can trap light if you tilt it enough",
+      "from outside the glass also it'll fully reflect at a big angle",
+      "air to glass at 60 degrees, that's total internal reflection",
+      "direction doesn't matter, only the angle matters",
+      "the water surface acts like a mirror from above too",
+      "critical angle crossed, so full reflection, whichever side",
+      "total reflection just needs a steep angle, nothing else",
+      "angle critical se bada hai toh TIR ho jayega, kisi bhi side se",
+      "hawa se paani mein bhi total reflection ho sakta hai na"
+    ],
+    "CORRECT": [
+      "denser to rarer it bends away, rarer to denser it bends toward",
+      "TIR only works going from the denser side out to the rarer side",
+      "you need denser to rarer and the angle bigger than critical, both",
+      "coming out of water into air it goes away from the normal",
+      "air into glass can never be TIR, it always gets in",
+      "if it hits straight along the normal it doesn't bend at all"
+    ]
+  },
+  "contrast_probes": [
+    {
+      "separates": [
+        "R3",
+        "R4"
+      ],
+      "probe": "A ray from air hits a pond at 70° to the normal, more than water's critical angle. What happens to it at the surface?",
+      "reply_if_first": "You expect it to enter and bend toward the normal; good, but would you say the same for a ray leaving water into air?",
+      "reply_if_second": "You expect it to be totally reflected; check which side of the surface the light starts on, and where it is denser."
+    },
+    {
+      "separates": [
+        "R3",
+        "CORRECT"
+      ],
+      "probe": "A ray inside glass meets the glass-air surface at 20°. In the air, is its angle from the normal bigger or smaller than 20°?",
+      "reply_if_first": "You said smaller; ask yourself whether air is denser or rarer than glass, and what that does to the bending.",
+      "reply_if_second": "You said bigger; now, what would happen if that 20° grew past about 42°?"
+    },
+    {
+      "separates": [
+        "R4",
+        "CORRECT"
+      ],
+      "probe": "Can light coming from the air ever be totally internally reflected at a glass surface if you make the angle big enough?",
+      "reply_if_first": "You said yes; try it in Lens Bench from the air side at 80° and see whether any beam goes into the glass.",
+      "reply_if_second": "You said no; so what two things must be true for light to get trapped inside the glass?"
+    }
+  ],
+  "verify_flags": [
+    "TODO_VERIFY",
+    "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
+    "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+    "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
+    "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
+  ]
+}

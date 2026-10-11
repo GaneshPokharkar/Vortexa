@@ -1,0 +1,106 @@
+{
+  "concept_card": {
+    "card_id": "C2-K",
+    "concept": "C2",
+    "statement": "In SHM, speed peaks at the mean, acceleration peaks at the extremes, and total energy stays constant.",
+    "analogy": "Like money shifting between wallet and pocket: the split changes, the total doesn't.",
+    "steps": [
+      "v = ω√(A² − x²) is zero at the extremes.",
+      "a = −ω²x is largest at the extremes.",
+      "KE and PE trade places.",
+      "E = ½kA² everywhere."
+    ],
+    "worked_example": "m = 0.5 kg, k = 50 N/m, A = 0.1 m: ω = 10 rad/s; extreme a = 10 m/s², mean v = 1 m/s; E = 0.25 J throughout."
+  },
+  "remediation_cards": [
+    {
+      "card_id": "O4-R",
+      "code": "O4",
+      "wrong_idea": "It stops at the end, so the acceleration there must be zero.",
+      "why_it_feels_right": "Things at rest usually feel force-free, and zero speed sounds like nothing is happening.",
+      "why_wrong": "Acceleration is the rate of change of velocity. At the end the spring is stretched most, so a = −ω²x is largest; velocity is zero for only an instant.",
+      "correct_idea": "At the extreme, velocity is zero but acceleration is maximum, ω²A, toward the mean.",
+      "sim_moment": "Pendulum Race"
+    },
+    {
+      "card_id": "O5-R",
+      "code": "O5",
+      "wrong_idea": "The energy is biggest in the middle where it moves fastest and drops at the ends.",
+      "why_it_feels_right": "You can see the speed, so kinetic energy feels like all of the energy.",
+      "why_wrong": "At the ends the kinetic energy has turned into potential energy, ½kx². With no damping nothing is lost, so KE + PE = ½kA² at every point.",
+      "correct_idea": "Total mechanical energy stays the same throughout an ideal oscillation; only the KE/PE split changes.",
+      "sim_moment": "Pendulum Race"
+    }
+  ],
+  "exemplars": {
+    "O4": [
+      "it stops at the end so acceleration is zero there",
+      "velocity zero means acceleration zero, right?",
+      "at the extreme nothing is moving so no acceleration",
+      "if it is at rest how can it accelerate",
+      "the block is stopped, so no force on it at that point",
+      "acceleration is max in the middle where it is fastest",
+      "at the top of the swing it just hangs, zero acceleration",
+      "speed is zero so a is zero too, same thing",
+      "it's not moving at the turning point so nothing is acting",
+      "zero velocity, zero acceleration, that's the extreme",
+      "extreme pe ruk gaya toh acceleration bhi zero hi hoga na",
+      "woh ruka hua hai, toh usspe force kaise lagega"
+    ],
+    "O5": [
+      "energy is max at the mean because speed is max",
+      "at the ends it stops so it has no energy",
+      "total energy goes down when it slows near the extreme",
+      "it gets more energy every time it passes the middle",
+      "energy is highest at the extreme since the spring is stretched most",
+      "the total energy keeps changing as it moves",
+      "at the turning point the energy is zero for a moment",
+      "kinetic energy is the energy, so it changes with speed",
+      "when it is fastest it has the most total energy",
+      "energy goes up and down along with the position",
+      "mean pe speed max hai toh energy bhi max hogi na",
+      "extreme pe toh KE khatam, toh total energy kam ho gayi"
+    ],
+    "CORRECT": [
+      "at the extreme v is zero but a is max, ω²A",
+      "it stops for an instant but the spring is pulling hardest there",
+      "acceleration is zero only at the mean, where speed is max",
+      "total energy stays ½kA², it just shifts between KE and PE",
+      "at the ends it's all potential energy, in the middle all kinetic",
+      "no damping, so the total energy doesn't change during the swing"
+    ]
+  },
+  "contrast_probes": [
+    {
+      "separates": [
+        "O4",
+        "O5"
+      ],
+      "probe": "At the extreme point, which quantity of the block becomes zero: its acceleration or its total energy?",
+      "reply_if_first": "Its acceleration, because the block has stopped there.",
+      "reply_if_second": "Its total energy, because it has no speed there."
+    },
+    {
+      "separates": [
+        "O4",
+        "CORRECT"
+      ],
+      "probe": "At the extreme point the block is at rest for an instant. Is its acceleration there zero, or the largest in the whole cycle?",
+      "reply_if_first": "Zero, because it isn't moving.",
+      "reply_if_second": "The largest, because the spring is stretched the most there."
+    },
+    {
+      "separates": [
+        "O5",
+        "CORRECT"
+      ],
+      "probe": "Compare the block's total energy at the extreme point with its total energy at the mean position. Which is bigger?",
+      "reply_if_first": "The mean position, because it moves fastest there.",
+      "reply_if_second": "Neither, they are equal; only the KE and PE split is different."
+    }
+  ],
+  "verify_flags": [
+    "TODO_VERIFY",
+    "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
+  ]
+}
