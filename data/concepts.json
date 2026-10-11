@@ -504,6 +504,33 @@
     "probe": "Can light coming from the air ever be totally internally reflected at a glass surface if you make the angle big enough?",
     "reply_if_first": "You said yes; try it in the refraction visual from the air side at 80° and see whether any beam goes into the glass.",
     "reply_if_second": "You said no; so what two things must be true for light to get trapped inside the glass?"
+   },
+   {
+    "separates": [
+     "R7",
+     "CORRECT"
+    ],
+    "probe": "Draw the normal where the ray meets the surface. Which angle goes into Snell's law: the one with the surface or the one with that line?",
+    "reply_if_first": "The angle with the surface.",
+    "reply_if_second": "The angle with the normal."
+   },
+   {
+    "separates": [
+     "R7",
+     "R3"
+    ],
+    "probe": "Before deciding which way the ray bends, which line do you measure its angle from?",
+    "reply_if_first": "From the surface.",
+    "reply_if_second": "From the normal, and it always ends up closer to the normal."
+   },
+   {
+    "separates": [
+     "R7",
+     "R4"
+    ],
+    "probe": "A ray makes 60° with a glass surface from the air side. Can it be totally internally reflected, and which angle do you use to check?",
+    "reply_if_first": "I use 60° in Snell's law.",
+    "reply_if_second": "Yes, if the angle is big enough it reflects whatever the direction."
    }
   ],
   "correct_exemplars": [

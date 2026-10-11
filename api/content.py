@@ -81,6 +81,7 @@ class Item(BaseModel):
     transfer: bool = False
     stem: str
     sibling_of: Optional[str] = None
+    setup: Optional[dict[str, float]] = None  # the question's physical numbers, used by the visual-correction stage
     calc: str = ""
     verify_flags: list[str] = []
     # multiple choice (three-tier)

@@ -38,7 +38,12 @@
       "TODO_VERIFY",
       "sin r = (4/3)(0.5) = 0.667 -> r ≈ 41.8° in air; 30° < C ≈ 48.6° so no TIR"
     ],
-    "transfer": false
+    "transfer": false,
+    "setup": {
+      "n1": 1.3333333333333333,
+      "n2": 1.0,
+      "incidence": 30
+    }
   },
   {
     "item_id": "C6-P2",
@@ -79,7 +84,12 @@
       "TODO_VERIFY",
       "sin r = 1.5 × sin 25° = 1.5 × 0.423 = 0.634 -> r ≈ 39.3°; 25° < C ≈ 41.8° so no TIR"
     ],
-    "transfer": false
+    "transfer": false,
+    "setup": {
+      "n1": 1.5,
+      "n2": 1.0,
+      "incidence": 25
+    }
   },
   {
     "item_id": "C6-P3",
@@ -120,7 +130,12 @@
       "TODO_VERIFY",
       "A uses sin r = (3/4) sin 40° = 0.482 -> 28.8° (bending toward normal); C is the slip of multiplying the angle, 40° × 4/3 ≈ 53.3°; 40° < C ≈ 48.6° so no TIR"
     ],
-    "transfer": true
+    "transfer": true,
+    "setup": {
+      "n1": 1.3333333333333333,
+      "n2": 1.0,
+      "incidence": 40
+    }
   },
   {
     "item_id": "C6-A1",
@@ -161,7 +176,12 @@
       "TODO_VERIFY",
       "Some light is always partially reflected at the surface; option D says ALL light reflects, which is the wrong part. r3 (R3) reaches the right answer for the wrong reason, by design"
     ],
-    "transfer": false
+    "transfer": false,
+    "setup": {
+      "n1": 1.0,
+      "n2": 1.5,
+      "incidence": 60
+    }
   },
   {
     "item_id": "C6-Q1",
@@ -228,7 +248,12 @@
     "verify_flags": [
       "TODO_VERIFY",
       "CORRECT follow-up answer: f = c/λ = 3.0 × 10⁸ / 600 × 10⁻⁹ = 5.0 × 10¹⁴ Hz (unchanged); λ_glass = 600/1.5 = 400 nm"
-    ]
+    ],
+    "setup": {
+      "n1": 1.5,
+      "n2": 1.0,
+      "incidence": 30
+    }
   },
   {
     "item_id": "C6-Q2",
@@ -289,7 +314,12 @@
     "verify_flags": [
       "TODO_VERIFY",
       "Water n = 4/3 assumed; some light is partially reflected at any surface, which is not TIR"
-    ]
+    ],
+    "setup": {
+      "n1": 1.0,
+      "n2": 1.3333333333333333,
+      "incidence": 80
+    }
   },
   {
     "item_id": "C6-A2",
@@ -345,6 +375,125 @@
     "verify_flags": [
       "TODO_VERIFY",
       "Diamond follow-up: sin C = 1/2.42 = 0.413 -> C ≈ 24.4°"
-    ]
+    ],
+    "setup": {
+      "n1": 1.3333333333333333,
+      "n2": 1.0,
+      "incidence": 60
+    }
+  },
+  {
+    "item_id": "C6-P4",
+    "concept": "C6",
+    "kind": "mcq",
+    "is_assessment": false,
+    "sibling_of": "C6-P1",
+    "transfer": false,
+    "stem": "A ray of light in air strikes the flat surface of a glass block (n = 1.5). The ray makes an angle of 60° with the glass surface. What is the angle of refraction inside the glass?",
+    "options": {
+      "A": "19.5°",
+      "B": "35.3°",
+      "C": "54.7°",
+      "D": "The ray is totally internally reflected at the surface"
+    },
+    "correct": "A",
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "R7",
+      "C": "R7",
+      "D": "R4"
+    },
+    "reasons": {
+      "r1": {
+        "text": "The angle of incidence is measured from the normal, so it is 90° − 60° = 30°; then sin r = sin 30° / 1.5.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "The angle of incidence is the angle between the ray and the glass surface, so I put 60° into Snell's law.",
+        "maps_to": "R7"
+      },
+      "r3": {
+        "text": "At such a slanting angle the light can't get in, so it all reflects back.",
+        "maps_to": "R4"
+      }
+    },
+    "calc": "i = 90° − 60° = 30°; sin r = sin 30° / 1.5 = 0.333, r = 19.5°. (Using 60°: sin r = 0.577, r = 35.3°, or 54.7° from the surface.)",
+    "verify_flags": [
+      "TODO_VERIFY"
+    ],
+    "setup": {
+      "n1": 1.0,
+      "n2": 1.5,
+      "incidence": 30
+    }
+  },
+  {
+    "item_id": "C6-Q3",
+    "concept": "C6",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "A laser beam inside water (n = 4/3) meets the water surface, making an angle of 50° with the surface. At what angle to the normal does it come out into the air? Show which angle you used.",
+    "answer_key": "About 59° from the normal.",
+    "expected_reasoning": "The ray makes 50° with the surface, so the angle of incidence from the normal is 40°. Then sin r = (4/3) sin 40° = 0.857, so r is about 59.0°.",
+    "accept_any": [],
+    "reasoning_any": [
+      "normal",
+      "snell",
+      "90 - 50",
+      "90 minus 50",
+      "sin r"
+    ],
+    "numeric": {
+      "value": 59.0,
+      "unit": "°",
+      "tolerance": 0.6,
+      "slips": [
+        {
+          "value": 28.8,
+          "why": "divide by 4/3 instead of multiplying (sin r = sin 40° ÷ 4/3)"
+        }
+      ]
+    },
+    "patterns": [
+      {
+        "code": "R7",
+        "any": [
+          "with the surface",
+          "from the surface",
+          "incidence is 50",
+          "angle of incidence 50",
+          "totally internally reflected",
+          "total internal reflection",
+          "surface angle"
+        ]
+      },
+      {
+        "code": "R3",
+        "any": [
+          "toward the normal",
+          "towards the normal",
+          "bends towards",
+          "bends toward"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "R7": "Draw the normal where the beam meets the surface. What angle does the beam make with that line?",
+      "R3": "Is the light going into a denser or a rarer medium here? Which way should it bend?",
+      "CORRECT_NO_REASON": "Which angle did you put into Snell's law, and which line did you measure it from?",
+      "CORRECT": "At what angle to the surface would this beam just begin to be totally internally reflected?",
+      "UNCLEAR": "Which angle did you use in Snell's law, and which line did you measure it from?"
+    },
+    "calc": "i = 90° − 50° = 40°; sin r = (4/3) × sin 40° = 0.857, r ≈ 59.0°",
+    "verify_flags": [
+      "TODO_VERIFY"
+    ],
+    "setup": {
+      "n1": 1.3333333333333333,
+      "n2": 1.0,
+      "incidence": 40
+    }
   }
 ]

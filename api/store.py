@@ -60,6 +60,8 @@ class Diagnosis(SQLModel, table=True):
     classifier_score: Optional[float] = None  # heuristic confidence; evidence only
     evidence: str = "[]"  # JSON list of learner-facing lines
     follow_up: str = "null"  # JSON FollowUp
+    pipeline: str = "[]"  # JSON trace of the three orchestrator stages
+    visual: str = "null"  # JSON overlay spec from the visual-correction stage
     clarifications: int = 0
     # Set only by apply_response():
     applied_seq: Optional[int] = None

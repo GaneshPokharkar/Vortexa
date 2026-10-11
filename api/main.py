@@ -208,6 +208,8 @@ def why(response_id: int, session: Session = Depends(get_session)):
         "rule_text": eng.RULES[d.rule_fired],
         "engine": d.engine,
         "evidence": json.loads(d.evidence),
+        "pipeline": json.loads(d.pipeline),
+        "visual_correction": json.loads(d.visual),
         "distractor_map_entry": {r.option: item.distractor_map[r.option]} if item.kind == "mcq" else None,
         "reason": {"reason_id": r.reason_id, "maps_to": d.reason_code} if r.reason_id else None,
         "reason_text": r.reason_text or r.answer_text,

@@ -19,7 +19,7 @@ from api.engine.grading import (
     AMBIGUOUS, CORRECT_CATEGORIES, FALSE_POSITIVE, FRAGILE, GROUP, GROUP_LABEL, LACK_OF_KNOWLEDGE, MISCONCEPTION,
     OFF_TOPIC, PARTIAL, SCIENTIFIC, SLIP_CATEGORIES, UNDIAGNOSED,
 )
-from api.engine.short import grade_short
+from api import orchestrator
 from api.store import (
     Diagnosis, Response, apply_response, current_p, dump, misconception_statuses, prior_slip_code, sibling_for, tries,
 )
@@ -56,39 +56,30 @@ def diagnose(session: Session, item: Item, learner_id: str, *, option=None, reas
              answer_text=None, confidence: str = "sure") -> tuple[Response, Diagnosis]:
     p = current_p(session, learner_id, item.concept)
     if item.kind == "short":
-        result = _grade_short_with_llm(item, answer_text or "", confidence)
+        result, stages = orchestrator.run_short(item, answer_text or "", confidence)
         d_kwargs = dict(category=result.category, rule_fired=result.rule_fired, engine=result.engine,
                         misconception_code=result.code, classifier_score=result.confidence,
-                        evidence=dump(result.evidence))
+                        evidence=dump(result.evidence), pipeline=dump(stages))
         follow_key = result.follow_up_key
     else:
         g = eng.grade(item, option, reason_id, confidence, p_learned=p,
                       prior_slip_code=prior_slip_code(session, learner_id, item.item_id))
         d_kwargs = dict(category=g.category, rule_fired=g.rule_fired, option_code=g.option_code,
                         reason_code=g.reason_code, misconception_code=g.misconception_code,
-                        evidence=dump(_mcq_evidence(item, option, reason_id, reason_text, confidence, g)))
+                        evidence=dump(_mcq_evidence(item, option, reason_id, reason_text, confidence, g)),
+                        pipeline=dump(orchestrator.mcq_stages(item, g)))
         follow_key = None
     r = Response(learner_id=learner_id, item_id=item.item_id, concept=item.concept, kind=item.kind, option=option,
                  reason_id=reason_id, reason_text=reason_text, answer_text=answer_text, confidence=confidence)
     session.add(r)
     session.flush()
     d = Diagnosis(response_id=r.id, **d_kwargs)
+    d.visual = dump(orchestrator.overlay_for(item, d.category, d.misconception_code))
     d.follow_up = dump(follow_up(session, learner_id, item, d.category, d.misconception_code, follow_key))
     session.add(d)
     session.commit()
     apply_response(session, r.id)
     return r, d
-
-
-def _grade_short_with_llm(item: Item, text: str, confidence: str):
-    result = grade_short(item, text, confidence)
-    # Claude is consulted only when the rules found nothing usable.
-    if result.rule_fired in ("short:unmatched", "short:off-topic") and llm.live():
-        descriptions = {m.code: m.description for m in load_content().misconceptions.values()}
-        hint = llm.classify(item, text, descriptions)
-        if hint is not None:
-            return grade_short(item, text, confidence, llm=hint)
-    return result
 
 
 def clarify(session: Session, r: Response, d: Diagnosis, *, reason_id=None, text=None) -> None:
@@ -97,9 +88,10 @@ def clarify(session: Session, r: Response, d: Diagnosis, *, reason_id=None, text
     if item.kind == "short":
         if text:
             r.answer_text = f"{r.answer_text or ''} {text}".strip()
-            result = _grade_short_with_llm(item, r.answer_text, r.confidence)
+            result, stages = orchestrator.run_short(item, r.answer_text, r.confidence)
             d.category, d.rule_fired, d.engine = result.category, result.rule_fired, result.engine
             d.misconception_code, d.classifier_score, d.evidence = result.code, result.confidence, dump(result.evidence)
+            d.pipeline = dump(stages)
             key = result.follow_up_key
         else:
             key = "UNCLEAR"
@@ -112,9 +104,11 @@ def clarify(session: Session, r: Response, d: Diagnosis, *, reason_id=None, text
             r.reason_id, d.reason_code = reason_id, g.reason_code
             d.category, d.rule_fired, d.misconception_code = g.category, g.rule_fired, g.misconception_code
             d.evidence = dump(_mcq_evidence(item, r.option, reason_id, r.reason_text, r.confidence, g))
+            d.pipeline = dump(orchestrator.mcq_stages(item, g))
     if d.category in CLARIFIABLE and d.clarifications >= eng.MAX_CLARIFICATIONS:
         d.category, d.rule_fired = UNDIAGNOSED, "clarify:limit"
         d.evidence = dump(json.loads(d.evidence) + ["After two follow-up questions the tutor still can't tell, so this answer doesn't count."])
+    d.visual = dump(orchestrator.overlay_for(item, d.category, d.misconception_code))
     d.follow_up = dump(follow_up(session, r.learner_id, item, d.category, d.misconception_code, key))
     session.add_all([r, d])
     session.commit()
@@ -243,6 +237,8 @@ def feedback(session: Session, r: Response, d: Diagnosis, mastery_row: dict) -> 
         "correct_answer": _correct_answer(item, d.category),
         "feedback_text": _teaching_text(item, d),
         "follow_up": json.loads(d.follow_up),
+        "visual_correction": json.loads(d.visual),
+        "pipeline": json.loads(d.pipeline),
         "misconception_code": d.misconception_code,
         "misconception_status": misconception_statuses(session, r.learner_id).get(d.misconception_code or ""),
         "remediation_card_id": mc.remediation_card_id if mc else f"{r.concept}-K",

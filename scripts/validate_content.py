@@ -28,9 +28,9 @@ def check(c: Content) -> list[str]:
 
     for concept, codes in codes_of.items():
         items = [i for i in c.items.values() if i.concept == concept]
-        ids = sorted(i.item_id for i in items)
-        if ids != sorted(f"{concept}-{x}" for x in EXPECTED_IDS):
-            errors.append(f"{concept}: expected items {EXPECTED_IDS}, got {ids}")
+        missing = {f"{concept}-{x}" for x in EXPECTED_IDS} - {i.item_id for i in items}
+        if missing:
+            errors.append(f"{concept}: missing items {sorted(missing)}")  # extra items (P4, Q3...) are allowed
         if not any(i.transfer and not i.is_assessment for i in items):
             errors.append(f"{concept}: needs a practice transfer item")
         targeted = {code: 0 for code in codes}
@@ -64,9 +64,9 @@ def check(c: Content) -> list[str]:
                     errors.append(f"{i.item_id}.{rid}: maps to {r.maps_to}, not a {concept} code")
             if any(not o.strip() for o in i.options.values()):
                 errors.append(f"{i.item_id}: empty option")
-        for n in (2, 3):
-            item = c.items.get(f"{concept}-P{n}")
-            if item and item.sibling_of != f"{concept}-P1":
+        for item in items:
+            practice_mcq = item.kind == "mcq" and not item.is_assessment and item.item_id != f"{concept}-P1"
+            if practice_mcq and item.sibling_of != f"{concept}-P1":
                 errors.append(f"{item.item_id}: sibling_of must be {concept}-P1")
         errors += [f"{concept}: code {code} targeted by {k} wrong options (need >= 2)" for code, k in targeted.items() if k < 2]
         errors += [f"{concept}: code {code} missing from short-answer patterns" for code in codes - in_patterns]

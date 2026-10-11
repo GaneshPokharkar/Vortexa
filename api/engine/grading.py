@@ -66,6 +66,7 @@ RULES = {
     "short:llm-unsure": "Claude's match was below the confidence threshold, so the tutor asks first.",
     "short:off-topic": "The answer doesn't address the question.",
     "short:unmatched": "The answer matches neither the correct idea nor a known wrong idea.",
+    "orchestrator:disagree": "The rules and the AI evaluator disagreed about this answer, so the tutor asks before deciding.",
     "clarify:resolved": "Re-graded after the learner answered a clarification.",
     "clarify:limit": "Still unclear after 2 clarifications: undiagnosed.",
 }

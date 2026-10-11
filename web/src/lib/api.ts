@@ -106,6 +106,25 @@ export type FollowUp = {
   card_id: string | null;
 };
 
+/** One stage of the 3-agent diagnosis pipeline, for "Why this diagnosis?". */
+export type PipelineStage = {
+  stage: "evaluate" | "diagnose" | "visualize";
+  agent: "Evaluator" | "Diagnoser" | "Visual corrector";
+  engine: "rules" | "claude" | "rules+claude" | "physics";
+  outcome: string;
+  ms: number;
+};
+
+/** "Your idea vs real physics" overlay, numbers computed by tested physics code (never by the AI). */
+export type VisualCorrection = {
+  visual: "refraction" | "shm-oscillator" | "lens-bench";
+  overlay: "angle-from-surface" | "bends-toward-normal" | "speed-max-at-extremes" | "half-lens-half-image";
+  params: Record<string, number | string | null | number[][]>;
+  student_label: string;
+  true_label: string;
+  caption: string;
+};
+
 export type Feedback = {
   response_id: number;
   category: Category;
@@ -120,6 +139,8 @@ export type Feedback = {
   correct_answer: string | null; // null when the tutor wants the learner to reason first
   feedback_text: string; // targeted teaching response
   follow_up: FollowUp | null;
+  visual_correction: VisualCorrection | null;
+  pipeline: PipelineStage[];
   misconception_code: string | null;
   misconception_status: "SUSPECTED" | "CONFIRMED" | null;
   remediation_card_id: string;
@@ -139,6 +160,8 @@ export type Why = {
   rule_text: string;
   engine: "rules" | "llm";
   evidence: string[];
+  pipeline: PipelineStage[];
+  visual_correction: VisualCorrection | null;
   distractor_map_entry: Record<string, string> | null; // mcq only
   reason: { reason_id: string; maps_to: string } | null;
   reason_text: string | null;

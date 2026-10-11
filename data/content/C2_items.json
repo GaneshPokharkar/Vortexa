@@ -21,12 +21,27 @@
       "D": "S5"
     },
     "reasons": {
-      "r1": {"text": "At the end the spring is stretched the most, so it pulls back hardest. The block stops for a moment but the pull is biggest there.", "maps_to": "CORRECT"},
-      "r2": {"text": "The block has stopped at the end, so nothing is changing at that moment. No velocity means no acceleration.", "maps_to": "S6"},
-      "r3": {"text": "The end is the farthest point from the middle, so that is where the block is going the fastest.", "maps_to": "S4"}
+      "r1": {
+        "text": "At the end the spring is stretched the most, so it pulls back hardest. The block stops for a moment but the pull is biggest there.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "The block has stopped at the end, so nothing is changing at that moment. No velocity means no acceleration.",
+        "maps_to": "S6"
+      },
+      "r3": {
+        "text": "The end is the farthest point from the middle, so that is where the block is going the fastest.",
+        "maps_to": "S4"
+      }
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY"]
+    "verify_flags": [
+      "TODO_VERIFY"
+    ],
+    "setup": {
+      "amplitude": 0.1,
+      "omega": 10
+    }
   },
   {
     "item_id": "C2-P2",
@@ -50,12 +65,28 @@
       "D": "SLIP"
     },
     "reasons": {
-      "r1": {"text": "At the end the bob is displaced the most, so the restoring pull back toward the bottom is strongest, even though it is stopped for an instant.", "maps_to": "CORRECT"},
-      "r2": {"text": "The bob is not moving at the end, so there is nothing to accelerate it there.", "maps_to": "S6"},
-      "r3": {"text": "At the bottom the bob is moving fastest, so that is where its acceleration must be the biggest.", "maps_to": "S7"}
+      "r1": {
+        "text": "At the end the bob is displaced the most, so the restoring pull back toward the bottom is strongest, even though it is stopped for an instant.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "The bob is not moving at the end, so there is nothing to accelerate it there.",
+        "maps_to": "S6"
+      },
+      "r3": {
+        "text": "At the bottom the bob is moving fastest, so that is where its acceleration must be the biggest.",
+        "maps_to": "S7"
+      }
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Pendulum treated as small-angle SHM: at the extreme the acceleration is tangential (≈ g sinθ ≈ gθ) toward the mean; at the lowest point the centripetal term v²/L is ignored, as is standard for the SHM approximation."]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Pendulum treated as small-angle SHM: at the extreme the acceleration is tangential (≈ g sinθ ≈ gθ) toward the mean; at the lowest point the centripetal term v²/L is ignored, as is standard for the SHM approximation."
+    ],
+    "setup": {
+      "amplitude": 0.1,
+      "omega": 10
+    }
   },
   {
     "item_id": "C2-P3",
@@ -79,12 +110,28 @@
       "D": "S6"
     },
     "reasons": {
-      "r1": {"text": "At the ends the table is farthest from the middle, so the restoring acceleration is biggest and friction has to work hardest there.", "maps_to": "CORRECT"},
-      "r2": {"text": "The table is fastest in the middle, so that is where it accelerates the most and the coin will slide.", "maps_to": "S7"},
-      "r3": {"text": "At the ends the table stops, so there is no acceleration there and the coin is safe at the ends.", "maps_to": "S6"}
+      "r1": {
+        "text": "At the ends the table is farthest from the middle, so the restoring acceleration is biggest and friction has to work hardest there.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "The table is fastest in the middle, so that is where it accelerates the most and the coin will slide.",
+        "maps_to": "S7"
+      },
+      "r3": {
+        "text": "At the ends the table stops, so there is no acceleration there and the coin is safe at the ends.",
+        "maps_to": "S6"
+      }
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Transfer context: coin slips when the needed friction m·ω²|x| exceeds μs·m·g, which first happens at |x| = A. Assumes ideal SHM of the table."]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Transfer context: coin slips when the needed friction m·ω²|x| exceeds μs·m·g, which first happens at |x| = A. Assumes ideal SHM of the table."
+    ],
+    "setup": {
+      "amplitude": 0.1,
+      "omega": 10
+    }
   },
   {
     "item_id": "C2-A1",
@@ -108,12 +155,27 @@
       "D": "CORRECT"
     },
     "reasons": {
-      "r1": {"text": "At the mean position the spring is not stretched, so there is no force and a = 0. All the energy is kinetic there, so v = Aω = 1 m/s.", "maps_to": "CORRECT"},
-      "r2": {"text": "The block moves fastest at the centre, so its acceleration should be the biggest there too.", "maps_to": "S7"},
-      "r3": {"text": "Farthest from the centre it has the most energy of motion, so at the centre it is the slowest.", "maps_to": "S4"}
+      "r1": {
+        "text": "At the mean position the spring is not stretched, so there is no force and a = 0. All the energy is kinetic there, so v = Aω = 1 m/s.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "The block moves fastest at the centre, so its acceleration should be the biggest there too.",
+        "maps_to": "S7"
+      },
+      "r3": {
+        "text": "Farthest from the centre it has the most energy of motion, so at the centre it is the slowest.",
+        "maps_to": "S4"
+      }
     },
     "calc": "ω = √(k/m) = √(20/0.2) = 10 rad/s; v_max = Aω = 0.1 × 10 = 1 m/s; a = −ω²x = 0 at x = 0. SLIP C uses ω = k/m = 100 (forgot the square root): 0.1 × 100 = 10 m/s. Option A uses a_max = ω²A = 10 m/s² at the wrong place.",
-    "verify_flags": ["TODO_VERIFY"]
+    "verify_flags": [
+      "TODO_VERIFY"
+    ],
+    "setup": {
+      "amplitude": 0.1,
+      "omega": 10
+    }
   },
   {
     "item_id": "C2-Q1",
@@ -125,12 +187,70 @@
     "stem": "Where is the speed of an ideal simple harmonic oscillator maximum? Give a reason.",
     "answer_key": "At the mean position.",
     "expected_reasoning": "At the mean position the potential energy is zero, so all the energy is kinetic and the speed is greatest (v = Aω). The restoring force speeds the body up all the way to the mean and slows it down after.",
-    "accept_any": ["mean", "centre", "center", "middle", "equilibrium", "x = 0", "x=0", "origin", "lowest point"],
-    "reasoning_any": ["kinetic energy", "k.e", "potential energy", "p.e", "energy", "restoring force", "force is zero", "no force", "speeds up", "speeding up", "slows down", "acceleration is zero", "zero acceleration", "aω", "a ω", "√(a² − x²)", "unstretched", "not stretched"],
+    "accept_any": [
+      "mean",
+      "centre",
+      "center",
+      "middle",
+      "equilibrium",
+      "x = 0",
+      "x=0",
+      "origin",
+      "lowest point"
+    ],
+    "reasoning_any": [
+      "kinetic energy",
+      "k.e",
+      "potential energy",
+      "p.e",
+      "energy",
+      "restoring force",
+      "force is zero",
+      "no force",
+      "speeds up",
+      "speeding up",
+      "slows down",
+      "acceleration is zero",
+      "zero acceleration",
+      "aω",
+      "a ω",
+      "√(a² − x²)",
+      "unstretched",
+      "not stretched"
+    ],
     "numeric": null,
     "patterns": [
-      {"code": "S4", "any": ["at the extreme", "at extreme", "extreme position", "extreme point", "farthest", "furthest", "at the end", "at the ends", "end point", "turning point", "at amplitude"]},
-      {"code": "S5", "any": ["constant everywhere", "speed is constant", "constant speed", "same everywhere", "same speed", "uniform speed", "everywhere same", "never changes", "doesn't change", "does not change"]}
+      {
+        "code": "S4",
+        "any": [
+          "at the extreme",
+          "at extreme",
+          "extreme position",
+          "extreme point",
+          "farthest",
+          "furthest",
+          "at the end",
+          "at the ends",
+          "end point",
+          "turning point",
+          "at amplitude"
+        ]
+      },
+      {
+        "code": "S5",
+        "any": [
+          "constant everywhere",
+          "speed is constant",
+          "constant speed",
+          "same everywhere",
+          "same speed",
+          "uniform speed",
+          "everywhere same",
+          "never changes",
+          "doesn't change",
+          "does not change"
+        ]
+      }
     ],
     "follow_ups": {
       "S4": "What happens to the oscillator's kinetic energy when it momentarily stops at an extreme position?",
@@ -140,7 +260,15 @@
       "UNCLEAR": "Can you name the position — the mean position or an extreme position — where the oscillator moves fastest?"
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Keyword matching is substring-based: a correct answer that also says 'zero at the extreme position' will hit both accept_any and S4. Grader precedence must be decided (suggest: accept_any wins unless the S4 phrase is the stated answer).", "'mean' could match filler like 'I mean'; acceptable risk for a demo."]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Keyword matching is substring-based: a correct answer that also says 'zero at the extreme position' will hit both accept_any and S4. Grader precedence must be decided (suggest: accept_any wins unless the S4 phrase is the stated answer).",
+      "'mean' could match filler like 'I mean'; acceptable risk for a demo."
+    ],
+    "setup": {
+      "amplitude": 0.1,
+      "omega": 10
+    }
   },
   {
     "item_id": "C2-Q2",
@@ -152,12 +280,76 @@
     "stem": "Riya pulls a block on a smooth spring to one side and lets go. At the instant it stops at the far end, is its acceleration zero? Give a reason.",
     "answer_key": "No — its acceleration is greatest at the extreme position and points toward the mean position.",
     "expected_reasoning": "At the extreme the displacement is largest, so the restoring force −kx and the acceleration −ω²x are largest. Zero velocity only means the block is turning around, not that nothing acts on it.",
-    "accept_any": ["not zero", "non zero", "non-zero", "nonzero", "isn't zero", "greatest at extreme", "greatest at the extreme", "largest at extreme", "highest at extreme", "max at extreme", "maximum at extreme", "towards the mean", "toward the mean", "towards mean", "toward mean", "towards the centre", "toward the centre", "towards centre", "towards center", "toward center"],
-    "reasoning_any": ["restoring force", "spring force", "force", "displacement", "-kx", "−kx", "ω²x", "omega square", "stretched", "compressed", "pulls back", "pulled back", "turning", "changes direction", "comes back"],
+    "accept_any": [
+      "not zero",
+      "non zero",
+      "non-zero",
+      "nonzero",
+      "isn't zero",
+      "greatest at extreme",
+      "greatest at the extreme",
+      "largest at extreme",
+      "highest at extreme",
+      "max at extreme",
+      "maximum at extreme",
+      "towards the mean",
+      "toward the mean",
+      "towards mean",
+      "toward mean",
+      "towards the centre",
+      "toward the centre",
+      "towards centre",
+      "towards center",
+      "toward center"
+    ],
+    "reasoning_any": [
+      "restoring force",
+      "spring force",
+      "force",
+      "displacement",
+      "-kx",
+      "−kx",
+      "ω²x",
+      "omega square",
+      "stretched",
+      "compressed",
+      "pulls back",
+      "pulled back",
+      "turning",
+      "changes direction",
+      "comes back"
+    ],
     "numeric": null,
     "patterns": [
-      {"code": "S6", "any": ["yes", "zero acceleration", "acceleration is zero", "acceleration zero", "no acceleration", "it is zero", "also zero", "both zero", "both are zero"]},
-      {"code": "S7", "any": ["max at mean", "max at the mean", "maximum at mean", "maximum at centre", "max at centre", "greatest at mean", "largest at mean", "highest at mean", "most at mean", "max in the middle"]}
+      {
+        "code": "S6",
+        "any": [
+          "yes",
+          "zero acceleration",
+          "acceleration is zero",
+          "acceleration zero",
+          "no acceleration",
+          "it is zero",
+          "also zero",
+          "both zero",
+          "both are zero"
+        ]
+      },
+      {
+        "code": "S7",
+        "any": [
+          "max at mean",
+          "max at the mean",
+          "maximum at mean",
+          "maximum at centre",
+          "max at centre",
+          "greatest at mean",
+          "largest at mean",
+          "highest at mean",
+          "most at mean",
+          "max in the middle"
+        ]
+      }
     ],
     "follow_ups": {
       "S6": "If the acceleration were zero at that instant, what would the block do next — stay there or come back?",
@@ -167,7 +359,15 @@
       "UNCLEAR": "Is the acceleration at the far end zero or not, and which way does it point?"
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "'yes' is a short S6 trigger and could fire on unrelated filler ('yes, so...'); review against real transcripts.", "A correct answer that adds 'and it is zero at the mean' does not hit S6/S7 phrases, but 'it is zero' could appear in a correct answer referring to velocity; review precedence."]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "'yes' is a short S6 trigger and could fire on unrelated filler ('yes, so...'); review against real transcripts.",
+      "A correct answer that adds 'and it is zero at the mean' does not hit S6/S7 phrases, but 'it is zero' could appear in a correct answer referring to velocity; review precedence."
+    ],
+    "setup": {
+      "amplitude": 0.1,
+      "omega": 10
+    }
   },
   {
     "item_id": "C2-A2",
@@ -180,11 +380,65 @@
     "answer_key": "0.5 m/s, the maximum speed, because v = Aω at the mean position.",
     "expected_reasoning": "At x = 0, v = ω√(A² − x²) = Aω = 0.05 × 10 = 0.5 m/s; all the energy is kinetic there, so the speed is greatest.",
     "accept_any": [],
-    "reasoning_any": ["aω", "a ω", "a × ω", "a*ω", "amplitude times", "omega", "ω√", "kinetic energy", "all kinetic", "x = 0", "x=0", "v max", "vmax", "v_max", "no potential"],
-    "numeric": {"value": 0.5, "unit": "m/s", "tolerance": 0.01, "slips": [{"value": 5.0, "why": "used ω²A (maximum acceleration, m/s²) instead of Aω"}, {"value": -0.5, "why": "sign slip; speed is a magnitude"}]},
+    "reasoning_any": [
+      "aω",
+      "a ω",
+      "a × ω",
+      "a*ω",
+      "amplitude times",
+      "omega",
+      "ω√",
+      "kinetic energy",
+      "all kinetic",
+      "x = 0",
+      "x=0",
+      "v max",
+      "vmax",
+      "v_max",
+      "no potential"
+    ],
+    "numeric": {
+      "value": 0.5,
+      "unit": "m/s",
+      "tolerance": 0.01,
+      "slips": [
+        {
+          "value": 5.0,
+          "why": "used ω²A (maximum acceleration, m/s²) instead of Aω"
+        },
+        {
+          "value": -0.5,
+          "why": "sign slip; speed is a magnitude"
+        }
+      ]
+    },
     "patterns": [
-      {"code": "S4", "any": ["zero at mean", "zero at the mean", "zero at centre", "fastest at extreme", "fastest at the extreme", "fastest at the end", "slowest at mean", "slowest at the mean", "stops at the mean", "at rest at mean"]},
-      {"code": "S5", "any": ["speed is constant", "constant speed", "same everywhere", "same speed", "uniform speed", "never changes"]}
+      {
+        "code": "S4",
+        "any": [
+          "zero at mean",
+          "zero at the mean",
+          "zero at centre",
+          "fastest at extreme",
+          "fastest at the extreme",
+          "fastest at the end",
+          "slowest at mean",
+          "slowest at the mean",
+          "stops at the mean",
+          "at rest at mean"
+        ]
+      },
+      {
+        "code": "S5",
+        "any": [
+          "speed is constant",
+          "constant speed",
+          "same everywhere",
+          "same speed",
+          "uniform speed",
+          "never changes"
+        ]
+      }
     ],
     "follow_ups": {
       "S4": "At the mean position the spring is unstretched. Where has the stored spring energy gone?",
@@ -194,6 +448,13 @@
       "UNCLEAR": "Can you give the speed at the mean position as a number with its unit?"
     },
     "calc": "v_max = Aω = 0.05 × 10 = 0.5 m/s (follow-up: at x = 0.03 m, v = 10√(0.0025 − 0.0009) = 10 × 0.04 = 0.4 m/s).",
-    "verify_flags": ["TODO_VERIFY", "An answer of 0 m/s is the S4 misconception, not a slip; it is caught by text patterns, not numeric.slips. Confirm the numeric grader routes 0 to S4 or UNCLEAR."]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "An answer of 0 m/s is the S4 misconception, not a slip; it is caught by text patterns, not numeric.slips. Confirm the numeric grader routes 0 to S4 or UNCLEAR."
+    ],
+    "setup": {
+      "amplitude": 0.05,
+      "omega": 10
+    }
   }
 ]

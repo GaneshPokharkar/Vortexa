@@ -707,6 +707,24 @@
   ]
  },
  {
+  "card_id": "R7-R",
+  "concept": "C6",
+  "code": "R7",
+  "statement": "Measure the angles of incidence, reflection and refraction from the normal, not from the surface.",
+  "wrong_idea": "The angle of incidence is the angle between the ray and the surface.",
+  "why_it_feels_right": "The surface is the line you can actually see, so measuring from it feels natural.",
+  "why_wrong": "Snell's law and the laws of reflection use angles measured from the normal, the line perpendicular to the surface. An angle of 60° to the surface is 30° to the normal, and the two give very different answers.",
+  "sim_moment": "In the refraction visual, the dashed 'your idea' ray uses the angle from the surface; the solid ray uses the angle from the normal.",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
+   "Remediation R4 sim_moment assumes the refraction visual lets the laser be aimed from the air side as well as from inside the glass",
+   "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text",
+   "Seeded concept-card fields, equations and doubts need academic review; Unicode subscripts (n₁, n₂) must render in the app"
+  ]
+ },
+ {
   "card_id": "C7-K",
   "concept": "C7",
   "statement": "A convex lens forms a full real image where rays meet, screen or not.",
