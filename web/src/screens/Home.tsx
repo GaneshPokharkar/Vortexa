@@ -64,7 +64,7 @@ export default function Home() {
 
       <Panel className="mt-6">
         <h2 className="border-b border-line px-6 py-3.5 text-[16px] font-semibold">Progress</h2>
-        <ul className="grid divide-y divide-line sm:grid-cols-2 sm:divide-y-0">
+        <ul className="grid grid-cols-1 divide-y divide-line sm:grid-cols-2 sm:divide-y-0">
           {rep.concepts.map((m) => (
             <li key={m.concept} className="flex items-center justify-between gap-4 px-6 py-3 sm:border-b sm:border-line">
               <Link to={`/learn/${m.concept}`} className="min-w-0 truncate text-[15px] text-ink hover:text-blue-ink">

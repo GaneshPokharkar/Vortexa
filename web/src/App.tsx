@@ -23,7 +23,7 @@ function Wordmark() {
           strokeWidth="2.4" strokeLinecap="round" />
         <circle cx="15" cy="10" r="2.2" fill="var(--ll-ink)" />
       </svg>
-      <span className="text-[18px] font-semibold tracking-tight text-ink">
+      <span className="whitespace-nowrap text-[18px] font-semibold tracking-tight text-ink">
         LearnLoop <span className="font-normal text-muted">AI</span>
       </span>
     </Link>
@@ -102,7 +102,7 @@ function LearnerMenu() {
         <span className="grid size-7 place-items-center rounded-full bg-surface-2 text-ink-2">
           <UserRound className="size-4" aria-hidden="true" />
         </span>
-        {learnerName(learner)}
+        <span className="sr-only sm:not-sr-only">{learnerName(learner)}</span>
         {learner.is_demo && <span className="rounded bg-gc-soft px-1.5 text-[11.5px] font-medium text-gc">Demo</span>}
         <ChevronDown className="size-3.5 text-muted" aria-hidden="true" />
       </button>
@@ -142,13 +142,13 @@ function Shell({ children }: { children: ReactNode }) {
         Skip to content
       </a>
       <header className="sticky top-0 z-20 border-b border-line bg-surface/95 backdrop-blur-sm">
-        <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-3 gap-y-1 px-4 py-2 sm:h-16 sm:flex-nowrap sm:gap-6 sm:px-6 sm:py-0">
           <Wordmark />
           {learner && (
-            <nav aria-label="Main" className="-mx-1 flex flex-1 gap-0.5 overflow-x-auto">
+            <nav aria-label="Main" className="order-last -mx-1 flex min-w-0 basis-full gap-0.5 overflow-x-auto [scrollbar-width:none] sm:order-none sm:flex-1 sm:basis-auto">
               {NAV.map((n) => (
                 <NavLink key={n.to} to={n.to}
-                  className={({ isActive }) => `whitespace-nowrap rounded-md px-2.5 py-1.5 text-[14.5px] transition-colors ${
+                  className={({ isActive }) => `whitespace-nowrap rounded-md px-2 py-1.5 text-[14.5px] sm:px-2.5 transition-colors ${
                     isActive ? "bg-blue-soft font-medium text-blue-ink" : "text-ink-2 hover:bg-surface-2"}`}>
                   {n.label}
                 </NavLink>

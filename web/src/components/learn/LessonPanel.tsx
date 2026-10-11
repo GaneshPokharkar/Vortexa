@@ -2,6 +2,7 @@ import { RefreshCcw } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ExplainMode, Lesson } from "../../lib/api";
 import { VISUALS } from "../../visuals";
+import { Speak, SpeechLang, recorded } from "../../voice/Speak";
 
 type Mode = "simple" | "steps" | "worked" | "analogy" | "visual" | "formal";
 const MODES: { id: Mode; label: string }[] = [
@@ -32,6 +33,7 @@ export function LessonPanel({ lesson }: { lesson: Lesson }) {
 
   const Visual = hasVisual ? VISUALS[card.visual] : null;
   const modes = MODES.filter((m) => m.id !== "visual" || hasVisual);
+  const spoken = alt < 0 ? recorded(`lesson-${card.concept}`, card.simple) : null; // only the main explanation is recorded
 
   return (
     <section aria-label="Lesson" className="overflow-hidden rounded-xl border border-line bg-surface">
@@ -67,12 +69,22 @@ export function LessonPanel({ lesson }: { lesson: Lesson }) {
         )}
         {mode === "visual" && Visual && <Visual />}
 
-        {mode === "simple" && card.alternatives.length > 0 && (
-          <button onClick={() => setAlt((a) => (a + 1 >= card.alternatives.length ? -1 : a + 1))}
-            className="mt-4 inline-flex items-center gap-2 rounded-lg px-2 py-1 text-[14.5px] text-blue-ink hover:bg-surface-2">
-            <RefreshCcw className="size-4" aria-hidden="true" />
-            {alt + 1 >= card.alternatives.length ? "Back to the first explanation" : "Explain it another way"}
-          </button>
+        {mode === "simple" && (spoken || card.alternatives.length > 0) && (
+          <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2">
+            {spoken && (
+              <>
+                <Speak id={spoken} />
+                <SpeechLang />
+              </>
+            )}
+            {card.alternatives.length > 0 && (
+              <button onClick={() => setAlt((a) => (a + 1 >= card.alternatives.length ? -1 : a + 1))}
+                className="inline-flex items-center gap-2 rounded-lg px-2 py-1 text-[14.5px] text-blue-ink hover:bg-surface-2">
+                <RefreshCcw className="size-4" aria-hidden="true" />
+                {alt + 1 >= card.alternatives.length ? "Back to the first explanation" : "Explain it another way"}
+              </button>
+            )}
+          </div>
         )}
       </div>
 
