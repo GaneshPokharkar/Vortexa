@@ -1,429 +1,484 @@
 [
  {
-  "code": "O1",
+  "code": "S1",
   "concept": "C1",
-  "description": "A bigger swing (amplitude) takes longer.",
+  "description": "Amplitude is the full distance between the two extreme positions.",
   "exemplars": [
-   "bigger swing, more distance, so more time",
-   "if I pull it further it'll take longer to come back",
-   "the 10 degree one has to travel more so it's slower to finish",
-   "longer path means longer time obviously",
-   "small swing finishes quicker because it doesn't go far",
-   "doubling the angle should double the time",
-   "it has more ground to cover so the period goes up",
-   "wider arc, more time, simple",
-   "the one pulled less will come back first",
-   "more amplitude means the period is bigger",
-   "zyada door kheecha toh time bhi zyada lagega",
-   "bada swing hai toh wapas aane mein der lagegi"
+   "amplitude is the full distance from one end to the other",
+   "it goes 10 cm end to end so the amplitude is 10 cm",
+   "amplitude is the total width of the swing",
+   "you measure amplitude from the left extreme to the right extreme",
+   "the whole stretch it covers, that's the amplitude",
+   "amplitude is peak to peak",
+   "the distance between the two extreme positions is the amplitude",
+   "amplitude is how far it travels across in one swing",
+   "I'd just take the gap between both ends as the amplitude",
+   "amplitude means the complete length of the oscillation",
+   "amplitude matlab ek end se dusre end tak ka distance",
+   "dono extreme ke beech jitna gap hai wahi amplitude hai na"
   ],
-  "remediation_card_id": "O1-R",
+  "remediation_card_id": "S1-R",
   "followup_item_ids": [
    "C1-P1",
    "C1-P2",
-   "C1-P3"
+   "C1-P3",
+   "C1-Q2"
   ],
-  "contrast_probe": "A pendulum takes 2 s per swing at 4°; roughly how long does it take at 8°, still a small angle?",
+  "contrast_probe": "A swing's two extreme points are 2 m apart; how far is each extreme from the lowest point, and what is the amplitude?",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
-   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
+   "Large-angle pendulum described as 'not exactly SHM': confirm wording suits HSC scope.",
+   "Hinglish exemplars need a native-speaker check for natural phrasing.",
+   "Equation d = 2A is a helper relation, not a standard textbook equation."
   ]
  },
  {
-  "code": "O2",
+  "code": "S2",
   "concept": "C1",
-  "description": "A bigger swing moves faster, so it finishes first.",
+  "description": "Every periodic motion is simple harmonic motion.",
   "exemplars": [
-   "the bigger swing goes faster so it comes back first",
-   "it starts higher so it speeds up more and wins",
-   "more height means more speed, so less time",
-   "the wide one zooms through the bottom, it'll finish first",
-   "pull it further and it rushes back quicker",
-   "the small swing is slow, so it takes longer",
-   "higher release, faster bob, shorter period",
-   "it gets more energy so it completes the swing sooner",
-   "the one pulled more is quicker to return",
-   "bigger amplitude means it moves faster, so the period drops",
-   "upar se chhoda toh speed zyada, pehle aa jayega",
-   "chhota swing dheere chalta hai, isliye time zyada"
+   "it repeats every few seconds so it's SHM",
+   "any periodic motion is simple harmonic",
+   "the earth going round the sun is SHM because it's periodic",
+   "a bouncing ball is SHM, it keeps coming back at equal intervals",
+   "periodic and SHM are basically the same thing",
+   "if the time period is fixed then it has to be SHM",
+   "the fan keeps rotating again and again so that's SHM",
+   "clock hands do SHM because they repeat",
+   "anything that repeats itself is harmonic motion",
+   "heartbeat is periodic so heartbeat is SHM",
+   "repeat ho raha hai toh SHM hi hoga",
+   "har periodic motion SHM hota hai yaar"
   ],
-  "remediation_card_id": "O2-R",
+  "remediation_card_id": "S2-R",
+  "followup_item_ids": [
+   "C1-P2"
+  ],
+  "contrast_probe": "Earth goes round the Sun once every year; is that motion SHM?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Large-angle pendulum described as 'not exactly SHM': confirm wording suits HSC scope.",
+   "Hinglish exemplars need a native-speaker check for natural phrasing.",
+   "Equation d = 2A is a helper relation, not a standard textbook equation."
+  ]
+ },
+ {
+  "code": "S3",
+  "concept": "C1",
+  "description": "Displacement is measured from the starting or extreme point, not from the mean position.",
+  "exemplars": [
+   "displacement is from where I released it",
+   "at the starting point the displacement is zero",
+   "I measure x from the extreme where it started",
+   "displacement is how far it has moved from the start",
+   "at the extreme the displacement is zero because it begins there",
+   "the reference point is the end where I pulled it",
+   "it's 2 cm from the end so the displacement is 2 cm",
+   "displacement is counted from the initial position",
+   "when it reaches the other end the displacement is the full distance",
+   "zero displacement is where the motion starts",
+   "jahan se chhoda wahin se displacement naapte hain",
+   "starting point pe displacement zero hota hai na"
+  ],
+  "remediation_card_id": "S3-R",
   "followup_item_ids": [
    "C1-P1",
    "C1-P2",
-   "C1-P3"
+   "C1-P3",
+   "C1-Q1"
   ],
-  "contrast_probe": "A bob released from 10° moves faster at the bottom than one released from 5°; does that mean it finishes its swing first?",
+  "contrast_probe": "A block released 5 cm to the right of the mean position is now 2 cm to the right of it; what is its displacement?",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
-   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
+   "Large-angle pendulum described as 'not exactly SHM': confirm wording suits HSC scope.",
+   "Hinglish exemplars need a native-speaker check for natural phrasing.",
+   "Equation d = 2A is a helper relation, not a standard textbook equation."
   ]
  },
  {
-  "code": "O3",
-  "concept": "C1",
-  "description": "A heavier bob changes the period.",
-  "exemplars": [
-   "the heavier bob will swing slower",
-   "heavy ball has more weight so it comes back faster",
-   "mass matters, heavier means different period",
-   "a light bob gets pushed around more so it's quicker",
-   "if I change the bob to a heavier one the time changes",
-   "gravity pulls the heavy one harder so it's faster",
-   "the 400 gram one is harder to move so more time",
-   "heavier things are lazier, they swing slow",
-   "just like a spring, more mass more period",
-   "the steel ball and the wooden ball won't match",
-   "bhaari bob hai toh dheere jhoolega",
-   "weight badhao toh period bhi badlega na"
-  ],
-  "remediation_card_id": "O3-R",
-  "followup_item_ids": [
-   "C1-P1",
-   "C1-P3"
-  ],
-  "contrast_probe": "If you replace a 100 g bob with a 400 g bob on the same string, what happens to the period?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
-   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
-  ]
- },
- {
-  "code": "O4",
+  "code": "S4",
   "concept": "C2",
-  "description": "Zero velocity means zero acceleration at the extreme.",
+  "description": "Speed is maximum at the extreme position (confusing displacement with speed).",
   "exemplars": [
-   "it stops at the end so acceleration is zero there",
-   "velocity zero means acceleration zero, right?",
-   "at the extreme nothing is moving so no acceleration",
-   "if it is at rest how can it accelerate",
-   "the block is stopped, so no force on it at that point",
-   "acceleration is max in the middle where it is fastest",
-   "at the top of the swing it just hangs, zero acceleration",
-   "speed is zero so a is zero too, same thing",
-   "it's not moving at the turning point so nothing is acting",
-   "zero velocity, zero acceleration, that's the extreme",
-   "extreme pe ruk gaya toh acceleration bhi zero hi hoga na",
-   "woh ruka hua hai, toh usspe force kaise lagega"
+   "It's fastest at the extreme point.",
+   "At the ends, because that's the farthest it goes.",
+   "Speed is highest where the displacement is highest.",
+   "At the amplitude, it's moving the most there.",
+   "The farther it goes, the faster it gets.",
+   "At the turning points, that's where it's quickest.",
+   "Max speed is at plus A and minus A.",
+   "In the middle it's slow, at the edges it's fast.",
+   "At the end positions, because it has gone the longest distance.",
+   "It picks up speed going out and is fastest at the end.",
+   "Extreme pe sabse fast hota hai kyunki wahan sabse door hai.",
+   "Jitna door jayega utna speed badhega, so end pe maximum."
   ],
-  "remediation_card_id": "O4-R",
+  "remediation_card_id": "S4-R",
+  "followup_item_ids": [
+   "C2-P1",
+   "C2-Q1"
+  ],
+  "contrast_probe": "Where is the block's kinetic energy largest, and where does it move fastest?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
+  ]
+ },
+ {
+  "code": "S5",
+  "concept": "C2",
+  "description": "Speed is constant throughout the oscillation.",
+  "exemplars": [
+   "Speed is constant everywhere.",
+   "It's the same speed the whole time.",
+   "It moves at a steady speed, only the direction changes.",
+   "The speed doesn't change in SHM.",
+   "Uniform speed, because the motion is periodic.",
+   "It's the same everywhere, it just goes back and forth.",
+   "The speed stays fixed, it's simple harmonic.",
+   "Every point has equal speed.",
+   "It repeats evenly, so the speed must be constant.",
+   "There's no place where it's faster, it's all the same.",
+   "Speed toh har jagah same hi rehti hai.",
+   "Constant hai speed, bas direction badalti hai."
+  ],
+  "remediation_card_id": "S5-R",
+  "followup_item_ids": [
+   "C2-P1",
+   "C2-P3",
+   "C2-Q1"
+  ],
+  "contrast_probe": "Does the spring's force change the block's speed during an oscillation?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
+  ]
+ },
+ {
+  "code": "S6",
+  "concept": "C2",
+  "description": "Zero velocity means zero acceleration at the extreme position.",
+  "exemplars": [
+   "At the end it stops, so acceleration is zero.",
+   "Velocity is zero there, so acceleration is zero too.",
+   "It's not moving at the extreme, so no acceleration.",
+   "Both velocity and acceleration are zero at the end.",
+   "When it stops, nothing is accelerating it.",
+   "Yes, it's zero, because the block is at rest.",
+   "There's no motion at the end, so a equals zero.",
+   "Since it's momentarily at rest, there's no acceleration.",
+   "At the turning point everything is zero.",
+   "If v is zero then a has to be zero.",
+   "Wahan ruk gaya na, toh acceleration bhi zero hoga.",
+   "Velocity zero hai toh acceleration bhi zero hi hai."
+  ],
+  "remediation_card_id": "S6-R",
   "followup_item_ids": [
    "C2-P1",
    "C2-P2",
-   "C2-P3"
+   "C2-P3",
+   "C2-Q2"
   ],
-  "contrast_probe": "At the extreme point the block is at rest for an instant. Is its acceleration there zero, or the largest in the whole cycle?",
+  "contrast_probe": "At the instant the block stops at an extreme, is any force acting on it?",
   "verify_flags": [
    "TODO_VERIFY",
-   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
   ]
  },
  {
-  "code": "O5",
+  "code": "S7",
   "concept": "C2",
+  "description": "Acceleration is greatest at the mean position.",
+  "exemplars": [
+   "Acceleration is maximum at the mean position.",
+   "It accelerates the most in the middle where it's fastest.",
+   "Greatest acceleration is at the centre.",
+   "At the mean point the acceleration is highest.",
+   "It's moving fastest in the middle, so acceleration is biggest there.",
+   "The middle has the most acceleration, the ends have the least.",
+   "Max acceleration at x equals zero.",
+   "It speeds up the most at the centre, so acceleration peaks there.",
+   "At equilibrium the acceleration is largest.",
+   "Fastest point means biggest acceleration, so the centre.",
+   "Beech mein sabse zyada acceleration hota hai.",
+   "Mean position pe speed max hai toh acceleration bhi max hoga."
+  ],
+  "remediation_card_id": "S7-R",
+  "followup_item_ids": [
+   "C2-P2",
+   "C2-P3",
+   "C2-Q2"
+  ],
+  "contrast_probe": "How much is the spring stretched when the block is at the mean position?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
+  ]
+ },
+ {
+  "code": "S8",
+  "concept": "C3",
+  "description": "A bigger amplitude gives a longer time period.",
+  "exemplars": [
+   "if you pull it more it has to go further so it takes more time",
+   "bigger swing means longer time period",
+   "more amplitude, more time for one oscillation",
+   "the far one has a longer path so it comes back late",
+   "I think doubling the swing doubles the period",
+   "small swing finishes faster obviously",
+   "it travels more distance so period increases",
+   "if it bounces higher it takes longer to come down",
+   "the period depends on how far you pull it",
+   "longer arc so more time per swing",
+   "zyada kheencha toh zyada time lagega na",
+   "bada swing hai toh time period bhi bada hoga"
+  ],
+  "remediation_card_id": "S8-R",
+  "followup_item_ids": [
+   "C3-P1",
+   "C3-P2",
+   "C3-P3",
+   "C3-Q1"
+  ],
+  "contrast_probe": "If you double the amplitude of a spring–mass oscillator, what happens to the time for one oscillation?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Large-amplitude pendulum correction stated qualitatively only.",
+   "Hinglish exemplars need review by a native speaker for natural phrasing.",
+   "Merry-go-round analogy is a uniform-circular-motion picture of SHM; check it does not suggest angular speed equals frequency."
+  ]
+ },
+ {
+  "code": "S9",
+  "concept": "C3",
+  "description": "The mass of a pendulum bob changes its period (or mass does not matter for a spring).",
+  "exemplars": [
+   "heavier bob will swing faster because gravity pulls it more",
+   "the heavy one is harder to move so it is slower",
+   "lighter bob comes back quicker",
+   "mass of the bob changes the time period",
+   "for spring the mass doesn't matter, only the spring constant",
+   "same spring means same period no matter what block you hang",
+   "iron bob is heavier so it takes more time",
+   "more weight means it falls back faster",
+   "the period only depends on how stiff the spring is",
+   "if you double the mass the pendulum period changes",
+   "bhaari bob jaldi neeche aayega na",
+   "spring same hai toh mass se kya farak padega"
+  ],
+  "remediation_card_id": "S9-R",
+  "followup_item_ids": [
+   "C3-P1",
+   "C3-P3",
+   "C3-Q1",
+   "C3-Q2"
+  ],
+  "contrast_probe": "You replace a 100 g bob with a 400 g bob on a pendulum, and a 100 g block with a 400 g block on a spring. What happens to each period?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Large-amplitude pendulum correction stated qualitatively only.",
+   "Hinglish exemplars need review by a native speaker for natural phrasing.",
+   "Merry-go-round analogy is a uniform-circular-motion picture of SHM; check it does not suggest angular speed equals frequency."
+  ]
+ },
+ {
+  "code": "S10",
+  "concept": "C3",
+  "description": "Angular frequency is confused with frequency (ω = f, or T = 1/ω).",
+  "exemplars": [
+   "omega is the frequency so period is one by omega",
+   "T equals 1 by omega",
+   "frequency is 4 pi hertz since omega is 4 pi",
+   "omega and f are the same thing",
+   "I just put f equals omega",
+   "period is the reciprocal of omega",
+   "angular frequency and frequency mean the same",
+   "omega is 10 pi so it does 10 pi oscillations per second",
+   "f is omega so T is 1 by f which is 1 by omega",
+   "no need for 2 pi, period is 1 over omega",
+   "omega hi toh frequency hai",
+   "T nikalne ke liye bas 1 by omega karo"
+  ],
+  "remediation_card_id": "S10-R",
+  "followup_item_ids": [
+   "C3-P2",
+   "C3-Q2"
+  ],
+  "contrast_probe": "An oscillator has ω = 10π rad/s. How many full oscillations does it make in one second?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Large-amplitude pendulum correction stated qualitatively only.",
+   "Hinglish exemplars need review by a native speaker for natural phrasing.",
+   "Merry-go-round analogy is a uniform-circular-motion picture of SHM; check it does not suggest angular speed equals frequency."
+  ]
+ },
+ {
+  "code": "S11",
+  "concept": "C4",
+  "description": "The restoring force is the same at every displacement.",
+  "exemplars": [
+   "the force is same everywhere in the oscillation",
+   "spring pulls with the same force at every point",
+   "restoring force is constant, it doesn't change with x",
+   "whether it's 2 cm or 6 cm, force is equal",
+   "force doesn't depend on how far you pull it",
+   "acceleration stays the same throughout the motion",
+   "it's the same pull near the centre and at the ends",
+   "the force is fixed, only the speed keeps changing",
+   "k is constant so the force is also constant",
+   "double the stretch, force is still the same only",
+   "force toh har jagah same hi rehta hai",
+   "kitna bhi kheecho, restoring force utna hi hai"
+  ],
+  "remediation_card_id": "S11-R",
+  "followup_item_ids": [
+   "C4-P1",
+   "C4-P2",
+   "C4-P3",
+   "C4-Q2"
+  ],
+  "contrast_probe": "How does the restoring force at 1 cm from the mean compare with the force at 4 cm?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Bowl analogy is exact only for small displacements in a circular bowl",
+   "Hinglish exemplars need native-speaker check"
+  ]
+ },
+ {
+  "code": "S12",
+  "concept": "C4",
+  "description": "The restoring force points in the direction of motion or away from the mean position.",
+  "exemplars": [
+   "the force acts in the direction it's moving",
+   "force pushes it outward toward the extreme",
+   "when it goes right, the force is also to the right",
+   "force is along the displacement",
+   "it pushes the block away from the centre",
+   "the spring force carries it along the way it's going",
+   "force and velocity are always in the same direction",
+   "it moves away from mean because the force is away from mean",
+   "force is in the same direction as x",
+   "the block keeps going because the force points forward",
+   "jidhar ja raha hai udhar hi force lagega",
+   "force mean se door ki taraf hai na"
+  ],
+  "remediation_card_id": "S12-R",
+  "followup_item_ids": [
+   "C4-P1",
+   "C4-P2",
+   "C4-P3",
+   "C4-Q1"
+  ],
+  "contrast_probe": "While the block is moving outward, past the mean toward the extreme, which way does the force on it point?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Bowl analogy is exact only for small displacements in a circular bowl",
+   "Hinglish exemplars need native-speaker check"
+  ]
+ },
+ {
+  "code": "S13",
+  "concept": "C5",
   "description": "Total mechanical energy changes during the oscillation.",
   "exemplars": [
-   "energy is max at the mean because speed is max",
-   "at the ends it stops so it has no energy",
-   "total energy goes down when it slows near the extreme",
-   "it gets more energy every time it passes the middle",
-   "energy is highest at the extreme since the spring is stretched most",
-   "the total energy keeps changing as it moves",
-   "at the turning point the energy is zero for a moment",
-   "kinetic energy is the energy, so it changes with speed",
-   "when it is fastest it has the most total energy",
-   "energy goes up and down along with the position",
-   "mean pe speed max hai toh energy bhi max hogi na",
-   "extreme pe toh KE khatam, toh total energy kam ho gayi"
+   "the energy is maximum at the mean position because it moves fastest there",
+   "at the extreme it stops so the energy becomes zero",
+   "total energy keeps changing as it goes back and forth",
+   "it has less energy at the ends than in the middle",
+   "when it slows down it is losing energy",
+   "energy goes up when it comes to the centre",
+   "at the turning point the block has no energy left",
+   "the total energy is highest at the mean and lowest at the ends",
+   "it gains energy going in and loses it going out",
+   "the total is just the KE at that moment",
+   "extreme pe toh energy zero ho jaati hai kyunki block ruk jaata hai",
+   "beech mein energy zyada hoti hai, end pe kam ho jaati hai"
   ],
-  "remediation_card_id": "O5-R",
-  "followup_item_ids": [
-   "C2-P1",
-   "C2-P2",
-   "C2-P3"
-  ],
-  "contrast_probe": "Compare the block's total energy at the extreme point with its total energy at the mean position. Which is bigger?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
-  ]
- },
- {
-  "code": "W1",
-  "concept": "C3",
-  "description": "The medium travels along with the wave.",
-  "exemplars": [
-   "the rope goes along with the wave",
-   "the water moves forward with the ripple, that's how it reaches the shore",
-   "sound is just air travelling from the speaker to my ear",
-   "the wave pushes the string bits to the other end",
-   "the red dot will end up at the far side",
-   "the particles move along with the wave, right?",
-   "the air from the flute comes to us, that's why we hear it",
-   "the medium travels with it, otherwise how does the wave get there",
-   "the stuff gets carried forward, like a conveyor belt",
-   "the leaf will float off with the waves",
-   "wave ke saath rope bhi aage chali jaati hai",
-   "hawa hi toh speaker se kaan tak aati hai, wahi sound hai"
-  ],
-  "remediation_card_id": "W1-R",
-  "followup_item_ids": [
-   "C3-P1",
-   "C3-P2",
-   "C3-P3"
-  ],
-  "contrast_probe": "After a wave has fully passed a ribbon tied to the middle of a rope, where is the ribbon?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Amplitude-independence of v holds for small (linear) waves only",
-   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
-   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
-  ]
- },
- {
-  "code": "W2",
-  "concept": "C3",
-  "description": "Higher frequency makes the wave travel faster.",
-  "exemplars": [
-   "shake it faster and the wave goes faster",
-   "higher frequency means higher speed",
-   "the high note reaches first because it vibrates more",
-   "more waves per second so it must travel quicker",
-   "if you wiggle fast the wave zooms",
-   "faster hand, faster wave, obviously",
-   "double the frequency, double the speed",
-   "the treble sound travels quicker than the bass",
-   "quick shakes make quick waves",
-   "it moves faster because the source is vibrating faster",
-   "jaldi jaldi hilao toh wave bhi jaldi pahunchegi",
-   "frequency badhegi toh speed bhi badhegi na"
-  ],
-  "remediation_card_id": "W2-R",
-  "followup_item_ids": [
-   "C3-P1",
-   "C3-P2",
-   "C3-P3"
-  ],
-  "contrast_probe": "Same rope, same tension: you double how many times per second you shake it. What happens to the wave speed?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Amplitude-independence of v holds for small (linear) waves only",
-   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
-   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
-  ]
- },
- {
-  "code": "W3",
-  "concept": "C3",
-  "description": "Bigger amplitude makes the wave travel faster.",
-  "exemplars": [
-   "shake harder and the wave goes faster",
-   "bigger waves travel faster",
-   "the louder sound reaches first",
-   "more amplitude means more speed",
-   "a big jerk sends the pulse quicker",
-   "the taller pulse has more energy so it runs faster",
-   "if you hit it harder the sound gets there sooner",
-   "big push, fast wave",
-   "the stronger wave will win the race",
-   "louder means faster, it has more force behind it",
-   "zor se hilao toh wave tez jaayegi",
-   "badi wave hai toh jaldi pahunchegi"
-  ],
-  "remediation_card_id": "W3-R",
-  "followup_item_ids": [
-   "C3-P2",
-   "C3-P3"
-  ],
-  "contrast_probe": "Same rope, same tension: you make the pulse twice as tall. Does it reach the far end sooner?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Amplitude-independence of v holds for small (linear) waves only",
-   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
-   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
-  ]
- },
- {
-  "code": "W4",
-  "concept": "C4",
-  "description": "Overlapping pulses destroy each other; energy is lost when they cancel.",
-  "exemplars": [
-   "they cancel out so they're just gone",
-   "up and down make zero, so the pulses die",
-   "the energy got used up when they cancelled",
-   "flat rope means no energy left",
-   "they destroy each other in the middle",
-   "once they cancel nothing comes out the other side",
-   "the waves kind of kill each other off",
-   "it goes quiet because the sound energy is lost",
-   "destructive interference means energy gets destroyed",
-   "after they meet the rope just stays still",
-   "dono pulse cancel ho gaye, energy khatam",
-   "rope flat hai toh energy kahan bachi, sab chali gayi"
-  ],
-  "remediation_card_id": "W4-R",
-  "followup_item_ids": [
-   "C4-P2",
-   "C4-P3"
-  ],
-  "contrast_probe": "At the instant two opposite pulses make the rope look flat, is the middle of the rope moving or still?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
-  ]
- },
- {
-  "code": "W5",
-  "concept": "C4",
-  "description": "Pulses bounce off each other like balls.",
-  "exemplars": [
-   "they hit and bounce back",
-   "like two balls colliding, they rebound",
-   "each pulse goes back to the person who sent it",
-   "they can't pass through each other, so they reflect",
-   "they collide in the middle and turn around",
-   "the pulses push each other back",
-   "they bounce off, maybe a bit smaller after",
-   "it's a collision, so they reverse direction",
-   "the upward one comes back to my side",
-   "they act like solid things and bump",
-   "dono pulse takra ke wapas aa jaate hain",
-   "ball jaisa, collide karke bounce ho jaata hai"
-  ],
-  "remediation_card_id": "W5-R",
-  "followup_item_ids": [],
-  "contrast_probe": "Kabir sends a tall pulse and Meera a short one toward each other on a slinky. After they meet, which pulse reaches Meera's end?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
-  ]
- },
- {
-  "code": "B1",
-  "concept": "C4",
-  "description": "Beat frequency = f1 + f2.",
-  "exemplars": [
-   "just add them, 440 plus 444",
-   "both are playing so the beats are the total",
-   "beat frequency is f1 plus f2",
-   "superposition means add, so add the frequencies",
-   "884 beats, you sum them",
-   "two sounds together means the frequencies stack up",
-   "more sources, more beats, so it's the sum",
-   "the combined frequency is the sum",
-   "the beats would be super fast, like hundreds a second, since you add",
-   "total vibrations per second from both together",
-   "dono frequency ko jod do, wahi beat hai",
-   "plus karna hai na, 512 aur 506 ko"
-  ],
-  "remediation_card_id": "B1-R",
-  "followup_item_ids": [
-   "C4-P1",
-   "C4-P2",
-   "C4-P3"
-  ],
-  "contrast_probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
-  ]
- },
- {
-  "code": "B2",
-  "concept": "C4",
-  "description": "Beat frequency = the average of f1 and f2.",
-  "exemplars": [
-   "it's the average of the two",
-   "add them and divide by two",
-   "the beat is somewhere in the middle",
-   "442, halfway between 440 and 444",
-   "the throb is at the mean frequency",
-   "beat frequency sits between both notes",
-   "you hear a middle note, so that's the beat",
-   "average, because the two sounds mix evenly",
-   "the beat number is like the middle value",
-   "f1 plus f2 over 2",
-   "dono ka average lo, bas",
-   "beech wala number hi beat frequency hai"
-  ],
-  "remediation_card_id": "B2-R",
-  "followup_item_ids": [
-   "C4-P1",
-   "C4-P2",
-   "C4-P3"
-  ],
-  "contrast_probe": "Forks of 300 Hz and 304 Hz sound together. Which number gives the pitch you hear, and which gives how often it throbs?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
-  ]
- },
- {
-  "code": "R1",
-  "concept": "C5",
-  "description": "Stepping back from a plane mirror lets you see more of yourself.",
-  "exemplars": [
-   "if I go back I can see more of me",
-   "step back and your legs come into the mirror",
-   "farther away means more of you fits in",
-   "like a camera, move back and you get the full body",
-   "the mirror shows more when you're far from it",
-   "just stand far and you'll see your shoes",
-   "closer means only face, far means whole body",
-   "distance makes the view wider, so more of me shows",
-   "a small mirror is fine if you stand far enough",
-   "moving away from the mirror fits more of my body",
-   "thoda peeche jao toh poora dikhega",
-   "door khade hone se zyada body dikhti hai mirror mein"
-  ],
-  "remediation_card_id": "R1-R",
+  "remediation_card_id": "S13-R",
   "followup_item_ids": [
    "C5-P1",
    "C5-P2",
-   "C5-P3"
+   "C5-P3",
+   "C5-Q1",
+   "C5-Q2"
   ],
-  "contrast_probe": "A small wall mirror shows you from head to chest. You walk three steps back. Down to where can you see now?",
+  "contrast_probe": "As the block slows down near the extreme, where does its kinetic energy go?",
   "verify_flags": [
    "TODO_VERIFY",
-   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
-   "Half-height rule assumes a vertical plane mirror hung at the correct height."
+   "PE taken as zero at the mean position throughout; for a vertical spring this holds when x is measured from the loaded equilibrium position.",
+   "Hinglish exemplars written in Latin script; review for natural phrasing.",
+   "Worked example numbers match item C5-Q2 (m = 0.5 kg, k = 200 N/m, A = 0.1 m)."
   ]
  },
  {
-  "code": "R2",
+  "code": "S14",
   "concept": "C5",
-  "description": "The image is on the mirror surface.",
+  "description": "Kinetic and potential energy are both maximum at the same point (or PE is maximum at the mean).",
   "exemplars": [
-   "the image is right on the glass",
-   "it's like a picture stuck on the mirror surface",
-   "my reflection is on the mirror, not behind it",
-   "the image is where the mirror is",
-   "distance to the image is same as distance to the mirror",
-   "the image can't be behind, there's just wall there",
-   "so the mirror has to be as tall as me to fit my image",
-   "the reflection sits flat on the glass",
-   "I'm 2 m from the mirror so my image is 2 m from me",
-   "image forms on the surface, that's where the light bounces",
-   "image toh mirror ke upar hi banti hai",
-   "reflection glass pe hi hai, peeche kuch nahi hai"
+   "PE is maximum at the mean position",
+   "both KE and PE are maximum at the mean",
+   "at the mean position everything is maximum",
+   "potential energy is highest in the middle",
+   "KE is maximum at the extremes and PE at the mean",
+   "at the centre both energies are full",
+   "the spring stores the most energy at the mean position",
+   "KE and PE peak together at the same point",
+   "PE is zero at the ends because it is far from the centre",
+   "at the extreme it is not moving so PE is also zero",
+   "mean position pe dono energy maximum hoti hai",
+   "PE toh centre mein hi maximum hogi na"
   ],
-  "remediation_card_id": "R2-R",
+  "remediation_card_id": "S14-R",
   "followup_item_ids": [
    "C5-P1",
-   "C5-P3"
+   "C5-P2",
+   "C5-Q1"
   ],
-  "contrast_probe": "You stand 1 m from a mirror. How far from you is your image?",
+  "contrast_probe": "At which position is the spring stretched or compressed the most, and what does that mean for the PE there?",
   "verify_flags": [
    "TODO_VERIFY",
-   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
-   "Half-height rule assumes a vertical plane mirror hung at the correct height."
+   "PE taken as zero at the mean position throughout; for a vertical spring this holds when x is measured from the loaded equilibrium position.",
+   "Hinglish exemplars written in Latin script; review for natural phrasing.",
+   "Worked example numbers match item C5-Q2 (m = 0.5 kg, k = 200 N/m, A = 0.1 m)."
+  ]
+ },
+ {
+  "code": "S15",
+  "concept": "C5",
+  "description": "Total energy is proportional to amplitude (doubling A doubles E).",
+  "exemplars": [
+   "double the amplitude means double the energy",
+   "energy is directly proportional to the amplitude",
+   "if amplitude is three times, energy is three times",
+   "pull it twice as far and you get twice the energy",
+   "energy goes up the same as the amplitude",
+   "half the amplitude means half the energy",
+   "E is proportional to A, so it doubles",
+   "bigger swing by two times, energy by two times",
+   "amplitude doubled so total energy is 2 times",
+   "the energy just scales with how far you pull it",
+   "amplitude double kiya toh energy bhi double ho jaayegi",
+   "do guna amplitude matlab do guna energy"
+  ],
+  "remediation_card_id": "S15-R",
+  "followup_item_ids": [
+   "C5-P3",
+   "C5-Q2"
+  ],
+  "contrast_probe": "If the amplitude is made three times larger, by what factor does the total energy change?",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "PE taken as zero at the mean position throughout; for a vertical spring this holds when x is measured from the loaded equilibrium position.",
+   "Hinglish exemplars written in Latin script; review for natural phrasing.",
+   "Worked example numbers match item C5-Q2 (m = 0.5 kg, k = 200 N/m, A = 0.1 m)."
   ]
  },
  {
@@ -448,15 +503,17 @@
   "followup_item_ids": [
    "C6-P1",
    "C6-P2",
-   "C6-P3"
+   "C6-P3",
+   "C6-Q1"
   ],
   "contrast_probe": "A ray inside glass meets the glass-air surface at 20°. In the air, is its angle from the normal bigger or smaller than 20°?",
   "verify_flags": [
    "TODO_VERIFY",
    "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
-   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Remediation R4 sim_moment assumes the refraction visual lets the laser be aimed from the air side as well as from inside the glass",
    "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
-   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text",
+   "Seeded concept-card fields, equations and doubts need academic review; Unicode subscripts (n₁, n₂) must render in the app"
   ]
  },
  {
@@ -481,15 +538,17 @@
   "followup_item_ids": [
    "C6-P1",
    "C6-P2",
-   "C6-P3"
+   "C6-P3",
+   "C6-Q2"
   ],
   "contrast_probe": "Can light coming from the air ever be totally internally reflected at a glass surface if you make the angle big enough?",
   "verify_flags": [
    "TODO_VERIFY",
    "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
-   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Remediation R4 sim_moment assumes the refraction visual lets the laser be aimed from the air side as well as from inside the glass",
    "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
-   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text",
+   "Seeded concept-card fields, equations and doubts need academic review; Unicode subscripts (n₁, n₂) must render in the app"
   ]
  },
  {
@@ -514,13 +573,15 @@
   "followup_item_ids": [
    "C7-P1",
    "C7-P2",
-   "C7-P3"
+   "C7-P3",
+   "C7-Q2"
   ],
   "contrast_probe": "The image is sharp on the screen. You stick paper over the top half of the lens. What changes on the screen?",
   "verify_flags": [
    "TODO_VERIFY",
    "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
-   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image",
+   "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook"
   ]
  },
  {
@@ -545,171 +606,15 @@
   "followup_item_ids": [
    "C7-P1",
    "C7-P2",
-   "C7-P3"
+   "C7-P3",
+   "C7-Q1"
   ],
   "contrast_probe": "You remove the screen and put your eye some distance beyond where the image was, looking at the lens. Do you see the image?",
   "verify_flags": [
    "TODO_VERIFY",
    "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
-   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
-  ]
- },
- {
-  "code": "L1",
-  "concept": "C8",
-  "description": "Closer slits give narrower fringes (fringe width proportional to d).",
-  "exemplars": [
-   "Closer slits, so the fringes get closer and thinner too.",
-   "If the slits are near each other the pattern also squeezes, right?",
-   "Less gap between slits means less gap between fringes.",
-   "Fringe width goes with d, so smaller d, smaller width.",
-   "Bring the slits together and the bands crowd up.",
-   "I think everything just shrinks when the slits come closer.",
-   "Halve the slit gap, halve the fringe width.",
-   "d is small so beta is small, simple.",
-   "Spread the slits apart and the fringes spread out more.",
-   "Slits paas laao toh fringes bhi patli ho jaati hain.",
-   "d kam kiya toh fringe width bhi kam hogi na.",
-   "The fringes copy the slits, so closer slits, tighter fringes."
-  ],
-  "remediation_card_id": "L1-R",
-  "followup_item_ids": [
-   "C8-P1",
-   "C8-P2",
-   "C8-P3"
-  ],
-  "contrast_probe": "If Ananya halves the gap between the slits, what happens to the fringe width?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
-   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
-   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
-  ]
- },
- {
-  "code": "L2",
-  "concept": "C8",
-  "description": "Interference creates or destroys light energy.",
-  "exemplars": [
-   "Interference makes the bright fringes, so it's making extra light.",
-   "At the dark fringes the light just gets destroyed.",
-   "Bright spots are four times brighter, so energy got added somewhere.",
-   "The two waves cancel and that light is just gone.",
-   "Constructive makes energy, destructive kills it.",
-   "Dark band means the light got cancelled out of existence.",
-   "Two beams meeting give a boost, like extra power.",
-   "So total light on the screen must be more than two slits give.",
-   "Where it's dark, energy is lost, that's why it's dark.",
-   "Interference se bright fringe pe extra energy ban jaati hai.",
-   "Dark fringe pe energy khatam ho gayi, destroy ho gayi.",
-   "Without interference you'd never get that much brightness, so it's making light."
-  ],
-  "remediation_card_id": "L2-R",
-  "followup_item_ids": [
-   "C8-P1",
-   "C8-P2",
-   "C8-P3"
-  ],
-  "contrast_probe": "The bright fringes are four times as bright as one slit alone; where did that extra light come from?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
-   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
-   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
-  ]
- },
- {
-  "code": "L3",
-  "concept": "C8",
-  "description": "Covering one slit leaves half the pattern.",
-  "exemplars": [
-   "Cover one slit and you just get half the fringes.",
-   "Each slit makes its own half of the pattern.",
-   "Block one, and the fringes on that side go away.",
-   "One slit gone, so half the bright bands go.",
-   "The fringes stay, just fewer of them.",
-   "Like, half the pattern comes from each slit.",
-   "Tape one slit and the pattern gets cut in half.",
-   "You'd still see fringes, only every other one.",
-   "Each slit is in charge of some fringes, lose a slit, lose those.",
-   "Ek slit band karo toh aadhe fringes reh jaate hain.",
-   "Fringes toh rahenge, bas half ho jaayenge.",
-   "The open slit still gives its share of the fringes."
-  ],
-  "remediation_card_id": "L3-R",
-  "followup_item_ids": [
-   "C8-P3"
-  ],
-  "contrast_probe": "If one slit is taped over, will you still see alternating bright and dark fringes?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
-   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
-   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
-  ]
- },
- {
-  "code": "L4",
-  "concept": "C9",
-  "description": "A narrower slit gives a narrower central maximum.",
-  "exemplars": [
-   "thinner slit, thinner bright band, obviously",
-   "less gap means the light gets squeezed so the spot shrinks",
-   "central fringe width goes down when slit width goes down",
-   "narrow slit, narrow pattern",
-   "smaller opening so less room for the light to spread",
-   "the pattern is like a shadow of the slit so it shrinks with it",
-   "close the slit more and the bright part becomes a thin line",
-   "width of the central max is proportional to a, I think",
-   "squeeze the slit and the light gets more focused",
-   "like a torch through a smaller window, smaller patch",
-   "slit patla karoge toh bright band bhi patla ho jayega na",
-   "gap kam hai toh light kam failegi, simple"
-  ],
-  "remediation_card_id": "L4-R",
-  "followup_item_ids": [
-   "C9-P1",
-   "C9-P2",
-   "C9-P3"
-  ],
-  "contrast_probe": "You halve the slit width. Does the first dark band on the screen move closer to the centre or farther away?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Width 2λD/a uses the small-angle approximation",
-   "I0/8 assumes ideal polaroids with no extra absorption",
-   "Gate analogy is qualitative only"
-  ]
- },
- {
-  "code": "L5",
-  "concept": "C9",
-  "description": "Adding a polarizer can never increase the light that gets through.",
-  "exemplars": [
-   "a polaroid only blocks light, it can't add any",
-   "more filters means more darkness, always",
-   "if two crossed ones give zero, a third one keeps it zero",
-   "you can't get light back once it's blocked",
-   "each sheet cuts the light, so three sheets cut more than two",
-   "zero times anything is zero, so still dark",
-   "the extra polaroid just removes more light",
-   "filters subtract, they never help light through",
-   "the middle sheet will make it even darker",
-   "adding a polarizer can never increase the intensity",
-   "teesra polaroid lagane se toh aur andhera hoga yaar",
-   "filter sirf light rokta hai, badhata thodi na hai"
-  ],
-  "remediation_card_id": "L5-R",
-  "followup_item_ids": [
-   "C9-P1",
-   "C9-P2",
-   "C9-P3"
-  ],
-  "contrast_probe": "Two crossed polaroids give a dark screen. You slide a third one at 45° between them. Does the screen stay dark or get some light?",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Width 2λD/a uses the small-angle approximation",
-   "I0/8 assumes ideal polaroids with no extra absorption",
-   "Gate analogy is qualitative only"
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image",
+   "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook"
   ]
  }
 ]

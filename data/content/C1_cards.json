@@ -2,138 +2,220 @@
   "concept_card": {
     "card_id": "C1-K",
     "concept": "C1",
-    "statement": "For small swings, a pendulum's period T = 2π√(L/g) depends only on length and g, not amplitude or bob mass.",
-    "analogy": "A bigger swing is a longer lap run faster, so lap time stays the same.",
-    "steps": [
-      "Restoring force ≈ -mg(x/L) for small angles",
-      "Divide by m: acceleration = -(g/L)x, mass cancels",
-      "This is SHM with ω = √(g/L)",
-      "So T = 2π√(L/g): no amplitude, no mass"
+    "topic": "SHM",
+    "subtopic": "Oscillations: mean position, displacement and amplitude",
+    "learning_objective": "Students will be able to locate the mean position of an oscillating body, measure displacement from it, find the amplitude as half the distance between the extreme positions, and tell periodic, oscillatory and simple harmonic motion apart.",
+    "statement": "In an oscillation, displacement is measured from the mean (equilibrium) position, and the amplitude is the maximum displacement: the distance from the mean position to either extreme, which is half the extreme-to-extreme distance.",
+    "simple": "An oscillating body goes back and forth around the point where it would rest, called the mean position. How far it is from that point right now is its displacement. The farthest it ever gets from that point is the amplitude. So the amplitude is only half the gap between the two ends.",
+    "formal": "Periodic motion repeats after equal intervals of time. Oscillatory motion is periodic to-and-fro motion about a mean position, where the net force on the body is zero. Simple harmonic motion is the special oscillation in which the restoring force is proportional to displacement and directed towards the mean position, F = -kx. Displacement x is measured from the mean position and varies between +A and -A. The extreme positions are at x = ±A, so they are 2A apart.",
+    "equations": [
+      {
+        "expr": "x = A cos(ωt + φ)",
+        "meaning": "Displacement from the mean position at time t in SHM",
+        "vars": {
+          "x": "displacement from mean position (m)",
+          "A": "amplitude, maximum displacement (m)",
+          "ω": "angular frequency (rad/s)",
+          "t": "time (s)",
+          "φ": "initial phase (rad)"
+        },
+        "assumptions": "ideal SHM, no damping"
+      },
+      {
+        "expr": "d = 2A",
+        "meaning": "Distance between the two extreme positions is twice the amplitude",
+        "vars": {
+          "d": "distance between extreme positions (m)",
+          "A": "amplitude (m)"
+        },
+        "assumptions": "symmetric oscillation about the mean position, no damping"
+      },
+      {
+        "expr": "F = -kx",
+        "meaning": "Restoring force in SHM is proportional to displacement and points towards the mean position",
+        "vars": {
+          "F": "restoring force (N)",
+          "k": "force constant (N/m)",
+          "x": "displacement from mean position (m)"
+        },
+        "assumptions": "ideal SHM; small displacements for a pendulum"
+      }
     ],
-    "worked_example": "L = 1.0 m, g = π² m/s²: T = 2π√(1/π²) = 2.0 s, for a 3° or 6° swing, light or heavy bob."
+    "analogy": "A park swing: the lowest point, where it would hang at rest, is the mean position. The amplitude is how far the seat gets from that lowest point on one side, not the full distance from the front end to the back end.",
+    "steps": [
+      "Locate the mean position: where the body would rest with zero net force, midway between the extremes",
+      "Measure displacement from the mean position, with a sign showing the side",
+      "Mark the extremes, where the displacement is largest: x = +A and x = -A",
+      "Take the amplitude as half the distance between the two extremes",
+      "Call the motion SHM only if the restoring force is proportional to -x"
+    ],
+    "worked_example": "A block oscillates between extremes 0.20 m apart. A = 0.20 m / 2 = 0.10 m. When it is 0.04 m from one extreme, its displacement from the mean is 0.10 - 0.04 = 0.06 m, on that extreme's side. If it starts at that extreme at t = 0, x = 0.10 cos(ωt) m, so φ = 0.",
+    "alternatives": [
+      "Picture a number line with zero at the mean position: the body runs between -A and +A. It travels 2A from one end to the other, but its amplitude is just A.",
+      "Every SHM is periodic, but not every periodic motion is SHM: Earth's orbit and a bouncing ball repeat, yet neither has a restoring force F = -kx about a mean position."
+    ],
+    "visual": "shm-oscillator",
+    "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed."
   },
   "remediation_cards": [
     {
-      "card_id": "O1-R",
-      "code": "O1",
-      "wrong_idea": "If I pull it further, it has more distance to cover, so one swing takes longer.",
-      "why_it_feels_right": "Walking a longer distance normally takes more time.",
-      "why_wrong": "Pulling further also gives a bigger restoring force, so the bob moves faster. For small angles the extra speed exactly makes up for the extra distance.",
-      "correct_idea": "For small swings, the period does not depend on amplitude.",
-      "sim_moment": "Pendulum Race"
+      "card_id": "S1-R",
+      "code": "S1",
+      "wrong_idea": "Amplitude is the whole distance the block moves, from one end to the other.",
+      "why_it_feels_right": "The two ends are easiest to see, so measuring end to end feels natural.",
+      "why_wrong": "Amplitude is the maximum displacement, measured from the mean position. The extremes are at +A and -A, so they are 2A apart.",
+      "correct_idea": "Amplitude is the distance from the mean position to either extreme, half the end-to-end distance.",
+      "sim_moment": "Pause the block at the right extreme: x reads +A, not 2A. At the left extreme x reads -A."
     },
     {
-      "card_id": "O2-R",
-      "code": "O2",
-      "wrong_idea": "The bigger swing goes faster at the bottom, so it finishes first.",
-      "why_it_feels_right": "You can see the wide-swinging bob whizzing past faster.",
-      "why_wrong": "It is faster, but it also has a longer path. For small angles speed and distance both scale with amplitude, so the time per swing stays the same.",
-      "correct_idea": "Bigger and smaller small swings take exactly the same time per oscillation.",
-      "sim_moment": "Pendulum Race"
+      "card_id": "S2-R",
+      "code": "S2",
+      "wrong_idea": "If it repeats at equal time intervals, it is SHM.",
+      "why_it_feels_right": "SHM is the first repeating motion we study, so periodic and SHM seem to mean the same.",
+      "why_wrong": "Periodic only means it repeats. SHM also needs a restoring force F = -kx. A bouncing ball repeats but has no such force.",
+      "correct_idea": "Every SHM is periodic, but a periodic motion is SHM only if its acceleration is proportional to -x.",
+      "sim_moment": "Watch the a-x graph: a straight line through the origin, a opposite to x. That, not repetition, marks SHM."
     },
     {
-      "card_id": "O3-R",
-      "code": "O3",
-      "wrong_idea": "A heavier bob changes the period, it swings faster or slower than a light one.",
-      "why_it_feels_right": "Heavy things feel harder to move, and for a spring a heavier mass really does slow it (T = 2π√(m/k)).",
-      "why_wrong": "In a pendulum gravity supplies the restoring force, and it grows with mass. More pull and more inertia cancel, like all objects falling together.",
-      "correct_idea": "A simple pendulum's period depends on L and g only, not on bob mass.",
-      "sim_moment": "Pendulum Race"
+      "card_id": "S3-R",
+      "code": "S3",
+      "wrong_idea": "Displacement means how far it has gone from where I released it.",
+      "why_it_feels_right": "In straight-line motion we measure displacement from the starting point.",
+      "why_wrong": "In an oscillation the reference is the mean position, where net force is zero. The release point is just one extreme and changes with each release.",
+      "correct_idea": "Displacement is measured from the mean position, with sign, ranging from -A to +A.",
+      "sim_moment": "Release from the right extreme: x reads +A at release and 0 at the centre. Release from the left: zero stays at the centre."
     }
   ],
   "exemplars": {
-    "O1": [
-      "bigger swing, more distance, so more time",
-      "if I pull it further it'll take longer to come back",
-      "the 10 degree one has to travel more so it's slower to finish",
-      "longer path means longer time obviously",
-      "small swing finishes quicker because it doesn't go far",
-      "doubling the angle should double the time",
-      "it has more ground to cover so the period goes up",
-      "wider arc, more time, simple",
-      "the one pulled less will come back first",
-      "more amplitude means the period is bigger",
-      "zyada door kheecha toh time bhi zyada lagega",
-      "bada swing hai toh wapas aane mein der lagegi"
+    "S1": [
+      "amplitude is the full distance from one end to the other",
+      "it goes 10 cm end to end so the amplitude is 10 cm",
+      "amplitude is the total width of the swing",
+      "you measure amplitude from the left extreme to the right extreme",
+      "the whole stretch it covers, that's the amplitude",
+      "amplitude is peak to peak",
+      "the distance between the two extreme positions is the amplitude",
+      "amplitude is how far it travels across in one swing",
+      "I'd just take the gap between both ends as the amplitude",
+      "amplitude means the complete length of the oscillation",
+      "amplitude matlab ek end se dusre end tak ka distance",
+      "dono extreme ke beech jitna gap hai wahi amplitude hai na"
     ],
-    "O2": [
-      "the bigger swing goes faster so it comes back first",
-      "it starts higher so it speeds up more and wins",
-      "more height means more speed, so less time",
-      "the wide one zooms through the bottom, it'll finish first",
-      "pull it further and it rushes back quicker",
-      "the small swing is slow, so it takes longer",
-      "higher release, faster bob, shorter period",
-      "it gets more energy so it completes the swing sooner",
-      "the one pulled more is quicker to return",
-      "bigger amplitude means it moves faster, so the period drops",
-      "upar se chhoda toh speed zyada, pehle aa jayega",
-      "chhota swing dheere chalta hai, isliye time zyada"
+    "S2": [
+      "it repeats every few seconds so it's SHM",
+      "any periodic motion is simple harmonic",
+      "the earth going round the sun is SHM because it's periodic",
+      "a bouncing ball is SHM, it keeps coming back at equal intervals",
+      "periodic and SHM are basically the same thing",
+      "if the time period is fixed then it has to be SHM",
+      "the fan keeps rotating again and again so that's SHM",
+      "clock hands do SHM because they repeat",
+      "anything that repeats itself is harmonic motion",
+      "heartbeat is periodic so heartbeat is SHM",
+      "repeat ho raha hai toh SHM hi hoga",
+      "har periodic motion SHM hota hai yaar"
     ],
-    "O3": [
-      "the heavier bob will swing slower",
-      "heavy ball has more weight so it comes back faster",
-      "mass matters, heavier means different period",
-      "a light bob gets pushed around more so it's quicker",
-      "if I change the bob to a heavier one the time changes",
-      "gravity pulls the heavy one harder so it's faster",
-      "the 400 gram one is harder to move so more time",
-      "heavier things are lazier, they swing slow",
-      "just like a spring, more mass more period",
-      "the steel ball and the wooden ball won't match",
-      "bhaari bob hai toh dheere jhoolega",
-      "weight badhao toh period bhi badlega na"
+    "S3": [
+      "displacement is from where I released it",
+      "at the starting point the displacement is zero",
+      "I measure x from the extreme where it started",
+      "displacement is how far it has moved from the start",
+      "at the extreme the displacement is zero because it begins there",
+      "the reference point is the end where I pulled it",
+      "it's 2 cm from the end so the displacement is 2 cm",
+      "displacement is counted from the initial position",
+      "when it reaches the other end the displacement is the full distance",
+      "zero displacement is where the motion starts",
+      "jahan se chhoda wahin se displacement naapte hain",
+      "starting point pe displacement zero hota hai na"
     ],
     "CORRECT": [
-      "same time, because amplitude isn't in the formula",
-      "bigger swing goes further but also faster, so it evens out",
-      "only length and g matter for a pendulum",
-      "mass cancels out, so heavy or light gives the same period",
-      "both come back together as long as the angle is small",
-      "T is 2π root L by g, nothing else"
+      "amplitude is half the distance between the two extremes",
+      "displacement is measured from the mean position where the net force is zero",
+      "at the mean position displacement is zero and at the extremes it is plus or minus A",
+      "every SHM is periodic but not every periodic motion is SHM",
+      "it's SHM only if the restoring force is proportional to displacement and towards the mean",
+      "the release point is just an extreme, the reference is still the middle"
     ]
   },
   "contrast_probes": [
     {
-      "separates": ["O1", "O2"],
-      "probe": "If you pull the same pendulum further out before letting go, does each swing take more time or less time?",
-      "reply_if_first": "More time, because it has a longer path to cover.",
-      "reply_if_second": "Less time, because it moves faster."
+      "separates": [
+        "S1",
+        "S2"
+      ],
+      "probe": "What would you need to check before saying a repeating motion is 'SHM with an amplitude of 5 cm'?",
+      "reply_if_first": "That it is SHM, and that its two ends are 5 cm apart.",
+      "reply_if_second": "Only that it repeats at equal intervals, and that it goes 5 cm out from the middle."
     },
     {
-      "separates": ["O1", "O3"],
-      "probe": "Two pendulums of the same length are released from the same small angle, one with a light bob and one with a heavy bob; would they stay in step?",
-      "reply_if_first": "Yes, they start from the same angle so they cover the same distance and stay together.",
-      "reply_if_second": "No, the heavy one will swing at a different speed and drift apart."
+      "separates": [
+        "S1",
+        "S3"
+      ],
+      "probe": "A pendulum released from one extreme swings between extremes 8 cm apart; what is its displacement when it is exactly at the middle?",
+      "reply_if_first": "Zero, it is at the mean position, though the amplitude is the full 8 cm.",
+      "reply_if_second": "4 cm, because it has moved halfway from where it was released."
     },
     {
-      "separates": ["O2", "O3"],
-      "probe": "What would you change to make a pendulum come back sooner: release it from higher up, or hang a heavier bob?",
-      "reply_if_first": "Release it from higher up so it goes faster.",
-      "reply_if_second": "Hang a heavier bob, since mass changes the swing time."
+      "separates": [
+        "S2",
+        "S3"
+      ],
+      "probe": "For a ball bouncing on the floor, is the motion SHM, and where is its displacement zero?",
+      "reply_if_first": "It repeats, so it is SHM, with zero displacement at the middle of its bounce height.",
+      "reply_if_second": "Its displacement is zero at the floor, because that is where each bounce starts."
     },
     {
-      "separates": ["O1", "CORRECT"],
-      "probe": "A pendulum takes 2 s per swing at 4°; roughly how long does it take at 8°, still a small angle?",
-      "reply_if_first": "More than 2 s, maybe about 4 s, because it goes twice as far.",
-      "reply_if_second": "Still 2 s, because the time doesn't depend on how wide it swings."
+      "separates": [
+        "S1",
+        "CORRECT"
+      ],
+      "probe": "A swing's two extreme points are 2 m apart; how far is each extreme from the lowest point, and what is the amplitude?",
+      "reply_if_first": "Each extreme is 1 m from the bottom, but the amplitude is 2 m because that is the full swing.",
+      "reply_if_second": "Each extreme is 1 m from the lowest point, so the amplitude is 1 m."
     },
     {
-      "separates": ["O2", "CORRECT"],
-      "probe": "A bob released from 10° moves faster at the bottom than one released from 5°; does that mean it finishes its swing first?",
-      "reply_if_first": "Yes, faster means it gets back first.",
-      "reply_if_second": "No, it also has farther to go, so both take the same time."
+      "separates": [
+        "S2",
+        "CORRECT"
+      ],
+      "probe": "Earth goes round the Sun once every year; is that motion SHM?",
+      "reply_if_first": "Yes, it repeats every year, so it is SHM.",
+      "reply_if_second": "No, it is periodic, but it is not to-and-fro about a mean position with a force proportional to -x."
     },
     {
-      "separates": ["O3", "CORRECT"],
-      "probe": "If you replace a 100 g bob with a 400 g bob on the same string, what happens to the period?",
-      "reply_if_first": "It changes, the heavier bob swings at a different rate.",
-      "reply_if_second": "It stays the same, because mass cancels and only L and g matter."
+      "separates": [
+        "S3",
+        "CORRECT"
+      ],
+      "probe": "A block released 5 cm to the right of the mean position is now 2 cm to the right of it; what is its displacement?",
+      "reply_if_first": "3 cm, because it has moved 3 cm from where it was released.",
+      "reply_if_second": "+2 cm, measured from the mean position."
+    }
+  ],
+  "doubts": [
+    {
+      "q": "Can amplitude be negative?",
+      "a": "No. Amplitude is the maximum distance from the mean position, so it is always positive. Displacement can be negative, for example x = -A at the other extreme; the sign only shows which side of the mean the body is on."
+    },
+    {
+      "q": "Why do we measure displacement from the mean position and not from where we release the body?",
+      "a": "The mean position is where the net force is zero, and the motion is symmetric about it, so it stays the same however you start the motion. The release point is just one extreme and can change from trial to trial."
+    },
+    {
+      "q": "Is every oscillatory motion SHM?",
+      "a": "No. Oscillatory only means to-and-fro motion about a mean position. It is SHM only when the restoring force is proportional to displacement, F = -kx. A pendulum swinging through large angles oscillates but is not exactly SHM."
+    },
+    {
+      "q": "How much distance does the body cover in one complete oscillation?",
+      "a": "In one oscillation it goes from the mean to one extreme, back through the mean to the other extreme, and back to the mean, covering 4A. Its displacement after one full oscillation is zero, since it returns to the same point."
     }
   ],
   "verify_flags": [
     "TODO_VERIFY",
-    "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
-    "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
+    "Large-angle pendulum described as 'not exactly SHM': confirm wording suits HSC scope.",
+    "Hinglish exemplars need a native-speaker check for natural phrasing.",
+    "Equation d = 2A is a helper relation, not a standard textbook equation."
   ]
 }

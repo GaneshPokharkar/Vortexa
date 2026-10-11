@@ -2,109 +2,178 @@
   {
     "item_id": "C5-P1",
     "concept": "C5",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": null,
-    "stem": "Arjun is 1.6 m tall. He wants a plane mirror on his bedroom wall, hung at the right height, in which he can see himself from head to toe. What is the shortest mirror that will work?",
+    "transfer": false,
+    "stem": "On a smooth lab table, Riya's 0.2 kg block on a spring (k = 80 N/m) oscillates with amplitude 0.05 m. When the block is at x = 0.03 m, what are its kinetic energy and its total mechanical energy?",
     "options": {
-      "A": "1.6 m",
-      "B": "0.8 m",
-      "C": "Less than 0.8 m, if he stands far enough back",
-      "D": "3.2 m"
+      "A": "KE = 0.036 J, total E = 0.1 J",
+      "B": "KE = 0.064 J, total E = 0.1 J",
+      "C": "KE = 0.064 J, total E = 0.064 J",
+      "D": "KE = 0.128 J, total E = 0.2 J"
     },
     "correct": "B",
-    "distractor_map": {
-      "A": "R2",
-      "B": "CORRECT",
-      "C": "R1",
-      "D": "SLIP"
-    },
+    "distractor_map": {"A": "S14", "B": "CORRECT", "C": "S13", "D": "SLIP"},
     "reasons": {
-      "r1": {"text": "If he stands farther away, more of him fits in, so a smaller mirror is enough.", "maps_to": "R1"},
-      "r2": {"text": "Light from his feet bounces off the mirror halfway down to his eyes, so he only needs half his height, wherever he stands.", "maps_to": "CORRECT"},
-      "r3": {"text": "The image is on the glass, so the glass has to be as tall as he is.", "maps_to": "R2"}
+      "r1": {"text": "Total is ½kA² = 0.1 J everywhere, and at x = 0.03 m the spring holds ½kx² = 0.036 J, so KE is the rest, 0.064 J.", "maps_to": "CORRECT"},
+      "r2": {"text": "At that point it only has the energy it is moving with, so the total right now is just the KE.", "maps_to": "S13"},
+      "r3": {"text": "½kx² is the KE part because PE is biggest in the middle, so near the middle the block has less KE.", "maps_to": "S14"}
     },
-    "calc": "L_min = H/2 = 1.6 m / 2 = 0.8 m",
-    "verify_flags": ["TODO_VERIFY", "Assumes a vertical plane mirror with its top edge midway between Arjun's eyes and the top of his head."]
+    "calc": "E = ½kA² = ½ × 80 × 0.05² = 0.1 J; PE = ½kx² = ½ × 80 × 0.03² = 0.036 J; KE = E − PE = 0.064 J (D drops the ½: 0.128 J, 0.2 J)",
+    "verify_flags": ["TODO_VERIFY"]
   },
   {
     "item_id": "C5-P2",
     "concept": "C5",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C5-P1",
-    "stem": "At a salon in Pune, Meera sees only her face down to her shoulders in a small mirror fixed on the wall. She takes two steps back. What part of herself does she see now?",
+    "transfer": false,
+    "stem": "In the school lab, Arjun's pendulum swings in small arcs with no air drag. As the bob moves from one extreme to the lowest (mean) point, which statement about its energy is correct?",
     "options": {
-      "A": "More of herself, down to her waist",
-      "B": "Less of herself, only her face",
-      "C": "Still only her face down to her shoulders",
-      "D": "Her whole body, if she goes back far enough"
+      "A": "KE rises and PE falls, so the total energy also rises toward the mean point",
+      "B": "KE and PE both reach their maximum at the mean point",
+      "C": "PE is maximum at the mean point and KE is maximum at the extremes",
+      "D": "KE rises by exactly the amount PE falls, so the total energy stays the same"
     },
-    "correct": "C",
-    "distractor_map": {
-      "A": "R1",
-      "B": "UNMAPPED",
-      "C": "CORRECT",
-      "D": "R1"
-    },
+    "correct": "D",
+    "distractor_map": {"A": "S13", "B": "S14", "C": "S14", "D": "CORRECT"},
     "reasons": {
-      "r1": {"text": "Farther from the mirror means a wider view, so more of her fits in.", "maps_to": "R1"},
-      "r2": {"text": "Her image stays on the glass while she backs away, so the glass covers more of her.", "maps_to": "R2"},
-      "r3": {"text": "Her image moves back as much as she does, so the mirror still covers the same part of her.", "maps_to": "CORRECT"}
+      "r1": {"text": "The bob is fastest at the bottom, so that's where it has the most energy overall.", "maps_to": "S13"},
+      "r2": {"text": "Whatever height energy it loses on the way down turns into speed, nothing is lost, so the total doesn't change.", "maps_to": "CORRECT"},
+      "r3": {"text": "The mean position is the important point of SHM, so both energies peak there.", "maps_to": "S14"}
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Assumes the mirror stays fixed and Meera's eye height does not change as she steps back."]
+    "verify_flags": ["TODO_VERIFY", "Pendulum PE here is gravitational (mgh), which for small angles equals ½mω²x² with ω² = g/L; option C states S14 in its 'PE max at mean' form."]
   },
   {
     "item_id": "C5-P3",
     "concept": "C5",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C5-P1",
-    "stem": "Kabir, 1.7 m tall, is buying a mirror for his hostel room in Vellore. He will stand about 3 m from it. What is the shortest mirror, hung at the right height, that shows him head to toe?",
+    "transfer": true,
+    "stem": "A vibration sensor in a Pune factory has a small mass on a spring, with negligible losses over a few cycles. The data logger shows KE = 0.30 J as the mass passes x = A/2. What is the sensor's total oscillation energy?",
     "options": {
-      "A": "1.7 m",
-      "B": "Less than 0.85 m, because standing 3 m back means he needs less mirror",
-      "C": "0.85 m only if he stands close; at 3 m he needs a longer one",
-      "D": "0.85 m"
+      "A": "0.30 J, because the total is just the KE it has at that moment",
+      "B": "0.60 J, because at half the amplitude it has half of its energy as KE",
+      "C": "0.40 J, because at x = A/2 the KE is three-quarters of the total",
+      "D": "1.20 J, because at x = A/2 the KE is one-quarter of the total"
     },
-    "correct": "D",
-    "distractor_map": {
-      "A": "R2",
-      "B": "R1",
-      "C": "UNMAPPED",
-      "D": "CORRECT"
-    },
+    "correct": "C",
+    "distractor_map": {"A": "S13", "B": "S15", "C": "CORRECT", "D": "UNMAPPED"},
     "reasons": {
-      "r1": {"text": "He needs half his height, and the distance doesn't matter because his image moves back with him.", "maps_to": "CORRECT"},
-      "r2": {"text": "His image sits on the mirror, so the mirror must be his full height.", "maps_to": "R2"},
-      "r3": {"text": "Standing far back lets more of him fit, so a shorter mirror will do.", "maps_to": "R1"}
+      "r1": {"text": "Energy goes in a straight line with distance, so half the amplitude means half the energy has gone into the spring.", "maps_to": "S15"},
+      "r2": {"text": "The logger reads 0.30 J, and the energy changes as the mass moves, so the total right now is just that.", "maps_to": "S13"},
+      "r3": {"text": "PE = ½kx² = ¼ of ½kA² at x = A/2, so KE is ¾ of the total, and ¾E = 0.30 J gives E = 0.40 J.", "maps_to": "CORRECT"}
     },
-    "calc": "L_min = H/2 = 1.7 m / 2 = 0.85 m",
-    "verify_flags": ["TODO_VERIFY", "Assumes a vertical plane mirror with its top edge midway between Kabir's eyes and the top of his head."]
+    "calc": "KE/E = (A² − x²)/A² = 1 − ¼ = ¾ at x = A/2; E = 0.30 / 0.75 = 0.40 J",
+    "verify_flags": ["TODO_VERIFY", "D (KE = ¼E) mixes up KE and PE fractions; left UNMAPPED rather than forced onto S14."]
   },
   {
     "item_id": "C5-A1",
     "concept": "C5",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
-    "stem": "Ananya stands 3 m in front of the big wall mirror in her dance class. Which statement is correct?",
+    "transfer": false,
+    "stem": "Sneha pulls the same block on the same spring twice as far before releasing it, so the amplitude doubles (smooth surface). How does the total mechanical energy of the oscillation change?",
     "options": {
-      "A": "Her image is 3 m behind the mirror, so it is 6 m from her",
-      "B": "Her image is on the mirror surface, so it is 3 m from her",
-      "C": "If she moves back to 5 m, she will see more of her body in the same mirror",
-      "D": "Her image is 3 m behind the mirror, so it is 3 m from her"
+      "A": "It becomes four times as large, at every point of the motion",
+      "B": "It becomes twice as large, because energy is proportional to amplitude",
+      "C": "It becomes four times as large at the mean position, but less at the extremes where the block stops",
+      "D": "The PE at the mean position doubles, and the KE at the extremes doubles"
     },
     "correct": "A",
-    "distractor_map": {
-      "A": "CORRECT",
-      "B": "R2",
-      "C": "R1",
-      "D": "SLIP"
-    },
+    "distractor_map": {"A": "CORRECT", "B": "S15", "C": "S13", "D": "S14"},
     "reasons": {
-      "r1": {"text": "What I see is right on the glass, so the image is just 3 m away.", "maps_to": "R2"},
-      "r2": {"text": "The image is as far behind the mirror as she is in front, so 3 m + 3 m = 6 m.", "maps_to": "CORRECT"},
-      "r3": {"text": "Moving back lets the mirror catch more of her body.", "maps_to": "R1"}
+      "r1": {"text": "Pulling twice as far means twice the energy, it's a direct relation.", "maps_to": "S15"},
+      "r2": {"text": "E = ½kA², so doubling A multiplies E by 2² = 4, and that total stays the same throughout the motion.", "maps_to": "CORRECT"},
+      "r3": {"text": "At the extremes the block stops, so it has less energy there than when it zooms through the middle.", "maps_to": "S13"}
     },
-    "calc": "Object-image distance = 2 x 3 m = 6 m",
+    "calc": "E ∝ A²: E' = ½k(2A)² = 4 × ½kA²",
     "verify_flags": ["TODO_VERIFY"]
+  },
+  {
+    "item_id": "C5-Q1",
+    "concept": "C5",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Priya's block oscillates on a spring on a smooth table. As the block moves from an extreme position to the mean position, what happens to its total mechanical energy, and why?",
+    "answer_key": "The total mechanical energy stays the same.",
+    "expected_reasoning": "The PE stored in the spring (½kx²) falls as x shrinks, and the KE rises by exactly that amount, so KE + PE = ½kA² stays constant with no friction.",
+    "accept_any": ["same", "constant", "does not change", "doesn't change", "unchanged", "conserved", "no change", "remains equal"],
+    "reasoning_any": ["converted", "converts", "turns into", "changes into", "transferred", "pe decreases", "ke increases", "potential to kinetic", "no friction", "no damping", "half k a square", "½ka²", "ke + pe", "ke plus pe"],
+    "numeric": null,
+    "patterns": [
+      {"code": "S13", "any": ["total increases", "total decreases", "total energy increases", "total energy decreases", "energy is lost", "loses energy", "gains energy", "more energy at mean", "total is maximum at mean"]},
+      {"code": "S14", "any": ["both increase", "both maximum", "both max", "both become maximum", "pe increases", "potential energy increases", "pe maximum at mean", "pe max at mean"]}
+    ],
+    "follow_ups": {
+      "S13": "If the total energy really changed, where would the extra energy come from, or where would it go, on a smooth table?",
+      "S14": "At the extreme the spring is stretched the most. At the mean it is not stretched at all. Where does it store more energy?",
+      "CORRECT_NO_REASON": "Right. Why does the total stay the same even though the block speeds up?",
+      "CORRECT": "Now the table has a little friction. What happens to the total energy over many oscillations, and where does it go?",
+      "UNCLEAR": "Does the total energy go up, go down, or stay the same between the extreme and the mean?"
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "A correct answer like 'KE increases and PE decreases, total same' must not trip S13/S14; patterns are prefixed ('total ...', 'pe increases') to avoid that, but grader precedence (accept_any vs patterns) needs checking."]
+  },
+  {
+    "item_id": "C5-Q2",
+    "concept": "C5",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Aarav's 0.5 kg block on a spring (k = 200 N/m) oscillates with amplitude 0.1 m on a smooth surface. What is its total mechanical energy when it is at x = 0.05 m? Give a reason.",
+    "answer_key": "The total mechanical energy is 1 J.",
+    "expected_reasoning": "In ideal SHM the total is ½kA² = ½ × 200 × 0.1² = 1 J at every position; at x = 0.05 m it is split as 0.25 J PE and 0.75 J KE.",
+    "accept_any": [],
+    "reasoning_any": ["half k a square", "½ka²", "1/2 k a", "same everywhere", "constant", "conserved", "ke + pe", "ke plus pe", "does not depend on x", "doesn't depend on position"],
+    "numeric": {"value": 1.0, "unit": "J", "tolerance": 0.02, "slips": [{"value": 2.0, "why": "forgot the ½ (used kA²)"}, {"value": 10.0, "why": "forgot to square A (used ½kA)"}]},
+    "patterns": [
+      {"code": "S13", "any": ["0.25 j", "0.25 joule", "0.75 j", "0.75 joule", "only pe", "only ke", "depends on position", "less than at extreme", "less than at mean"]},
+      {"code": "S15", "any": ["0.5 j", "0.5 joule", "half the energy", "half energy"]}
+    ],
+    "follow_ups": {
+      "S13": "You found the energy of one kind at x = 0.05 m. What is the other kind of energy there, and what do they add up to?",
+      "S15": "If the energy were proportional to x, what would the spring's PE be at x = 0.05 m using ½kx²? Does that match?",
+      "CORRECT_NO_REASON": "Correct value. Why doesn't the position x = 0.05 m change the total?",
+      "CORRECT": "How much of that 1 J is kinetic at x = 0.05 m, and what is the block's speed there?",
+      "UNCLEAR": "Can you give one number in joules for the total energy at x = 0.05 m?"
+    },
+    "calc": "E = ½kA² = ½ × 200 × 0.1² = 1.0 J; PE(0.05) = ½ × 200 × 0.05² = 0.25 J; KE = 0.75 J; v = √(2 × 0.75 / 0.5) = √3 ≈ 1.73 m/s",
+    "verify_flags": ["TODO_VERIFY", "S15 pattern '0.5 j' reflects linear-in-x thinking (half amplitude, half energy); check the numeric grader tests slips/patterns before rejecting 0.5 as plain wrong.", "Plain substring matching would let '0.5 j' fire on inputs like '10.5 j'; grader should match numbers on word boundaries."]
+  },
+  {
+    "item_id": "C5-A2",
+    "concept": "C5",
+    "kind": "short",
+    "is_assessment": true,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Sanya uses the same spring and block but releases it from twice the earlier distance, so the amplitude doubles. How does the total energy of the oscillation change, and why?",
+    "answer_key": "The total energy becomes four times as large.",
+    "expected_reasoning": "Total energy E = ½kA² depends on the square of the amplitude, so doubling A multiplies E by 2² = 4.",
+    "accept_any": ["four times", "4 times", "4x", "4 x", "quadruple", "quadruples", "fourfold", "four fold", "4 guna", "char guna"],
+    "reasoning_any": ["square", "squared", "a²", "a^2", "a square", "2²", "2 square", "half k a"],
+    "numeric": null,
+    "patterns": [
+      {"code": "S15", "any": ["energy doubles", "energy also doubles", "also doubles", "becomes double", "becomes twice", "twice the energy", "double the energy", "energy is 2 times", "energy becomes 2 times", "proportional to amplitude", "do guna"]},
+      {"code": "S13", "any": ["keeps changing", "not constant", "changes during", "more at the mean", "less at the extreme"]}
+    ],
+    "follow_ups": {
+      "S15": "Write E = ½kA². Put in 2A instead of A. What number multiplies the old energy?",
+      "S13": "For one fixed amplitude, is the total energy different at the extreme and at the mean? Why or why not?",
+      "CORRECT_NO_REASON": "Right. Which formula tells you it is four times and not two times?",
+      "CORRECT": "If you want only twice the energy, by what factor should you change the amplitude?",
+      "UNCLEAR": "Does the total energy become two times, four times, or stay the same when the amplitude doubles?"
+    },
+    "calc": "E' / E = (2A)² / A² = 4",
+    "verify_flags": ["TODO_VERIFY", "Hinglish keywords ('4 guna', 'char guna', 'do guna') included for spoken answers; confirm the speech-to-text output spells them this way."]
   }
 ]

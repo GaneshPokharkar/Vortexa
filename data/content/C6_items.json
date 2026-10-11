@@ -2,6 +2,7 @@
   {
     "item_id": "C6-P1",
     "concept": "C6",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": null,
     "stem": "Meera points a waterproof torch up from inside a fish tank. The beam hits the water surface at 30° to the normal (water n = 4/3). What does the beam do at the surface?",
@@ -12,18 +13,37 @@
       "D": "It comes out into the air without bending at all"
     },
     "correct": "B",
-    "distractor_map": {"A": "R3", "B": "CORRECT", "C": "R4", "D": "UNMAPPED"},
+    "distractor_map": {
+      "A": "R3",
+      "B": "CORRECT",
+      "C": "R4",
+      "D": "UNMAPPED"
+    },
     "reasons": {
-      "r1": {"text": "Light always bends toward the normal when it goes into a new medium.", "maps_to": "R3"},
-      "r2": {"text": "Water to air means going into a rarer medium, so it bends away, and 30° is less than the critical angle so it still gets out.", "maps_to": "CORRECT"},
-      "r3": {"text": "Light hitting a water surface from below just reflects back fully, the angle doesn't really matter.", "maps_to": "R4"}
+      "r1": {
+        "text": "Light always bends toward the normal when it goes into a new medium.",
+        "maps_to": "R3"
+      },
+      "r2": {
+        "text": "Water to air means going into a rarer medium, so it bends away, and 30° is less than the critical angle so it still gets out.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "Light hitting a water surface from below just reflects back fully, the angle doesn't really matter.",
+        "maps_to": "R4"
+      }
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "sin r = (4/3)(0.5) = 0.667 -> r ≈ 41.8° in air; 30° < C ≈ 48.6° so no TIR"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "sin r = (4/3)(0.5) = 0.667 -> r ≈ 41.8° in air; 30° < C ≈ 48.6° so no TIR"
+    ],
+    "transfer": false
   },
   {
     "item_id": "C6-P2",
     "concept": "C6",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C6-P1",
     "stem": "Inside Rohan's glass paperweight (n = 1.5), a laser beam reaches the flat top face at 25° to the normal. What happens as the beam passes out into the room air?",
@@ -34,18 +54,37 @@
       "D": "It goes straight out because glass and air are both transparent"
     },
     "correct": "C",
-    "distractor_map": {"A": "R4", "B": "R3", "C": "CORRECT", "D": "UNMAPPED"},
+    "distractor_map": {
+      "A": "R4",
+      "B": "R3",
+      "C": "CORRECT",
+      "D": "UNMAPPED"
+    },
     "reasons": {
-      "r1": {"text": "Any time light crosses glass, it bends toward the normal, that's the rule.", "maps_to": "R3"},
-      "r2": {"text": "Light inside glass can always get trapped by total reflection at the surface.", "maps_to": "R4"},
-      "r3": {"text": "Glass to air is dense to rare, so it bends away, and 25° is below 41.8° so it comes out.", "maps_to": "CORRECT"}
+      "r1": {
+        "text": "Any time light crosses glass, it bends toward the normal, that's the rule.",
+        "maps_to": "R3"
+      },
+      "r2": {
+        "text": "Light inside glass can always get trapped by total reflection at the surface.",
+        "maps_to": "R4"
+      },
+      "r3": {
+        "text": "Glass to air is dense to rare, so it bends away, and 25° is below 41.8° so it comes out.",
+        "maps_to": "CORRECT"
+      }
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "sin r = 1.5 × sin 25° = 1.5 × 0.423 = 0.634 -> r ≈ 39.3°; 25° < C ≈ 41.8° so no TIR"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "sin r = 1.5 × sin 25° = 1.5 × 0.423 = 0.634 -> r ≈ 39.3°; 25° < C ≈ 41.8° so no TIR"
+    ],
+    "transfer": false
   },
   {
     "item_id": "C6-P3",
     "concept": "C6",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C6-P1",
     "stem": "A lamp fixed at the bottom of a hotel swimming pool sends a ray up to the water surface at 40° to the normal (water n = 4/3). What happens to this ray?",
@@ -56,18 +95,37 @@
       "D": "It enters the air at about 59.0° from the normal"
     },
     "correct": "D",
-    "distractor_map": {"A": "R3", "B": "R4", "C": "SLIP", "D": "CORRECT"},
+    "distractor_map": {
+      "A": "R3",
+      "B": "R4",
+      "C": "SLIP",
+      "D": "CORRECT"
+    },
     "reasons": {
-      "r1": {"text": "Water to air it bends away, so n sin 40° gives sin r = 0.857, about 59°, and 40° is under the critical angle.", "maps_to": "CORRECT"},
-      "r2": {"text": "Underwater light hitting the top just bounces back fully, the pool surface acts like a mirror.", "maps_to": "R4"},
-      "r3": {"text": "It should bend toward the normal, so the angle in air must come out smaller than 40°.", "maps_to": "R3"}
+      "r1": {
+        "text": "Water to air it bends away, so n sin 40° gives sin r = 0.857, about 59°, and 40° is under the critical angle.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "Underwater light hitting the top just bounces back fully, the pool surface acts like a mirror.",
+        "maps_to": "R4"
+      },
+      "r3": {
+        "text": "It should bend toward the normal, so the angle in air must come out smaller than 40°.",
+        "maps_to": "R3"
+      }
     },
     "calc": "sin r = (4/3) × sin 40° = 1.333 × 0.643 = 0.857 -> r ≈ 59.0°",
-    "verify_flags": ["TODO_VERIFY", "A uses sin r = (3/4) sin 40° = 0.482 -> 28.8° (bending toward normal); C is the slip of multiplying the angle, 40° × 4/3 ≈ 53.3°; 40° < C ≈ 48.6° so no TIR"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "A uses sin r = (3/4) sin 40° = 0.482 -> 28.8° (bending toward normal); C is the slip of multiplying the angle, 40° × 4/3 ≈ 53.3°; 40° < C ≈ 48.6° so no TIR"
+    ],
+    "transfer": true
   },
   {
     "item_id": "C6-A1",
     "concept": "C6",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "stem": "At a science fair, Kavya shines a laser from air onto a glass block (n = 1.5) at 60° to the normal, which is more than glass's critical angle of 41.8°. What happens at the surface?",
@@ -78,13 +136,215 @@
       "D": "All the light reflects back into the air, as the glass acts like a mirror at large angles"
     },
     "correct": "A",
-    "distractor_map": {"A": "CORRECT", "B": "R4", "C": "UNMAPPED", "D": "R4"},
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "R4",
+      "C": "UNMAPPED",
+      "D": "R4"
+    },
     "reasons": {
-      "r1": {"text": "Once the angle crosses the critical angle, total internal reflection happens, whichever side the light comes from.", "maps_to": "R4"},
-      "r2": {"text": "Total reflection needs light going from glass to air; here it is air to glass, so it just refracts in and bends toward the normal.", "maps_to": "CORRECT"},
-      "r3": {"text": "Light bends toward the normal at every surface, so it goes in bent toward the normal.", "maps_to": "R3"}
+      "r1": {
+        "text": "Once the angle crosses the critical angle, total internal reflection happens, whichever side the light comes from.",
+        "maps_to": "R4"
+      },
+      "r2": {
+        "text": "Total reflection needs light going from glass to air; here it is air to glass, so it just refracts in and bends toward the normal.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "Light bends toward the normal at every surface, so it goes in bent toward the normal.",
+        "maps_to": "R3"
+      }
     },
     "calc": "sin r = sin 60° / 1.5 = 0.866 / 1.5 = 0.577 -> r ≈ 35.3°",
-    "verify_flags": ["TODO_VERIFY", "Some light is always partially reflected at the surface; option D says ALL light reflects, which is the wrong part. r3 (R3) reaches the right answer for the wrong reason, by design"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Some light is always partially reflected at the surface; option D says ALL light reflects, which is the wrong part. r3 (R3) reaches the right answer for the wrong reason, by design"
+    ],
+    "transfer": false
+  },
+  {
+    "item_id": "C6-Q1",
+    "concept": "C6",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Light travels inside a glass block (n = 1.5) and then passes out into air at an angle. What is its speed in the glass (c = 3.0 × 10⁸ m/s), and does it bend toward or away from the normal on leaving? Why?",
+    "answer_key": "Its speed in glass is 2.0 × 10⁸ m/s, and it bends away from the normal on leaving.",
+    "expected_reasoning": "v = c/n = 3.0 × 10⁸ / 1.5 = 2.0 × 10⁸ m/s. Going from glass into air it moves into a rarer medium and speeds up, so it bends away from the normal.",
+    "accept_any": [
+      "away from the normal",
+      "away from normal",
+      "bends away",
+      "goes away"
+    ],
+    "reasoning_any": [
+      "speeds up",
+      "faster in air",
+      "denser to rarer",
+      "rarer medium",
+      "c/n",
+      "c / n",
+      "divide by 1.5",
+      "divided by n"
+    ],
+    "numeric": {
+      "value": 200000000.0,
+      "unit": "m/s",
+      "tolerance": 1000000.0,
+      "slips": [
+        {
+          "value": 450000000.0,
+          "why": "multiplied by n instead of dividing"
+        },
+        {
+          "value": 300000000.0,
+          "why": "assumed light keeps the vacuum speed inside glass"
+        }
+      ]
+    },
+    "patterns": [
+      {
+        "code": "R3",
+        "any": [
+          "toward the normal",
+          "towards the normal",
+          "toward normal",
+          "towards normal",
+          "bends toward",
+          "bends towards",
+          "always bends"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "R3": "On leaving the glass, light goes from 2.0 × 10⁸ m/s back up to 3.0 × 10⁸ m/s. Is the angle in air bigger or smaller than the angle inside the glass?",
+      "CORRECT_NO_REASON": "Why does leaving the glass make the ray bend away from the normal and not toward it?",
+      "CORRECT": "Light of wavelength 600 nm in air enters this glass. What are its frequency and its wavelength inside the glass?",
+      "UNCLEAR": "Can you give the speed in the glass with its unit, and say in one word whether it bends toward or away from the normal?"
+    },
+    "calc": "v = c/n = 3.0 × 10⁸ / 1.5 = 2.0 × 10⁸ m/s",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "CORRECT follow-up answer: f = c/λ = 3.0 × 10⁸ / 600 × 10⁻⁹ = 5.0 × 10¹⁴ Hz (unchanged); λ_glass = 600/1.5 = 400 nm"
+    ]
+  },
+  {
+    "item_id": "C6-Q2",
+    "concept": "C6",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Sameer says: 'Shine a torch from the air onto a pond at 80° to the normal and the light will be totally internally reflected, because 80° is beyond water's critical angle.' Is he right? Give a reason.",
+    "answer_key": "No; light going from air into water always refracts into the water, so TIR cannot happen.",
+    "expected_reasoning": "Total internal reflection needs light travelling from a denser to a rarer medium. From air into water, sin r = sin 80°/(4/3) ≈ 0.74 is less than 1, so a refracted ray always exists.",
+    "accept_any": [
+      "not right",
+      "is wrong",
+      "he's wrong",
+      "cannot happen",
+      "can't happen",
+      "not possible",
+      "always enters",
+      "will enter",
+      "refracts into",
+      "goes into the water"
+    ],
+    "reasoning_any": [
+      "denser to rarer",
+      "rarer to denser",
+      "air is rarer",
+      "water is denser",
+      "inside the denser",
+      "less than 1",
+      "only from water",
+      "from the denser"
+    ],
+    "numeric": null,
+    "patterns": [
+      {
+        "code": "R4",
+        "any": [
+          "he is right",
+          "he's right",
+          "yes he is",
+          "tir will happen",
+          "tir happens",
+          "totally reflected",
+          "fully reflected",
+          "acts like a mirror",
+          "angle is enough"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "R4": "Before light can be trapped by total internal reflection, which side of the surface must it start on: the air side or the water side?",
+      "CORRECT_NO_REASON": "Why can a ray coming from the air never be totally internally reflected at a water surface?",
+      "CORRECT": "An optical fibre carries light around a gentle bend. Which two conditions keep the light trapped inside the glass core?",
+      "UNCLEAR": "Does the torch light go into the pond, or is all of it reflected? Say which, and why."
+    },
+    "calc": "sin r = sin 80° / (4/3) = 0.985 × 0.75 = 0.739 -> r ≈ 47.6° (enters the water)",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Water n = 4/3 assumed; some light is partially reflected at any surface, which is not TIR"
+    ]
+  },
+  {
+    "item_id": "C6-A2",
+    "concept": "C6",
+    "kind": "short",
+    "is_assessment": true,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "A diver's torch underwater sends a ray up to the water surface at 60° to the normal (water n = 4/3, critical angle ≈ 48.6°). What happens to the ray at the surface, and why?",
+    "answer_key": "It is totally internally reflected back into the water.",
+    "expected_reasoning": "The ray goes from denser water toward rarer air, and 60° is greater than the critical angle of about 48.6°, so no refracted ray exists and all the light reflects back.",
+    "accept_any": [
+      "total internal reflection",
+      "totally internally reflected",
+      "totally reflected",
+      "tir",
+      "reflects back into the water",
+      "stays in the water",
+      "trapped"
+    ],
+    "reasoning_any": [
+      "denser to rarer",
+      "greater than the critical",
+      "more than critical",
+      "bigger than critical",
+      "above the critical",
+      "exceeds",
+      "48.6",
+      "sin c"
+    ],
+    "numeric": null,
+    "patterns": [
+      {
+        "code": "R3",
+        "any": [
+          "bends toward",
+          "bends towards",
+          "toward the normal",
+          "towards the normal",
+          "comes out",
+          "goes out into the air",
+          "escapes"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "R3": "Is the ray going from denser to rarer or rarer to denser here, and which way does that make it bend if it does get out?",
+      "CORRECT_NO_REASON": "Which two conditions did you check to decide the ray stays trapped in the water?",
+      "CORRECT": "Diamond has n ≈ 2.42, so its critical angle is only about 24°. Why does that help a cut diamond sparkle more than glass?",
+      "UNCLEAR": "Does any of this ray leave the water into the air? Yes or no, and why?"
+    },
+    "calc": "sin C = 3/4 = 0.75 -> C ≈ 48.6°; (4/3) × sin 60° = 1.155 > 1, so no refracted ray",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Diamond follow-up: sin C = 1/2.42 = 0.413 -> C ≈ 24.4°"
+    ]
   }
 ]

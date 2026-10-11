@@ -2,109 +2,183 @@
   {
     "item_id": "C4-P1",
     "concept": "C4",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": null,
-    "stem": "Priya tunes her sitar string against a 440 Hz tuning fork. Sounding both together, she hears the loudness throb. If the string is at 444 Hz, how many beats per second does she hear?",
+    "transfer": false,
+    "stem": "Ananya pulls a block on a smooth horizontal spring 4 cm to the right of its mean position and releases it. Later it is at x = +2 cm, moving right. What is true about the restoring force at that instant?",
     "options": {
-      "A": "884 beats per second",
-      "B": "442 beats per second",
-      "C": "4 beats per second",
-      "D": "8 beats per second"
+      "A": "It points right, the same way the block is moving",
+      "B": "It points left, toward the mean, and is half as large as at x = +4 cm",
+      "C": "It points left, toward the mean, and is just as large as at x = +4 cm",
+      "D": "It points right, away from the mean, and grows as the block moves out"
     },
-    "correct": "C",
-    "distractor_map": {
-      "A": "B1",
-      "B": "B2",
-      "C": "CORRECT",
-      "D": "SLIP"
-    },
+    "correct": "B",
+    "distractor_map": {"A": "S12", "B": "CORRECT", "C": "S11", "D": "S12"},
     "reasons": {
-      "r1": {"text": "Both sounds are playing together, so I just add the two frequencies.", "maps_to": "B1"},
-      "r2": {"text": "The beat should be the middle value, halfway between 440 and 444.", "maps_to": "B2"},
-      "r3": {"text": "The two sounds drift in and out of step, and that happens as many times per second as their difference.", "maps_to": "CORRECT"}
+      "r1": {"text": "The block is going right, so the force has to be pushing it right, otherwise it wouldn't move that way.", "maps_to": "S12"},
+      "r2": {"text": "F = −kx, so the force is opposite to x, toward the mean, and at 2 cm it's half of what it is at 4 cm.", "maps_to": "CORRECT"},
+      "r3": {"text": "It's the same spring with the same k, so the pull back is the same at every point.", "maps_to": "S11"}
     },
-    "calc": "f_beat = |444 Hz - 440 Hz| = 4 Hz",
-    "verify_flags": ["TODO_VERIFY"]
+    "calc": "F = −kx: |F(2 cm)| / |F(4 cm)| = 2/4 = 1/2, direction −x (toward mean)",
+    "verify_flags": ["TODO_VERIFY", "'Later ... moving right' is valid: after release from +4 cm the block passes the mean, reaches −4 cm, and returns rightward through +2 cm on its way out to +4 cm"]
   },
   {
     "item_id": "C4-P2",
     "concept": "C4",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C4-P1",
-    "stem": "In the school band, two flutes play notes of 512 Hz and 506 Hz together. Rohan hears the sound swell and fade. Which best describes what he hears?",
+    "transfer": false,
+    "stem": "At a Nashik fair, a small pendulum bob swings through small angles. Right now it is halfway between the lowest point and its right extreme, still moving right. Which describes the restoring force on it?",
     "options": {
-      "A": "A tone of about 509 Hz whose loudness swells 6 times per second",
-      "B": "A tone whose loudness swells 1018 times per second",
-      "C": "A tone whose loudness swells 509 times per second",
-      "D": "Loudness swells 6 times per second, and sound energy is destroyed in each quiet moment"
+      "A": "Toward the lowest point, and it will be twice as large at the extreme",
+      "B": "Toward the lowest point, and the same size at every point of the swing",
+      "C": "Along its motion, toward the right extreme",
+      "D": "Zero, because the bob is not yet at the extreme"
     },
     "correct": "A",
-    "distractor_map": {
-      "A": "CORRECT",
-      "B": "B1",
-      "C": "B2",
-      "D": "W4"
-    },
+    "distractor_map": {"A": "CORRECT", "B": "S11", "C": "S12", "D": "UNMAPPED"},
     "reasons": {
-      "r1": {"text": "When it goes quiet the two waves have cancelled, so that bit of energy is just gone.", "maps_to": "W4"},
-      "r2": {"text": "The swelling happens at the difference, 6 times a second, and the note I hear is about the average.", "maps_to": "CORRECT"},
-      "r3": {"text": "Two flutes are playing at once, so the swells come at both frequencies added up.", "maps_to": "B1"}
+      "r1": {"text": "The bob is moving right, so the force must be acting right along with it.", "maps_to": "S12"},
+      "r2": {"text": "Gravity is the same everywhere, so the pull back toward the bottom is the same at every point.", "maps_to": "S11"},
+      "r3": {"text": "For small swings the restoring force is proportional to displacement and points back to the bottom, so doubling the distance doubles it.", "maps_to": "CORRECT"}
     },
-    "calc": "f_beat = 512 Hz - 506 Hz = 6 Hz; heard pitch = (512 + 506)/2 = 509 Hz",
-    "verify_flags": ["TODO_VERIFY", "Heard pitch = average holds only approximately, for close frequencies; in quiet moments energy is redistributed in space/time, not destroyed"]
+    "calc": "Small angles: F ≈ −(mg/L)x, so |F| at x = A is twice |F| at x = A/2",
+    "verify_flags": ["TODO_VERIFY", "Restoring force here means the tangential component of gravity; proportionality holds only for small angles (sin θ ≈ θ)"]
   },
   {
     "item_id": "C4-P3",
     "concept": "C4",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C4-P1",
-    "stem": "At an evening bhajan, the two reeds playing one harmonium note are slightly off: 349 Hz and 352 Hz. Arjun hears the note throb. How many throbs per second does he hear?",
+    "transfer": true,
+    "stem": "At a Pune auto-parts lab, Kiran measures how the acceleration a (in m/s²) of four test mounts depends on displacement x (in m) from equilibrium. Which mount vibrates in SHM?",
     "options": {
-      "A": "701 throbs per second",
-      "B": "350.5 throbs per second",
-      "C": "0, because the two sounds cancel and the note dies out",
-      "D": "3 throbs per second"
+      "A": "Mount 1: a = +25x",
+      "B": "Mount 2: a has a fixed size of 2 m/s², always toward equilibrium",
+      "C": "Mount 3: a = −25x",
+      "D": "Mount 4: a = −25x³"
     },
-    "correct": "D",
-    "distractor_map": {
-      "A": "B1",
-      "B": "B2",
-      "C": "W4",
-      "D": "CORRECT"
-    },
+    "correct": "C",
+    "distractor_map": {"A": "S12", "B": "S11", "C": "CORRECT", "D": "UNMAPPED"},
     "reasons": {
-      "r1": {"text": "The throbbing comes from the two reeds going in and out of step, which is 352 minus 349 times a second.", "maps_to": "CORRECT"},
-      "r2": {"text": "The throb should be at the average of the two reeds, somewhere in the middle.", "maps_to": "B2"},
-      "r3": {"text": "Both reeds sound together, so the throbs are the two frequencies added.", "maps_to": "B1"}
+      "r1": {"text": "SHM needs acceleration proportional to x and opposite to it, and −25x does that with ω = 5 rad/s.", "maps_to": "CORRECT"},
+      "r2": {"text": "Acceleration should point the same way as the displacement, so a = +25x is the SHM one.", "maps_to": "S12"},
+      "r3": {"text": "As long as the push back is steady and toward equilibrium, it's SHM, so the fixed 2 m/s² one works.", "maps_to": "S11"}
     },
-    "calc": "f_beat = |352 Hz - 349 Hz| = 3 Hz",
-    "verify_flags": ["TODO_VERIFY", "Harmonium reed frequencies are illustrative, not real tuning values"]
+    "calc": "a = −ω²x with ω² = 25 s⁻² gives ω = 5 rad/s, T = 2π/5 ≈ 1.26 s",
+    "verify_flags": ["TODO_VERIFY", "Mount 4 is periodic but not simple harmonic (a not proportional to x); Mount 2 oscillates but is not SHM"]
   },
   {
     "item_id": "C4-A1",
     "concept": "C4",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
-    "stem": "On sports day, Sana and Dev flick opposite ends of a long tug-of-war rope at the same instant. Sana's pulse is upward, Dev's is an equal downward one. They meet and the rope looks flat for a moment. What happens next?",
+    "transfer": false,
+    "stem": "A 0.5 kg block on a spring of force constant 50 N/m oscillates with amplitude 8 cm. What is its acceleration when it is 4 cm to the right (+x) of the mean position?",
     "options": {
-      "A": "Both pulses are gone for good; their energy was used up in cancelling",
-      "B": "Sana's pulse carries on toward Dev and Dev's carries on toward Sana, both unchanged",
-      "C": "The pulses rebound, so Sana's upward pulse heads back toward Sana",
-      "D": "The pulses rebound and return smaller, as some energy is lost in the collision"
+      "A": "8 m/s² toward the mean, the same as at every point",
+      "B": "4 m/s² to the right, away from the mean",
+      "C": "0.4 m/s² toward the mean",
+      "D": "4 m/s² toward the mean (−x direction)"
     },
-    "correct": "B",
-    "distractor_map": {
-      "A": "W4",
-      "B": "CORRECT",
-      "C": "W5",
-      "D": "W5"
-    },
+    "correct": "D",
+    "distractor_map": {"A": "S11", "B": "S12", "C": "SLIP", "D": "CORRECT"},
     "reasons": {
-      "r1": {"text": "They hit each other in the middle and bounce back, like two balls.", "maps_to": "W5"},
-      "r2": {"text": "Up plus down makes zero, so after that the pulses are finished.", "maps_to": "W4"},
-      "r3": {"text": "They only add while overlapping; after that each pulse keeps going as if nothing happened.", "maps_to": "CORRECT"}
+      "r1": {"text": "The acceleration is set by the amplitude, kA/m, and stays the same through the motion.", "maps_to": "S11"},
+      "r2": {"text": "ω² = k/m = 100, so a = −100 × 0.04 = −4 m/s², pointing back to the mean.", "maps_to": "CORRECT"},
+      "r3": {"text": "The block is on the right side, so the acceleration also points right, away from the centre.", "maps_to": "S12"}
+    },
+    "calc": "ω² = k/m = 50/0.5 = 100 s⁻²; a = −ω²x = −100 × 0.04 = −4 m/s²",
+    "verify_flags": ["TODO_VERIFY", "A uses ω²A = 100 × 0.08 = 8 m/s² (max value) for every point; C is the forgot-square slip ωx = 10 × 0.04 = 0.4"]
+  },
+  {
+    "item_id": "C4-Q1",
+    "concept": "C4",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Rohit's spring-block is at x = +3 cm and moving away from the mean position. In which direction does the restoring force on the block act? Give a reason.",
+    "answer_key": "The restoring force acts toward the mean position, opposite to the displacement.",
+    "expected_reasoning": "The restoring force is F = −kx, so it always opposes the displacement and points back to the mean, whichever way the block is moving; here it slows the block down.",
+    "accept_any": ["toward mean", "towards mean", "toward the mean", "towards the mean", "toward centre", "towards centre", "toward center", "towards center", "toward equilibrium", "towards equilibrium", "back to mean", "back to the mean", "opposite to displacement", "opposite to the displacement", "opposite to x", "negative x"],
+    "reasoning_any": ["-kx", "−kx", "minus kx", "f = -kx", "f = −kx", "restoring", "opposes displacement", "pulls back", "brings it back", "minus sign", "negative sign", "slows down", "slowing down", "proportional"],
+    "numeric": null,
+    "patterns": [
+      {"code": "S12", "any": ["direction of motion", "same direction as motion", "along motion", "along its motion", "away from mean", "away from the mean", "away from centre", "along displacement", "same as displacement", "outward", "outwards", "towards extreme", "toward extreme", "positive x"]}
+    ],
+    "follow_ups": {
+      "S12": "As the block moves from +3 cm out to the extreme, is it speeding up or slowing down, and what does that say about the force?",
+      "CORRECT_NO_REASON": "Why does the force point that way even though the block is moving outward?",
+      "CORRECT": "If a mount had a = +9x, would it oscillate about x = 0? Explain.",
+      "UNCLEAR": "Can you describe the direction of the force relative to the mean position?"
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Assumes an ideal rope with negligible damping; real rope pulses shrink slowly from friction, not from meeting"]
+    "verify_flags": ["TODO_VERIFY", "A correct answer like 'opposite to the direction of motion' contains the S12 phrase 'direction of motion'; engine should check accept_any before patterns or handle negation"]
+  },
+  {
+    "item_id": "C4-Q2",
+    "concept": "C4",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Ishaan pulls a spring-block 2 cm from the mean, then later 6 cm from the mean. Is the restoring force the same in both cases? Answer in one sentence with a reason.",
+    "answer_key": "No, the restoring force at 6 cm is three times the force at 2 cm.",
+    "expected_reasoning": "The restoring force is F = −kx, proportional to displacement, so tripling the displacement triples the force.",
+    "accept_any": ["three times", "3 times", "thrice", "triple", "triples", "3x", "more at 6", "greater at 6", "larger at 6", "bigger at 6", "more force at 6"],
+    "reasoning_any": ["proportional", "-kx", "−kx", "minus kx", "f = kx", "f = -kx", "depends on displacement", "depends on x", "increases with displacement", "more stretch", "directly"],
+    "numeric": null,
+    "patterns": [
+      {"code": "S11", "any": ["same in both", "equal in both", "constant force", "force is constant", "stays same", "stays the same", "does not depend", "doesn't depend", "same everywhere", "same at every", "same spring", "k is same"]}
+    ],
+    "follow_ups": {
+      "S11": "If you stretch a spring a tiny bit and then a lot, does your hand feel the same pull both times?",
+      "CORRECT_NO_REASON": "Why exactly three times, and not just 'more'?",
+      "CORRECT": "If the force at 2 cm is 0.6 N, what is the force constant k, and what is the force at the mean position?",
+      "UNCLEAR": "Is the force at 6 cm larger, smaller, or the same as at 2 cm, and by how much?"
+    },
+    "calc": "|F6|/|F2| = 6/2 = 3",
+    "verify_flags": ["TODO_VERIFY", "A student writing 'not the same in both' would also hit the S11 phrase 'same in both'; engine negation handling to check"]
+  },
+  {
+    "item_id": "C4-A2",
+    "concept": "C4",
+    "kind": "short",
+    "is_assessment": true,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "A 2 kg block on a spring of force constant 200 N/m is 5 cm from its mean position. Find the magnitude of its acceleration and say which way it points.",
+    "answer_key": "The acceleration is 5 m/s², directed toward the mean position.",
+    "expected_reasoning": "ω² = k/m = 100 s⁻², so |a| = ω²x = 100 × 0.05 = 5 m/s², and a = −ω²x points opposite to the displacement, toward the mean.",
+    "accept_any": [],
+    "reasoning_any": ["k/m", "omega square", "ω²", "ω^2", "100", "-ω²x", "−ω²x", "toward mean", "towards mean", "towards the mean", "toward the mean", "opposite to displacement", "towards centre"],
+    "numeric": {
+      "value": 5.0,
+      "unit": "m/s²",
+      "tolerance": 0.05,
+      "slips": [
+        {"value": 0.5, "why": "forgot to square ω: used ωx = 10 × 0.05"},
+        {"value": 10.0, "why": "gave the force kx = 200 × 0.05 instead of dividing by m"},
+        {"value": 500.0, "why": "used x = 5 cm without converting to metres"}
+      ]
+    },
+    "patterns": [
+      {"code": "S12", "any": ["away from mean", "away from the mean", "away from centre", "direction of motion", "outward", "outwards", "along displacement"]},
+      {"code": "S11", "any": ["same everywhere", "same at all", "same at every", "constant acceleration", "acceleration is constant", "same as extreme"]}
+    ],
+    "follow_ups": {
+      "S12": "If the acceleration pointed away from the mean, would the block ever come back? What would happen to x?",
+      "S11": "What would the acceleration be at 2.5 cm from the mean, and at the mean itself?",
+      "CORRECT_NO_REASON": "How did you get that value, and why does it point that way?",
+      "CORRECT": "If the amplitude is 10 cm, what is the maximum acceleration, and where does it occur?",
+      "UNCLEAR": "Can you give the size of the acceleration with its unit, and its direction relative to the mean?"
+    },
+    "calc": "ω² = 200/2 = 100 s⁻²; |a| = 100 × 0.05 = 5 m/s², toward mean",
+    "verify_flags": ["TODO_VERIFY", "tolerance assumed relative (5%); confirm engine convention"]
   }
 ]

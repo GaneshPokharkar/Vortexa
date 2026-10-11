@@ -1,0 +1,90 @@
+[
+  {
+    "item_id": "C1-P1",
+    "concept": "C1",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "Riya ties two identical stones to equal-length threads on her balcony hook. She pulls one aside by 5° and the other by 10° (both small angles) and releases them together. Which stone comes back to its starting point first?",
+    "options": {
+      "A": "The 10° stone, because it moves faster",
+      "B": "The 5° stone, because its path is shorter",
+      "C": "Both come back at the same time",
+      "D": "It depends on which stone is slightly heavier"
+    },
+    "correct": "C",
+    "distractor_map": {"A": "O2", "B": "O1", "C": "CORRECT", "D": "O3"},
+    "reasons": {
+      "r1": {"text": "The 10° one has more distance to go, so it needs more time.", "maps_to": "O1"},
+      "r2": {"text": "The 10° one goes farther but also moves faster, and these balance out, so the time is the same.", "maps_to": "CORRECT"},
+      "r3": {"text": "The 10° one starts higher so it rushes down faster and gets back first.", "maps_to": "O2"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY"]
+  },
+  {
+    "item_id": "C1-P2",
+    "concept": "C1",
+    "is_assessment": false,
+    "sibling_of": "C1-P1",
+    "stem": "In the school lab, Neha's simple pendulum is 1.0 m long and swings with an amplitude of 4°. She restarts it with an amplitude of 8° (still a small angle). Take g = π² m/s². What is the period now?",
+    "options": {
+      "A": "4.0 s",
+      "B": "1.0 s",
+      "C": "0.64 s",
+      "D": "2.0 s"
+    },
+    "correct": "D",
+    "distractor_map": {"A": "O1", "B": "O2", "C": "SLIP", "D": "CORRECT"},
+    "reasons": {
+      "r1": {"text": "Double the swing means double the path, so the time doubles too.", "maps_to": "O1"},
+      "r2": {"text": "A wider swing gives more speed at the bottom, so it gets back sooner.", "maps_to": "O2"},
+      "r3": {"text": "The formula only has L and g, amplitude isn't in it, so the period doesn't change.", "maps_to": "CORRECT"}
+    },
+    "calc": "T = 2π√(L/g) = 2π√(1.0/π²) = 2π/π = 2.0 s (same for 4° and 8°); SLIP C: 2π(L/g) without the root = 2/π ≈ 0.64 s",
+    "verify_flags": ["TODO_VERIFY"]
+  },
+  {
+    "item_id": "C1-P3",
+    "concept": "C1",
+    "is_assessment": false,
+    "sibling_of": "C1-P1",
+    "stem": "Dadi's old pendulum wall clock in Pune is running down, so its pendulum's swing keeps getting smaller (always a small angle). What happens to the time taken for each swing?",
+    "options": {
+      "A": "It stays the same",
+      "B": "It gets shorter, so the clock runs fast",
+      "C": "It gets longer, so the clock runs slow",
+      "D": "It depends on how heavy the brass bob is"
+    },
+    "correct": "A",
+    "distractor_map": {"A": "CORRECT", "B": "O1", "C": "O2", "D": "O3"},
+    "reasons": {
+      "r1": {"text": "A smaller swing covers less distance but also moves slower, so each swing takes the same time.", "maps_to": "CORRECT"},
+      "r2": {"text": "A smaller swing has less to travel, so it finishes quicker.", "maps_to": "O1"},
+      "r3": {"text": "A smaller swing moves slower, so it takes longer to finish.", "maps_to": "O2"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Real clocks have a tiny amplitude-dependent (circular) error beyond small angles; ignored here as NCERT treats small-angle period as amplitude-independent."]
+  },
+  {
+    "item_id": "C1-A1",
+    "concept": "C1",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "Ramesh, a mason, checks a wall with a 100 g plumb bob on a 0.25 m string; it swings gently (small angle). He swaps it for a 400 g bob on the same string. Take g = π² m/s². What is the new period?",
+    "options": {
+      "A": "2.0 s",
+      "B": "1.0 s",
+      "C": "0.5 s",
+      "D": "0.16 s"
+    },
+    "correct": "B",
+    "distractor_map": {"A": "O3", "B": "CORRECT", "C": "O3", "D": "SLIP"},
+    "reasons": {
+      "r1": {"text": "The heavier bob gets pulled down harder, so it swings back quicker.", "maps_to": "O3"},
+      "r2": {"text": "More mass means more pull but also more to move, so it cancels; only length and g matter.", "maps_to": "CORRECT"},
+      "r3": {"text": "Four times the mass is harder to move, so it swings slower, like a heavier load on a spring.", "maps_to": "O3"}
+    },
+    "calc": "T = 2π√(L/g) = 2π√(0.25/π²) = 2π(0.5/π) = 1.0 s, mass does not appear; O3 A: ×√4 = 2.0 s; O3 C: ÷√4 = 0.5 s; SLIP D: 2π(0.25/π²) = 0.5/π ≈ 0.16 s",
+    "verify_flags": ["TODO_VERIFY", "Treats plumb bob as a point mass on a light string (simple pendulum)."]
+  }
+]

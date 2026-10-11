@@ -2,158 +2,233 @@
   "concept_card": {
     "card_id": "C3-K",
     "concept": "C3",
-    "statement": "Each particle does SHM in place; the wave pattern moves at a speed set by the medium, not the source.",
-    "analogy": "Stadium Mexican wave: fans only stand and sit, yet the wave runs round.",
-    "steps": [
-      "Particles oscillate about their own mean positions",
-      "Pattern and energy pass from particle to particle",
-      "Medium sets speed: v = √(T/μ) on a string",
-      "Source sets f; amplitude leaves v unchanged",
-      "Hence λ = v/f"
+    "topic": "SHM",
+    "subtopic": "Time period, frequency and angular frequency",
+    "learning_objective": "Students will be able to convert between T, f and ω, calculate the period of a spring–mass system and a simple pendulum, and explain why the period does not depend on amplitude in ideal SHM.",
+    "statement": "In SHM the period T = 2π/ω is fixed by the system (m and k, or L and g), not by how far it is pulled.",
+    "simple": "The time period is the time for one full back-and-forth. Frequency is how many back-and-forths happen in one second. A heavier block on a spring swings slower, but a heavier pendulum bob does not. Pulling further does not change the time.",
+    "formal": "For SHM x = A cos(ωt + φ), the motion repeats when ωt advances by 2π, so T = 2π/ω and f = 1/T = ω/2π. Angular frequency ω (rad/s) is therefore 2π times f (Hz). For a spring–mass system ω = √(k/m), giving T = 2π√(m/k). For a simple pendulum at small angles ω = √(g/L), giving T = 2π√(L/g), independent of bob mass. Amplitude A does not appear in ω, so the period is amplitude-independent.",
+    "equations": [
+      {
+        "expr": "T = 2π/ω",
+        "meaning": "one full cycle is 2π radians of phase",
+        "vars": {
+          "T": "time period (s)",
+          "ω": "angular frequency (rad/s)"
+        },
+        "assumptions": "ideal SHM"
+      },
+      {
+        "expr": "f = 1/T",
+        "meaning": "number of oscillations per second",
+        "vars": {
+          "f": "frequency (Hz)",
+          "T": "time period (s)"
+        },
+        "assumptions": "periodic motion"
+      },
+      {
+        "expr": "ω = 2πf",
+        "meaning": "angular frequency is 2π times ordinary frequency",
+        "vars": {
+          "ω": "angular frequency (rad/s)",
+          "f": "frequency (Hz)"
+        },
+        "assumptions": "ideal SHM"
+      },
+      {
+        "expr": "T = 2π√(m/k)",
+        "meaning": "period of a spring–mass oscillator",
+        "vars": {
+          "m": "mass of block (kg)",
+          "k": "spring constant (N/m)"
+        },
+        "assumptions": "massless ideal spring, no friction"
+      },
+      {
+        "expr": "T = 2π√(L/g)",
+        "meaning": "period of a simple pendulum",
+        "vars": {
+          "L": "length to centre of bob (m)",
+          "g": "acceleration due to gravity (m/s²)"
+        },
+        "assumptions": "small angles, point bob, light inextensible string"
+      }
     ],
-    "worked_example": "T = 100 N, μ = 0.01 kg/m: v = √(100/0.01) = 100 m/s; at 50 Hz, λ = 2 m."
+    "analogy": "A merry-go-round turning at a fixed rate: a child on the outer edge covers a bigger circle but moves faster, so every child takes the same time per round.",
+    "steps": [
+      "Identify the system: spring–mass or simple pendulum",
+      "Find ω from the system: √(k/m) or √(g/L)",
+      "Get T = 2π/ω and f = 1/T, never T = 1/ω",
+      "Check what changed: amplitude does not affect T; spring mass does; pendulum bob mass does not"
+    ],
+    "worked_example": "A 0.25 kg block on a spring with k = 25π² N/m: ω = √(25π²/0.25) = 10π rad/s, so T = 2π/10π = 0.2 s and f = 5 Hz, whether the amplitude is 2 cm or 4 cm.",
+    "alternatives": [
+      "Think in terms of phase: the block finishes a cycle when ωt grows by 2π radians, so T is 2π/ω seconds; f counts cycles, ω counts radians.",
+      "A bigger amplitude means a bigger restoring force at the ends, so the block moves faster; the extra speed exactly cancels the extra distance."
+    ],
+    "visual": "shm-oscillator",
+    "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed."
   },
   "remediation_cards": [
     {
-      "card_id": "W1-R",
-      "code": "W1",
-      "wrong_idea": "The wave carries the rope (or water, or air) along with it to the other end.",
-      "why_it_feels_right": "You can see something moving forward, and waves at the beach seem to push things to the shore.",
-      "why_wrong": "Each piece of the medium only moves up-down or back-forth about its own place. Only the pattern and energy move forward.",
-      "correct_idea": "The medium stays put and oscillates; the disturbance is what travels.",
-      "sim_moment": "Red-Dot Rope: the red dot bobs up and down as the wave runs past, never moving along."
+      "card_id": "S8-R",
+      "code": "S8",
+      "wrong_idea": "If I pull it further, it has more distance to go, so one oscillation takes longer.",
+      "why_it_feels_right": "Covering a longer distance usually takes more time.",
+      "why_wrong": "Pulling further also gives a bigger restoring force, so the body moves faster. The extra speed exactly balances the extra distance.",
+      "correct_idea": "In ideal SHM the time period is independent of amplitude.",
+      "sim_moment": "Raise the amplitude slider: the period readout stays fixed and x–t peaks grow taller but stay equally spaced."
     },
     {
-      "card_id": "W2-R",
-      "code": "W2",
-      "wrong_idea": "If I shake the rope faster, the wave will run along it faster.",
-      "why_it_feels_right": "Moving your hand faster feels like more effort, so it seems the wave should be quicker too.",
-      "why_wrong": "On a string v = √(T/μ), set only by tension and mass per length. Shaking faster raises f, so λ = v/f shrinks instead.",
-      "correct_idea": "Higher frequency gives shorter waves moving at the same speed.",
-      "sim_moment": "Red-Dot Rope: raise the frequency slider and see the crests bunch closer while the front still reaches the end at the same time."
+      "card_id": "S9-R",
+      "code": "S9",
+      "wrong_idea": "A heavier bob changes a pendulum's period, but a spring's period depends only on the spring.",
+      "why_it_feels_right": "Heavier things feel harder to move and gravity pulls them harder.",
+      "why_wrong": "In a pendulum, gravity's pull and inertia both grow with mass, so mass cancels. A spring's force kx ignores mass, so a heavier block accelerates less.",
+      "correct_idea": "Bob mass does not change a pendulum's period; block mass changes a spring's period as √m.",
+      "sim_moment": "Increase the block's mass: the x–t graph stretches out and the period readout grows by √(mass ratio)."
     },
     {
-      "card_id": "W3-R",
-      "code": "W3",
-      "wrong_idea": "If I shake harder and make bigger waves, they will travel faster.",
-      "why_it_feels_right": "A bigger push usually makes things go faster, like throwing a ball harder.",
-      "why_wrong": "Amplitude does not appear in v = √(T/μ). A taller wave carries more energy, but on the same rope it moves at the same speed.",
-      "correct_idea": "Bigger amplitude means more energy, not more speed.",
-      "sim_moment": "Red-Dot Rope: raise the amplitude slider and see the taller pulse reach the end at the same moment as a small one."
+      "card_id": "S10-R",
+      "code": "S10",
+      "wrong_idea": "ω is the frequency, so the period is just 1/ω.",
+      "why_it_feels_right": "Both are called 'frequency' and both measure how fast it oscillates.",
+      "why_wrong": "ω counts radians per second; f counts full oscillations per second. One oscillation is 2π radians, so T = 2π/ω. Using 1/ω makes T 2π times too small.",
+      "correct_idea": "Angular frequency ω = 2πf, so T = 2π/ω and f = ω/2π.",
+      "sim_moment": "Time one full cycle on the x–t graph and check it equals 2π/ω, not 1/ω."
     }
   ],
   "exemplars": {
-    "W1": [
-      "the rope goes along with the wave",
-      "the water moves forward with the ripple, that's how it reaches the shore",
-      "sound is just air travelling from the speaker to my ear",
-      "the wave pushes the string bits to the other end",
-      "the red dot will end up at the far side",
-      "the particles move along with the wave, right?",
-      "the air from the flute comes to us, that's why we hear it",
-      "the medium travels with it, otherwise how does the wave get there",
-      "the stuff gets carried forward, like a conveyor belt",
-      "the leaf will float off with the waves",
-      "wave ke saath rope bhi aage chali jaati hai",
-      "hawa hi toh speaker se kaan tak aati hai, wahi sound hai"
+    "S8": [
+      "if you pull it more it has to go further so it takes more time",
+      "bigger swing means longer time period",
+      "more amplitude, more time for one oscillation",
+      "the far one has a longer path so it comes back late",
+      "I think doubling the swing doubles the period",
+      "small swing finishes faster obviously",
+      "it travels more distance so period increases",
+      "if it bounces higher it takes longer to come down",
+      "the period depends on how far you pull it",
+      "longer arc so more time per swing",
+      "zyada kheencha toh zyada time lagega na",
+      "bada swing hai toh time period bhi bada hoga"
     ],
-    "W2": [
-      "shake it faster and the wave goes faster",
-      "higher frequency means higher speed",
-      "the high note reaches first because it vibrates more",
-      "more waves per second so it must travel quicker",
-      "if you wiggle fast the wave zooms",
-      "faster hand, faster wave, obviously",
-      "double the frequency, double the speed",
-      "the treble sound travels quicker than the bass",
-      "quick shakes make quick waves",
-      "it moves faster because the source is vibrating faster",
-      "jaldi jaldi hilao toh wave bhi jaldi pahunchegi",
-      "frequency badhegi toh speed bhi badhegi na"
+    "S9": [
+      "heavier bob will swing faster because gravity pulls it more",
+      "the heavy one is harder to move so it is slower",
+      "lighter bob comes back quicker",
+      "mass of the bob changes the time period",
+      "for spring the mass doesn't matter, only the spring constant",
+      "same spring means same period no matter what block you hang",
+      "iron bob is heavier so it takes more time",
+      "more weight means it falls back faster",
+      "the period only depends on how stiff the spring is",
+      "if you double the mass the pendulum period changes",
+      "bhaari bob jaldi neeche aayega na",
+      "spring same hai toh mass se kya farak padega"
     ],
-    "W3": [
-      "shake harder and the wave goes faster",
-      "bigger waves travel faster",
-      "the louder sound reaches first",
-      "more amplitude means more speed",
-      "a big jerk sends the pulse quicker",
-      "the taller pulse has more energy so it runs faster",
-      "if you hit it harder the sound gets there sooner",
-      "big push, fast wave",
-      "the stronger wave will win the race",
-      "louder means faster, it has more force behind it",
-      "zor se hilao toh wave tez jaayegi",
-      "badi wave hai toh jaldi pahunchegi"
+    "S10": [
+      "omega is the frequency so period is one by omega",
+      "T equals 1 by omega",
+      "frequency is 4 pi hertz since omega is 4 pi",
+      "omega and f are the same thing",
+      "I just put f equals omega",
+      "period is the reciprocal of omega",
+      "angular frequency and frequency mean the same",
+      "omega is 10 pi so it does 10 pi oscillations per second",
+      "f is omega so T is 1 by f which is 1 by omega",
+      "no need for 2 pi, period is 1 over omega",
+      "omega hi toh frequency hai",
+      "T nikalne ke liye bas 1 by omega karo"
     ],
     "CORRECT": [
-      "the rope just goes up and down, only the shape moves along",
-      "same rope, same tension, so same speed",
-      "speed depends on the medium, not on how I shake it",
-      "shaking faster only makes the waves shorter, not faster",
-      "a bigger wave has more energy but the same speed",
-      "the air just vibrates in place, the sound pattern is what travels"
+      "period is 2 pi by omega because one cycle is 2 pi radians",
+      "amplitude isn't in the formula so the period stays the same",
+      "pendulum period depends only on length and g, the mass cancels",
+      "for a spring T is 2 pi root m by k so four times mass gives double period",
+      "bigger swing means more distance but also more speed, so same time",
+      "f is omega by 2 pi, so 4 pi radians per second is 2 hertz"
     ]
   },
   "contrast_probes": [
     {
       "separates": [
-        "W1",
-        "W2"
+        "S8",
+        "S9"
       ],
-      "probe": "If you shake a rope faster, where does a red dot painted on its middle end up after a minute?",
-      "reply_if_first": "It gets carried down to the far end along with the wave.",
-      "reply_if_second": "It stays near its spot and just jiggles faster."
+      "probe": "Two pendulums of equal length: a light bob pulled far and a heavy bob pulled a little. Which one do you think takes longer per swing, and what decides it?",
+      "reply_if_first": "The light bob, because it is pulled further and has more distance to cover.",
+      "reply_if_second": "It depends on the bobs' masses; the heavy one will be slower or faster because of its weight."
     },
     {
       "separates": [
-        "W1",
-        "W3"
+        "S8",
+        "S10"
       ],
-      "probe": "What decides how soon a pulse on a rope reaches the far end?",
-      "reply_if_first": "How fast the rope itself gets dragged forward.",
-      "reply_if_second": "How big the pulse is; a bigger one gets there sooner."
+      "probe": "A block with ω = 2π rad/s is pulled from 5 cm to 10 cm. What is its period now, and why?",
+      "reply_if_first": "It was 1 s, but now it travels double the distance, so about 2 s.",
+      "reply_if_second": "Period is 1 by omega, so 1/(2π), about 0.16 s, whatever the amplitude."
     },
     {
       "separates": [
-        "W2",
-        "W3"
+        "S9",
+        "S10"
       ],
-      "probe": "On the same rope, one pulse is tall but slowly made and the other is small but quickly made. Which reaches the end first?",
-      "reply_if_first": "The small, quickly made one.",
-      "reply_if_second": "The tall one."
+      "probe": "A spring–mass system has ω = 4π rad/s. What extra information, if any, do you need to find its period?",
+      "reply_if_first": "I need the mass of the block, otherwise I can't find the period.",
+      "reply_if_second": "Nothing extra; the period is 1/ω = 1/(4π) s."
     },
     {
       "separates": [
-        "W1",
+        "S8",
         "CORRECT"
       ],
-      "probe": "After a wave has fully passed a ribbon tied to the middle of a rope, where is the ribbon?",
-      "reply_if_first": "Further along the rope, closer to the far end.",
-      "reply_if_second": "Back at the same spot; it only went up and down."
+      "probe": "If you double the amplitude of a spring–mass oscillator, what happens to the time for one oscillation?",
+      "reply_if_first": "It increases, because the block has to cover more distance.",
+      "reply_if_second": "It stays the same; the block covers more distance but moves faster, and T = 2π√(m/k) has no amplitude."
     },
     {
       "separates": [
-        "W2",
+        "S9",
         "CORRECT"
       ],
-      "probe": "Same rope, same tension: you double how many times per second you shake it. What happens to the wave speed?",
-      "reply_if_first": "It doubles too.",
-      "reply_if_second": "It stays the same; the waves just get shorter."
+      "probe": "You replace a 100 g bob with a 400 g bob on a pendulum, and a 100 g block with a 400 g block on a spring. What happens to each period?",
+      "reply_if_first": "Either both periods change because of the extra mass, or neither changes because only L and k matter.",
+      "reply_if_second": "The pendulum's period stays the same, but the spring's period doubles because T ∝ √m."
     },
     {
       "separates": [
-        "W3",
+        "S10",
         "CORRECT"
       ],
-      "probe": "Same rope, same tension: you make the pulse twice as tall. Does it reach the far end sooner?",
-      "reply_if_first": "Yes, the bigger pulse gets there sooner.",
-      "reply_if_second": "No, it arrives at the same time, just taller."
+      "probe": "An oscillator has ω = 10π rad/s. How many full oscillations does it make in one second?",
+      "reply_if_first": "10π, about 31 oscillations, since omega is the frequency.",
+      "reply_if_second": "5, because f = ω/2π = 10π/2π."
+    }
+  ],
+  "doubts": [
+    {
+      "q": "Why do we need both f and ω if they both tell how fast it oscillates?",
+      "a": "f counts full oscillations per second, while ω counts radians of phase per second. ω fits naturally into x = A cos(ωt + φ) and into ω = √(k/m). They are linked by ω = 2πf."
+    },
+    {
+      "q": "Why does a pendulum's period not depend on the mass of the bob, but a spring's period does?",
+      "a": "In a pendulum the restoring force comes from gravity, which grows with mass, so mass cancels with inertia. In a spring the restoring force kx does not depend on the block's mass, so a heavier block accelerates less and T = 2π√(m/k) grows."
+    },
+    {
+      "q": "Is the pendulum period really independent of amplitude for any swing?",
+      "a": "Only for small angles, where sin θ ≈ θ and the motion is SHM. For large swings the period becomes slightly longer than 2π√(L/g)."
+    },
+    {
+      "q": "If I double the mass on a spring, why does the period not double?",
+      "a": "The period depends on the square root of mass, T = 2π√(m/k). Doubling m multiplies T by √2 ≈ 1.41; you need four times the mass to double the period."
     }
   ],
   "verify_flags": [
     "TODO_VERIFY",
-    "Amplitude-independence of v holds for small (linear) waves only",
-    "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
-    "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
+    "Large-amplitude pendulum correction stated qualitatively only.",
+    "Hinglish exemplars need review by a native speaker for natural phrasing.",
+    "Merry-go-round analogy is a uniform-circular-motion picture of SHM; check it does not suggest angular speed equals frequency."
   ]
 }

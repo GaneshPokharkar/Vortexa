@@ -43,8 +43,9 @@ def main() -> int:
         if items_file.exists():
             new = []
             for item in read(items_file):
-                bad = {c for c in item["distractor_map"].values() if c not in codes | {CORRECT, SLIP, UNMAPPED}}
-                bad |= {r["maps_to"] for r in item["reasons"].values() if r["maps_to"] not in codes | {CORRECT}}
+                bad = {c for c in item.get("distractor_map", {}).values() if c not in codes | {CORRECT, SLIP, UNMAPPED}}
+                bad |= {r["maps_to"] for r in item.get("reasons", {}).values() if r["maps_to"] not in codes | {CORRECT}}
+                bad |= {p["code"] for p in item.get("patterns", []) if p["code"] not in codes}
                 if item.get("concept") != cid or bad:
                     rejected.append(f"{item.get('item_id')}: concept {item.get('concept')!r}, unknown codes {sorted(bad)}")
                 else:
@@ -70,7 +71,9 @@ def main() -> int:
                 })
             probes = draft.get("contrast_probes", [])
             concept.update(summary=k["statement"], contrast_probes=probes,
-                           correct_exemplars=draft["exemplars"].get(CORRECT, []))
+                           correct_exemplars=draft["exemplars"].get(CORRECT, []), doubts=draft.get("doubts", []),
+                           learning_objective=k.get("learning_objective", ""),
+                           subtopic=k.get("subtopic") or concept.get("subtopic", ""))
             for m in misconceptions:
                 if m["code"] in mine:
                     vs_correct = [p["probe"] for p in probes if set(p["separates"]) == {m["code"], CORRECT}]
@@ -79,11 +82,13 @@ def main() -> int:
             print(f"{cid}: cards, exemplars and {len(probes)} probes")
 
     order = {c["concept_id"]: n for n, c in enumerate(concepts)}
-    items.sort(key=lambda i: (order[i["concept"]], i["is_assessment"], i["item_id"]))
+    kind_order = {"mcq": 0, "short": 1}
+    items.sort(key=lambda i: (order[i["concept"]], i["is_assessment"], kind_order[i.get("kind", "mcq")], i["item_id"]))
     for m in misconceptions:  # follow-ups: practice items that can surface this code
         m["followup_item_ids"] = [
             i["item_id"] for i in items
-            if not i["is_assessment"] and m["code"] in i["distractor_map"].values()
+            if not i["is_assessment"]
+            and (m["code"] in i.get("distractor_map", {}).values() or m["code"] in {p["code"] for p in i.get("patterns", [])})
         ]
 
     for r in rejected:

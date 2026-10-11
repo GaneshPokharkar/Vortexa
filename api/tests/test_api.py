@@ -108,6 +108,6 @@ def test_assessment_items_rejected_from_practice(client):
 
 
 def test_explain_and_concepts(client):
-    assert client.get("/explain/O1-R").json()["code"] == "O1"
+    assert client.get("/explain/S4-R").json()["code"] == "S4"
     assert client.get("/explain/nope").status_code == 404
-    assert len(client.get("/concepts").json()) == 9
+    assert len(client.get("/concepts").json()) == 7

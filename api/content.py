@@ -1,4 +1,4 @@
-"""Content schema (Pydantic) and loader for data/*.json."""
+"""Content schema (Pydantic) and loader for data/*.json. Content is data, kept apart from logic so teachers can review it."""
 from __future__ import annotations
 
 import json
@@ -22,13 +22,33 @@ class Probe(BaseModel):
     reply_if_second: str = ""
 
 
+class Doubt(BaseModel):
+    q: str
+    a: str
+
+
+class Topic(BaseModel):
+    topic_id: str
+    title: str
+    description: str
+    primary: bool = False
+
+
 class Concept(BaseModel):
     concept_id: str
     name: str
-    zone: str
-    summary: str
+    topic_id: str = "SHM"
+    subtopic: str = ""
+    zone: str = ""  # deprecated, old screens only
+    summary: str = ""
+    learning_objective: str = ""
+    review_status: Literal["needs_review", "verified"] = "needs_review"
     contrast_probes: list[Probe] = []
     correct_exemplars: list[str] = []
+    doubts: list[Doubt] = []
+
+    def public(self) -> dict:
+        return self.model_dump(exclude={"contrast_probes", "correct_exemplars", "doubts"})
 
 
 class Reason(BaseModel):
@@ -36,21 +56,55 @@ class Reason(BaseModel):
     maps_to: str
 
 
+class Pattern(BaseModel):
+    code: str
+    any: list[str]
+
+
+class Slip(BaseModel):
+    value: float
+    why: str
+
+
+class Numeric(BaseModel):
+    value: float
+    unit: str = ""
+    tolerance: float  # absolute
+    slips: list[Slip] = []
+
+
 class Item(BaseModel):
     item_id: str
     concept: str
+    kind: Literal["mcq", "short"] = "mcq"
     is_assessment: bool = False
+    transfer: bool = False
     stem: str
-    options: dict[Option, str]
-    correct: Option
-    distractor_map: dict[Option, str]
-    reasons: dict[ReasonId, Reason]
     sibling_of: Optional[str] = None
     calc: str = ""
     verify_flags: list[str] = []
+    # multiple choice (three-tier)
+    options: Optional[dict[Option, str]] = None
+    correct: Optional[Option] = None
+    distractor_map: Optional[dict[Option, str]] = None
+    reasons: Optional[dict[ReasonId, Reason]] = None
+    # short free-text answer
+    answer_key: str = ""
+    expected_reasoning: str = ""
+    accept_any: list[str] = []
+    reasoning_any: list[str] = []
+    numeric: Optional[Numeric] = None
+    patterns: list[Pattern] = []
+    follow_ups: dict[str, str] = {}
 
     @model_validator(mode="after")
     def _check(self) -> "Item":
+        if self.kind == "short":
+            if not self.answer_key or not (self.accept_any or self.numeric):
+                raise ValueError(f"{self.item_id}: short items need answer_key and accept_any or numeric")
+            return self
+        if not (self.options and self.correct and self.distractor_map and self.reasons):
+            raise ValueError(f"{self.item_id}: mcq items need options, correct, distractor_map and reasons")
         if set(self.options) != {"A", "B", "C", "D"} or set(self.distractor_map) != set(self.options):
             raise ValueError(f"{self.item_id}: options and distractor_map must cover A-D")
         if self.distractor_map[self.correct] != CORRECT:
@@ -64,15 +118,26 @@ class Item(BaseModel):
             raise ValueError(f"{self.item_id}: exactly one reason must map to 'CORRECT'")
         return self
 
+    def codes(self) -> set[str]:
+        """Every code this item can surface."""
+        if self.kind == "short":
+            return {p.code for p in self.patterns}
+        return set(self.distractor_map.values()) | {r.maps_to for r in self.reasons.values()}
+
     def public(self) -> dict:
-        """What the learner sees: no answer key."""
-        return {
-            "item_id": self.item_id,
-            "concept": self.concept,
-            "stem": self.stem,
-            "options": self.options,
-            "reasons": {rid: r.text for rid, r in self.reasons.items()},
-        }
+        """What the learner sees: never the answer key."""
+        out = {"item_id": self.item_id, "concept": self.concept, "kind": self.kind, "stem": self.stem, "transfer": self.transfer}
+        if self.kind == "mcq":
+            out["options"] = self.options
+            out["reasons"] = {rid: r.text for rid, r in self.reasons.items()}
+        return out
+
+
+class Equation(BaseModel):
+    expr: str
+    meaning: str = ""
+    vars: dict[str, str] = {}
+    assumptions: str = ""
 
 
 class Misconception(BaseModel):
@@ -92,9 +157,20 @@ class Card(BaseModel):
     concept: str
     code: Optional[str] = None
     statement: str
+    # concept-card lesson fields
+    topic: str = ""
+    subtopic: str = ""
+    learning_objective: str = ""
+    simple: str = ""
+    formal: str = ""
+    equations: list[Equation] = []
     analogy: str = ""
     steps: list[str] = []
     worked_example: str = ""
+    alternatives: list[str] = []
+    visual: str = ""
+    source: str = ""
+    # remediation-card fields
     wrong_idea: str = ""
     why_it_feels_right: str = ""
     why_wrong: str = ""
@@ -103,6 +179,7 @@ class Card(BaseModel):
 
 
 class Content(BaseModel):
+    topics: list[Topic]
     concepts: list[Concept]
     misconceptions: dict[str, Misconception]
     items: dict[str, Item]
@@ -119,12 +196,14 @@ class Content(BaseModel):
         for i in self.items.values():
             if i.concept not in concept_ids:
                 errors.append(f"{i.item_id}: unknown concept {i.concept}")
-            for c in i.distractor_map.values():
-                if c not in codes | {CORRECT, SLIP, UNMAPPED}:
-                    errors.append(f"{i.item_id}: unknown option code {c}")
-            for r in i.reasons.values():
-                if r.maps_to not in codes | {CORRECT}:
-                    errors.append(f"{i.item_id}: reasons may map only to 'CORRECT' or a code, got {r.maps_to}")
+            if i.kind == "mcq":
+                for c in i.distractor_map.values():
+                    if c not in codes | {CORRECT, SLIP, UNMAPPED}:
+                        errors.append(f"{i.item_id}: unknown option code {c}")
+                for r in i.reasons.values():
+                    if r.maps_to not in codes | {CORRECT}:
+                        errors.append(f"{i.item_id}: reasons may map only to 'CORRECT' or a code, got {r.maps_to}")
+            errors += [f"{i.item_id}: unknown pattern code {p.code}" for p in i.patterns if p.code not in codes]
             if i.sibling_of and i.sibling_of not in self.items:
                 errors.append(f"{i.item_id}: sibling_of {i.sibling_of} not found")
         for m in self.misconceptions.values():
@@ -149,6 +228,7 @@ def _read(name: str, key: Optional[str] = None):
 @lru_cache
 def load_content() -> Content:
     return Content(
+        topics=_read("topics.json"),
         concepts=_read("concepts.json"),
         misconceptions=_read("misconceptions.json", "code"),
         items=_read("items.json", "item_id"),

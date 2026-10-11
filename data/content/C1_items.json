@@ -2,89 +2,361 @@
   {
     "item_id": "C1-P1",
     "concept": "C1",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": null,
-    "stem": "Riya ties two identical stones to equal-length threads on her balcony hook. She pulls one aside by 5° and the other by 10° (both small angles) and releases them together. Which stone comes back to its starting point first?",
+    "transfer": false,
+    "stem": "Ananya's block on a spring slides on a smooth table between extreme points P and Q, 12 cm apart. She released it from P. When the block is 2 cm from P, what are the amplitude and the magnitude of its displacement?",
     "options": {
-      "A": "The 10° stone, because it moves faster",
-      "B": "The 5° stone, because its path is shorter",
-      "C": "Both come back at the same time",
-      "D": "It depends on which stone is slightly heavier"
+      "A": "Amplitude 12 cm, displacement 4 cm",
+      "B": "Amplitude 6 cm, displacement 4 cm",
+      "C": "Amplitude 6 cm, displacement 2 cm",
+      "D": "Amplitude 6 cm, displacement 8 cm"
     },
-    "correct": "C",
-    "distractor_map": {"A": "O2", "B": "O1", "C": "CORRECT", "D": "O3"},
+    "correct": "B",
+    "distractor_map": {
+      "A": "S1",
+      "B": "CORRECT",
+      "C": "S3",
+      "D": "SLIP"
+    },
     "reasons": {
-      "r1": {"text": "The 10° one has more distance to go, so it needs more time.", "maps_to": "O1"},
-      "r2": {"text": "The 10° one goes farther but also moves faster, and these balance out, so the time is the same.", "maps_to": "CORRECT"},
-      "r3": {"text": "The 10° one starts higher so it rushes down faster and gets back first.", "maps_to": "O2"}
+      "r1": {
+        "text": "The mean position is exactly in the middle of P and Q, so amplitude is half of 12 cm and displacement is counted from the middle.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "Amplitude is how far it goes in total, from P all the way to Q.",
+        "maps_to": "S1"
+      },
+      "r3": {
+        "text": "It started from P, so how far it has moved from P is its displacement.",
+        "maps_to": "S3"
+      }
     },
-    "calc": "",
-    "verify_flags": ["TODO_VERIFY"]
+    "calc": "A = 0.12/2 = 0.06 m; mean is 0.06 m from P; |x| = 0.06 - 0.02 = 0.04 m. SLIP D: added instead of subtracted, 0.06 + 0.02 = 0.08 m.",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Option A pairs S1 amplitude with the correct displacement; reviewer to confirm an S1 student would still place the mean midway."
+    ]
   },
   {
     "item_id": "C1-P2",
     "concept": "C1",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C1-P1",
-    "stem": "In the school lab, Neha's simple pendulum is 1.0 m long and swings with an amplitude of 4°. She restarts it with an amplitude of 8° (still a small angle). Take g = π² m/s². What is the period now?",
+    "transfer": false,
+    "stem": "In a Nashik park, Priya's swing moves between two extreme points that are 1.6 m apart, with small swings. Which statement about the swing is correct?",
     "options": {
-      "A": "4.0 s",
-      "B": "1.0 s",
-      "C": "0.64 s",
-      "D": "2.0 s"
+      "A": "Its amplitude is 1.6 m, the distance from one extreme to the other",
+      "B": "Its displacement at any instant is measured from the point where Priya was let go",
+      "C": "Its amplitude is 0.8 m, measured from the lowest point to either extreme",
+      "D": "Because it repeats regularly, it is SHM even for very large swings"
     },
-    "correct": "D",
-    "distractor_map": {"A": "O1", "B": "O2", "C": "SLIP", "D": "CORRECT"},
+    "correct": "C",
+    "distractor_map": {
+      "A": "S1",
+      "B": "S3",
+      "C": "CORRECT",
+      "D": "S2"
+    },
     "reasons": {
-      "r1": {"text": "Double the swing means double the path, so the time doubles too.", "maps_to": "O1"},
-      "r2": {"text": "A wider swing gives more speed at the bottom, so it gets back sooner.", "maps_to": "O2"},
-      "r3": {"text": "The formula only has L and g, amplitude isn't in it, so the period doesn't change.", "maps_to": "CORRECT"}
+      "r1": {
+        "text": "The swing keeps going back and forth at regular intervals, so it has to be SHM, whatever the size of swing.",
+        "maps_to": "S2"
+      },
+      "r2": {
+        "text": "Amplitude is the biggest distance from the lowest point, which is half the end-to-end gap.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "Amplitude is the whole width of the swing, front end to back end.",
+        "maps_to": "S1"
+      }
     },
-    "calc": "T = 2π√(L/g) = 2π√(1.0/π²) = 2π/π = 2.0 s (same for 4° and 8°); SLIP C: 2π(L/g) without the root = 2/π ≈ 0.64 s",
-    "verify_flags": ["TODO_VERIFY"]
+    "calc": "A = 1.6/2 = 0.8 m (distance measured along the arc for small swings).",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Option D relies on 'large-angle pendulum is periodic but not SHM'; confirm this is within HSC scope."
+    ]
   },
   {
     "item_id": "C1-P3",
     "concept": "C1",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C1-P1",
-    "stem": "Dadi's old pendulum wall clock in Pune is running down, so its pendulum's swing keeps getting smaller (always a small angle). What happens to the time taken for each swing?",
+    "transfer": true,
+    "stem": "In a tailoring shop in Solapur, a sewing-machine needle tip moves up and down, approximately in SHM, between 2 mm below the needle plate and 14 mm above it. What are its amplitude and mean position?",
     "options": {
-      "A": "It stays the same",
-      "B": "It gets shorter, so the clock runs fast",
-      "C": "It gets longer, so the clock runs slow",
-      "D": "It depends on how heavy the brass bob is"
+      "A": "Amplitude 16 mm; mean position 6 mm above the plate",
+      "B": "Amplitude 8 mm; displacement measured from the topmost point, 14 mm above the plate",
+      "C": "Amplitude 6 mm; mean position 8 mm above the plate",
+      "D": "Amplitude 8 mm; mean position 6 mm above the plate"
     },
-    "correct": "A",
-    "distractor_map": {"A": "CORRECT", "B": "O1", "C": "O2", "D": "O3"},
+    "correct": "D",
+    "distractor_map": {
+      "A": "S1",
+      "B": "S3",
+      "C": "SLIP",
+      "D": "CORRECT"
+    },
     "reasons": {
-      "r1": {"text": "A smaller swing covers less distance but also moves slower, so each swing takes the same time.", "maps_to": "CORRECT"},
-      "r2": {"text": "A smaller swing has less to travel, so it finishes quicker.", "maps_to": "O1"},
-      "r3": {"text": "A smaller swing moves slower, so it takes longer to finish.", "maps_to": "O2"}
+      "r1": {
+        "text": "The full stroke is 14 + 2 = 16 mm, the mean is the midpoint of the stroke, so the amplitude is half of it.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "The amplitude is just the full stroke of the needle, top to bottom.",
+        "maps_to": "S1"
+      },
+      "r3": {
+        "text": "The needle starts its stroke from the top, so displacement should be counted from there.",
+        "maps_to": "S3"
+      }
     },
-    "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Real clocks have a tiny amplitude-dependent (circular) error beyond small angles; ignored here as NCERT treats small-angle period as amplitude-independent."]
+    "calc": "Stroke = 0.014 - (-0.002) = 0.016 m; A = 0.008 m; mean = (0.014 + (-0.002))/2 = 0.006 m above plate. SLIP C: sign dropped, 14 - 2 = 12 mm, A = 6 mm, mean 8 mm.",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Real sewing-machine needle motion is only approximately SHM (crank-driven); stem says 'approximately'."
+    ]
   },
   {
     "item_id": "C1-A1",
     "concept": "C1",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
-    "stem": "Ramesh, a mason, checks a wall with a 100 g plumb bob on a 0.25 m string; it swings gently (small angle). He swaps it for a 400 g bob on the same string. Take g = π² m/s². What is the new period?",
+    "transfer": false,
+    "stem": "Which statement about oscillating bodies is correct?",
     "options": {
-      "A": "2.0 s",
-      "B": "1.0 s",
-      "C": "0.5 s",
-      "D": "0.16 s"
+      "A": "A block on a spring oscillates about its mean position, where the net force on it is zero, and its displacement is measured from that position",
+      "B": "A ball bouncing up and down on the floor is in SHM, because it repeats at equal time intervals",
+      "C": "The amplitude of a pendulum is the distance between its two extreme positions",
+      "D": "The displacement of a pendulum bob is measured from the point where it was released"
     },
-    "correct": "B",
-    "distractor_map": {"A": "O3", "B": "CORRECT", "C": "O3", "D": "SLIP"},
+    "correct": "A",
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "S2",
+      "C": "S1",
+      "D": "S3"
+    },
     "reasons": {
-      "r1": {"text": "The heavier bob gets pulled down harder, so it swings back quicker.", "maps_to": "O3"},
-      "r2": {"text": "More mass means more pull but also more to move, so it cancels; only length and g matter.", "maps_to": "CORRECT"},
-      "r3": {"text": "Four times the mass is harder to move, so it swings slower, like a heavier load on a spring.", "maps_to": "O3"}
+      "r1": {
+        "text": "Everything is measured from the mean position because that is where the net force is zero.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "Anything that repeats regularly, like a bouncing ball, is SHM.",
+        "maps_to": "S2"
+      },
+      "r3": {
+        "text": "Amplitude means the full width of the swing from one end to the other.",
+        "maps_to": "S1"
+      }
     },
-    "calc": "T = 2π√(L/g) = 2π√(0.25/π²) = 2π(0.5/π) = 1.0 s, mass does not appear; O3 A: ×√4 = 2.0 s; O3 C: ÷√4 = 0.5 s; SLIP D: 2π(0.25/π²) = 0.5/π ≈ 0.16 s",
-    "verify_flags": ["TODO_VERIFY", "Treats plumb bob as a point mass on a light string (simple pendulum)."]
+    "calc": "",
+    "verify_flags": [
+      "TODO_VERIFY"
+    ]
+  },
+  {
+    "item_id": "C1-Q1",
+    "concept": "C1",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Kavya pulls a block on a spring to one end of a smooth table and lets it go. At which point in its motion is the block's displacement zero? Give a reason.",
+    "answer_key": "Displacement is zero at the mean (equilibrium) position, midway between the two extremes.",
+    "expected_reasoning": "Displacement in an oscillation is measured from the mean position, where the spring is at its natural length and the net force is zero; the release point is only an extreme, at x = +A.",
+    "accept_any": [
+      "mean position",
+      "mean point",
+      "equilibrium",
+      "centre",
+      "center",
+      "middle",
+      "midpoint",
+      "mid point",
+      "halfway",
+      "half way"
+    ],
+    "reasoning_any": [
+      "net force",
+      "no force",
+      "force is zero",
+      "zero force",
+      "restoring force",
+      "measured from",
+      "balanced",
+      "natural length",
+      "unstretched",
+      "relaxed"
+    ],
+    "numeric": null,
+    "patterns": [
+      {
+        "code": "S3",
+        "any": [
+          "starting point",
+          "where it started",
+          "at the release point",
+          "zero at release",
+          "where she let go",
+          "initial position",
+          "at the extreme",
+          "at the end",
+          "one end",
+          "other end"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "S3": "If Kavya released the block from the opposite end instead, would the point of zero displacement move? Why?",
+      "CORRECT_NO_REASON": "Why is that point, and not the release point, used as the reference for displacement?",
+      "CORRECT": "At the point where displacement is zero, what can you say about the block's speed and its acceleration?",
+      "UNCLEAR": "Which place do you mean: the end where she let go, the opposite end, or somewhere between them?"
+    },
+    "calc": "",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "A correct answer such as 'at the middle, not at the end' contains both 'middle' and 'at the end'; the engine must resolve this overlap (e.g., negation handling or accept_any priority)."
+    ]
+  },
+  {
+    "item_id": "C1-Q2",
+    "concept": "C1",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "In the physics lab, a block on a spring oscillates on a smooth table. The two extreme positions are 10 cm apart. What is the amplitude in metres? Say how you got it.",
+    "answer_key": "The amplitude is 0.05 m, half the distance between the two extremes.",
+    "expected_reasoning": "The mean position is midway between the extremes and amplitude is the maximum displacement from the mean, so A = 0.10 m / 2 = 0.05 m.",
+    "accept_any": [],
+    "reasoning_any": [
+      "half",
+      "mean position",
+      "midway",
+      "middle",
+      "centre",
+      "center",
+      "divide by 2",
+      "divided by 2",
+      "by 2",
+      "by two"
+    ],
+    "numeric": {
+      "value": 0.05,
+      "unit": "m",
+      "tolerance": 0.002,
+      "slips": [
+        {
+          "value": 0.1,
+          "why": "used peak-to-peak distance between the extremes as amplitude"
+        },
+        {
+          "value": 0.025,
+          "why": "halved twice"
+        },
+        {
+          "value": 5,
+          "why": "gave the value in cm instead of metres"
+        }
+      ]
+    },
+    "patterns": [
+      {
+        "code": "S1",
+        "any": [
+          "end to end",
+          "peak to peak",
+          "whole distance",
+          "total distance",
+          "full distance",
+          "entire distance",
+          "one end to the other"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "S1": "If the amplitude really were 10 cm, how far from the mean position would each extreme be, and how far apart would the two extremes be?",
+      "CORRECT_NO_REASON": "Why do you take half of the 10 cm rather than the whole 10 cm?",
+      "CORRECT": "When the block is 3 cm from one extreme, what is its displacement from the mean position, in metres?",
+      "UNCLEAR": "What number did you get for the amplitude, and in which unit?"
+    },
+    "calc": "A = 0.10 m / 2 = 0.05 m. Follow-up: x = 0.05 - 0.03 = 0.02 m.",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "S1 phrase 'full distance' may appear in a correct answer like 'half of the full distance'; numeric value should take priority."
+    ]
+  },
+  {
+    "item_id": "C1-A2",
+    "concept": "C1",
+    "kind": "short",
+    "is_assessment": true,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Aarav says a ball bouncing straight up and down on the floor is in SHM because it repeats at equal time intervals. Is he right? Give a reason.",
+    "answer_key": "No; the bouncing is periodic but not SHM.",
+    "expected_reasoning": "SHM needs a restoring force proportional to displacement and directed towards a mean position (F = -kx); the ball's force in the air is a constant mg, so it is periodic but not simple harmonic.",
+    "accept_any": [
+      "not shm",
+      "not an shm",
+      "not in shm",
+      "isn't shm",
+      "not simple harmonic",
+      "he is wrong",
+      "he's wrong",
+      "not right",
+      "not correct",
+      "only periodic",
+      "just periodic",
+      "periodic but not"
+    ],
+    "reasoning_any": [
+      "proportional",
+      "restoring force",
+      "towards the mean",
+      "mean position",
+      "constant force",
+      "force is constant",
+      "gravity is constant",
+      "-kx",
+      "f = -kx",
+      "mg"
+    ],
+    "numeric": null,
+    "patterns": [
+      {
+        "code": "S2",
+        "any": [
+          "he is right",
+          "he's right",
+          "he is correct",
+          "yes it is",
+          "it is shm",
+          "is in shm",
+          "periodic means shm",
+          "so it is shm",
+          "repeats so shm"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "S2": "Besides repeating, what must be true about the force on a body for its motion to be called SHM?",
+      "CORRECT_NO_REASON": "What exactly does SHM need that the bouncing ball's motion lacks?",
+      "CORRECT": "Is a simple pendulum swinging out to 60 degrees from the vertical in SHM? Why or why not?",
+      "UNCLEAR": "Do you think the bouncing ball is in SHM: yes or no?"
+    },
+    "calc": "",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "'mg' in reasoning_any is a short token; check substring matching does not fire on unrelated words."
+    ]
   }
 ]

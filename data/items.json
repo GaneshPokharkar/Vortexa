@@ -2,191 +2,399 @@
  {
   "item_id": "C1-P1",
   "concept": "C1",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "Riya ties two identical stones to equal-length threads on her balcony hook. She pulls one aside by 5° and the other by 10° (both small angles) and releases them together. Which stone comes back to its starting point first?",
+  "transfer": false,
+  "stem": "Ananya's block on a spring slides on a smooth table between extreme points P and Q, 12 cm apart. She released it from P. When the block is 2 cm from P, what are the amplitude and the magnitude of its displacement?",
   "options": {
-   "A": "The 10° stone, because it moves faster",
-   "B": "The 5° stone, because its path is shorter",
-   "C": "Both come back at the same time",
-   "D": "It depends on which stone is slightly heavier"
+   "A": "Amplitude 12 cm, displacement 4 cm",
+   "B": "Amplitude 6 cm, displacement 4 cm",
+   "C": "Amplitude 6 cm, displacement 2 cm",
+   "D": "Amplitude 6 cm, displacement 8 cm"
   },
-  "correct": "C",
+  "correct": "B",
   "distractor_map": {
-   "A": "O2",
-   "B": "O1",
-   "C": "CORRECT",
-   "D": "O3"
+   "A": "S1",
+   "B": "CORRECT",
+   "C": "S3",
+   "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "The 10° one has more distance to go, so it needs more time.",
-    "maps_to": "O1"
-   },
-   "r2": {
-    "text": "The 10° one goes farther but also moves faster, and these balance out, so the time is the same.",
+    "text": "The mean position is exactly in the middle of P and Q, so amplitude is half of 12 cm and displacement is counted from the middle.",
     "maps_to": "CORRECT"
    },
+   "r2": {
+    "text": "Amplitude is how far it goes in total, from P all the way to Q.",
+    "maps_to": "S1"
+   },
    "r3": {
-    "text": "The 10° one starts higher so it rushes down faster and gets back first.",
-    "maps_to": "O2"
+    "text": "It started from P, so how far it has moved from P is its displacement.",
+    "maps_to": "S3"
    }
   },
-  "calc": "",
+  "calc": "A = 0.12/2 = 0.06 m; mean is 0.06 m from P; |x| = 0.06 - 0.02 = 0.04 m. SLIP D: added instead of subtracted, 0.06 + 0.02 = 0.08 m.",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Option A pairs S1 amplitude with the correct displacement; reviewer to confirm an S1 student would still place the mean midway."
   ]
  },
  {
   "item_id": "C1-P2",
   "concept": "C1",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C1-P1",
-  "stem": "In the school lab, Neha's simple pendulum is 1.0 m long and swings with an amplitude of 4°. She restarts it with an amplitude of 8° (still a small angle). Take g = π² m/s². What is the period now?",
+  "transfer": false,
+  "stem": "In a Nashik park, Priya's swing moves between two extreme points that are 1.6 m apart, with small swings. Which statement about the swing is correct?",
   "options": {
-   "A": "4.0 s",
-   "B": "1.0 s",
-   "C": "0.64 s",
-   "D": "2.0 s"
+   "A": "Its amplitude is 1.6 m, the distance from one extreme to the other",
+   "B": "Its displacement at any instant is measured from the point where Priya was let go",
+   "C": "Its amplitude is 0.8 m, measured from the lowest point to either extreme",
+   "D": "Because it repeats regularly, it is SHM even for very large swings"
   },
-  "correct": "D",
+  "correct": "C",
   "distractor_map": {
-   "A": "O1",
-   "B": "O2",
-   "C": "SLIP",
-   "D": "CORRECT"
+   "A": "S1",
+   "B": "S3",
+   "C": "CORRECT",
+   "D": "S2"
   },
   "reasons": {
    "r1": {
-    "text": "Double the swing means double the path, so the time doubles too.",
-    "maps_to": "O1"
+    "text": "The swing keeps going back and forth at regular intervals, so it has to be SHM, whatever the size of swing.",
+    "maps_to": "S2"
    },
    "r2": {
-    "text": "A wider swing gives more speed at the bottom, so it gets back sooner.",
-    "maps_to": "O2"
+    "text": "Amplitude is the biggest distance from the lowest point, which is half the end-to-end gap.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "The formula only has L and g, amplitude isn't in it, so the period doesn't change.",
-    "maps_to": "CORRECT"
+    "text": "Amplitude is the whole width of the swing, front end to back end.",
+    "maps_to": "S1"
    }
   },
-  "calc": "T = 2π√(L/g) = 2π√(1.0/π²) = 2π/π = 2.0 s (same for 4° and 8°); SLIP C: 2π(L/g) without the root = 2/π ≈ 0.64 s",
+  "calc": "A = 1.6/2 = 0.8 m (distance measured along the arc for small swings).",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Option D relies on 'large-angle pendulum is periodic but not SHM'; confirm this is within HSC scope."
   ]
  },
  {
   "item_id": "C1-P3",
   "concept": "C1",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C1-P1",
-  "stem": "Dadi's old pendulum wall clock in Pune is running down, so its pendulum's swing keeps getting smaller (always a small angle). What happens to the time taken for each swing?",
+  "transfer": true,
+  "stem": "In a tailoring shop in Solapur, a sewing-machine needle tip moves up and down, approximately in SHM, between 2 mm below the needle plate and 14 mm above it. What are its amplitude and mean position?",
   "options": {
-   "A": "It stays the same",
-   "B": "It gets shorter, so the clock runs fast",
-   "C": "It gets longer, so the clock runs slow",
-   "D": "It depends on how heavy the brass bob is"
+   "A": "Amplitude 16 mm; mean position 6 mm above the plate",
+   "B": "Amplitude 8 mm; displacement measured from the topmost point, 14 mm above the plate",
+   "C": "Amplitude 6 mm; mean position 8 mm above the plate",
+   "D": "Amplitude 8 mm; mean position 6 mm above the plate"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "O1",
-   "C": "O2",
-   "D": "O3"
+   "A": "S1",
+   "B": "S3",
+   "C": "SLIP",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "A smaller swing covers less distance but also moves slower, so each swing takes the same time.",
+    "text": "The full stroke is 14 + 2 = 16 mm, the mean is the midpoint of the stroke, so the amplitude is half of it.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "A smaller swing has less to travel, so it finishes quicker.",
-    "maps_to": "O1"
+    "text": "The amplitude is just the full stroke of the needle, top to bottom.",
+    "maps_to": "S1"
    },
    "r3": {
-    "text": "A smaller swing moves slower, so it takes longer to finish.",
-    "maps_to": "O2"
+    "text": "The needle starts its stroke from the top, so displacement should be counted from there.",
+    "maps_to": "S3"
    }
+  },
+  "calc": "Stroke = 0.014 - (-0.002) = 0.016 m; A = 0.008 m; mean = (0.014 + (-0.002))/2 = 0.006 m above plate. SLIP C: sign dropped, 14 - 2 = 12 mm, A = 6 mm, mean 8 mm.",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Real sewing-machine needle motion is only approximately SHM (crank-driven); stem says 'approximately'."
+  ]
+ },
+ {
+  "item_id": "C1-Q1",
+  "concept": "C1",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Kavya pulls a block on a spring to one end of a smooth table and lets it go. At which point in its motion is the block's displacement zero? Give a reason.",
+  "answer_key": "Displacement is zero at the mean (equilibrium) position, midway between the two extremes.",
+  "expected_reasoning": "Displacement in an oscillation is measured from the mean position, where the spring is at its natural length and the net force is zero; the release point is only an extreme, at x = +A.",
+  "accept_any": [
+   "mean position",
+   "mean point",
+   "equilibrium",
+   "centre",
+   "center",
+   "middle",
+   "midpoint",
+   "mid point",
+   "halfway",
+   "half way"
+  ],
+  "reasoning_any": [
+   "net force",
+   "no force",
+   "force is zero",
+   "zero force",
+   "restoring force",
+   "measured from",
+   "balanced",
+   "natural length",
+   "unstretched",
+   "relaxed"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S3",
+    "any": [
+     "starting point",
+     "where it started",
+     "at the release point",
+     "zero at release",
+     "where she let go",
+     "initial position",
+     "at the extreme",
+     "at the end",
+     "one end",
+     "other end"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S3": "If Kavya released the block from the opposite end instead, would the point of zero displacement move? Why?",
+   "CORRECT_NO_REASON": "Why is that point, and not the release point, used as the reference for displacement?",
+   "CORRECT": "At the point where displacement is zero, what can you say about the block's speed and its acceleration?",
+   "UNCLEAR": "Which place do you mean: the end where she let go, the opposite end, or somewhere between them?"
   },
   "calc": "",
   "verify_flags": [
    "TODO_VERIFY",
-   "Real clocks have a tiny amplitude-dependent (circular) error beyond small angles; ignored here as NCERT treats small-angle period as amplitude-independent."
+   "A correct answer such as 'at the middle, not at the end' contains both 'middle' and 'at the end'; the engine must resolve this overlap (e.g., negation handling or accept_any priority)."
+  ]
+ },
+ {
+  "item_id": "C1-Q2",
+  "concept": "C1",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "In the physics lab, a block on a spring oscillates on a smooth table. The two extreme positions are 10 cm apart. What is the amplitude in metres? Say how you got it.",
+  "answer_key": "The amplitude is 0.05 m, half the distance between the two extremes.",
+  "expected_reasoning": "The mean position is midway between the extremes and amplitude is the maximum displacement from the mean, so A = 0.10 m / 2 = 0.05 m.",
+  "accept_any": [],
+  "reasoning_any": [
+   "half",
+   "mean position",
+   "midway",
+   "middle",
+   "centre",
+   "center",
+   "divide by 2",
+   "divided by 2",
+   "by 2",
+   "by two"
+  ],
+  "numeric": {
+   "value": 0.05,
+   "unit": "m",
+   "tolerance": 0.002,
+   "slips": [
+    {
+     "value": 0.1,
+     "why": "used peak-to-peak distance between the extremes as amplitude"
+    },
+    {
+     "value": 0.025,
+     "why": "halved twice"
+    },
+    {
+     "value": 5,
+     "why": "gave the value in cm instead of metres"
+    }
+   ]
+  },
+  "patterns": [
+   {
+    "code": "S1",
+    "any": [
+     "end to end",
+     "peak to peak",
+     "whole distance",
+     "total distance",
+     "full distance",
+     "entire distance",
+     "one end to the other"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S1": "If the amplitude really were 10 cm, how far from the mean position would each extreme be, and how far apart would the two extremes be?",
+   "CORRECT_NO_REASON": "Why do you take half of the 10 cm rather than the whole 10 cm?",
+   "CORRECT": "When the block is 3 cm from one extreme, what is its displacement from the mean position, in metres?",
+   "UNCLEAR": "What number did you get for the amplitude, and in which unit?"
+  },
+  "calc": "A = 0.10 m / 2 = 0.05 m. Follow-up: x = 0.05 - 0.03 = 0.02 m.",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "S1 phrase 'full distance' may appear in a correct answer like 'half of the full distance'; numeric value should take priority."
   ]
  },
  {
   "item_id": "C1-A1",
   "concept": "C1",
+  "kind": "mcq",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "Ramesh, a mason, checks a wall with a 100 g plumb bob on a 0.25 m string; it swings gently (small angle). He swaps it for a 400 g bob on the same string. Take g = π² m/s². What is the new period?",
+  "transfer": false,
+  "stem": "Which statement about oscillating bodies is correct?",
   "options": {
-   "A": "2.0 s",
-   "B": "1.0 s",
-   "C": "0.5 s",
-   "D": "0.16 s"
+   "A": "A block on a spring oscillates about its mean position, where the net force on it is zero, and its displacement is measured from that position",
+   "B": "A ball bouncing up and down on the floor is in SHM, because it repeats at equal time intervals",
+   "C": "The amplitude of a pendulum is the distance between its two extreme positions",
+   "D": "The displacement of a pendulum bob is measured from the point where it was released"
   },
-  "correct": "B",
+  "correct": "A",
   "distractor_map": {
-   "A": "O3",
-   "B": "CORRECT",
-   "C": "O3",
-   "D": "SLIP"
+   "A": "CORRECT",
+   "B": "S2",
+   "C": "S1",
+   "D": "S3"
   },
   "reasons": {
    "r1": {
-    "text": "The heavier bob gets pulled down harder, so it swings back quicker.",
-    "maps_to": "O3"
-   },
-   "r2": {
-    "text": "More mass means more pull but also more to move, so it cancels; only length and g matter.",
+    "text": "Everything is measured from the mean position because that is where the net force is zero.",
     "maps_to": "CORRECT"
    },
+   "r2": {
+    "text": "Anything that repeats regularly, like a bouncing ball, is SHM.",
+    "maps_to": "S2"
+   },
    "r3": {
-    "text": "Four times the mass is harder to move, so it swings slower, like a heavier load on a spring.",
-    "maps_to": "O3"
+    "text": "Amplitude means the full width of the swing from one end to the other.",
+    "maps_to": "S1"
    }
   },
-  "calc": "T = 2π√(L/g) = 2π√(0.25/π²) = 2π(0.5/π) = 1.0 s, mass does not appear; O3 A: ×√4 = 2.0 s; O3 C: ÷√4 = 0.5 s; SLIP D: 2π(0.25/π²) = 0.5/π ≈ 0.16 s",
+  "calc": "",
+  "verify_flags": [
+   "TODO_VERIFY"
+  ]
+ },
+ {
+  "item_id": "C1-A2",
+  "concept": "C1",
+  "kind": "short",
+  "is_assessment": true,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Aarav says a ball bouncing straight up and down on the floor is in SHM because it repeats at equal time intervals. Is he right? Give a reason.",
+  "answer_key": "No; the bouncing is periodic but not SHM.",
+  "expected_reasoning": "SHM needs a restoring force proportional to displacement and directed towards a mean position (F = -kx); the ball's force in the air is a constant mg, so it is periodic but not simple harmonic.",
+  "accept_any": [
+   "not shm",
+   "not an shm",
+   "not in shm",
+   "isn't shm",
+   "not simple harmonic",
+   "he is wrong",
+   "he's wrong",
+   "not right",
+   "not correct",
+   "only periodic",
+   "just periodic",
+   "periodic but not"
+  ],
+  "reasoning_any": [
+   "proportional",
+   "restoring force",
+   "towards the mean",
+   "mean position",
+   "constant force",
+   "force is constant",
+   "gravity is constant",
+   "-kx",
+   "f = -kx",
+   "mg"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S2",
+    "any": [
+     "he is right",
+     "he's right",
+     "he is correct",
+     "yes it is",
+     "it is shm",
+     "is in shm",
+     "periodic means shm",
+     "so it is shm",
+     "repeats so shm"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S2": "Besides repeating, what must be true about the force on a body for its motion to be called SHM?",
+   "CORRECT_NO_REASON": "What exactly does SHM need that the bouncing ball's motion lacks?",
+   "CORRECT": "Is a simple pendulum swinging out to 60 degrees from the vertical in SHM? Why or why not?",
+   "UNCLEAR": "Do you think the bouncing ball is in SHM: yes or no?"
+  },
+  "calc": "",
   "verify_flags": [
    "TODO_VERIFY",
-   "Treats plumb bob as a point mass on a light string (simple pendulum)."
+   "'mg' in reasoning_any is a short token; check substring matching does not fire on unrelated words."
   ]
  },
  {
   "item_id": "C2-P1",
   "concept": "C2",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "On a smooth lab table, Riya pulls a 0.5 kg block attached to a spring (k = 50 N/m) 0.1 m from its mean position and releases it. At that extreme point, which set of values is correct?",
+  "transfer": false,
+  "stem": "Aarav's block, attached to a spring on a frictionless track, oscillates between x = −A and x = +A. Which statement is correct at the instant the block is at x = +A?",
   "options": {
-   "A": "v = 0, a = 0, total energy = 0.25 J",
-   "B": "v = 0, a = 10 m/s², total energy = 0.25 J",
-   "C": "v = 0, a = 1 m/s², total energy = 0.25 J",
-   "D": "v = 0, a = 10 m/s², total energy = 0 J"
+   "A": "Its speed is the largest, because it is farthest from the centre.",
+   "B": "Its speed is zero and its acceleration is also zero.",
+   "C": "Its speed is zero and its acceleration is the largest, pointing toward x = 0.",
+   "D": "Its speed is the same as at x = 0, because the motion repeats evenly."
   },
-  "correct": "B",
+  "correct": "C",
   "distractor_map": {
-   "A": "O4",
-   "B": "CORRECT",
-   "C": "SLIP",
-   "D": "O5"
+   "A": "S4",
+   "B": "S6",
+   "C": "CORRECT",
+   "D": "S5"
   },
   "reasons": {
    "r1": {
-    "text": "At the end the block stops, so it has no energy at that moment. The energy comes back when it starts moving again.",
-    "maps_to": "O5"
-   },
-   "r2": {
-    "text": "At the end the speed is zero, but the spring is stretched the most, so the pull and the acceleration are the biggest. All the energy is stored in the spring, so the total is still ½kA².",
+    "text": "At the end the spring is stretched the most, so it pulls back hardest. The block stops for a moment but the pull is biggest there.",
     "maps_to": "CORRECT"
    },
+   "r2": {
+    "text": "The block has stopped at the end, so nothing is changing at that moment. No velocity means no acceleration.",
+    "maps_to": "S6"
+   },
    "r3": {
-    "text": "The block is not moving at the end, so there is nothing changing, so the acceleration must be zero there.",
-    "maps_to": "O4"
+    "text": "The end is the farthest point from the middle, so that is where the block is going the fastest.",
+    "maps_to": "S4"
    }
   },
-  "calc": "ω² = k/m = 50/0.5 = 100 s⁻²; a = ω²A = 100 × 0.1 = 10 m/s²; E = ½kA² = ½ × 50 × 0.1² = 0.25 J (SLIP C uses ωA = 10 × 0.1 = 1)",
+  "calc": "",
   "verify_flags": [
    "TODO_VERIFY"
   ]
@@ -194,588 +402,1550 @@
  {
   "item_id": "C2-P2",
   "concept": "C2",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C2-P1",
-  "stem": "Meera swings on a jhoola in small arcs, close to SHM, with no air drag. At the highest point she stops for an instant. Which statement about that instant is correct?",
+  "transfer": false,
+  "stem": "Sneha pulls a simple pendulum bob aside by a small angle and releases it. At the instant the bob is at the end of its swing, which statement is correct?",
   "options": {
-   "A": "Her acceleration is zero because she has stopped.",
-   "B": "Her total energy is less than at the bottom because she is not moving.",
-   "C": "Her acceleration is at its largest, pointing back toward the lowest point, and her total energy is the same as at the bottom.",
-   "D": "Her acceleration is at its largest, and her total energy is also at its largest because she is highest."
+   "A": "Speed is zero; acceleration is the largest and points toward the lowest point.",
+   "B": "Speed is zero, so acceleration is also zero, because the bob is momentarily at rest.",
+   "C": "Acceleration is the smallest here, because acceleration is greatest at the lowest point.",
+   "D": "Speed is zero; acceleration is the largest and points away from the lowest point."
   },
-  "correct": "C",
+  "correct": "A",
   "distractor_map": {
-   "A": "O4",
-   "B": "O5",
-   "C": "CORRECT",
-   "D": "O5"
+   "A": "CORRECT",
+   "B": "S6",
+   "C": "S7",
+   "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "She is not moving at the top, so nothing is pushing her speed up or down. So no acceleration.",
-    "maps_to": "O4"
+    "text": "At the end the bob is displaced the most, so the restoring pull back toward the bottom is strongest, even though it is stopped for an instant.",
+    "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "At the top she has no speed, so she lost her kinetic energy. So the total energy has gone down at that point.",
-    "maps_to": "O5"
+    "text": "The bob is not moving at the end, so there is nothing to accelerate it there.",
+    "maps_to": "S6"
    },
    "r3": {
-    "text": "At the top she is furthest from the middle, so the pull back is strongest. The kinetic energy just turned into potential energy, so the total did not change.",
-    "maps_to": "CORRECT"
+    "text": "At the bottom the bob is moving fastest, so that is where its acceleration must be the biggest.",
+    "maps_to": "S7"
    }
   },
   "calc": "",
   "verify_flags": [
    "TODO_VERIFY",
-   "Swing treated as a small-angle simple pendulum; at the extreme the acceleration is tangential (g sinθ) toward the mean, with zero centripetal part since v = 0."
+   "Pendulum treated as small-angle SHM: at the extreme the acceleration is tangential (≈ g sinθ ≈ gθ) toward the mean; at the lowest point the centripetal term v²/L is ignored, as is standard for the SHM approximation."
   ]
  },
  {
   "item_id": "C2-P3",
   "concept": "C2",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C2-P1",
-  "stem": "Kabir's 2 kg toy cart, held between two springs on a smooth track, moves as x = 0.05 sin(4t) m. When the cart is at x = 0.05 m, what are its acceleration and total energy?",
+  "transfer": true,
+  "stem": "At a Pune workshop, a vibration-test table moves a loose coin back and forth in SHM. Friction must supply the coin's acceleration, so the coin slips first where the acceleration is largest. Where does it first slip?",
   "options": {
-   "A": "a = 0, E = 0.04 J",
-   "B": "a = 0.8 m/s², E = 0 J",
-   "C": "a = 0.8 m/s², E = 0.04 J now, but it rises to 0.08 J at the mean position",
-   "D": "a = 0.8 m/s², E = 0.04 J"
+   "A": "At the mean position, because the table's acceleration is greatest there.",
+   "B": "At the extreme positions, because the table's acceleration is greatest there.",
+   "C": "Equally likely anywhere, because the table moves at a steady speed throughout.",
+   "D": "At the mean position, because at the extremes the table is at rest and so has no acceleration."
   },
-  "correct": "D",
+  "correct": "B",
   "distractor_map": {
-   "A": "O4",
-   "B": "O5",
-   "C": "O5",
-   "D": "CORRECT"
+   "A": "S7",
+   "B": "CORRECT",
+   "C": "S5",
+   "D": "S6"
   },
   "reasons": {
    "r1": {
-    "text": "x = 0.05 m is the end of the motion, so speed is zero but acceleration is ω²A, the biggest. Energy just moves between KE and PE, so the total stays ½mω²A².",
+    "text": "At the ends the table is farthest from the middle, so the restoring acceleration is biggest and friction has to work hardest there.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "The cart stops at x = 0.05 m, so its acceleration is zero there.",
-    "maps_to": "O4"
+    "text": "The table is fastest in the middle, so that is where it accelerates the most and the coin will slide.",
+    "maps_to": "S7"
    },
    "r3": {
-    "text": "The cart is stopped at the end, so its energy is low there. It gets more energy when it zooms through the middle.",
-    "maps_to": "O5"
+    "text": "At the ends the table stops, so there is no acceleration there and the coin is safe at the ends.",
+    "maps_to": "S6"
    }
   },
-  "calc": "ω = 4 rad/s; a = ω²A = 16 × 0.05 = 0.8 m/s²; E = ½mω²A² = ½ × 2 × 16 × 0.05² = 0.04 J",
+  "calc": "",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "Transfer context: coin slips when the needed friction m·ω²|x| exceeds μs·m·g, which first happens at |x| = A. Assumes ideal SHM of the table."
+  ]
+ },
+ {
+  "item_id": "C2-Q1",
+  "concept": "C2",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Where is the speed of an ideal simple harmonic oscillator maximum? Give a reason.",
+  "answer_key": "At the mean position.",
+  "expected_reasoning": "At the mean position the potential energy is zero, so all the energy is kinetic and the speed is greatest (v = Aω). The restoring force speeds the body up all the way to the mean and slows it down after.",
+  "accept_any": [
+   "mean",
+   "centre",
+   "center",
+   "middle",
+   "equilibrium",
+   "x = 0",
+   "x=0",
+   "origin",
+   "lowest point"
+  ],
+  "reasoning_any": [
+   "kinetic energy",
+   "k.e",
+   "potential energy",
+   "p.e",
+   "energy",
+   "restoring force",
+   "force is zero",
+   "no force",
+   "speeds up",
+   "speeding up",
+   "slows down",
+   "acceleration is zero",
+   "zero acceleration",
+   "aω",
+   "a ω",
+   "√(a² − x²)",
+   "unstretched",
+   "not stretched"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S4",
+    "any": [
+     "at the extreme",
+     "at extreme",
+     "extreme position",
+     "extreme point",
+     "farthest",
+     "furthest",
+     "at the end",
+     "at the ends",
+     "end point",
+     "turning point",
+     "at amplitude"
+    ]
+   },
+   {
+    "code": "S5",
+    "any": [
+     "constant everywhere",
+     "speed is constant",
+     "constant speed",
+     "same everywhere",
+     "same speed",
+     "uniform speed",
+     "everywhere same",
+     "never changes",
+     "doesn't change",
+     "does not change"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S4": "What happens to the oscillator's kinetic energy when it momentarily stops at an extreme position?",
+   "S5": "Compare the speed at the mean position with the speed at an extreme position — are they equal?",
+   "CORRECT_NO_REASON": "Why is the speed maximum there?",
+   "CORRECT": "Where is the acceleration of the same oscillator greatest, and which way does it point?",
+   "UNCLEAR": "Can you name the position — the mean position or an extreme position — where the oscillator moves fastest?"
+  },
+  "calc": "",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Keyword matching is substring-based: a correct answer that also says 'zero at the extreme position' will hit both accept_any and S4. Grader precedence must be decided (suggest: accept_any wins unless the S4 phrase is the stated answer).",
+   "'mean' could match filler like 'I mean'; acceptable risk for a demo."
+  ]
+ },
+ {
+  "item_id": "C2-Q2",
+  "concept": "C2",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Riya pulls a block on a smooth spring to one side and lets go. At the instant it stops at the far end, is its acceleration zero? Give a reason.",
+  "answer_key": "No — its acceleration is greatest at the extreme position and points toward the mean position.",
+  "expected_reasoning": "At the extreme the displacement is largest, so the restoring force −kx and the acceleration −ω²x are largest. Zero velocity only means the block is turning around, not that nothing acts on it.",
+  "accept_any": [
+   "not zero",
+   "non zero",
+   "non-zero",
+   "nonzero",
+   "isn't zero",
+   "greatest at extreme",
+   "greatest at the extreme",
+   "largest at extreme",
+   "highest at extreme",
+   "max at extreme",
+   "maximum at extreme",
+   "towards the mean",
+   "toward the mean",
+   "towards mean",
+   "toward mean",
+   "towards the centre",
+   "toward the centre",
+   "towards centre",
+   "towards center",
+   "toward center"
+  ],
+  "reasoning_any": [
+   "restoring force",
+   "spring force",
+   "force",
+   "displacement",
+   "-kx",
+   "−kx",
+   "ω²x",
+   "omega square",
+   "stretched",
+   "compressed",
+   "pulls back",
+   "pulled back",
+   "turning",
+   "changes direction",
+   "comes back"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S6",
+    "any": [
+     "yes",
+     "zero acceleration",
+     "acceleration is zero",
+     "acceleration zero",
+     "no acceleration",
+     "it is zero",
+     "also zero",
+     "both zero",
+     "both are zero"
+    ]
+   },
+   {
+    "code": "S7",
+    "any": [
+     "max at mean",
+     "max at the mean",
+     "maximum at mean",
+     "maximum at centre",
+     "max at centre",
+     "greatest at mean",
+     "largest at mean",
+     "highest at mean",
+     "most at mean",
+     "max in the middle"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S6": "If the acceleration were zero at that instant, what would the block do next — stay there or come back?",
+   "S7": "At the mean position, how much is the spring stretched, and what force does it exert on the block?",
+   "CORRECT_NO_REASON": "Why is the acceleration not zero there, even though the velocity is zero?",
+   "CORRECT": "A ball thrown straight up stops at its highest point. Is its acceleration zero there? How is that like the block at the far end?",
+   "UNCLEAR": "Is the acceleration at the far end zero or not, and which way does it point?"
+  },
+  "calc": "",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "'yes' is a short S6 trigger and could fire on unrelated filler ('yes, so...'); review against real transcripts.",
+   "A correct answer that adds 'and it is zero at the mean' does not hit S6/S7 phrases, but 'it is zero' could appear in a correct answer referring to velocity; review precedence."
   ]
  },
  {
   "item_id": "C2-A1",
   "concept": "C2",
+  "kind": "mcq",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "In Shreya's college lab, water in a U-tube is disturbed and its level goes up and down in SHM. Assume no friction or viscosity. Which statement about the water column is correct?",
+  "transfer": false,
+  "stem": "A 0.2 kg block on a spring (k = 20 N/m) oscillates on a smooth floor with amplitude 0.1 m. What are its speed and acceleration magnitude as it passes the mean position?",
   "options": {
-   "A": "When the level is highest, the column is at rest for an instant, but its acceleration is the largest.",
-   "B": "When the level is highest, the column is at rest, so the net force on it is zero.",
-   "C": "The total energy of the column is largest when it rushes through the mean level.",
-   "D": "The column moves fastest when the level is highest."
+   "A": "v = 1 m/s, a = 10 m/s²",
+   "B": "v = 0, a = 0, since the block is fastest only at x = ±0.1 m",
+   "C": "v = 10 m/s, a = 0",
+   "D": "v = 1 m/s, a = 0"
   },
-  "correct": "A",
+  "correct": "D",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "O4",
-   "C": "O5",
-   "D": "UNMAPPED"
+   "A": "S7",
+   "B": "S4",
+   "C": "SLIP",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "At the highest level the water stops, and when something stops there is no force on it.",
-    "maps_to": "O4"
+    "text": "At the mean position the spring is not stretched, so there is no force and a = 0. All the energy is kinetic there, so v = Aω = 1 m/s.",
+    "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "When the water is moving fastest it has the most energy, so total energy is biggest at the middle.",
-    "maps_to": "O5"
+    "text": "The block moves fastest at the centre, so its acceleration should be the biggest there too.",
+    "maps_to": "S7"
    },
    "r3": {
-    "text": "At the highest level the water is furthest from the middle, so the restoring push is biggest, even though it is stopped for a moment.",
-    "maps_to": "CORRECT"
+    "text": "Farthest from the centre it has the most energy of motion, so at the centre it is the slowest.",
+    "maps_to": "S4"
    }
   },
-  "calc": "",
+  "calc": "ω = √(k/m) = √(20/0.2) = 10 rad/s; v_max = Aω = 0.1 × 10 = 1 m/s; a = −ω²x = 0 at x = 0. SLIP C uses ω = k/m = 100 (forgot the square root): 0.1 × 100 = 10 m/s. Option A uses a_max = ω²A = 10 m/s² at the wrong place.",
+  "verify_flags": [
+   "TODO_VERIFY"
+  ]
+ },
+ {
+  "item_id": "C2-A2",
+  "concept": "C2",
+  "kind": "short",
+  "is_assessment": true,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Kavya's block on a spring oscillates in SHM with amplitude 0.05 m and angular frequency 10 rad/s. What is its speed as it passes the mean position? Give a reason.",
+  "answer_key": "0.5 m/s, the maximum speed, because v = Aω at the mean position.",
+  "expected_reasoning": "At x = 0, v = ω√(A² − x²) = Aω = 0.05 × 10 = 0.5 m/s; all the energy is kinetic there, so the speed is greatest.",
+  "accept_any": [],
+  "reasoning_any": [
+   "aω",
+   "a ω",
+   "a × ω",
+   "a*ω",
+   "amplitude times",
+   "omega",
+   "ω√",
+   "kinetic energy",
+   "all kinetic",
+   "x = 0",
+   "x=0",
+   "v max",
+   "vmax",
+   "v_max",
+   "no potential"
+  ],
+  "numeric": {
+   "value": 0.5,
+   "unit": "m/s",
+   "tolerance": 0.01,
+   "slips": [
+    {
+     "value": 5.0,
+     "why": "used ω²A (maximum acceleration, m/s²) instead of Aω"
+    },
+    {
+     "value": -0.5,
+     "why": "sign slip; speed is a magnitude"
+    }
+   ]
+  },
+  "patterns": [
+   {
+    "code": "S4",
+    "any": [
+     "zero at mean",
+     "zero at the mean",
+     "zero at centre",
+     "fastest at extreme",
+     "fastest at the extreme",
+     "fastest at the end",
+     "slowest at mean",
+     "slowest at the mean",
+     "stops at the mean",
+     "at rest at mean"
+    ]
+   },
+   {
+    "code": "S5",
+    "any": [
+     "speed is constant",
+     "constant speed",
+     "same everywhere",
+     "same speed",
+     "uniform speed",
+     "never changes"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S4": "At the mean position the spring is unstretched. Where has the stored spring energy gone?",
+   "S5": "Use v = ω√(A² − x²) to find the speed at x = 0.05 m. Is it the same as at x = 0?",
+   "CORRECT_NO_REASON": "Why does the block move fastest at the mean position rather than anywhere else?",
+   "CORRECT": "What is the block's speed when it is at x = 0.03 m?",
+   "UNCLEAR": "Can you give the speed at the mean position as a number with its unit?"
+  },
+  "calc": "v_max = Aω = 0.05 × 10 = 0.5 m/s (follow-up: at x = 0.03 m, v = 10√(0.0025 − 0.0009) = 10 × 0.04 = 0.4 m/s).",
   "verify_flags": [
    "TODO_VERIFY",
-   "Ideal U-tube (no viscosity) treated as SHM, restoring force from the level difference; check students know this setup from NCERT."
+   "An answer of 0 m/s is the S4 misconception, not a slip; it is caught by text patterns, not numeric.slips. Confirm the numeric grader routes 0 to S4 or UNCLEAR."
   ]
  },
  {
   "item_id": "C3-P1",
   "concept": "C3",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "Meera shakes one end of a long, tight rope 2 times per second, and the wave moves along at 6 m/s. Keeping the same rope and tension, she now shakes it 4 times per second. What happens?",
+  "transfer": false,
+  "stem": "In the physics lab, Sneha hangs two pendulums with equal string lengths. Bob X is 50 g and is pulled to 3°; bob Y is 200 g and is pulled to 6° (both small). She releases them together. Which finishes 10 oscillations first?",
   "options": {
-   "A": "The wave now travels at 12 m/s",
-   "B": "The speed stays 6 m/s and the wavelength becomes 1.5 m",
-   "C": "The speed stays 6 m/s and the wavelength becomes 6 m",
-   "D": "The rope pieces get carried forward quicker, so the wave goes faster"
+   "A": "X, because its swing is smaller so each oscillation is shorter",
+   "B": "Y, because gravity pulls the heavier bob harder so it swings faster",
+   "C": "Both finish together",
+   "D": "X, because the lighter bob is easier to move back and forth"
   },
-  "correct": "B",
+  "correct": "C",
   "distractor_map": {
-   "A": "W2",
-   "B": "CORRECT",
-   "C": "SLIP",
-   "D": "W1"
+   "A": "S8",
+   "B": "S9",
+   "C": "CORRECT",
+   "D": "S9"
   },
   "reasons": {
    "r1": {
-    "text": "She is shaking it faster, so the wave also has to move faster.",
-    "maps_to": "W2"
+    "text": "Y swings through a bigger arc, so it has more distance to cover and takes more time.",
+    "maps_to": "S8"
    },
    "r2": {
-    "text": "Same rope, same tension, so same speed. Only the waves get shorter because she shakes more often.",
+    "text": "T = 2π√(L/g) has only length and g in it, and both have the same length, so the period is the same.",
     "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "Faster shaking pushes the rope itself forward quicker, and the wave rides along with it.",
-    "maps_to": "W1"
+    "text": "The heavy bob gets pulled down with more force, so it comes back quicker.",
+    "maps_to": "S9"
    }
   },
-  "calc": "v = √(T/μ) unchanged = 6 m/s; λ = v/f = 6/4 = 1.5 m (earlier 6/2 = 3 m)",
+  "calc": "T = 2π√(L/g) for both; independent of bob mass and of small amplitude, so both finish 10 oscillations together.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Assumes ideal uniform string; the 6 m/s value is given, T and μ not stated"
+   "Assumes negligible air drag on both bobs and both angles within the small-angle regime."
   ]
  },
  {
   "item_id": "C3-P2",
   "concept": "C3",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C3-P1",
-  "stem": "At a Diwali mela, a flute player plays a 500 Hz note and a 1000 Hz note at the same instant. Priya stands 343 m away. Take the speed of sound in air as 343 m/s. Which note reaches her first?",
+  "transfer": false,
+  "stem": "Rohan's simple pendulum is 0.64 m long and swings with an amplitude of 3°. He restarts it at 6° (still small). Take g = π² m/s². What is the time period now?",
   "options": {
-   "A": "The 1000 Hz note, because faster vibration means faster sound",
-   "B": "Whichever note is played louder",
-   "C": "Both reach her together, after about 1 s",
-   "D": "Neither, until the puff of air from the flute blows across to her"
+   "A": "3.2 s",
+   "B": "0.41 s",
+   "C": "0.25 s",
+   "D": "1.6 s"
   },
-  "correct": "C",
+  "correct": "D",
   "distractor_map": {
-   "A": "W2",
-   "B": "W3",
-   "C": "CORRECT",
-   "D": "W1"
+   "A": "S8",
+   "B": "SLIP",
+   "C": "S10",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "Sound speed depends on the air, not on the note, so both take the same time.",
-    "maps_to": "CORRECT"
+    "text": "He doubled the swing, so the bob travels double the path and the period doubles too.",
+    "maps_to": "S8"
    },
    "r2": {
-    "text": "The high note vibrates more times every second, so it must travel quicker.",
-    "maps_to": "W2"
+    "text": "Amplitude isn't in T = 2π√(L/g), so the period stays what it was for 3°.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "A louder note has more push behind it, so it gets there first.",
-    "maps_to": "W3"
+    "text": "ω = √(g/L) and the period is just 1/ω, so I take one by omega.",
+    "maps_to": "S10"
    }
   },
-  "calc": "t = d/v = 343/343 = 1 s for both notes",
+  "calc": "T = 2π√(0.64/π²) = 2π(0.8/π) = 1.6 s (same at 3° and 6°). S8: 2×1.6 = 3.2 s. SLIP (no root): 2π(0.64/π²) = 1.28/π ≈ 0.41 s. S10: ω = π/0.8 ≈ 3.93 rad/s, 1/ω ≈ 0.25 s.",
   "verify_flags": [
-   "TODO_VERIFY",
-   "Uses 343 m/s for air at about 20 °C; NCERT also quotes 331 m/s at 0 °C"
+   "TODO_VERIFY"
   ]
  },
  {
   "item_id": "C3-P3",
   "concept": "C3",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C3-P1",
-  "stem": "On sports day, Ravi and Anil each send one pulse along identical ropes tied to a post, with equal tension. Ravi jerks his hand much higher and much quicker than Anil. Whose pulse reaches the post first?",
+  "transfer": true,
+  "stem": "An empty tempo bounces on its suspension springs with a period of 0.5 s. After loading sacks of onions at a Nashik market, its total mass becomes 4 times. Treating it as a spring–mass system, what is the new bounce period?",
   "options": {
-   "A": "Ravi's, because his pulse is taller",
-   "B": "Ravi's, because he moved his hand quicker",
-   "C": "Ravi's, because his rope gets dragged towards the post more",
-   "D": "Both pulses reach the post at the same time"
+   "A": "1.0 s",
+   "B": "0.5 s, because the springs, not the load, decide the period",
+   "C": "2.0 s",
+   "D": "0.5 s on a smooth road, but longer when a speed breaker makes it bounce higher"
   },
-  "correct": "D",
+  "correct": "A",
   "distractor_map": {
-   "A": "W3",
-   "B": "W2",
-   "C": "W1",
-   "D": "CORRECT"
+   "A": "CORRECT",
+   "B": "S9",
+   "C": "SLIP",
+   "D": "S8"
   },
   "reasons": {
    "r1": {
-    "text": "A big jerk pulls the rope along towards the post, so the pulse arrives sooner.",
-    "maps_to": "W1"
+    "text": "T = 2π√(m/k), so 4 times the mass gives √4 = 2 times the period.",
+    "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "A taller pulse carries more energy, so it runs faster.",
-    "maps_to": "W3"
+    "text": "Mass only matters for weight; the bounce time depends on how stiff the spring is.",
+    "maps_to": "S9"
    },
    "r3": {
-    "text": "The ropes and tension are the same, so the pulse speed is the same, no matter how he jerks.",
-    "maps_to": "CORRECT"
+    "text": "A bigger bounce means the tempo goes up and down more, so it takes more time.",
+    "maps_to": "S8"
    }
+  },
+  "calc": "T ∝ √m: T₂ = 0.5 × √4 = 1.0 s. SLIP (T ∝ m, forgot root): 0.5 × 4 = 2.0 s.",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Real vehicle suspension has dampers and non-ideal springs; idealised as a single spring–mass system with k unchanged."
+  ]
+ },
+ {
+  "item_id": "C3-Q1",
+  "concept": "C3",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Meera swaps her pendulum's brass bob for a heavier iron bob of the same size, keeps the string length the same, and pulls it a little further (still a small angle). Does the period change? Why?",
+  "answer_key": "No, the period stays the same because T = 2π√(L/g) depends only on length and g.",
+  "expected_reasoning": "For small angles the pendulum's period depends only on L and g; the bob's mass cancels out and amplitude does not appear in the formula.",
+  "accept_any": [
+   "no change",
+   "same",
+   "does not change",
+   "doesn't change",
+   "unchanged",
+   "remains same",
+   "stays same",
+   "won't change",
+   "will not change"
+  ],
+  "reasoning_any": [
+   "length",
+   "l and g",
+   "mass cancels",
+   "independent of mass",
+   "independent of amplitude",
+   "2π√(l/g)",
+   "root l by g",
+   "not depend on mass",
+   "not depend on amplitude"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S8",
+    "any": [
+     "bigger swing",
+     "pulled further",
+     "more distance",
+     "longer path",
+     "swing more",
+     "longer arc"
+    ]
+   },
+   {
+    "code": "S9",
+    "any": [
+     "heavier bob",
+     "heavy bob",
+     "more mass",
+     "iron is heavier",
+     "heavier one",
+     "weight increases"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S8": "If the bob is pulled further, it has a longer path. What else changes about how fast it moves at the bottom?",
+   "S9": "In T = 2π√(L/g), where would the bob's mass appear? What happens to m when you write F = ma for the bob?",
+   "CORRECT_NO_REASON": "You said the period does not change. Which quantities does a simple pendulum's period actually depend on?",
+   "CORRECT": "Meera now takes the same pendulum to a hill station where g is slightly smaller. Will the period increase, decrease or stay the same?",
+   "UNCLEAR": "Will one oscillation of the new bob take more time, less time, or the same time as before?"
   },
   "calc": "",
   "verify_flags": [
    "TODO_VERIFY",
-   "Treats pulses as linear; a very large jerk can slightly raise tension, ignored here"
+   "Same-size bob chosen so air drag is comparable; real heavy vs light bobs differ slightly due to drag."
+  ]
+ },
+ {
+  "item_id": "C3-Q2",
+  "concept": "C3",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "A spring toy on Aditya's desk oscillates with angular frequency 10π rad/s. What is its time period? Give your value with the formula you used.",
+  "answer_key": "T = 2π/ω = 2π/(10π) = 0.2 s.",
+  "expected_reasoning": "Angular frequency ω is 2π times the frequency, so T = 2π/ω, not 1/ω; this gives f = 5 Hz and T = 0.2 s.",
+  "accept_any": [],
+  "reasoning_any": [
+   "2π/ω",
+   "2 pi by omega",
+   "2π by ω",
+   "ω = 2πf",
+   "omega = 2 pi f",
+   "f = 5",
+   "5 hz"
+  ],
+  "numeric": {
+   "value": 0.2,
+   "unit": "s",
+   "tolerance": 0.01,
+   "slips": [
+    {
+     "value": 0.032,
+     "why": "used T = 1/ω, treating ω as the frequency"
+    },
+    {
+     "value": 5.0,
+     "why": "gave the frequency f = 5 Hz instead of the period"
+    }
+   ]
+  },
+  "patterns": [
+   {
+    "code": "S10",
+    "any": [
+     "1/ω",
+     "1 by omega",
+     "one by omega",
+     "omega is frequency",
+     "f = ω",
+     "frequency is 10π"
+    ]
+   },
+   {
+    "code": "S9",
+    "any": [
+     "need mass",
+     "mass not given",
+     "need the mass",
+     "without mass"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S10": "ω is measured in rad/s and f in oscillations per second. How many radians does the block go through in one full oscillation?",
+   "S9": "The mass and spring constant decide ω. If ω is already given, do you still need m to find T?",
+   "CORRECT_NO_REASON": "You got 0.2 s. Why do we divide 2π by ω instead of just taking 1/ω?",
+   "CORRECT": "If the same toy is given a block of 4 times the mass, what will its new angular frequency be?",
+   "UNCLEAR": "Please give one number in seconds for the time of one full oscillation."
+  },
+  "calc": "T = 2π/ω = 2π/(10π) = 0.2 s; f = 5 Hz. Slip 1/ω = 1/(10π) ≈ 0.0318 s.",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Check that the grader's numeric tolerance (0.01 s) does not swallow the 0.032 s slip; it does not at |0.2 − 0.032|."
   ]
  },
  {
   "item_id": "C3-A1",
   "concept": "C3",
+  "kind": "mcq",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "At Nagpur station, a worker taps a long steel rail with a hammer. Children 1 km down the line, with an ear on the rail, hear the tap. Which statement is correct?",
+  "transfer": false,
+  "stem": "Kavya's spring–mass system oscillates with angular frequency 4π rad/s at an amplitude of 5 cm. She pulls the block to 10 cm and releases it. What is the frequency of oscillation now?",
   "options": {
-   "A": "Each bit of steel only vibrates about its own place; the disturbance travels to the children",
-   "B": "Bits of steel are pushed along the rail until they reach the children",
-   "C": "Hitting the rail harder would make the sound reach them sooner",
-   "D": "Tapping more times each second would make the sound reach them sooner"
+   "A": "12.6 Hz",
+   "B": "2 Hz",
+   "C": "1 Hz",
+   "D": "0.5 Hz"
   },
-  "correct": "A",
+  "correct": "B",
   "distractor_map": {
-   "A": "CORRECT",
-   "B": "W1",
-   "C": "W3",
-   "D": "W2"
+   "A": "S10",
+   "B": "CORRECT",
+   "C": "S8",
+   "D": "UNMAPPED"
   },
   "reasons": {
    "r1": {
-    "text": "A harder hit gives the sound a stronger push, so it travels faster.",
-    "maps_to": "W3"
+    "text": "Frequency is the same thing as omega here, so it is 4π, about 12.6 Hz.",
+    "maps_to": "S10"
    },
    "r2": {
-    "text": "The steel stays where it is and just vibrates; only the vibration passes along.",
+    "text": "f = ω/2π = 2 Hz, and amplitude doesn't change ω for a spring, so it stays 2 Hz.",
     "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "The hammer shoves the steel forward, and that moving steel carries the sound to them.",
-    "maps_to": "W1"
+    "text": "Double the stretch means double the distance, so the period doubles and frequency halves.",
+    "maps_to": "S8"
    }
   },
-  "calc": "",
+  "calc": "f = ω/2π = 4π/2π = 2 Hz, independent of amplitude. S10: f = ω = 4π ≈ 12.6 Hz. S8: T doubled from 0.5 s to 1.0 s → 1 Hz. UNMAPPED: reported T = 0.5 s as 0.5 Hz.",
+  "verify_flags": [
+   "TODO_VERIFY"
+  ]
+ },
+ {
+  "item_id": "C3-A2",
+  "concept": "C3",
+  "kind": "short",
+  "is_assessment": true,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "A block on a spring has a time period of 1.2 s. Anjali replaces it with a block 4 times as heavy on the same spring. What happens to the period, and why?",
+  "answer_key": "The period doubles to 2.4 s because T = 2π√(m/k) and √4 = 2.",
+  "expected_reasoning": "For a spring–mass system T = 2π√(m/k), so the period is proportional to √m; four times the mass gives twice the period.",
+  "accept_any": [
+   "double",
+   "twice",
+   "2 times",
+   "two times",
+   "2.4",
+   "2x"
+  ],
+  "reasoning_any": [
+   "√m",
+   "root m",
+   "under root m",
+   "square root",
+   "m/k",
+   "m by k",
+   "proportional to root",
+   "root 4"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S9",
+    "any": [
+     "no change",
+     "same period",
+     "mass doesn't matter",
+     "mass does not matter",
+     "independent of mass",
+     "only on spring",
+     "only on k"
+    ]
+   },
+   {
+    "code": "S8",
+    "any": [
+     "depends on amplitude",
+     "how far pulled",
+     "depends on stretch",
+     "bigger stretch",
+     "more stretch"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S9": "A heavier block feels the same spring force but has more inertia. Will it speed up and slow down more quickly or more slowly than the light one?",
+   "S8": "Nothing was said about how far the block is pulled. Does T = 2π√(m/k) contain the amplitude at all?",
+   "CORRECT_NO_REASON": "Why does 4 times the mass give 2 times the period and not 4 times?",
+   "CORRECT": "Anjali wants the heavy block to have a period of 1.2 s again. By what factor must she change the spring constant?",
+   "UNCLEAR": "Will the new period be longer, shorter or equal to 1.2 s? Say by how much."
+  },
+  "calc": "T₂ = 1.2 × √4 = 2.4 s.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Sound in steel is both longitudinal and transverse; statement A kept general on purpose"
+   "accept_any 'double' also matches 'doubled'; a student writing 'not double' would be mis-graded."
   ]
  },
  {
   "item_id": "C4-P1",
   "concept": "C4",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "Priya tunes her sitar string against a 440 Hz tuning fork. Sounding both together, she hears the loudness throb. If the string is at 444 Hz, how many beats per second does she hear?",
+  "transfer": false,
+  "stem": "Ananya pulls a block on a smooth horizontal spring 4 cm to the right of its mean position and releases it. Later it is at x = +2 cm, moving right. What is true about the restoring force at that instant?",
   "options": {
-   "A": "884 beats per second",
-   "B": "442 beats per second",
-   "C": "4 beats per second",
-   "D": "8 beats per second"
+   "A": "It points right, the same way the block is moving",
+   "B": "It points left, toward the mean, and is half as large as at x = +4 cm",
+   "C": "It points left, toward the mean, and is just as large as at x = +4 cm",
+   "D": "It points right, away from the mean, and grows as the block moves out"
   },
-  "correct": "C",
+  "correct": "B",
   "distractor_map": {
-   "A": "B1",
-   "B": "B2",
-   "C": "CORRECT",
-   "D": "SLIP"
+   "A": "S12",
+   "B": "CORRECT",
+   "C": "S11",
+   "D": "S12"
   },
   "reasons": {
    "r1": {
-    "text": "Both sounds are playing together, so I just add the two frequencies.",
-    "maps_to": "B1"
+    "text": "The block is going right, so the force has to be pushing it right, otherwise it wouldn't move that way.",
+    "maps_to": "S12"
    },
    "r2": {
-    "text": "The beat should be the middle value, halfway between 440 and 444.",
-    "maps_to": "B2"
+    "text": "F = −kx, so the force is opposite to x, toward the mean, and at 2 cm it's half of what it is at 4 cm.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "The two sounds drift in and out of step, and that happens as many times per second as their difference.",
-    "maps_to": "CORRECT"
+    "text": "It's the same spring with the same k, so the pull back is the same at every point.",
+    "maps_to": "S11"
    }
   },
-  "calc": "f_beat = |444 Hz - 440 Hz| = 4 Hz",
+  "calc": "F = −kx: |F(2 cm)| / |F(4 cm)| = 2/4 = 1/2, direction −x (toward mean)",
   "verify_flags": [
-   "TODO_VERIFY"
+   "TODO_VERIFY",
+   "'Later ... moving right' is valid: after release from +4 cm the block passes the mean, reaches −4 cm, and returns rightward through +2 cm on its way out to +4 cm"
   ]
  },
  {
   "item_id": "C4-P2",
   "concept": "C4",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C4-P1",
-  "stem": "In the school band, two flutes play notes of 512 Hz and 506 Hz together. Rohan hears the sound swell and fade. Which best describes what he hears?",
+  "transfer": false,
+  "stem": "At a Nashik fair, a small pendulum bob swings through small angles. Right now it is halfway between the lowest point and its right extreme, still moving right. Which describes the restoring force on it?",
   "options": {
-   "A": "A tone of about 509 Hz whose loudness swells 6 times per second",
-   "B": "A tone whose loudness swells 1018 times per second",
-   "C": "A tone whose loudness swells 509 times per second",
-   "D": "Loudness swells 6 times per second, and sound energy is destroyed in each quiet moment"
+   "A": "Toward the lowest point, and it will be twice as large at the extreme",
+   "B": "Toward the lowest point, and the same size at every point of the swing",
+   "C": "Along its motion, toward the right extreme",
+   "D": "Zero, because the bob is not yet at the extreme"
   },
   "correct": "A",
   "distractor_map": {
    "A": "CORRECT",
-   "B": "B1",
-   "C": "B2",
-   "D": "W4"
+   "B": "S11",
+   "C": "S12",
+   "D": "UNMAPPED"
   },
   "reasons": {
    "r1": {
-    "text": "When it goes quiet the two waves have cancelled, so that bit of energy is just gone.",
-    "maps_to": "W4"
+    "text": "The bob is moving right, so the force must be acting right along with it.",
+    "maps_to": "S12"
    },
    "r2": {
-    "text": "The swelling happens at the difference, 6 times a second, and the note I hear is about the average.",
-    "maps_to": "CORRECT"
+    "text": "Gravity is the same everywhere, so the pull back toward the bottom is the same at every point.",
+    "maps_to": "S11"
    },
    "r3": {
-    "text": "Two flutes are playing at once, so the swells come at both frequencies added up.",
-    "maps_to": "B1"
+    "text": "For small swings the restoring force is proportional to displacement and points back to the bottom, so doubling the distance doubles it.",
+    "maps_to": "CORRECT"
    }
   },
-  "calc": "f_beat = 512 Hz - 506 Hz = 6 Hz; heard pitch = (512 + 506)/2 = 509 Hz",
+  "calc": "Small angles: F ≈ −(mg/L)x, so |F| at x = A is twice |F| at x = A/2",
   "verify_flags": [
    "TODO_VERIFY",
-   "Heard pitch = average holds only approximately, for close frequencies; in quiet moments energy is redistributed in space/time, not destroyed"
+   "Restoring force here means the tangential component of gravity; proportionality holds only for small angles (sin θ ≈ θ)"
   ]
  },
  {
   "item_id": "C4-P3",
   "concept": "C4",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C4-P1",
-  "stem": "At an evening bhajan, the two reeds playing one harmonium note are slightly off: 349 Hz and 352 Hz. Arjun hears the note throb. How many throbs per second does he hear?",
+  "transfer": true,
+  "stem": "At a Pune auto-parts lab, Kiran measures how the acceleration a (in m/s²) of four test mounts depends on displacement x (in m) from equilibrium. Which mount vibrates in SHM?",
   "options": {
-   "A": "701 throbs per second",
-   "B": "350.5 throbs per second",
-   "C": "0, because the two sounds cancel and the note dies out",
-   "D": "3 throbs per second"
+   "A": "Mount 1: a = +25x",
+   "B": "Mount 2: a has a fixed size of 2 m/s², always toward equilibrium",
+   "C": "Mount 3: a = −25x",
+   "D": "Mount 4: a = −25x³"
   },
-  "correct": "D",
+  "correct": "C",
   "distractor_map": {
-   "A": "B1",
-   "B": "B2",
-   "C": "W4",
-   "D": "CORRECT"
+   "A": "S12",
+   "B": "S11",
+   "C": "CORRECT",
+   "D": "UNMAPPED"
   },
   "reasons": {
    "r1": {
-    "text": "The throbbing comes from the two reeds going in and out of step, which is 352 minus 349 times a second.",
+    "text": "SHM needs acceleration proportional to x and opposite to it, and −25x does that with ω = 5 rad/s.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "The throb should be at the average of the two reeds, somewhere in the middle.",
-    "maps_to": "B2"
+    "text": "Acceleration should point the same way as the displacement, so a = +25x is the SHM one.",
+    "maps_to": "S12"
    },
    "r3": {
-    "text": "Both reeds sound together, so the throbs are the two frequencies added.",
-    "maps_to": "B1"
+    "text": "As long as the push back is steady and toward equilibrium, it's SHM, so the fixed 2 m/s² one works.",
+    "maps_to": "S11"
    }
   },
-  "calc": "f_beat = |352 Hz - 349 Hz| = 3 Hz",
+  "calc": "a = −ω²x with ω² = 25 s⁻² gives ω = 5 rad/s, T = 2π/5 ≈ 1.26 s",
   "verify_flags": [
    "TODO_VERIFY",
-   "Harmonium reed frequencies are illustrative, not real tuning values"
+   "Mount 4 is periodic but not simple harmonic (a not proportional to x); Mount 2 oscillates but is not SHM"
+  ]
+ },
+ {
+  "item_id": "C4-Q1",
+  "concept": "C4",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Rohit's spring-block is at x = +3 cm and moving away from the mean position. In which direction does the restoring force on the block act? Give a reason.",
+  "answer_key": "The restoring force acts toward the mean position, opposite to the displacement.",
+  "expected_reasoning": "The restoring force is F = −kx, so it always opposes the displacement and points back to the mean, whichever way the block is moving; here it slows the block down.",
+  "accept_any": [
+   "toward mean",
+   "towards mean",
+   "toward the mean",
+   "towards the mean",
+   "toward centre",
+   "towards centre",
+   "toward center",
+   "towards center",
+   "toward equilibrium",
+   "towards equilibrium",
+   "back to mean",
+   "back to the mean",
+   "opposite to displacement",
+   "opposite to the displacement",
+   "opposite to x",
+   "negative x"
+  ],
+  "reasoning_any": [
+   "-kx",
+   "−kx",
+   "minus kx",
+   "f = -kx",
+   "f = −kx",
+   "restoring",
+   "opposes displacement",
+   "pulls back",
+   "brings it back",
+   "minus sign",
+   "negative sign",
+   "slows down",
+   "slowing down",
+   "proportional"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S12",
+    "any": [
+     "direction of motion",
+     "same direction as motion",
+     "along motion",
+     "along its motion",
+     "away from mean",
+     "away from the mean",
+     "away from centre",
+     "along displacement",
+     "same as displacement",
+     "outward",
+     "outwards",
+     "towards extreme",
+     "toward extreme",
+     "positive x"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S12": "As the block moves from +3 cm out to the extreme, is it speeding up or slowing down, and what does that say about the force?",
+   "CORRECT_NO_REASON": "Why does the force point that way even though the block is moving outward?",
+   "CORRECT": "If a mount had a = +9x, would it oscillate about x = 0? Explain.",
+   "UNCLEAR": "Can you describe the direction of the force relative to the mean position?"
+  },
+  "calc": "",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "A correct answer like 'opposite to the direction of motion' contains the S12 phrase 'direction of motion'; engine should check accept_any before patterns or handle negation"
+  ]
+ },
+ {
+  "item_id": "C4-Q2",
+  "concept": "C4",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Ishaan pulls a spring-block 2 cm from the mean, then later 6 cm from the mean. Is the restoring force the same in both cases? Answer in one sentence with a reason.",
+  "answer_key": "No, the restoring force at 6 cm is three times the force at 2 cm.",
+  "expected_reasoning": "The restoring force is F = −kx, proportional to displacement, so tripling the displacement triples the force.",
+  "accept_any": [
+   "three times",
+   "3 times",
+   "thrice",
+   "triple",
+   "triples",
+   "3x",
+   "more at 6",
+   "greater at 6",
+   "larger at 6",
+   "bigger at 6",
+   "more force at 6"
+  ],
+  "reasoning_any": [
+   "proportional",
+   "-kx",
+   "−kx",
+   "minus kx",
+   "f = kx",
+   "f = -kx",
+   "depends on displacement",
+   "depends on x",
+   "increases with displacement",
+   "more stretch",
+   "directly"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S11",
+    "any": [
+     "same in both",
+     "equal in both",
+     "constant force",
+     "force is constant",
+     "stays same",
+     "stays the same",
+     "does not depend",
+     "doesn't depend",
+     "same everywhere",
+     "same at every",
+     "same spring",
+     "k is same"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S11": "If you stretch a spring a tiny bit and then a lot, does your hand feel the same pull both times?",
+   "CORRECT_NO_REASON": "Why exactly three times, and not just 'more'?",
+   "CORRECT": "If the force at 2 cm is 0.6 N, what is the force constant k, and what is the force at the mean position?",
+   "UNCLEAR": "Is the force at 6 cm larger, smaller, or the same as at 2 cm, and by how much?"
+  },
+  "calc": "|F6|/|F2| = 6/2 = 3",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "A student writing 'not the same in both' would also hit the S11 phrase 'same in both'; engine negation handling to check"
   ]
  },
  {
   "item_id": "C4-A1",
   "concept": "C4",
+  "kind": "mcq",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "On sports day, Sana and Dev flick opposite ends of a long tug-of-war rope at the same instant. Sana's pulse is upward, Dev's is an equal downward one. They meet and the rope looks flat for a moment. What happens next?",
+  "transfer": false,
+  "stem": "A 0.5 kg block on a spring of force constant 50 N/m oscillates with amplitude 8 cm. What is its acceleration when it is 4 cm to the right (+x) of the mean position?",
   "options": {
-   "A": "Both pulses are gone for good; their energy was used up in cancelling",
-   "B": "Sana's pulse carries on toward Dev and Dev's carries on toward Sana, both unchanged",
-   "C": "The pulses rebound, so Sana's upward pulse heads back toward Sana",
-   "D": "The pulses rebound and return smaller, as some energy is lost in the collision"
+   "A": "8 m/s² toward the mean, the same as at every point",
+   "B": "4 m/s² to the right, away from the mean",
+   "C": "0.4 m/s² toward the mean",
+   "D": "4 m/s² toward the mean (−x direction)"
   },
-  "correct": "B",
+  "correct": "D",
   "distractor_map": {
-   "A": "W4",
-   "B": "CORRECT",
-   "C": "W5",
-   "D": "W5"
+   "A": "S11",
+   "B": "S12",
+   "C": "SLIP",
+   "D": "CORRECT"
   },
   "reasons": {
    "r1": {
-    "text": "They hit each other in the middle and bounce back, like two balls.",
-    "maps_to": "W5"
+    "text": "The acceleration is set by the amplitude, kA/m, and stays the same through the motion.",
+    "maps_to": "S11"
    },
    "r2": {
-    "text": "Up plus down makes zero, so after that the pulses are finished.",
-    "maps_to": "W4"
+    "text": "ω² = k/m = 100, so a = −100 × 0.04 = −4 m/s², pointing back to the mean.",
+    "maps_to": "CORRECT"
    },
    "r3": {
-    "text": "They only add while overlapping; after that each pulse keeps going as if nothing happened.",
-    "maps_to": "CORRECT"
+    "text": "The block is on the right side, so the acceleration also points right, away from the centre.",
+    "maps_to": "S12"
    }
   },
-  "calc": "",
+  "calc": "ω² = k/m = 50/0.5 = 100 s⁻²; a = −ω²x = −100 × 0.04 = −4 m/s²",
   "verify_flags": [
    "TODO_VERIFY",
-   "Assumes an ideal rope with negligible damping; real rope pulses shrink slowly from friction, not from meeting"
+   "A uses ω²A = 100 × 0.08 = 8 m/s² (max value) for every point; C is the forgot-square slip ωx = 10 × 0.04 = 0.4"
+  ]
+ },
+ {
+  "item_id": "C4-A2",
+  "concept": "C4",
+  "kind": "short",
+  "is_assessment": true,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "A 2 kg block on a spring of force constant 200 N/m is 5 cm from its mean position. Find the magnitude of its acceleration and say which way it points.",
+  "answer_key": "The acceleration is 5 m/s², directed toward the mean position.",
+  "expected_reasoning": "ω² = k/m = 100 s⁻², so |a| = ω²x = 100 × 0.05 = 5 m/s², and a = −ω²x points opposite to the displacement, toward the mean.",
+  "accept_any": [],
+  "reasoning_any": [
+   "k/m",
+   "omega square",
+   "ω²",
+   "ω^2",
+   "100",
+   "-ω²x",
+   "−ω²x",
+   "toward mean",
+   "towards mean",
+   "towards the mean",
+   "toward the mean",
+   "opposite to displacement",
+   "towards centre"
+  ],
+  "numeric": {
+   "value": 5.0,
+   "unit": "m/s²",
+   "tolerance": 0.05,
+   "slips": [
+    {
+     "value": 0.5,
+     "why": "forgot to square ω: used ωx = 10 × 0.05"
+    },
+    {
+     "value": 10.0,
+     "why": "gave the force kx = 200 × 0.05 instead of dividing by m"
+    },
+    {
+     "value": 500.0,
+     "why": "used x = 5 cm without converting to metres"
+    }
+   ]
+  },
+  "patterns": [
+   {
+    "code": "S12",
+    "any": [
+     "away from mean",
+     "away from the mean",
+     "away from centre",
+     "direction of motion",
+     "outward",
+     "outwards",
+     "along displacement"
+    ]
+   },
+   {
+    "code": "S11",
+    "any": [
+     "same everywhere",
+     "same at all",
+     "same at every",
+     "constant acceleration",
+     "acceleration is constant",
+     "same as extreme"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S12": "If the acceleration pointed away from the mean, would the block ever come back? What would happen to x?",
+   "S11": "What would the acceleration be at 2.5 cm from the mean, and at the mean itself?",
+   "CORRECT_NO_REASON": "How did you get that value, and why does it point that way?",
+   "CORRECT": "If the amplitude is 10 cm, what is the maximum acceleration, and where does it occur?",
+   "UNCLEAR": "Can you give the size of the acceleration with its unit, and its direction relative to the mean?"
+  },
+  "calc": "ω² = 200/2 = 100 s⁻²; |a| = 100 × 0.05 = 5 m/s², toward mean",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "tolerance assumed relative (5%); confirm engine convention"
   ]
  },
  {
   "item_id": "C5-P1",
   "concept": "C5",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": null,
-  "stem": "Arjun is 1.6 m tall. He wants a plane mirror on his bedroom wall, hung at the right height, in which he can see himself from head to toe. What is the shortest mirror that will work?",
+  "transfer": false,
+  "stem": "On a smooth lab table, Riya's 0.2 kg block on a spring (k = 80 N/m) oscillates with amplitude 0.05 m. When the block is at x = 0.03 m, what are its kinetic energy and its total mechanical energy?",
   "options": {
-   "A": "1.6 m",
-   "B": "0.8 m",
-   "C": "Less than 0.8 m, if he stands far enough back",
-   "D": "3.2 m"
+   "A": "KE = 0.036 J, total E = 0.1 J",
+   "B": "KE = 0.064 J, total E = 0.1 J",
+   "C": "KE = 0.064 J, total E = 0.064 J",
+   "D": "KE = 0.128 J, total E = 0.2 J"
   },
   "correct": "B",
   "distractor_map": {
-   "A": "R2",
+   "A": "S14",
    "B": "CORRECT",
-   "C": "R1",
+   "C": "S13",
    "D": "SLIP"
   },
   "reasons": {
    "r1": {
-    "text": "If he stands farther away, more of him fits in, so a smaller mirror is enough.",
-    "maps_to": "R1"
-   },
-   "r2": {
-    "text": "Light from his feet bounces off the mirror halfway down to his eyes, so he only needs half his height, wherever he stands.",
-    "maps_to": "CORRECT"
-   },
-   "r3": {
-    "text": "The image is on the glass, so the glass has to be as tall as he is.",
-    "maps_to": "R2"
-   }
-  },
-  "calc": "L_min = H/2 = 1.6 m / 2 = 0.8 m",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Assumes a vertical plane mirror with its top edge midway between Arjun's eyes and the top of his head."
-  ]
- },
- {
-  "item_id": "C5-P2",
-  "concept": "C5",
-  "is_assessment": false,
-  "sibling_of": "C5-P1",
-  "stem": "At a salon in Pune, Meera sees only her face down to her shoulders in a small mirror fixed on the wall. She takes two steps back. What part of herself does she see now?",
-  "options": {
-   "A": "More of herself, down to her waist",
-   "B": "Less of herself, only her face",
-   "C": "Still only her face down to her shoulders",
-   "D": "Her whole body, if she goes back far enough"
-  },
-  "correct": "C",
-  "distractor_map": {
-   "A": "R1",
-   "B": "UNMAPPED",
-   "C": "CORRECT",
-   "D": "R1"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Farther from the mirror means a wider view, so more of her fits in.",
-    "maps_to": "R1"
-   },
-   "r2": {
-    "text": "Her image stays on the glass while she backs away, so the glass covers more of her.",
-    "maps_to": "R2"
-   },
-   "r3": {
-    "text": "Her image moves back as much as she does, so the mirror still covers the same part of her.",
-    "maps_to": "CORRECT"
-   }
-  },
-  "calc": "",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Assumes the mirror stays fixed and Meera's eye height does not change as she steps back."
-  ]
- },
- {
-  "item_id": "C5-P3",
-  "concept": "C5",
-  "is_assessment": false,
-  "sibling_of": "C5-P1",
-  "stem": "Kabir, 1.7 m tall, is buying a mirror for his hostel room in Vellore. He will stand about 3 m from it. What is the shortest mirror, hung at the right height, that shows him head to toe?",
-  "options": {
-   "A": "1.7 m",
-   "B": "Less than 0.85 m, because standing 3 m back means he needs less mirror",
-   "C": "0.85 m only if he stands close; at 3 m he needs a longer one",
-   "D": "0.85 m"
-  },
-  "correct": "D",
-  "distractor_map": {
-   "A": "R2",
-   "B": "R1",
-   "C": "UNMAPPED",
-   "D": "CORRECT"
-  },
-  "reasons": {
-   "r1": {
-    "text": "He needs half his height, and the distance doesn't matter because his image moves back with him.",
+    "text": "Total is ½kA² = 0.1 J everywhere, and at x = 0.03 m the spring holds ½kx² = 0.036 J, so KE is the rest, 0.064 J.",
     "maps_to": "CORRECT"
    },
    "r2": {
-    "text": "His image sits on the mirror, so the mirror must be his full height.",
-    "maps_to": "R2"
+    "text": "At that point it only has the energy it is moving with, so the total right now is just the KE.",
+    "maps_to": "S13"
    },
    "r3": {
-    "text": "Standing far back lets more of him fit, so a shorter mirror will do.",
-    "maps_to": "R1"
+    "text": "½kx² is the KE part because PE is biggest in the middle, so near the middle the block has less KE.",
+    "maps_to": "S14"
    }
   },
-  "calc": "L_min = H/2 = 1.7 m / 2 = 0.85 m",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Assumes a vertical plane mirror with its top edge midway between Kabir's eyes and the top of his head."
-  ]
- },
- {
-  "item_id": "C5-A1",
-  "concept": "C5",
-  "is_assessment": true,
-  "sibling_of": null,
-  "stem": "Ananya stands 3 m in front of the big wall mirror in her dance class. Which statement is correct?",
-  "options": {
-   "A": "Her image is 3 m behind the mirror, so it is 6 m from her",
-   "B": "Her image is on the mirror surface, so it is 3 m from her",
-   "C": "If she moves back to 5 m, she will see more of her body in the same mirror",
-   "D": "Her image is 3 m behind the mirror, so it is 3 m from her"
-  },
-  "correct": "A",
-  "distractor_map": {
-   "A": "CORRECT",
-   "B": "R2",
-   "C": "R1",
-   "D": "SLIP"
-  },
-  "reasons": {
-   "r1": {
-    "text": "What I see is right on the glass, so the image is just 3 m away.",
-    "maps_to": "R2"
-   },
-   "r2": {
-    "text": "The image is as far behind the mirror as she is in front, so 3 m + 3 m = 6 m.",
-    "maps_to": "CORRECT"
-   },
-   "r3": {
-    "text": "Moving back lets the mirror catch more of her body.",
-    "maps_to": "R1"
-   }
-  },
-  "calc": "Object-image distance = 2 x 3 m = 6 m",
+  "calc": "E = ½kA² = ½ × 80 × 0.05² = 0.1 J; PE = ½kx² = ½ × 80 × 0.03² = 0.036 J; KE = E − PE = 0.064 J (D drops the ½: 0.128 J, 0.2 J)",
   "verify_flags": [
    "TODO_VERIFY"
   ]
  },
  {
+  "item_id": "C5-P2",
+  "concept": "C5",
+  "kind": "mcq",
+  "is_assessment": false,
+  "sibling_of": "C5-P1",
+  "transfer": false,
+  "stem": "In the school lab, Arjun's pendulum swings in small arcs with no air drag. As the bob moves from one extreme to the lowest (mean) point, which statement about its energy is correct?",
+  "options": {
+   "A": "KE rises and PE falls, so the total energy also rises toward the mean point",
+   "B": "KE and PE both reach their maximum at the mean point",
+   "C": "PE is maximum at the mean point and KE is maximum at the extremes",
+   "D": "KE rises by exactly the amount PE falls, so the total energy stays the same"
+  },
+  "correct": "D",
+  "distractor_map": {
+   "A": "S13",
+   "B": "S14",
+   "C": "S14",
+   "D": "CORRECT"
+  },
+  "reasons": {
+   "r1": {
+    "text": "The bob is fastest at the bottom, so that's where it has the most energy overall.",
+    "maps_to": "S13"
+   },
+   "r2": {
+    "text": "Whatever height energy it loses on the way down turns into speed, nothing is lost, so the total doesn't change.",
+    "maps_to": "CORRECT"
+   },
+   "r3": {
+    "text": "The mean position is the important point of SHM, so both energies peak there.",
+    "maps_to": "S14"
+   }
+  },
+  "calc": "",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Pendulum PE here is gravitational (mgh), which for small angles equals ½mω²x² with ω² = g/L; option C states S14 in its 'PE max at mean' form."
+  ]
+ },
+ {
+  "item_id": "C5-P3",
+  "concept": "C5",
+  "kind": "mcq",
+  "is_assessment": false,
+  "sibling_of": "C5-P1",
+  "transfer": true,
+  "stem": "A vibration sensor in a Pune factory has a small mass on a spring, with negligible losses over a few cycles. The data logger shows KE = 0.30 J as the mass passes x = A/2. What is the sensor's total oscillation energy?",
+  "options": {
+   "A": "0.30 J, because the total is just the KE it has at that moment",
+   "B": "0.60 J, because at half the amplitude it has half of its energy as KE",
+   "C": "0.40 J, because at x = A/2 the KE is three-quarters of the total",
+   "D": "1.20 J, because at x = A/2 the KE is one-quarter of the total"
+  },
+  "correct": "C",
+  "distractor_map": {
+   "A": "S13",
+   "B": "S15",
+   "C": "CORRECT",
+   "D": "UNMAPPED"
+  },
+  "reasons": {
+   "r1": {
+    "text": "Energy goes in a straight line with distance, so half the amplitude means half the energy has gone into the spring.",
+    "maps_to": "S15"
+   },
+   "r2": {
+    "text": "The logger reads 0.30 J, and the energy changes as the mass moves, so the total right now is just that.",
+    "maps_to": "S13"
+   },
+   "r3": {
+    "text": "PE = ½kx² = ¼ of ½kA² at x = A/2, so KE is ¾ of the total, and ¾E = 0.30 J gives E = 0.40 J.",
+    "maps_to": "CORRECT"
+   }
+  },
+  "calc": "KE/E = (A² − x²)/A² = 1 − ¼ = ¾ at x = A/2; E = 0.30 / 0.75 = 0.40 J",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "D (KE = ¼E) mixes up KE and PE fractions; left UNMAPPED rather than forced onto S14."
+  ]
+ },
+ {
+  "item_id": "C5-Q1",
+  "concept": "C5",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Priya's block oscillates on a spring on a smooth table. As the block moves from an extreme position to the mean position, what happens to its total mechanical energy, and why?",
+  "answer_key": "The total mechanical energy stays the same.",
+  "expected_reasoning": "The PE stored in the spring (½kx²) falls as x shrinks, and the KE rises by exactly that amount, so KE + PE = ½kA² stays constant with no friction.",
+  "accept_any": [
+   "same",
+   "constant",
+   "does not change",
+   "doesn't change",
+   "unchanged",
+   "conserved",
+   "no change",
+   "remains equal"
+  ],
+  "reasoning_any": [
+   "converted",
+   "converts",
+   "turns into",
+   "changes into",
+   "transferred",
+   "pe decreases",
+   "ke increases",
+   "potential to kinetic",
+   "no friction",
+   "no damping",
+   "half k a square",
+   "½ka²",
+   "ke + pe",
+   "ke plus pe"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S13",
+    "any": [
+     "total increases",
+     "total decreases",
+     "total energy increases",
+     "total energy decreases",
+     "energy is lost",
+     "loses energy",
+     "gains energy",
+     "more energy at mean",
+     "total is maximum at mean"
+    ]
+   },
+   {
+    "code": "S14",
+    "any": [
+     "both increase",
+     "both maximum",
+     "both max",
+     "both become maximum",
+     "pe increases",
+     "potential energy increases",
+     "pe maximum at mean",
+     "pe max at mean"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S13": "If the total energy really changed, where would the extra energy come from, or where would it go, on a smooth table?",
+   "S14": "At the extreme the spring is stretched the most. At the mean it is not stretched at all. Where does it store more energy?",
+   "CORRECT_NO_REASON": "Right. Why does the total stay the same even though the block speeds up?",
+   "CORRECT": "Now the table has a little friction. What happens to the total energy over many oscillations, and where does it go?",
+   "UNCLEAR": "Does the total energy go up, go down, or stay the same between the extreme and the mean?"
+  },
+  "calc": "",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "A correct answer like 'KE increases and PE decreases, total same' must not trip S13/S14; patterns are prefixed ('total ...', 'pe increases') to avoid that, but grader precedence (accept_any vs patterns) needs checking."
+  ]
+ },
+ {
+  "item_id": "C5-Q2",
+  "concept": "C5",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Aarav's 0.5 kg block on a spring (k = 200 N/m) oscillates with amplitude 0.1 m on a smooth surface. What is its total mechanical energy when it is at x = 0.05 m? Give a reason.",
+  "answer_key": "The total mechanical energy is 1 J.",
+  "expected_reasoning": "In ideal SHM the total is ½kA² = ½ × 200 × 0.1² = 1 J at every position; at x = 0.05 m it is split as 0.25 J PE and 0.75 J KE.",
+  "accept_any": [],
+  "reasoning_any": [
+   "half k a square",
+   "½ka²",
+   "1/2 k a",
+   "same everywhere",
+   "constant",
+   "conserved",
+   "ke + pe",
+   "ke plus pe",
+   "does not depend on x",
+   "doesn't depend on position"
+  ],
+  "numeric": {
+   "value": 1.0,
+   "unit": "J",
+   "tolerance": 0.02,
+   "slips": [
+    {
+     "value": 2.0,
+     "why": "forgot the ½ (used kA²)"
+    },
+    {
+     "value": 10.0,
+     "why": "forgot to square A (used ½kA)"
+    }
+   ]
+  },
+  "patterns": [
+   {
+    "code": "S13",
+    "any": [
+     "0.25 j",
+     "0.25 joule",
+     "0.75 j",
+     "0.75 joule",
+     "only pe",
+     "only ke",
+     "depends on position",
+     "less than at extreme",
+     "less than at mean"
+    ]
+   },
+   {
+    "code": "S15",
+    "any": [
+     "0.5 j",
+     "0.5 joule",
+     "half the energy",
+     "half energy"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S13": "You found the energy of one kind at x = 0.05 m. What is the other kind of energy there, and what do they add up to?",
+   "S15": "If the energy were proportional to x, what would the spring's PE be at x = 0.05 m using ½kx²? Does that match?",
+   "CORRECT_NO_REASON": "Correct value. Why doesn't the position x = 0.05 m change the total?",
+   "CORRECT": "How much of that 1 J is kinetic at x = 0.05 m, and what is the block's speed there?",
+   "UNCLEAR": "Can you give one number in joules for the total energy at x = 0.05 m?"
+  },
+  "calc": "E = ½kA² = ½ × 200 × 0.1² = 1.0 J; PE(0.05) = ½ × 200 × 0.05² = 0.25 J; KE = 0.75 J; v = √(2 × 0.75 / 0.5) = √3 ≈ 1.73 m/s",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "S15 pattern '0.5 j' reflects linear-in-x thinking (half amplitude, half energy); check the numeric grader tests slips/patterns before rejecting 0.5 as plain wrong.",
+   "Plain substring matching would let '0.5 j' fire on inputs like '10.5 j'; grader should match numbers on word boundaries."
+  ]
+ },
+ {
+  "item_id": "C5-A1",
+  "concept": "C5",
+  "kind": "mcq",
+  "is_assessment": true,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Sneha pulls the same block on the same spring twice as far before releasing it, so the amplitude doubles (smooth surface). How does the total mechanical energy of the oscillation change?",
+  "options": {
+   "A": "It becomes four times as large, at every point of the motion",
+   "B": "It becomes twice as large, because energy is proportional to amplitude",
+   "C": "It becomes four times as large at the mean position, but less at the extremes where the block stops",
+   "D": "The PE at the mean position doubles, and the KE at the extremes doubles"
+  },
+  "correct": "A",
+  "distractor_map": {
+   "A": "CORRECT",
+   "B": "S15",
+   "C": "S13",
+   "D": "S14"
+  },
+  "reasons": {
+   "r1": {
+    "text": "Pulling twice as far means twice the energy, it's a direct relation.",
+    "maps_to": "S15"
+   },
+   "r2": {
+    "text": "E = ½kA², so doubling A multiplies E by 2² = 4, and that total stays the same throughout the motion.",
+    "maps_to": "CORRECT"
+   },
+   "r3": {
+    "text": "At the extremes the block stops, so it has less energy there than when it zooms through the middle.",
+    "maps_to": "S13"
+   }
+  },
+  "calc": "E ∝ A²: E' = ½k(2A)² = 4 × ½kA²",
+  "verify_flags": [
+   "TODO_VERIFY"
+  ]
+ },
+ {
+  "item_id": "C5-A2",
+  "concept": "C5",
+  "kind": "short",
+  "is_assessment": true,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Sanya uses the same spring and block but releases it from twice the earlier distance, so the amplitude doubles. How does the total energy of the oscillation change, and why?",
+  "answer_key": "The total energy becomes four times as large.",
+  "expected_reasoning": "Total energy E = ½kA² depends on the square of the amplitude, so doubling A multiplies E by 2² = 4.",
+  "accept_any": [
+   "four times",
+   "4 times",
+   "4x",
+   "4 x",
+   "quadruple",
+   "quadruples",
+   "fourfold",
+   "four fold",
+   "4 guna",
+   "char guna"
+  ],
+  "reasoning_any": [
+   "square",
+   "squared",
+   "a²",
+   "a^2",
+   "a square",
+   "2²",
+   "2 square",
+   "half k a"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "S15",
+    "any": [
+     "energy doubles",
+     "energy also doubles",
+     "also doubles",
+     "becomes double",
+     "becomes twice",
+     "twice the energy",
+     "double the energy",
+     "energy is 2 times",
+     "energy becomes 2 times",
+     "proportional to amplitude",
+     "do guna"
+    ]
+   },
+   {
+    "code": "S13",
+    "any": [
+     "keeps changing",
+     "not constant",
+     "changes during",
+     "more at the mean",
+     "less at the extreme"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "S15": "Write E = ½kA². Put in 2A instead of A. What number multiplies the old energy?",
+   "S13": "For one fixed amplitude, is the total energy different at the extreme and at the mean? Why or why not?",
+   "CORRECT_NO_REASON": "Right. Which formula tells you it is four times and not two times?",
+   "CORRECT": "If you want only twice the energy, by what factor should you change the amplitude?",
+   "UNCLEAR": "Does the total energy become two times, four times, or stay the same when the amplitude doubles?"
+  },
+  "calc": "E' / E = (2A)² / A² = 4",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Hinglish keywords ('4 guna', 'char guna', 'do guna') included for spoken answers; confirm the speech-to-text output spells them this way."
+  ]
+ },
+ {
   "item_id": "C6-P1",
   "concept": "C6",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": null,
   "stem": "Meera points a waterproof torch up from inside a fish tank. The beam hits the water surface at 30° to the normal (water n = 4/3). What does the beam do at the surface?",
@@ -810,11 +1980,13 @@
   "verify_flags": [
    "TODO_VERIFY",
    "sin r = (4/3)(0.5) = 0.667 -> r ≈ 41.8° in air; 30° < C ≈ 48.6° so no TIR"
-  ]
+  ],
+  "transfer": false
  },
  {
   "item_id": "C6-P2",
   "concept": "C6",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C6-P1",
   "stem": "Inside Rohan's glass paperweight (n = 1.5), a laser beam reaches the flat top face at 25° to the normal. What happens as the beam passes out into the room air?",
@@ -849,11 +2021,13 @@
   "verify_flags": [
    "TODO_VERIFY",
    "sin r = 1.5 × sin 25° = 1.5 × 0.423 = 0.634 -> r ≈ 39.3°; 25° < C ≈ 41.8° so no TIR"
-  ]
+  ],
+  "transfer": false
  },
  {
   "item_id": "C6-P3",
   "concept": "C6",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C6-P1",
   "stem": "A lamp fixed at the bottom of a hotel swimming pool sends a ray up to the water surface at 40° to the normal (water n = 4/3). What happens to this ray?",
@@ -888,11 +2062,141 @@
   "verify_flags": [
    "TODO_VERIFY",
    "A uses sin r = (3/4) sin 40° = 0.482 -> 28.8° (bending toward normal); C is the slip of multiplying the angle, 40° × 4/3 ≈ 53.3°; 40° < C ≈ 48.6° so no TIR"
+  ],
+  "transfer": true
+ },
+ {
+  "item_id": "C6-Q1",
+  "concept": "C6",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Light travels inside a glass block (n = 1.5) and then passes out into air at an angle. What is its speed in the glass (c = 3.0 × 10⁸ m/s), and does it bend toward or away from the normal on leaving? Why?",
+  "answer_key": "Its speed in glass is 2.0 × 10⁸ m/s, and it bends away from the normal on leaving.",
+  "expected_reasoning": "v = c/n = 3.0 × 10⁸ / 1.5 = 2.0 × 10⁸ m/s. Going from glass into air it moves into a rarer medium and speeds up, so it bends away from the normal.",
+  "accept_any": [
+   "away from the normal",
+   "away from normal",
+   "bends away",
+   "goes away"
+  ],
+  "reasoning_any": [
+   "speeds up",
+   "faster in air",
+   "denser to rarer",
+   "rarer medium",
+   "c/n",
+   "c / n",
+   "divide by 1.5",
+   "divided by n"
+  ],
+  "numeric": {
+   "value": 200000000.0,
+   "unit": "m/s",
+   "tolerance": 1000000.0,
+   "slips": [
+    {
+     "value": 450000000.0,
+     "why": "multiplied by n instead of dividing"
+    },
+    {
+     "value": 300000000.0,
+     "why": "assumed light keeps the vacuum speed inside glass"
+    }
+   ]
+  },
+  "patterns": [
+   {
+    "code": "R3",
+    "any": [
+     "toward the normal",
+     "towards the normal",
+     "toward normal",
+     "towards normal",
+     "bends toward",
+     "bends towards",
+     "always bends"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "R3": "On leaving the glass, light goes from 2.0 × 10⁸ m/s back up to 3.0 × 10⁸ m/s. Is the angle in air bigger or smaller than the angle inside the glass?",
+   "CORRECT_NO_REASON": "Why does leaving the glass make the ray bend away from the normal and not toward it?",
+   "CORRECT": "Light of wavelength 600 nm in air enters this glass. What are its frequency and its wavelength inside the glass?",
+   "UNCLEAR": "Can you give the speed in the glass with its unit, and say in one word whether it bends toward or away from the normal?"
+  },
+  "calc": "v = c/n = 3.0 × 10⁸ / 1.5 = 2.0 × 10⁸ m/s",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "CORRECT follow-up answer: f = c/λ = 3.0 × 10⁸ / 600 × 10⁻⁹ = 5.0 × 10¹⁴ Hz (unchanged); λ_glass = 600/1.5 = 400 nm"
+  ]
+ },
+ {
+  "item_id": "C6-Q2",
+  "concept": "C6",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Sameer says: 'Shine a torch from the air onto a pond at 80° to the normal and the light will be totally internally reflected, because 80° is beyond water's critical angle.' Is he right? Give a reason.",
+  "answer_key": "No; light going from air into water always refracts into the water, so TIR cannot happen.",
+  "expected_reasoning": "Total internal reflection needs light travelling from a denser to a rarer medium. From air into water, sin r = sin 80°/(4/3) ≈ 0.74 is less than 1, so a refracted ray always exists.",
+  "accept_any": [
+   "not right",
+   "is wrong",
+   "he's wrong",
+   "cannot happen",
+   "can't happen",
+   "not possible",
+   "always enters",
+   "will enter",
+   "refracts into",
+   "goes into the water"
+  ],
+  "reasoning_any": [
+   "denser to rarer",
+   "rarer to denser",
+   "air is rarer",
+   "water is denser",
+   "inside the denser",
+   "less than 1",
+   "only from water",
+   "from the denser"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "R4",
+    "any": [
+     "he is right",
+     "he's right",
+     "yes he is",
+     "tir will happen",
+     "tir happens",
+     "totally reflected",
+     "fully reflected",
+     "acts like a mirror",
+     "angle is enough"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "R4": "Before light can be trapped by total internal reflection, which side of the surface must it start on: the air side or the water side?",
+   "CORRECT_NO_REASON": "Why can a ray coming from the air never be totally internally reflected at a water surface?",
+   "CORRECT": "An optical fibre carries light around a gentle bend. Which two conditions keep the light trapped inside the glass core?",
+   "UNCLEAR": "Does the torch light go into the pond, or is all of it reflected? Say which, and why."
+  },
+  "calc": "sin r = sin 80° / (4/3) = 0.985 × 0.75 = 0.739 -> r ≈ 47.6° (enters the water)",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Water n = 4/3 assumed; some light is partially reflected at any surface, which is not TIR"
   ]
  },
  {
   "item_id": "C6-A1",
   "concept": "C6",
+  "kind": "mcq",
   "is_assessment": true,
   "sibling_of": null,
   "stem": "At a science fair, Kavya shines a laser from air onto a glass block (n = 1.5) at 60° to the normal, which is more than glass's critical angle of 41.8°. What happens at the surface?",
@@ -927,11 +2231,69 @@
   "verify_flags": [
    "TODO_VERIFY",
    "Some light is always partially reflected at the surface; option D says ALL light reflects, which is the wrong part. r3 (R3) reaches the right answer for the wrong reason, by design"
+  ],
+  "transfer": false
+ },
+ {
+  "item_id": "C6-A2",
+  "concept": "C6",
+  "kind": "short",
+  "is_assessment": true,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "A diver's torch underwater sends a ray up to the water surface at 60° to the normal (water n = 4/3, critical angle ≈ 48.6°). What happens to the ray at the surface, and why?",
+  "answer_key": "It is totally internally reflected back into the water.",
+  "expected_reasoning": "The ray goes from denser water toward rarer air, and 60° is greater than the critical angle of about 48.6°, so no refracted ray exists and all the light reflects back.",
+  "accept_any": [
+   "total internal reflection",
+   "totally internally reflected",
+   "totally reflected",
+   "tir",
+   "reflects back into the water",
+   "stays in the water",
+   "trapped"
+  ],
+  "reasoning_any": [
+   "denser to rarer",
+   "greater than the critical",
+   "more than critical",
+   "bigger than critical",
+   "above the critical",
+   "exceeds",
+   "48.6",
+   "sin c"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "R3",
+    "any": [
+     "bends toward",
+     "bends towards",
+     "toward the normal",
+     "towards the normal",
+     "comes out",
+     "goes out into the air",
+     "escapes"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "R3": "Is the ray going from denser to rarer or rarer to denser here, and which way does that make it bend if it does get out?",
+   "CORRECT_NO_REASON": "Which two conditions did you check to decide the ray stays trapped in the water?",
+   "CORRECT": "Diamond has n ≈ 2.42, so its critical angle is only about 24°. Why does that help a cut diamond sparkle more than glass?",
+   "UNCLEAR": "Does any of this ray leave the water into the air? Yes or no, and why?"
+  },
+  "calc": "sin C = 3/4 = 0.75 -> C ≈ 48.6°; (4/3) × sin 60° = 1.155 > 1, so no refracted ray",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Diamond follow-up: sin C = 1/2.42 = 0.413 -> C ≈ 24.4°"
   ]
  },
  {
   "item_id": "C7-P1",
   "concept": "C7",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": null,
   "stem": "Riya keeps a candle 30 cm in front of a convex lens of focal length 20 cm. She takes away the screen and sticks black paper over the top half of the lens. What happens to the image?",
@@ -966,11 +2328,13 @@
   "verify_flags": [
    "TODO_VERIFY",
    "D uses the sign slip 1/20 + 1/30 = 1/12, giving 12 cm"
-  ]
+  ],
+  "transfer": false
  },
  {
   "item_id": "C7-P2",
   "concept": "C7",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C7-P1",
   "stem": "Arjun's magnifying glass makes a sharp image of the ceiling tubelight on his notebook. A friend's thumb covers the left half of the lens, and Arjun slides the notebook away. What about the image now?",
@@ -1005,11 +2369,13 @@
   "verify_flags": [
    "TODO_VERIFY",
    "Assumes the tubelight is far enough that the image forms near the focus on the same side as the notebook"
-  ]
+  ],
+  "transfer": false
  },
  {
   "item_id": "C7-P3",
   "concept": "C7",
+  "kind": "mcq",
   "is_assessment": false,
   "sibling_of": "C7-P1",
   "stem": "In the lab, Meera puts a bulb 15 cm in front of a convex lens of focal length 10 cm. Tape covers the lower half of the lens, and there is no screen on the bench. What is true about the image?",
@@ -1044,11 +2410,146 @@
   "verify_flags": [
    "TODO_VERIFY",
    "D uses the sign slip 1/10 + 1/15 = 1/6, giving 6 cm"
+  ],
+  "transfer": true
+ },
+ {
+  "item_id": "C7-Q1",
+  "concept": "C7",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "An object is 20 cm in front of a convex lens of focal length 15 cm, and there is no screen on the bench. Using 1/v − 1/u = 1/f, where is the image, and is it real? Give a reason.",
+  "answer_key": "The image is 60 cm behind the lens and it is real (and inverted), screen or no screen.",
+  "expected_reasoning": "With u = −20 cm and f = +15 cm, 1/v = 1/15 − 1/20 = 1/60, so v = +60 cm. Positive v means the rays actually converge on the far side, so the image is real even without a screen.",
+  "accept_any": [
+   "60 cm",
+   "+60",
+   "v = 60",
+   "real and inverted",
+   "real, inverted",
+   "inverted and real",
+   "it is real"
+  ],
+  "reasoning_any": [
+   "1/60",
+   "rays meet",
+   "rays converge",
+   "converge",
+   "v is positive",
+   "positive v",
+   "other side",
+   "opposite side",
+   "beyond 2f"
+  ],
+  "numeric": {
+   "value": 60.0,
+   "unit": "cm",
+   "tolerance": 0.5,
+   "slips": [
+    {
+     "value": 8.57,
+     "why": "used u = +20 cm, so 1/v = 1/15 + 1/20 = 7/60"
+    },
+    {
+     "value": -60.0,
+     "why": "sign of v flipped, treating a real image as virtual"
+    }
+   ]
+  },
+  "patterns": [
+   {
+    "code": "R6",
+    "any": [
+     "needs a screen",
+     "need a screen",
+     "no image forms",
+     "image won't form",
+     "won't form",
+     "doesn't form",
+     "not formed",
+     "only on the screen"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "R6": "Suppose you put your eye about 30 cm beyond the 60 cm mark and look back at the lens, with no screen anywhere. What reaches your eye?",
+   "CORRECT_NO_REASON": "What does the positive sign of v tell you about whether the image is real?",
+   "CORRECT": "Now the object is moved to 10 cm from the same lens. Where is the image, and could you catch it on a screen?",
+   "UNCLEAR": "What value of v did you get, with its sign, and what does that sign tell you?"
+  },
+  "calc": "1/v = 1/f + 1/u = 1/15 + 1/(−20) = 1/60 -> v = +60 cm; m = v/u = 60/(−20) = −3",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook",
+   "CORRECT follow-up: 1/v = 1/15 + 1/(−10) = −1/30 -> v = −30 cm (virtual, cannot be caught on a screen)"
+  ]
+ },
+ {
+  "item_id": "C7-Q2",
+  "concept": "C7",
+  "kind": "short",
+  "is_assessment": false,
+  "sibling_of": null,
+  "transfer": false,
+  "stem": "Neha's convex lens makes a sharp image of a candle flame on a screen. She then covers the right half of the lens with black paper. What does she now see on the screen? Give a reason.",
+  "answer_key": "She still sees the complete flame image at the same place, only dimmer.",
+  "expected_reasoning": "Every point of the flame sends rays to the whole lens, so the uncovered half still brings rays from every point to the same image points; only half the light gets through, so it is dimmer.",
+  "accept_any": [
+   "full image",
+   "whole image",
+   "complete image",
+   "entire image",
+   "full flame",
+   "whole flame",
+   "complete flame",
+   "same image but dim"
+  ],
+  "reasoning_any": [
+   "every point",
+   "each point",
+   "all points",
+   "rays from every",
+   "less light",
+   "fewer rays",
+   "half the light",
+   "whole lens",
+   "any part of the lens"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "R5",
+    "any": [
+     "half image",
+     "half the image",
+     "half of the image",
+     "half flame",
+     "half of the flame",
+     "right half missing",
+     "left half missing",
+     "part of the image",
+     "cut off"
+    ]
+   }
+  ],
+  "follow_ups": {
+   "R5": "Light from the tip of the flame reaches which parts of the lens: only one half, or every part of it?",
+   "CORRECT_NO_REASON": "Why does covering half the lens not cut off half of the picture?",
+   "CORRECT": "If a small black dot is painted at the centre of the lens, will a black spot appear in the image? Why?",
+   "UNCLEAR": "Will Neha see the whole flame, half the flame, or nothing? And does the brightness change?"
+  },
+  "calc": "",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Brightness roughly halves; small changes in sharpness from aberrations are ignored"
   ]
  },
  {
   "item_id": "C7-A1",
   "concept": "C7",
+  "kind": "mcq",
   "is_assessment": true,
   "sibling_of": null,
   "stem": "At a science fair, a big convex lens forms a real image of a diya in mid-air; there is no screen. A price sticker covers half the lens. Kabir stands well beyond the image and looks back at the lens. What does he see?",
@@ -1083,320 +2584,68 @@
   "verify_flags": [
    "TODO_VERIFY",
    "Assumes Kabir's eye is at least about 25 cm beyond the image and inside the cone of rays leaving it; if the cone misses his eye he sees only the lens lit up"
-  ]
+  ],
+  "transfer": false
  },
  {
-  "item_id": "C8-P1",
-  "concept": "C8",
-  "is_assessment": false,
-  "sibling_of": null,
-  "stem": "Riya sets up a double slit with a red laser in her college lab. Keeping the laser and screen fixed, she swaps in slits that are half as far apart. What happens to the fringes?",
-  "options": {
-   "A": "They become half as wide",
-   "B": "They become twice as wide",
-   "C": "Same width, but brighter, because closer slits make extra light energy",
-   "D": "Same width; only the colour of the fringes changes"
-  },
-  "correct": "B",
-  "distractor_map": {
-   "A": "L1",
-   "B": "CORRECT",
-   "C": "L2",
-   "D": "UNMAPPED"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Slits closer means the whole pattern squeezes, so the fringes get thinner.",
-    "maps_to": "L1"
-   },
-   "r2": {
-    "text": "Fringe width is lambda D by d, so if d is halved the width doubles.",
-    "maps_to": "CORRECT"
-   },
-   "r3": {
-    "text": "When the slits are closer the beams overlap more and interference makes more light.",
-    "maps_to": "L2"
-   }
-  },
-  "calc": "",
-  "verify_flags": [
-   "TODO_VERIFY"
-  ]
- },
- {
-  "item_id": "C8-P2",
-  "concept": "C8",
-  "is_assessment": false,
-  "sibling_of": "C8-P1",
-  "stem": "In his school lab, Arjun uses a 600 nm laser, a screen 1.5 m away and slits 0.30 mm apart, getting 3.0 mm fringes. He swaps in slits 0.15 mm apart, keeping everything else same. New fringe width?",
-  "options": {
-   "A": "1.5 mm",
-   "B": "0.60 mm",
-   "C": "6.0 mm",
-   "D": "3.0 mm, but the bright fringes get brighter because closer slits make extra light"
-  },
-  "correct": "C",
-  "distractor_map": {
-   "A": "L1",
-   "B": "SLIP",
-   "C": "CORRECT",
-   "D": "L2"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Beta equals lambda D over d, and d got halved, so beta doubles to 6 mm.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Half the slit gap means half the fringe gap, so 1.5 mm.",
-    "maps_to": "L1"
-   },
-   "r3": {
-    "text": "Width won't change, the interference just puts more energy into the bright bands.",
-    "maps_to": "L2"
-   }
-  },
-  "calc": "beta = lambda*D/d = (600e-9 m * 1.5 m)/(0.15e-3 m) = 6.0e-3 m = 6.0 mm",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "SLIP option B (0.60 mm) is a power-of-ten slip on 6.0 mm"
-  ]
- },
- {
-  "item_id": "C8-P3",
-  "concept": "C8",
-  "is_assessment": false,
-  "sibling_of": "C8-P1",
-  "stem": "At a science fair in Pune, Kabir's double-slit fringes are too thin to see clearly. Without changing the laser or moving the screen, what should he do to make the fringes wider?",
-  "options": {
-   "A": "Use slits that are farther apart",
-   "B": "Cover one slit, so the half pattern left spreads out wider",
-   "C": "Use a stronger laser so interference adds more light to each fringe",
-   "D": "Use slits that are closer together"
-  },
-  "correct": "D",
-  "distractor_map": {
-   "A": "L1",
-   "B": "L3",
-   "C": "L2",
-   "D": "CORRECT"
-  },
-  "reasons": {
-   "r1": {
-    "text": "If one slit is blocked you only get half the fringes, so they have more room.",
-    "maps_to": "L3"
-   },
-   "r2": {
-    "text": "Slits farther apart spread everything out, so the fringes get wider too.",
-    "maps_to": "L1"
-   },
-   "r3": {
-    "text": "Fringe width goes as 1 by d, so a smaller slit gap gives wider fringes.",
-    "maps_to": "CORRECT"
-   }
-  },
-  "calc": "",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Assumes slit width and wavelength unchanged; a stronger laser changes brightness only, not fringe width"
-  ]
- },
- {
-  "item_id": "C8-A1",
-  "concept": "C8",
+  "item_id": "C7-A2",
+  "concept": "C7",
+  "kind": "short",
   "is_assessment": true,
   "sibling_of": null,
-  "stem": "During a power cut, Meera shines a battery laser through a double slit in her Chennai hostel and sees clear fringes on the wall. Her friend sticks tape over one slit. What does the wall show now?",
-  "options": {
-   "A": "The fringes vanish; a broad, dimmer patch of light from the open slit remains",
-   "B": "Only the half of the fringe pattern on the open slit's side remains",
-   "C": "The wall goes almost dark, since the light was being produced by the two beams interfering",
-   "D": "Every second bright fringe disappears, leaving half the fringes"
-  },
-  "correct": "A",
-  "distractor_map": {
-   "A": "CORRECT",
-   "B": "L3",
-   "C": "L2",
-   "D": "L3"
-  },
-  "reasons": {
-   "r1": {
-    "text": "The bright light came from interference, so without it there is hardly any light.",
-    "maps_to": "L2"
-   },
-   "r2": {
-    "text": "Fringes need waves from both slits to meet, so with one slit there are no fringes, just its own spread-out light.",
-    "maps_to": "CORRECT"
-   },
-   "r3": {
-    "text": "Each slit makes its own share of fringes, so one slit leaves half of them.",
-    "maps_to": "L3"
+  "transfer": false,
+  "stem": "In a camera, the lens forms a sharp real image on the sensor. Ishaan says, 'Take the sensor out and the lens stops forming any image.' Is he right? Give a reason.",
+  "answer_key": "No; the lens still forms the real image at the same place, the sensor only records it.",
+  "expected_reasoning": "A real image is the point where rays from each object point actually converge. The rays still meet there without the sensor and then spread out again; the sensor only catches that light.",
+  "accept_any": [
+   "not right",
+   "is wrong",
+   "he's wrong",
+   "still forms",
+   "still form",
+   "still converge",
+   "still meet",
+   "still there",
+   "still formed"
+  ],
+  "reasoning_any": [
+   "rays meet",
+   "rays converge",
+   "converge",
+   "only records",
+   "only catches",
+   "just records",
+   "screen only",
+   "sensor only",
+   "spread out"
+  ],
+  "numeric": null,
+  "patterns": [
+   {
+    "code": "R6",
+    "any": [
+     "he is right",
+     "he's right",
+     "needs the sensor",
+     "needs a screen",
+     "need a screen",
+     "no image without",
+     "stops forming",
+     "nothing to land on"
+    ]
    }
+  ],
+  "follow_ups": {
+   "R6": "Where do rays from one point of the object meet when the sensor is in place, and does removing the sensor change where they meet?",
+   "CORRECT_NO_REASON": "If the lens already forms the image, what job does the sensor actually do?",
+   "CORRECT": "Why can a real image hanging in air be seen only from certain positions, while an image on a screen can be seen from all round the room?",
+   "UNCLEAR": "Do you think an image still exists at that spot after the sensor is taken out? Yes or no, and why?"
   },
   "calc": "",
   "verify_flags": [
    "TODO_VERIFY",
-   "Open slit gives its single-slit diffraction pattern: broad central band, centre intensity I0 instead of 4I0; looks uniform-ish only if slit is narrow"
-  ]
- },
- {
-  "item_id": "C9-P1",
-  "concept": "C9",
-  "is_assessment": false,
-  "sibling_of": null,
-  "stem": "In the school lab, Kavya makes a single slit narrower. Then she slides a third polaroid at 45° between two crossed polaroids lit by unpolarised light of intensity I0. What does she observe?",
-  "options": {
-   "A": "Central maximum gets narrower; I0/8 gets through the polaroids",
-   "B": "Central maximum gets wider; no light gets through the polaroids",
-   "C": "Central maximum gets wider; I0/8 gets through the polaroids",
-   "D": "Central maximum gets wider; I0/4 gets through the polaroids"
-  },
-  "correct": "C",
-  "distractor_map": {
-   "A": "L4",
-   "B": "L5",
-   "C": "CORRECT",
-   "D": "SLIP"
-  },
-  "reasons": {
-   "r1": {
-    "text": "A polaroid only blocks light, so putting one more in can't make the dark side bright.",
-    "maps_to": "L5"
-   },
-   "r2": {
-    "text": "A thin slit spreads light more because width is 2λD/a, and the middle polaroid turns the light so some passes both.",
-    "maps_to": "CORRECT"
-   },
-   "r3": {
-    "text": "Less gap squeezes the light, so the bright band also gets thinner.",
-    "maps_to": "L4"
-   }
-  },
-  "calc": "Width = 2λD/a rises as a falls; I = (I0/2)·cos²45°·cos²45° = (I0/2)(1/2)(1/2) = I0/8",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Ideal polaroids assumed (no absorption beyond Malus's law)",
-   "Option D slip = cos instead of cos²: (I0/2)·cos45°·cos45° = I0/4"
-  ]
- },
- {
-  "item_id": "C9-P2",
-  "concept": "C9",
-  "is_assessment": false,
-  "sibling_of": "C9-P1",
-  "stem": "At a Pune science fair, Rohan narrows a razor-blade slit in front of a laser pointer. His friend Sana slips a polaroid at 45° between two crossed polaroids taped over a torch. What changes?",
-  "options": {
-   "A": "Laser's central bright patch shrinks; torch side lights up a little",
-   "B": "Central bright patch spreads out; torch side lights up a little",
-   "C": "Central bright patch spreads out; torch side stays dark",
-   "D": "Central bright patch vanishes; torch becomes as bright as with no sheets"
-  },
-  "correct": "B",
-  "distractor_map": {
-   "A": "L4",
-   "B": "CORRECT",
-   "C": "L5",
-   "D": "UNMAPPED"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Smaller gap means smaller patch, the light just comes out thinner.",
-    "maps_to": "L4"
-   },
-   "r2": {
-    "text": "The crossed sheets already block everything, and a sheet can only block more.",
-    "maps_to": "L5"
-   },
-   "r3": {
-    "text": "The narrow slit bends light out more, and the tilted sheet turns the light so part of it gets past the last sheet.",
-    "maps_to": "CORRECT"
-   }
-  },
-  "calc": "",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Torch light assumed unpolarised"
-  ]
- },
- {
-  "item_id": "C9-P3",
-  "concept": "C9",
-  "is_assessment": false,
-  "sibling_of": "C9-P1",
-  "stem": "Ananya's single slit (λ = 600 nm, screen 1.5 m away, a = 0.12 mm) gives a 15 mm central band. She narrows it to a = 0.06 mm and slips a 45° polaroid between two crossed ones. Which is right?",
-  "options": {
-   "A": "Central band 7.5 mm; one-eighth of the incoming unpolarised light now passes",
-   "B": "Central band 30 mm; the crossed pair still passes no light",
-   "C": "Central band 30 mm; one-quarter of the incoming unpolarised light now passes",
-   "D": "Central band 30 mm; one-eighth of the incoming unpolarised light now passes"
-  },
-  "correct": "D",
-  "distractor_map": {
-   "A": "L4",
-   "B": "L5",
-   "C": "SLIP",
-   "D": "CORRECT"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Width is 2λD/a so halving a doubles it to 30 mm, and half, then half, then half again gives one-eighth.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "Half the slit, half the band, so 15 becomes 7.5 mm.",
-    "maps_to": "L4"
-   },
-   "r3": {
-    "text": "Crossed means zero, and adding a sheet can't bring light back.",
-    "maps_to": "L5"
-   }
-  },
-  "calc": "w = 2λD/a = 2(600×10⁻⁹ m)(1.5 m)/(0.06×10⁻³ m) = 0.030 m = 30 mm; I = (I0/2)·cos²45°·cos²45° = I0/8",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Check: 2(600e-9)(1.5)/(0.12e-3) = 0.015 m = 15 mm for the original slit",
-   "Ideal polaroids assumed"
-  ]
- },
- {
-  "item_id": "C9-A1",
-  "concept": "C9",
-  "is_assessment": true,
-  "sibling_of": null,
-  "stem": "At a Kochi exhibition, Neha narrows a slit in front of a laser. She also holds two polaroid sunglass lenses crossed in 64 W/m² of sunlight and slides a third lens at 45° between them. What does she find?",
-  "options": {
-   "A": "Laser's central band widens; 8 W/m² gets through the lenses",
-   "B": "Laser's central band narrows; 8 W/m² gets through the lenses",
-   "C": "Laser's central band widens; still 0 W/m² gets through the lenses",
-   "D": "Laser's central band widens; 16 W/m² gets through the lenses"
-  },
-  "correct": "A",
-  "distractor_map": {
-   "A": "CORRECT",
-   "B": "L4",
-   "C": "L5",
-   "D": "SLIP"
-  },
-  "reasons": {
-   "r1": {
-    "text": "Thin slit bends light more so the band widens, and 64 halves to 32, then ×½ and ×½ at the two 45° turns gives 8.",
-    "maps_to": "CORRECT"
-   },
-   "r2": {
-    "text": "A narrower slit lets through a narrower beam, so the band on the wall shrinks.",
-    "maps_to": "L4"
-   },
-   "r3": {
-    "text": "Lenses are filters, a third one can only cut more light, so it stays zero.",
-    "maps_to": "L5"
-   }
-  },
-  "calc": "I = (64/2)·cos²45°·cos²45° = 32 × 0.5 × 0.5 = 8 W/m²; width 2λD/a grows as a shrinks",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Sunlight treated as unpolarised and sunglass lenses as ideal polaroids",
-   "Option D slip = forgot the first lens halves unpolarised light: 64 × 0.5 × 0.5 = 16 W/m²"
+   "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook",
+   "Treats the camera lens as a single thin convex lens"
   ]
  }
 ]

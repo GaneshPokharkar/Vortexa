@@ -17,6 +17,9 @@ from api.content import CORRECT, SLIP, UNMAPPED, Content, load_content  # noqa: 
 EXEMPLARS_PER_CODE = 12
 
 
+EXPECTED_IDS = ["P1", "P2", "P3", "A1", "Q1", "Q2", "A2"]
+
+
 def check(c: Content) -> list[str]:
     """Content-model rules beyond the schema (which load_content already enforces)."""
     errors: list[str] = []
@@ -26,10 +29,26 @@ def check(c: Content) -> list[str]:
     for concept, codes in codes_of.items():
         items = [i for i in c.items.values() if i.concept == concept]
         ids = sorted(i.item_id for i in items)
-        if ids != sorted([f"{concept}-P1", f"{concept}-P2", f"{concept}-P3", f"{concept}-A1"]):
-            errors.append(f"{concept}: expected items P1-P3 + A1, got {ids}")
+        if ids != sorted(f"{concept}-{x}" for x in EXPECTED_IDS):
+            errors.append(f"{concept}: expected items {EXPECTED_IDS}, got {ids}")
+        if not any(i.transfer and not i.is_assessment for i in items):
+            errors.append(f"{concept}: needs a practice transfer item")
         targeted = {code: 0 for code in codes}
+        in_patterns: set[str] = set()
         for i in items:
+            if not i.stem.strip():
+                errors.append(f"{i.item_id}: empty stem")
+            if i.is_assessment and i.sibling_of:
+                errors.append(f"{i.item_id}: assessment items have no sibling")
+            if i.kind == "short":
+                for pat in i.patterns:
+                    if pat.code not in codes:
+                        errors.append(f"{i.item_id}: pattern code {pat.code} is not a {concept} code")
+                    in_patterns.add(pat.code)
+                    clash = set(pat.any) & set(i.accept_any)
+                    if clash:
+                        errors.append(f"{i.item_id}: phrases both correct and {pat.code}: {sorted(clash)}")
+                continue
             wrong = [code for opt, code in i.distractor_map.items() if opt != i.correct]
             for code in wrong:
                 if code not in codes | {SLIP, UNMAPPED}:
@@ -43,17 +62,19 @@ def check(c: Content) -> list[str]:
             for rid, r in i.reasons.items():
                 if r.maps_to not in codes | {CORRECT}:
                     errors.append(f"{i.item_id}.{rid}: maps to {r.maps_to}, not a {concept} code")
-            if not i.stem.strip() or any(not o.strip() for o in i.options.values()):
-                errors.append(f"{i.item_id}: empty stem or option")
-            if i.is_assessment and i.sibling_of:
-                errors.append(f"{i.item_id}: assessment items have no sibling")
+            if any(not o.strip() for o in i.options.values()):
+                errors.append(f"{i.item_id}: empty option")
         for n in (2, 3):
             item = c.items.get(f"{concept}-P{n}")
             if item and item.sibling_of != f"{concept}-P1":
                 errors.append(f"{item.item_id}: sibling_of must be {concept}-P1")
         errors += [f"{concept}: code {code} targeted by {k} wrong options (need >= 2)" for code, k in targeted.items() if k < 2]
-        if f"{concept}-K" not in c.cards:
+        errors += [f"{concept}: code {code} missing from short-answer patterns" for code in codes - in_patterns]
+        card = c.cards.get(f"{concept}-K")
+        if card is None:
             errors.append(f"{concept}: missing concept card {concept}-K")
+        elif not (card.simple and card.formal and card.equations and card.worked_example):
+            errors.append(f"{concept}-K: needs simple, formal, equations and worked_example")
 
     if multi_code_items < 2:
         errors.append(f"only {multi_code_items} items have two wrong options with two different codes (need >= 2)")
@@ -82,9 +103,13 @@ def validate() -> list[str]:
 def table(c: Content) -> str:
     rows = ["| ID | Stem | Correct | Wrong options → code |", "|---|---|---|---|"]
     for i in c.items.values():
-        wrong = " · ".join(f"{o}:{code}" for o, code in i.distractor_map.items() if o != i.correct)
         tag = " *(assessment)*" if i.is_assessment else ""
         stem = i.stem.replace("|", "/")
+        if i.kind == "short":
+            wrong = " · ".join(p.code for p in i.patterns)
+            rows.append(f"| {i.item_id}{tag} (short) | {stem} | {i.answer_key.replace('|', '/')} | {wrong} |")
+            continue
+        wrong = " · ".join(f"{o}:{code}" for o, code in i.distractor_map.items() if o != i.correct)
         rows.append(f"| {i.item_id}{tag} | {stem} | {i.correct}: {i.options[i.correct].replace('|', '/')} | {wrong} |")
     return "\n".join(rows)
 

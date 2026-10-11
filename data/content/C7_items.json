@@ -2,6 +2,7 @@
   {
     "item_id": "C7-P1",
     "concept": "C7",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": null,
     "stem": "Riya keeps a candle 30 cm in front of a convex lens of focal length 20 cm. She takes away the screen and sticks black paper over the top half of the lens. What happens to the image?",
@@ -19,16 +20,30 @@
       "D": "SLIP"
     },
     "reasons": {
-      "r1": {"text": "Without a screen there is nothing to hold the image, so it doesn't form.", "maps_to": "R6"},
-      "r2": {"text": "Every point of the candle still sends light through the open half, and those rays still meet at 60 cm.", "maps_to": "CORRECT"},
-      "r3": {"text": "The paper blocks the top half of the lens, so that part of the picture is lost.", "maps_to": "R5"}
+      "r1": {
+        "text": "Without a screen there is nothing to hold the image, so it doesn't form.",
+        "maps_to": "R6"
+      },
+      "r2": {
+        "text": "Every point of the candle still sends light through the open half, and those rays still meet at 60 cm.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "The paper blocks the top half of the lens, so that part of the picture is lost.",
+        "maps_to": "R5"
+      }
     },
     "calc": "1/v = 1/f + 1/u = 1/20 + 1/(-30) = 1/60, so v = +60 cm; m = v/u = 60/(-30) = -2",
-    "verify_flags": ["TODO_VERIFY", "D uses the sign slip 1/20 + 1/30 = 1/12, giving 12 cm"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "D uses the sign slip 1/20 + 1/30 = 1/12, giving 12 cm"
+    ],
+    "transfer": false
   },
   {
     "item_id": "C7-P2",
     "concept": "C7",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C7-P1",
     "stem": "Arjun's magnifying glass makes a sharp image of the ceiling tubelight on his notebook. A friend's thumb covers the left half of the lens, and Arjun slides the notebook away. What about the image now?",
@@ -46,16 +61,30 @@
       "D": "CORRECT"
     },
     "reasons": {
-      "r1": {"text": "Light from every part of the tubelight still goes through the open half and meets at the same spot, page or no page.", "maps_to": "CORRECT"},
-      "r2": {"text": "The thumb blocks half the lens, so half the image goes dark.", "maps_to": "R5"},
-      "r3": {"text": "The image was only on the paper. Take the paper away and it's gone.", "maps_to": "R6"}
+      "r1": {
+        "text": "Light from every part of the tubelight still goes through the open half and meets at the same spot, page or no page.",
+        "maps_to": "CORRECT"
+      },
+      "r2": {
+        "text": "The thumb blocks half the lens, so half the image goes dark.",
+        "maps_to": "R5"
+      },
+      "r3": {
+        "text": "The image was only on the paper. Take the paper away and it's gone.",
+        "maps_to": "R6"
+      }
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Assumes the tubelight is far enough that the image forms near the focus on the same side as the notebook"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Assumes the tubelight is far enough that the image forms near the focus on the same side as the notebook"
+    ],
+    "transfer": false
   },
   {
     "item_id": "C7-P3",
     "concept": "C7",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C7-P1",
     "stem": "In the lab, Meera puts a bulb 15 cm in front of a convex lens of focal length 10 cm. Tape covers the lower half of the lens, and there is no screen on the bench. What is true about the image?",
@@ -73,16 +102,30 @@
       "D": "SLIP"
     },
     "reasons": {
-      "r1": {"text": "Tape on the bottom half means the bottom half of the lens can't make its part of the picture.", "maps_to": "R5"},
-      "r2": {"text": "The light needs a screen to land on, otherwise there's no image yet.", "maps_to": "R6"},
-      "r3": {"text": "Rays from each point of the bulb still pass through the top half and cross at 30 cm, screen or not.", "maps_to": "CORRECT"}
+      "r1": {
+        "text": "Tape on the bottom half means the bottom half of the lens can't make its part of the picture.",
+        "maps_to": "R5"
+      },
+      "r2": {
+        "text": "The light needs a screen to land on, otherwise there's no image yet.",
+        "maps_to": "R6"
+      },
+      "r3": {
+        "text": "Rays from each point of the bulb still pass through the top half and cross at 30 cm, screen or not.",
+        "maps_to": "CORRECT"
+      }
     },
     "calc": "1/v = 1/f + 1/u = 1/10 + 1/(-15) = 1/30, so v = +30 cm; m = v/u = 30/(-15) = -2",
-    "verify_flags": ["TODO_VERIFY", "D uses the sign slip 1/10 + 1/15 = 1/6, giving 6 cm"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "D uses the sign slip 1/10 + 1/15 = 1/6, giving 6 cm"
+    ],
+    "transfer": true
   },
   {
     "item_id": "C7-A1",
     "concept": "C7",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
     "stem": "At a science fair, a big convex lens forms a real image of a diya in mid-air; there is no screen. A price sticker covers half the lens. Kabir stands well beyond the image and looks back at the lens. What does he see?",
@@ -100,11 +143,218 @@
       "D": "UNMAPPED"
     },
     "reasons": {
-      "r1": {"text": "The sticker stops light from that half of the lens, so that half of the diya can't reach his eyes.", "maps_to": "R5"},
-      "r2": {"text": "The rays really meet at the image spot and then carry on to his eyes, and each point still gets light through the free half.", "maps_to": "CORRECT"},
-      "r3": {"text": "There's no screen, so the light never forms a picture he can look at.", "maps_to": "R6"}
+      "r1": {
+        "text": "The sticker stops light from that half of the lens, so that half of the diya can't reach his eyes.",
+        "maps_to": "R5"
+      },
+      "r2": {
+        "text": "The rays really meet at the image spot and then carry on to his eyes, and each point still gets light through the free half.",
+        "maps_to": "CORRECT"
+      },
+      "r3": {
+        "text": "There's no screen, so the light never forms a picture he can look at.",
+        "maps_to": "R6"
+      }
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Assumes Kabir's eye is at least about 25 cm beyond the image and inside the cone of rays leaving it; if the cone misses his eye he sees only the lens lit up"]
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Assumes Kabir's eye is at least about 25 cm beyond the image and inside the cone of rays leaving it; if the cone misses his eye he sees only the lens lit up"
+    ],
+    "transfer": false
+  },
+  {
+    "item_id": "C7-Q1",
+    "concept": "C7",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "An object is 20 cm in front of a convex lens of focal length 15 cm, and there is no screen on the bench. Using 1/v − 1/u = 1/f, where is the image, and is it real? Give a reason.",
+    "answer_key": "The image is 60 cm behind the lens and it is real (and inverted), screen or no screen.",
+    "expected_reasoning": "With u = −20 cm and f = +15 cm, 1/v = 1/15 − 1/20 = 1/60, so v = +60 cm. Positive v means the rays actually converge on the far side, so the image is real even without a screen.",
+    "accept_any": [
+      "60 cm",
+      "+60",
+      "v = 60",
+      "real and inverted",
+      "real, inverted",
+      "inverted and real",
+      "it is real"
+    ],
+    "reasoning_any": [
+      "1/60",
+      "rays meet",
+      "rays converge",
+      "converge",
+      "v is positive",
+      "positive v",
+      "other side",
+      "opposite side",
+      "beyond 2f"
+    ],
+    "numeric": {
+      "value": 60.0,
+      "unit": "cm",
+      "tolerance": 0.5,
+      "slips": [
+        {
+          "value": 8.57,
+          "why": "used u = +20 cm, so 1/v = 1/15 + 1/20 = 7/60"
+        },
+        {
+          "value": -60.0,
+          "why": "sign of v flipped, treating a real image as virtual"
+        }
+      ]
+    },
+    "patterns": [
+      {
+        "code": "R6",
+        "any": [
+          "needs a screen",
+          "need a screen",
+          "no image forms",
+          "image won't form",
+          "won't form",
+          "doesn't form",
+          "not formed",
+          "only on the screen"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "R6": "Suppose you put your eye about 30 cm beyond the 60 cm mark and look back at the lens, with no screen anywhere. What reaches your eye?",
+      "CORRECT_NO_REASON": "What does the positive sign of v tell you about whether the image is real?",
+      "CORRECT": "Now the object is moved to 10 cm from the same lens. Where is the image, and could you catch it on a screen?",
+      "UNCLEAR": "What value of v did you get, with its sign, and what does that sign tell you?"
+    },
+    "calc": "1/v = 1/f + 1/u = 1/15 + 1/(−20) = 1/60 -> v = +60 cm; m = v/u = 60/(−20) = −3",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook",
+      "CORRECT follow-up: 1/v = 1/15 + 1/(−10) = −1/30 -> v = −30 cm (virtual, cannot be caught on a screen)"
+    ]
+  },
+  {
+    "item_id": "C7-Q2",
+    "concept": "C7",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Neha's convex lens makes a sharp image of a candle flame on a screen. She then covers the right half of the lens with black paper. What does she now see on the screen? Give a reason.",
+    "answer_key": "She still sees the complete flame image at the same place, only dimmer.",
+    "expected_reasoning": "Every point of the flame sends rays to the whole lens, so the uncovered half still brings rays from every point to the same image points; only half the light gets through, so it is dimmer.",
+    "accept_any": [
+      "full image",
+      "whole image",
+      "complete image",
+      "entire image",
+      "full flame",
+      "whole flame",
+      "complete flame",
+      "same image but dim"
+    ],
+    "reasoning_any": [
+      "every point",
+      "each point",
+      "all points",
+      "rays from every",
+      "less light",
+      "fewer rays",
+      "half the light",
+      "whole lens",
+      "any part of the lens"
+    ],
+    "numeric": null,
+    "patterns": [
+      {
+        "code": "R5",
+        "any": [
+          "half image",
+          "half the image",
+          "half of the image",
+          "half flame",
+          "half of the flame",
+          "right half missing",
+          "left half missing",
+          "part of the image",
+          "cut off"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "R5": "Light from the tip of the flame reaches which parts of the lens: only one half, or every part of it?",
+      "CORRECT_NO_REASON": "Why does covering half the lens not cut off half of the picture?",
+      "CORRECT": "If a small black dot is painted at the centre of the lens, will a black spot appear in the image? Why?",
+      "UNCLEAR": "Will Neha see the whole flame, half the flame, or nothing? And does the brightness change?"
+    },
+    "calc": "",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Brightness roughly halves; small changes in sharpness from aberrations are ignored"
+    ]
+  },
+  {
+    "item_id": "C7-A2",
+    "concept": "C7",
+    "kind": "short",
+    "is_assessment": true,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "In a camera, the lens forms a sharp real image on the sensor. Ishaan says, 'Take the sensor out and the lens stops forming any image.' Is he right? Give a reason.",
+    "answer_key": "No; the lens still forms the real image at the same place, the sensor only records it.",
+    "expected_reasoning": "A real image is the point where rays from each object point actually converge. The rays still meet there without the sensor and then spread out again; the sensor only catches that light.",
+    "accept_any": [
+      "not right",
+      "is wrong",
+      "he's wrong",
+      "still forms",
+      "still form",
+      "still converge",
+      "still meet",
+      "still there",
+      "still formed"
+    ],
+    "reasoning_any": [
+      "rays meet",
+      "rays converge",
+      "converge",
+      "only records",
+      "only catches",
+      "just records",
+      "screen only",
+      "sensor only",
+      "spread out"
+    ],
+    "numeric": null,
+    "patterns": [
+      {
+        "code": "R6",
+        "any": [
+          "he is right",
+          "he's right",
+          "needs the sensor",
+          "needs a screen",
+          "need a screen",
+          "no image without",
+          "stops forming",
+          "nothing to land on"
+        ]
+      }
+    ],
+    "follow_ups": {
+      "R6": "Where do rays from one point of the object meet when the sensor is in place, and does removing the sensor change where they meet?",
+      "CORRECT_NO_REASON": "If the lens already forms the image, what job does the sensor actually do?",
+      "CORRECT": "Why can a real image hanging in air be seen only from certain positions, while an image on a screen can be seen from all round the room?",
+      "UNCLEAR": "Do you think an image still exists at that spot after the sensor is taken out? Yes or no, and why?"
+    },
+    "calc": "",
+    "verify_flags": [
+      "TODO_VERIFY",
+      "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook",
+      "Treats the camera lens as a single thin convex lens"
+    ]
   }
 ]

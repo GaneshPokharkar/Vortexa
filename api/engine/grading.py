@@ -17,6 +17,24 @@ SLIP_CAT = "SLIP"
 COMPUTATIONAL_SLIP = "COMPUTATIONAL_SLIP"
 AMBIGUOUS = "AMBIGUOUS"
 UNDIAGNOSED = "UNDIAGNOSED"
+PARTIAL = "PARTIAL"  # right answer, reasoning not shown yet
+OFF_TOPIC = "OFF_TOPIC"
+# Categories that never move mastery: there is no trustworthy evidence yet.
+NOT_COUNTED = {AMBIGUOUS, UNDIAGNOSED, PARTIAL, OFF_TOPIC}
+
+# The six answer groups (A-F) the problem statement asks for.
+GROUP = {
+    SCIENTIFIC: "A",
+    "MISCONCEPTION": "B", "FALSE_POSITIVE": "B",
+    "SLIP": "C", "COMPUTATIONAL_SLIP": "C",
+    FRAGILE: "D", PARTIAL: "D", "LACK_OF_KNOWLEDGE": "D",
+    AMBIGUOUS: "E", UNDIAGNOSED: "E",
+    OFF_TOPIC: "F",
+}
+GROUP_LABEL = {
+    "A": "Correct understanding", "B": "Likely misconception", "C": "Possible slip",
+    "D": "Partly correct", "E": "Needs clarification", "F": "Off-topic or unsupported",
+}
 
 SLIP_CATEGORIES = {SLIP_CAT, COMPUTATIONAL_SLIP}
 # Answer + reason scoring: only these count as a correct BKT observation.
@@ -34,6 +52,20 @@ RULES = {
     "slip:3": "Option is the careless-number distractor and the setup (reason) was correct: computational slip.",
     "slip:4": "Option code and reason code point to different misconceptions: ambiguous.",
     "slip:5": "Wrong the same way again on the sibling item after a slip: upgraded to misconception.",
+    "short:numeric-correct": "The number matches the answer key within tolerance.",
+    "short:numeric-slip": "The number matches a known careless slip (right method, wrong arithmetic).",
+    "short:numeric-unmatched": "The number matches neither the answer nor a known slip, so the tutor asks how it was found.",
+    "short:contradiction": "The answer contains both the correct idea and a known wrong idea, so the tutor asks first.",
+    "short:correct": "The answer names the correct result and gives a reason.",
+    "short:correct-no-reason": "The answer names the correct result but shows no reasoning yet.",
+    "short:pattern": "The answer matches the wording of one known wrong idea.",
+    "short:two-codes": "The answer matches more than one known wrong idea, so the tutor asks first.",
+    "short:llm-correct": "Claude matched the answer to the expected reasoning; the rules accepted it.",
+    "short:llm-correct-no-reason": "Claude matched the answer to the correct result; reasoning not shown yet.",
+    "short:llm": "Claude matched the answer to one listed wrong idea, quoting the student's words; the rules accepted it.",
+    "short:llm-unsure": "Claude's match was below the confidence threshold, so the tutor asks first.",
+    "short:off-topic": "The answer doesn't address the question.",
+    "short:unmatched": "The answer matches neither the correct idea nor a known wrong idea.",
     "clarify:resolved": "Re-graded after the learner answered a clarification.",
     "clarify:limit": "Still unclear after 2 clarifications: undiagnosed.",
 }

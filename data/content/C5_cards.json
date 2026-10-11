@@ -2,97 +2,233 @@
   "concept_card": {
     "card_id": "C5-K",
     "concept": "C5",
-    "statement": "A plane mirror forms a virtual, erect, same-size image as far behind the mirror as you are in front.",
-    "analogy": "Like a twin behind a window, copying your every step.",
-    "steps": [
-      "Angle of incidence equals angle of reflection, from the normal",
-      "Image distance behind the mirror equals object distance in front",
-      "Step back and the image steps back too",
-      "So a full view needs a mirror half your height"
+    "topic": "SHM",
+    "subtopic": "Energy in SHM",
+    "learning_objective": "Students will be able to find the kinetic, potential and total energy of a body in SHM at any displacement, and explain why the total stays constant and grows as the square of the amplitude.",
+    "statement": "In ideal SHM, kinetic and potential energy keep trading places, but their sum stays fixed at ½kA².",
+    "simple": "A block on a spring keeps swapping two kinds of energy. In the middle it moves fastest, so it has the most kinetic energy and the spring stores none. At the ends it stops for an instant and the stretched spring stores all the energy. The total never changes if nothing rubs.",
+    "formal": "For x = A cos(ωt + φ), the kinetic energy is KE = ½mω²(A² − x²) and the potential energy is PE = ½kx² = ½mω²x², with k = mω². Their sum is E = ½kA² = ½mω²A², independent of x and t, so total mechanical energy is conserved in undamped SHM. KE is maximum (equal to E) at the mean position and zero at the extremes; PE does the opposite. Because E depends on A², doubling the amplitude makes the energy four times larger.",
+    "equations": [
+      {
+        "expr": "E = ½kA²",
+        "meaning": "Total mechanical energy, the same at every position",
+        "vars": {
+          "E": "total mechanical energy (J)",
+          "k": "force constant (N/m)",
+          "A": "amplitude (m)"
+        },
+        "assumptions": "ideal, undamped SHM"
+      },
+      {
+        "expr": "KE = ½mω²(A² − x²)",
+        "meaning": "Kinetic energy at displacement x; maximum at the mean, zero at the extremes",
+        "vars": {
+          "KE": "kinetic energy (J)",
+          "m": "mass (kg)",
+          "ω": "angular frequency (rad/s)",
+          "A": "amplitude (m)",
+          "x": "displacement from mean (m)"
+        },
+        "assumptions": "ideal, undamped SHM"
+      },
+      {
+        "expr": "PE = ½kx² = ½mω²x²",
+        "meaning": "Potential energy at displacement x; zero at the mean, maximum at the extremes",
+        "vars": {
+          "PE": "potential energy (J)",
+          "k": "force constant (N/m)",
+          "x": "displacement from mean (m)",
+          "m": "mass (kg)",
+          "ω": "angular frequency (rad/s)"
+        },
+        "assumptions": "PE taken as zero at the mean position; k = mω²"
+      },
+      {
+        "expr": "KE + PE = E",
+        "meaning": "The two energies always add to the same total",
+        "vars": {
+          "KE": "kinetic energy (J)",
+          "PE": "potential energy (J)",
+          "E": "total mechanical energy (J)"
+        },
+        "assumptions": "no friction or damping"
+      }
     ],
-    "worked_example": "Sita, 1.5 m tall, stands 2 m away: image is 4 m from her; a 0.75 m mirror shows her fully."
+    "analogy": "Like money moving between your wallet and your pocket while you walk: one fills as the other empties, but the total you carry stays the same.",
+    "steps": [
+      "Find the total energy from the amplitude: E = ½kA².",
+      "Find the potential energy at the given position: PE = ½kx².",
+      "Get the kinetic energy as what is left: KE = E − PE.",
+      "Check the ends: at x = 0 all energy is KE; at x = ±A all of it is PE.",
+      "If the amplitude changes, scale the energy by the square of the factor."
+    ],
+    "worked_example": "m = 0.5 kg, k = 200 N/m, A = 0.1 m. E = ½ × 200 × 0.1² = 1 J. At x = 0.05 m: PE = ½ × 200 × 0.05² = 0.25 J, so KE = 0.75 J. At the mean, KE = 1 J, so v = √(2 × 1 / 0.5) = 2 m/s. With A = 0.2 m, E = 4 J.",
+    "alternatives": [
+      "Graph view: plot PE = ½kx² as a U-shaped curve and E as a flat line at ½kA². At any x, the gap between the line and the curve is the KE.",
+      "Work view: the spring does positive work on the block while it moves toward the mean and negative work while it moves away, so energy only shuttles between spring and block; no outside force adds or removes any."
+    ],
+    "visual": "shm-oscillator",
+    "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed."
   },
   "remediation_cards": [
     {
-      "card_id": "R1-R",
-      "code": "R1",
-      "wrong_idea": "If I step back from the mirror, I'll see more of myself.",
-      "why_it_feels_right": "Stepping back from a window or a camera does show more, so a mirror seems the same.",
-      "why_wrong": "Your image steps back by the same amount, so light from your feet still reflects from the same spot on the mirror. The mirror covers the same part of you.",
-      "correct_idea": "How much of yourself you see depends on the mirror's size and height, not on your distance.",
-      "sim_moment": "Lens Bench"
+      "card_id": "S13-R",
+      "code": "S13",
+      "wrong_idea": "It has more energy in the middle where it zooms, less at the ends where it stops.",
+      "why_it_feels_right": "You can see speed, but not the energy stored in a stretched spring.",
+      "why_wrong": "At the ends the KE is stored as spring PE, ½kx². With no friction nothing leaves, so KE + PE = ½kA² everywhere.",
+      "correct_idea": "In ideal SHM the total energy is constant; only the KE/PE split changes.",
+      "sim_moment": "Watch the KE and PE bars: as one shrinks the other grows, and their stacked total stays the same height."
     },
     {
-      "card_id": "R2-R",
-      "code": "R2",
-      "wrong_idea": "My image is right there on the mirror's surface.",
-      "why_it_feels_right": "The glass is the only thing you can touch, so the picture seems painted on it.",
-      "why_wrong": "Reflected rays spread out as if coming from a point behind the mirror, as far behind as you are in front. Your eyes trace them back there.",
-      "correct_idea": "The image is virtual and lies as far behind the mirror as the object is in front.",
-      "sim_moment": "Lens Bench"
+      "card_id": "S14-R",
+      "code": "S14",
+      "wrong_idea": "Everything is maximum at the mean, so PE is biggest there too.",
+      "why_it_feels_right": "Speed and KE peak at the mean, so it feels like everything peaks there.",
+      "why_wrong": "PE = ½kx² depends on stretch. At the mean x = 0, so PE = 0; at x = ±A it is maximum. KE does the opposite.",
+      "correct_idea": "KE is maximum at the mean and PE at the extremes; never both at one point.",
+      "sim_moment": "Pause at the mean: KE bar full, PE bar empty. Pause at an extreme: the reverse."
+    },
+    {
+      "card_id": "S15-R",
+      "code": "S15",
+      "wrong_idea": "Pull it twice as far and it gets twice the energy.",
+      "why_it_feels_right": "Many everyday things scale directly, so doubling the input feels like doubling the output.",
+      "why_wrong": "E = ½kA² has A squared: ½k(2A)² = 4 × ½kA². The spring force doubles and acts over double the distance.",
+      "correct_idea": "Total energy is proportional to A², so doubling A makes E four times larger.",
+      "sim_moment": "Set amplitude A, note the total-energy bar, then set 2A: the bar grows four times, not two."
     }
   ],
   "exemplars": {
-    "R1": [
-      "if I go back I can see more of me",
-      "step back and your legs come into the mirror",
-      "farther away means more of you fits in",
-      "like a camera, move back and you get the full body",
-      "the mirror shows more when you're far from it",
-      "just stand far and you'll see your shoes",
-      "closer means only face, far means whole body",
-      "distance makes the view wider, so more of me shows",
-      "a small mirror is fine if you stand far enough",
-      "moving away from the mirror fits more of my body",
-      "thoda peeche jao toh poora dikhega",
-      "door khade hone se zyada body dikhti hai mirror mein"
+    "S13": [
+      "the energy is maximum at the mean position because it moves fastest there",
+      "at the extreme it stops so the energy becomes zero",
+      "total energy keeps changing as it goes back and forth",
+      "it has less energy at the ends than in the middle",
+      "when it slows down it is losing energy",
+      "energy goes up when it comes to the centre",
+      "at the turning point the block has no energy left",
+      "the total energy is highest at the mean and lowest at the ends",
+      "it gains energy going in and loses it going out",
+      "the total is just the KE at that moment",
+      "extreme pe toh energy zero ho jaati hai kyunki block ruk jaata hai",
+      "beech mein energy zyada hoti hai, end pe kam ho jaati hai"
     ],
-    "R2": [
-      "the image is right on the glass",
-      "it's like a picture stuck on the mirror surface",
-      "my reflection is on the mirror, not behind it",
-      "the image is where the mirror is",
-      "distance to the image is same as distance to the mirror",
-      "the image can't be behind, there's just wall there",
-      "so the mirror has to be as tall as me to fit my image",
-      "the reflection sits flat on the glass",
-      "I'm 2 m from the mirror so my image is 2 m from me",
-      "image forms on the surface, that's where the light bounces",
-      "image toh mirror ke upar hi banti hai",
-      "reflection glass pe hi hai, peeche kuch nahi hai"
+    "S14": [
+      "PE is maximum at the mean position",
+      "both KE and PE are maximum at the mean",
+      "at the mean position everything is maximum",
+      "potential energy is highest in the middle",
+      "KE is maximum at the extremes and PE at the mean",
+      "at the centre both energies are full",
+      "the spring stores the most energy at the mean position",
+      "KE and PE peak together at the same point",
+      "PE is zero at the ends because it is far from the centre",
+      "at the extreme it is not moving so PE is also zero",
+      "mean position pe dono energy maximum hoti hai",
+      "PE toh centre mein hi maximum hogi na"
+    ],
+    "S15": [
+      "double the amplitude means double the energy",
+      "energy is directly proportional to the amplitude",
+      "if amplitude is three times, energy is three times",
+      "pull it twice as far and you get twice the energy",
+      "energy goes up the same as the amplitude",
+      "half the amplitude means half the energy",
+      "E is proportional to A, so it doubles",
+      "bigger swing by two times, energy by two times",
+      "amplitude doubled so total energy is 2 times",
+      "the energy just scales with how far you pull it",
+      "amplitude double kiya toh energy bhi double ho jaayegi",
+      "do guna amplitude matlab do guna energy"
     ],
     "CORRECT": [
-      "the image is as far behind the mirror as I am in front",
-      "my image is double the distance from me, not on the glass",
-      "stepping back doesn't help, the image steps back too",
-      "you only need a mirror half your height",
-      "how much you see depends on the mirror's size and height, not how far you stand",
-      "angle in equals angle out from the normal, so the ray from my feet hits halfway down"
+      "the total stays the same, KE just turns into PE and back",
+      "PE is maximum at the extremes and KE is maximum at the mean",
+      "E is half k A square, so doubling A makes it four times",
+      "at any point KE plus PE equals half k A square",
+      "at the mean the spring is not stretched so PE is zero and KE is full",
+      "with no friction nothing is lost, so the total energy is constant"
     ]
   },
   "contrast_probes": [
     {
-      "separates": ["R1", "R2"],
-      "probe": "If you step 1 m back from a mirror, what happens to your image?",
-      "reply_if_first": "It looks farther away and I can see more of my body in it.",
-      "reply_if_second": "Nothing, it stays right there on the glass."
+      "separates": [
+        "S13",
+        "S14"
+      ],
+      "probe": "At the mean position, how much energy is stored in the spring, and is the block's total energy there more than, less than, or equal to its total at the extreme?",
+      "reply_if_first": "The spring's PE is zero at the mean, but the total is more there because the block is moving fastest.",
+      "reply_if_second": "The spring's PE is maximum at the mean, along with the KE, so that's where the energy is biggest."
     },
     {
-      "separates": ["R1", "CORRECT"],
-      "probe": "A small wall mirror shows you from head to chest. You walk three steps back. Down to where can you see now?",
-      "reply_if_first": "Lower down, maybe to my waist.",
-      "reply_if_second": "Still only down to my chest."
+      "separates": [
+        "S13",
+        "S15"
+      ],
+      "probe": "For a block on a spring, does the total energy depend on its position during the motion, on the amplitude, or on both?",
+      "reply_if_first": "It depends on position: more energy near the middle and less near the ends.",
+      "reply_if_second": "It depends on the amplitude, in direct proportion: twice the amplitude, twice the energy."
     },
     {
-      "separates": ["R2", "CORRECT"],
-      "probe": "You stand 1 m from a mirror. How far from you is your image?",
-      "reply_if_first": "1 m, because it's on the glass.",
-      "reply_if_second": "2 m, because it's 1 m behind the glass."
+      "separates": [
+        "S14",
+        "S15"
+      ],
+      "probe": "If the amplitude doubles, what happens to the PE at the mean position and to the total energy?",
+      "reply_if_first": "The PE at the mean, which is its biggest value, goes up, since a bigger swing stores more there.",
+      "reply_if_second": "The total energy doubles because energy follows the amplitude directly."
+    },
+    {
+      "separates": [
+        "S13",
+        "CORRECT"
+      ],
+      "probe": "As the block slows down near the extreme, where does its kinetic energy go?",
+      "reply_if_first": "It is lost, so the block has less total energy near the extreme.",
+      "reply_if_second": "It goes into the stretched spring as PE, so the total stays the same."
+    },
+    {
+      "separates": [
+        "S14",
+        "CORRECT"
+      ],
+      "probe": "At which position is the spring stretched or compressed the most, and what does that mean for the PE there?",
+      "reply_if_first": "The mean is the key point, so PE should be maximum there, along with the KE.",
+      "reply_if_second": "The stretch is greatest at the extremes, so PE = ½kx² is maximum there and zero at the mean."
+    },
+    {
+      "separates": [
+        "S15",
+        "CORRECT"
+      ],
+      "probe": "If the amplitude is made three times larger, by what factor does the total energy change?",
+      "reply_if_first": "Three times, since energy goes with the amplitude.",
+      "reply_if_second": "Nine times, since E = ½kA² and 3² = 9."
+    }
+  ],
+  "doubts": [
+    {
+      "q": "If the total energy is constant, why does a real spring or pendulum eventually stop?",
+      "a": "Real systems have friction and air drag, which slowly turn mechanical energy into heat. That is damped oscillation, and the amplitude shrinks. E = ½kA² stays constant only in the ideal, undamped case."
+    },
+    {
+      "q": "At what displacement are KE and PE equal?",
+      "a": "Set ½kx² = ½ × ½kA², so x² = A²/2 and x = ±A/√2 ≈ ±0.707A. There each energy is half the total."
+    },
+    {
+      "q": "Does the total energy depend on the mass if I use E = ½mω²A²?",
+      "a": "For a given spring, k = mω² is fixed, so E = ½kA² depends only on k and A. Changing the mass changes ω but not the energy for the same amplitude. Mass appears in ½mω²A² only because ω itself depends on m."
+    },
+    {
+      "q": "How often do KE and PE repeat compared to the motion itself?",
+      "a": "KE is maximum each time the body passes the mean, which happens twice per cycle. So KE and PE each repeat with period T/2, or frequency 2f, while the total stays flat."
     }
   ],
   "verify_flags": [
     "TODO_VERIFY",
-    "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
-    "Half-height rule assumes a vertical plane mirror hung at the correct height."
+    "PE taken as zero at the mean position throughout; for a vertical spring this holds when x is measured from the loaded equilibrium position.",
+    "Hinglish exemplars written in Latin script; review for natural phrasing.",
+    "Worked example numbers match item C5-Q2 (m = 0.5 kg, k = 200 N/m, A = 0.1 m)."
   ]
 }

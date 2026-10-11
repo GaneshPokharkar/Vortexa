@@ -2,304 +2,597 @@
  {
   "card_id": "C1-K",
   "concept": "C1",
-  "statement": "For small swings, a pendulum's period T = 2π√(L/g) depends only on length and g, not amplitude or bob mass.",
-  "analogy": "A bigger swing is a longer lap run faster, so lap time stays the same.",
-  "steps": [
-   "Restoring force ≈ -mg(x/L) for small angles",
-   "Divide by m: acceleration = -(g/L)x, mass cancels",
-   "This is SHM with ω = √(g/L)",
-   "So T = 2π√(L/g): no amplitude, no mass"
+  "topic": "SHM",
+  "subtopic": "Oscillations: mean position, displacement and amplitude",
+  "learning_objective": "Students will be able to locate the mean position of an oscillating body, measure displacement from it, find the amplitude as half the distance between the extreme positions, and tell periodic, oscillatory and simple harmonic motion apart.",
+  "statement": "In an oscillation, displacement is measured from the mean (equilibrium) position, and the amplitude is the maximum displacement: the distance from the mean position to either extreme, which is half the extreme-to-extreme distance.",
+  "simple": "An oscillating body goes back and forth around the point where it would rest, called the mean position. How far it is from that point right now is its displacement. The farthest it ever gets from that point is the amplitude. So the amplitude is only half the gap between the two ends.",
+  "formal": "Periodic motion repeats after equal intervals of time. Oscillatory motion is periodic to-and-fro motion about a mean position, where the net force on the body is zero. Simple harmonic motion is the special oscillation in which the restoring force is proportional to displacement and directed towards the mean position, F = -kx. Displacement x is measured from the mean position and varies between +A and -A. The extreme positions are at x = ±A, so they are 2A apart.",
+  "equations": [
+   {
+    "expr": "x = A cos(ωt + φ)",
+    "meaning": "Displacement from the mean position at time t in SHM",
+    "vars": {
+     "x": "displacement from mean position (m)",
+     "A": "amplitude, maximum displacement (m)",
+     "ω": "angular frequency (rad/s)",
+     "t": "time (s)",
+     "φ": "initial phase (rad)"
+    },
+    "assumptions": "ideal SHM, no damping"
+   },
+   {
+    "expr": "d = 2A",
+    "meaning": "Distance between the two extreme positions is twice the amplitude",
+    "vars": {
+     "d": "distance between extreme positions (m)",
+     "A": "amplitude (m)"
+    },
+    "assumptions": "symmetric oscillation about the mean position, no damping"
+   },
+   {
+    "expr": "F = -kx",
+    "meaning": "Restoring force in SHM is proportional to displacement and points towards the mean position",
+    "vars": {
+     "F": "restoring force (N)",
+     "k": "force constant (N/m)",
+     "x": "displacement from mean position (m)"
+    },
+    "assumptions": "ideal SHM; small displacements for a pendulum"
+   }
   ],
-  "worked_example": "L = 1.0 m, g = π² m/s²: T = 2π√(1/π²) = 2.0 s, for a 3° or 6° swing, light or heavy bob.",
+  "analogy": "A park swing: the lowest point, where it would hang at rest, is the mean position. The amplitude is how far the seat gets from that lowest point on one side, not the full distance from the front end to the back end.",
+  "steps": [
+   "Locate the mean position: where the body would rest with zero net force, midway between the extremes",
+   "Measure displacement from the mean position, with a sign showing the side",
+   "Mark the extremes, where the displacement is largest: x = +A and x = -A",
+   "Take the amplitude as half the distance between the two extremes",
+   "Call the motion SHM only if the restoring force is proportional to -x"
+  ],
+  "worked_example": "A block oscillates between extremes 0.20 m apart. A = 0.20 m / 2 = 0.10 m. When it is 0.04 m from one extreme, its displacement from the mean is 0.10 - 0.04 = 0.06 m, on that extreme's side. If it starts at that extreme at t = 0, x = 0.10 cos(ωt) m, so φ = 0.",
+  "alternatives": [
+   "Picture a number line with zero at the mean position: the body runs between -A and +A. It travels 2A from one end to the other, but its amplitude is just A.",
+   "Every SHM is periodic, but not every periodic motion is SHM: Earth's orbit and a bouncing ball repeat, yet neither has a restoring force F = -kx about a mean position."
+  ],
+  "visual": "shm-oscillator",
+  "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
-   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
+   "Large-angle pendulum described as 'not exactly SHM': confirm wording suits HSC scope.",
+   "Hinglish exemplars need a native-speaker check for natural phrasing.",
+   "Equation d = 2A is a helper relation, not a standard textbook equation."
   ]
  },
  {
-  "card_id": "O1-R",
+  "card_id": "S1-R",
   "concept": "C1",
-  "code": "O1",
-  "statement": "For small swings, the period does not depend on amplitude.",
-  "wrong_idea": "If I pull it further, it has more distance to cover, so one swing takes longer.",
-  "why_it_feels_right": "Walking a longer distance normally takes more time.",
-  "why_wrong": "Pulling further also gives a bigger restoring force, so the bob moves faster. For small angles the extra speed exactly makes up for the extra distance.",
-  "sim_moment": "Pendulum Race",
+  "code": "S1",
+  "statement": "Amplitude is the distance from the mean position to either extreme, half the end-to-end distance.",
+  "wrong_idea": "Amplitude is the whole distance the block moves, from one end to the other.",
+  "why_it_feels_right": "The two ends are easiest to see, so measuring end to end feels natural.",
+  "why_wrong": "Amplitude is the maximum displacement, measured from the mean position. The extremes are at +A and -A, so they are 2A apart.",
+  "sim_moment": "Pause the block at the right extreme: x reads +A, not 2A. At the left extreme x reads -A.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
-   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
+   "Large-angle pendulum described as 'not exactly SHM': confirm wording suits HSC scope.",
+   "Hinglish exemplars need a native-speaker check for natural phrasing.",
+   "Equation d = 2A is a helper relation, not a standard textbook equation."
   ]
  },
  {
-  "card_id": "O2-R",
+  "card_id": "S2-R",
   "concept": "C1",
-  "code": "O2",
-  "statement": "Bigger and smaller small swings take exactly the same time per oscillation.",
-  "wrong_idea": "The bigger swing goes faster at the bottom, so it finishes first.",
-  "why_it_feels_right": "You can see the wide-swinging bob whizzing past faster.",
-  "why_wrong": "It is faster, but it also has a longer path. For small angles speed and distance both scale with amplitude, so the time per swing stays the same.",
-  "sim_moment": "Pendulum Race",
+  "code": "S2",
+  "statement": "Every SHM is periodic, but a periodic motion is SHM only if its acceleration is proportional to -x.",
+  "wrong_idea": "If it repeats at equal time intervals, it is SHM.",
+  "why_it_feels_right": "SHM is the first repeating motion we study, so periodic and SHM seem to mean the same.",
+  "why_wrong": "Periodic only means it repeats. SHM also needs a restoring force F = -kx. A bouncing ball repeats but has no such force.",
+  "sim_moment": "Watch the a-x graph: a straight line through the origin, a opposite to x. That, not repetition, marks SHM.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
-   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
+   "Large-angle pendulum described as 'not exactly SHM': confirm wording suits HSC scope.",
+   "Hinglish exemplars need a native-speaker check for natural phrasing.",
+   "Equation d = 2A is a helper relation, not a standard textbook equation."
   ]
  },
  {
-  "card_id": "O3-R",
+  "card_id": "S3-R",
   "concept": "C1",
-  "code": "O3",
-  "statement": "A simple pendulum's period depends on L and g only, not on bob mass.",
-  "wrong_idea": "A heavier bob changes the period, it swings faster or slower than a light one.",
-  "why_it_feels_right": "Heavy things feel harder to move, and for a spring a heavier mass really does slow it (T = 2π√(m/k)).",
-  "why_wrong": "In a pendulum gravity supplies the restoring force, and it grows with mass. More pull and more inertia cancel, like all objects falling together.",
-  "sim_moment": "Pendulum Race",
+  "code": "S3",
+  "statement": "Displacement is measured from the mean position, with sign, ranging from -A to +A.",
+  "wrong_idea": "Displacement means how far it has gone from where I released it.",
+  "why_it_feels_right": "In straight-line motion we measure displacement from the starting point.",
+  "why_wrong": "In an oscillation the reference is the mean position, where net force is zero. The release point is just one extreme and changes with each release.",
+  "sim_moment": "Release from the right extreme: x reads +A at release and 0 at the centre. Release from the left: zero stays at the centre.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude independence holds only for small angles (sinθ ≈ θ); exact period grows slightly at large angles.",
-   "O3-R contrasts with spring-mass T = 2π√(m/k), where mass does matter."
+   "Large-angle pendulum described as 'not exactly SHM': confirm wording suits HSC scope.",
+   "Hinglish exemplars need a native-speaker check for natural phrasing.",
+   "Equation d = 2A is a helper relation, not a standard textbook equation."
   ]
  },
  {
   "card_id": "C2-K",
   "concept": "C2",
-  "statement": "In SHM, speed peaks at the mean, acceleration peaks at the extremes, and total energy stays constant.",
-  "analogy": "Like money shifting between wallet and pocket: the split changes, the total doesn't.",
-  "steps": [
-   "v = ω√(A² − x²) is zero at the extremes.",
-   "a = −ω²x is largest at the extremes.",
-   "KE and PE trade places.",
-   "E = ½kA² everywhere."
+  "topic": "SHM",
+  "subtopic": "Velocity and acceleration of a particle in SHM",
+  "learning_objective": "Students will be able to state and explain where the speed and the acceleration of an ideal simple harmonic oscillator are maximum and zero, give the direction of the acceleration, and calculate v and a at any displacement.",
+  "statement": "In ideal SHM the speed is greatest at the mean position and zero at the extremes, while the acceleration is zero at the mean, greatest at the extremes, and always directed toward the mean.",
+  "simple": "Think of a block on a spring. In the middle the spring is relaxed, so nothing pushes the block and it is moving fastest. At the ends it stops for an instant, but the spring is stretched most, so the pull back is strongest there.",
+  "formal": "For x = A cos(ωt + φ), the velocity is v = −Aω sin(ωt + φ) = ±ω√(A² − x²) and the acceleration is a = −ω²x. Speed is therefore maximum (Aω) at x = 0 and zero at x = ±A. Acceleration is proportional to displacement and opposite to it: zero at the mean and of maximum magnitude ω²A at the extremes. Velocity and acceleration are out of phase by π/2, so one is largest when the other is zero.",
+  "equations": [
+   {
+    "expr": "v = −Aω sin(ωt + φ)",
+    "meaning": "velocity at time t for x = A cos(ωt + φ)",
+    "vars": {
+     "v": "velocity (m/s)",
+     "A": "amplitude (m)",
+     "ω": "angular frequency (rad/s)",
+     "t": "time (s)",
+     "φ": "initial phase (rad)"
+    },
+    "assumptions": "ideal SHM, no damping"
+   },
+   {
+    "expr": "v = ±ω√(A² − x²)",
+    "meaning": "speed at displacement x; maximum Aω at x = 0, zero at x = ±A",
+    "vars": {
+     "v": "velocity (m/s)",
+     "ω": "angular frequency (rad/s)",
+     "A": "amplitude (m)",
+     "x": "displacement from the mean position (m)"
+    },
+    "assumptions": "ideal SHM, no damping"
+   },
+   {
+    "expr": "a = −ω²x",
+    "meaning": "acceleration is proportional to displacement and points toward the mean; zero at x = 0, magnitude ω²A at x = ±A",
+    "vars": {
+     "a": "acceleration (m/s²)",
+     "ω": "angular frequency (rad/s)",
+     "x": "displacement from the mean position (m)"
+    },
+    "assumptions": "ideal SHM, no damping"
+   },
+   {
+    "expr": "KE = ½mω²(A² − x²)",
+    "meaning": "kinetic energy is greatest at the mean position and zero at the extremes",
+    "vars": {
+     "KE": "kinetic energy (J)",
+     "m": "mass (kg)",
+     "ω": "angular frequency (rad/s)",
+     "A": "amplitude (m)",
+     "x": "displacement (m)"
+    },
+    "assumptions": "ideal SHM, no damping"
+   }
   ],
-  "worked_example": "m = 0.5 kg, k = 50 N/m, A = 0.1 m: ω = 10 rad/s; extreme a = 10 m/s², mean v = 1 m/s; E = 0.25 J throughout.",
+  "analogy": "A child on a jhoola: she whooshes fastest through the bottom, where nothing tugs her forward or back, and pauses at the highest points, where the pull back down toward the bottom is strongest.",
+  "steps": [
+   "Locate the oscillator: find its displacement x from the mean position.",
+   "Acceleration follows displacement: a = −ω²x, so it is zero at x = 0, largest at x = ±A, and always points toward the mean.",
+   "Speed follows the opposite pattern: v = ω√(A² − x²), so it is largest at x = 0 and zero at x = ±A.",
+   "Zero velocity does not mean zero acceleration: at the extremes the body is only turning around.",
+   "Check with energy: at the mean all energy is kinetic; at the extremes all is potential."
+  ],
+  "worked_example": "A block oscillates with A = 0.1 m and ω = 10 rad/s. At the mean: v = Aω = 1 m/s, a = 0. At an extreme: v = 0, |a| = ω²A = 100 × 0.1 = 10 m/s², toward the mean. At x = 0.06 m: v = 10√(0.01 − 0.0036) = 10 × 0.08 = 0.8 m/s and a = −100 × 0.06 = −6 m/s².",
+  "alternatives": [
+   "Use force: the spring force F = −kx is zero at the mean and largest at the extremes, so by F = ma the acceleration follows the same pattern. The block speeds up while moving toward the mean and slows down after passing it, so its speed peaks exactly at the mean.",
+   "Use the circle: SHM is the shadow of uniform circular motion. At the centre of the shadow's path the point on the circle moves parallel to the line, so the shadow moves fastest; at the ends it moves perpendicular, so the shadow stops while the centripetal pull is fully along the line."
+  ],
+  "visual": "shm-oscillator",
+  "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
   ]
  },
  {
-  "card_id": "O4-R",
+  "card_id": "S4-R",
   "concept": "C2",
-  "code": "O4",
-  "statement": "At the extreme, velocity is zero but acceleration is maximum, ω²A, toward the mean.",
-  "wrong_idea": "It stops at the end, so the acceleration there must be zero.",
-  "why_it_feels_right": "Things at rest usually feel force-free, and zero speed sounds like nothing is happening.",
-  "why_wrong": "Acceleration is the rate of change of velocity. At the end the spring is stretched most, so a = −ω²x is largest; velocity is zero for only an instant.",
-  "sim_moment": "Pendulum Race",
+  "code": "S4",
+  "statement": "Speed is maximum (Aω) at the mean position and zero at the extremes.",
+  "wrong_idea": "It goes fastest at the ends because that's the farthest it gets.",
+  "why_it_feels_right": "Farthest sounds like the most of everything, so the biggest displacement feels like the biggest speed.",
+  "why_wrong": "Displacement and speed are different. At an extreme the block stops for an instant to turn back; all its energy is in the spring.",
+  "sim_moment": "Pause at x = +A and read v = 0; then watch v peak as x passes 0.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
   ]
  },
  {
-  "card_id": "O5-R",
+  "card_id": "S5-R",
   "concept": "C2",
-  "code": "O5",
-  "statement": "Total mechanical energy stays the same throughout an ideal oscillation; only the KE/PE split changes.",
-  "wrong_idea": "The energy is biggest in the middle where it moves fastest and drops at the ends.",
-  "why_it_feels_right": "You can see the speed, so kinetic energy feels like all of the energy.",
-  "why_wrong": "At the ends the kinetic energy has turned into potential energy, ½kx². With no damping nothing is lost, so KE + PE = ½kA² at every point.",
-  "sim_moment": "Pendulum Race",
+  "code": "S5",
+  "statement": "Speed varies as v = ω√(A² − x²): largest at the mean, zero at the extremes.",
+  "wrong_idea": "The speed stays the same all through the oscillation.",
+  "why_it_feels_right": "The motion looks smooth and repeats evenly, so it seems steady.",
+  "why_wrong": "Repeating evenly means a fixed period, not a fixed speed. The restoring force speeds the block up toward the mean and slows it beyond.",
+  "sim_moment": "Watch the v readout and v–t graph rise and fall every half cycle.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
+  ]
+ },
+ {
+  "card_id": "S6-R",
+  "concept": "C2",
+  "code": "S6",
+  "statement": "At the extremes v = 0 but the acceleration is maximum (ω²A), pointing toward the mean.",
+  "wrong_idea": "At the end it has stopped, so its acceleration is zero there.",
+  "why_it_feels_right": "Stopped feels like nothing is happening, and we link acceleration with moving.",
+  "why_wrong": "Acceleration is the rate of change of velocity. At the extreme the velocity is reversing, and the spring force is largest.",
+  "sim_moment": "Step through x = +A: v reads 0 while the acceleration arrow is longest, pointing to the centre.",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
+  ]
+ },
+ {
+  "card_id": "S7-R",
+  "concept": "C2",
+  "code": "S7",
+  "statement": "Acceleration a = −ω²x is zero at the mean and largest at the extremes.",
+  "wrong_idea": "The acceleration is biggest in the middle, where it moves fastest.",
+  "why_it_feels_right": "Big speed and big acceleration both feel like 'a lot of motion', so they seem to go together.",
+  "why_wrong": "Acceleration comes from force. At the mean the spring is unstretched, so the force, and the acceleration, is zero even at top speed.",
+  "sim_moment": "Pause at x = 0: speed is at its peak, the acceleration readout is 0.",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+   "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+   "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
   ]
  },
  {
   "card_id": "C3-K",
   "concept": "C3",
-  "statement": "Each particle does SHM in place; the wave pattern moves at a speed set by the medium, not the source.",
-  "analogy": "Stadium Mexican wave: fans only stand and sit, yet the wave runs round.",
-  "steps": [
-   "Particles oscillate about their own mean positions",
-   "Pattern and energy pass from particle to particle",
-   "Medium sets speed: v = √(T/μ) on a string",
-   "Source sets f; amplitude leaves v unchanged",
-   "Hence λ = v/f"
+  "topic": "SHM",
+  "subtopic": "Time period, frequency and angular frequency",
+  "learning_objective": "Students will be able to convert between T, f and ω, calculate the period of a spring–mass system and a simple pendulum, and explain why the period does not depend on amplitude in ideal SHM.",
+  "statement": "In SHM the period T = 2π/ω is fixed by the system (m and k, or L and g), not by how far it is pulled.",
+  "simple": "The time period is the time for one full back-and-forth. Frequency is how many back-and-forths happen in one second. A heavier block on a spring swings slower, but a heavier pendulum bob does not. Pulling further does not change the time.",
+  "formal": "For SHM x = A cos(ωt + φ), the motion repeats when ωt advances by 2π, so T = 2π/ω and f = 1/T = ω/2π. Angular frequency ω (rad/s) is therefore 2π times f (Hz). For a spring–mass system ω = √(k/m), giving T = 2π√(m/k). For a simple pendulum at small angles ω = √(g/L), giving T = 2π√(L/g), independent of bob mass. Amplitude A does not appear in ω, so the period is amplitude-independent.",
+  "equations": [
+   {
+    "expr": "T = 2π/ω",
+    "meaning": "one full cycle is 2π radians of phase",
+    "vars": {
+     "T": "time period (s)",
+     "ω": "angular frequency (rad/s)"
+    },
+    "assumptions": "ideal SHM"
+   },
+   {
+    "expr": "f = 1/T",
+    "meaning": "number of oscillations per second",
+    "vars": {
+     "f": "frequency (Hz)",
+     "T": "time period (s)"
+    },
+    "assumptions": "periodic motion"
+   },
+   {
+    "expr": "ω = 2πf",
+    "meaning": "angular frequency is 2π times ordinary frequency",
+    "vars": {
+     "ω": "angular frequency (rad/s)",
+     "f": "frequency (Hz)"
+    },
+    "assumptions": "ideal SHM"
+   },
+   {
+    "expr": "T = 2π√(m/k)",
+    "meaning": "period of a spring–mass oscillator",
+    "vars": {
+     "m": "mass of block (kg)",
+     "k": "spring constant (N/m)"
+    },
+    "assumptions": "massless ideal spring, no friction"
+   },
+   {
+    "expr": "T = 2π√(L/g)",
+    "meaning": "period of a simple pendulum",
+    "vars": {
+     "L": "length to centre of bob (m)",
+     "g": "acceleration due to gravity (m/s²)"
+    },
+    "assumptions": "small angles, point bob, light inextensible string"
+   }
   ],
-  "worked_example": "T = 100 N, μ = 0.01 kg/m: v = √(100/0.01) = 100 m/s; at 50 Hz, λ = 2 m.",
+  "analogy": "A merry-go-round turning at a fixed rate: a child on the outer edge covers a bigger circle but moves faster, so every child takes the same time per round.",
+  "steps": [
+   "Identify the system: spring–mass or simple pendulum",
+   "Find ω from the system: √(k/m) or √(g/L)",
+   "Get T = 2π/ω and f = 1/T, never T = 1/ω",
+   "Check what changed: amplitude does not affect T; spring mass does; pendulum bob mass does not"
+  ],
+  "worked_example": "A 0.25 kg block on a spring with k = 25π² N/m: ω = √(25π²/0.25) = 10π rad/s, so T = 2π/10π = 0.2 s and f = 5 Hz, whether the amplitude is 2 cm or 4 cm.",
+  "alternatives": [
+   "Think in terms of phase: the block finishes a cycle when ωt grows by 2π radians, so T is 2π/ω seconds; f counts cycles, ω counts radians.",
+   "A bigger amplitude means a bigger restoring force at the ends, so the block moves faster; the extra speed exactly cancels the extra distance."
+  ],
+  "visual": "shm-oscillator",
+  "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude-independence of v holds for small (linear) waves only",
-   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
-   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
+   "Large-amplitude pendulum correction stated qualitatively only.",
+   "Hinglish exemplars need review by a native speaker for natural phrasing.",
+   "Merry-go-round analogy is a uniform-circular-motion picture of SHM; check it does not suggest angular speed equals frequency."
   ]
  },
  {
-  "card_id": "W1-R",
+  "card_id": "S8-R",
   "concept": "C3",
-  "code": "W1",
-  "statement": "The medium stays put and oscillates; the disturbance is what travels.",
-  "wrong_idea": "The wave carries the rope (or water, or air) along with it to the other end.",
-  "why_it_feels_right": "You can see something moving forward, and waves at the beach seem to push things to the shore.",
-  "why_wrong": "Each piece of the medium only moves up-down or back-forth about its own place. Only the pattern and energy move forward.",
-  "sim_moment": "Red-Dot Rope: the red dot bobs up and down as the wave runs past, never moving along.",
+  "code": "S8",
+  "statement": "In ideal SHM the time period is independent of amplitude.",
+  "wrong_idea": "If I pull it further, it has more distance to go, so one oscillation takes longer.",
+  "why_it_feels_right": "Covering a longer distance usually takes more time.",
+  "why_wrong": "Pulling further also gives a bigger restoring force, so the body moves faster. The extra speed exactly balances the extra distance.",
+  "sim_moment": "Raise the amplitude slider: the period readout stays fixed and x–t peaks grow taller but stay equally spaced.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude-independence of v holds for small (linear) waves only",
-   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
-   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
+   "Large-amplitude pendulum correction stated qualitatively only.",
+   "Hinglish exemplars need review by a native speaker for natural phrasing.",
+   "Merry-go-round analogy is a uniform-circular-motion picture of SHM; check it does not suggest angular speed equals frequency."
   ]
  },
  {
-  "card_id": "W2-R",
+  "card_id": "S9-R",
   "concept": "C3",
-  "code": "W2",
-  "statement": "Higher frequency gives shorter waves moving at the same speed.",
-  "wrong_idea": "If I shake the rope faster, the wave will run along it faster.",
-  "why_it_feels_right": "Moving your hand faster feels like more effort, so it seems the wave should be quicker too.",
-  "why_wrong": "On a string v = √(T/μ), set only by tension and mass per length. Shaking faster raises f, so λ = v/f shrinks instead.",
-  "sim_moment": "Red-Dot Rope: raise the frequency slider and see the crests bunch closer while the front still reaches the end at the same time.",
+  "code": "S9",
+  "statement": "Bob mass does not change a pendulum's period; block mass changes a spring's period as √m.",
+  "wrong_idea": "A heavier bob changes a pendulum's period, but a spring's period depends only on the spring.",
+  "why_it_feels_right": "Heavier things feel harder to move and gravity pulls them harder.",
+  "why_wrong": "In a pendulum, gravity's pull and inertia both grow with mass, so mass cancels. A spring's force kx ignores mass, so a heavier block accelerates less.",
+  "sim_moment": "Increase the block's mass: the x–t graph stretches out and the period readout grows by √(mass ratio).",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude-independence of v holds for small (linear) waves only",
-   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
-   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
+   "Large-amplitude pendulum correction stated qualitatively only.",
+   "Hinglish exemplars need review by a native speaker for natural phrasing.",
+   "Merry-go-round analogy is a uniform-circular-motion picture of SHM; check it does not suggest angular speed equals frequency."
   ]
  },
  {
-  "card_id": "W3-R",
+  "card_id": "S10-R",
   "concept": "C3",
-  "code": "W3",
-  "statement": "Bigger amplitude means more energy, not more speed.",
-  "wrong_idea": "If I shake harder and make bigger waves, they will travel faster.",
-  "why_it_feels_right": "A bigger push usually makes things go faster, like throwing a ball harder.",
-  "why_wrong": "Amplitude does not appear in v = √(T/μ). A taller wave carries more energy, but on the same rope it moves at the same speed.",
-  "sim_moment": "Red-Dot Rope: raise the amplitude slider and see the taller pulse reach the end at the same moment as a small one.",
+  "code": "S10",
+  "statement": "Angular frequency ω = 2πf, so T = 2π/ω and f = ω/2π.",
+  "wrong_idea": "ω is the frequency, so the period is just 1/ω.",
+  "why_it_feels_right": "Both are called 'frequency' and both measure how fast it oscillates.",
+  "why_wrong": "ω counts radians per second; f counts full oscillations per second. One oscillation is 2π radians, so T = 2π/ω. Using 1/ω makes T 2π times too small.",
+  "sim_moment": "Time one full cycle on the x–t graph and check it equals 2π/ω, not 1/ω.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Amplitude-independence of v holds for small (linear) waves only",
-   "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
-   "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
+   "Large-amplitude pendulum correction stated qualitatively only.",
+   "Hinglish exemplars need review by a native speaker for natural phrasing.",
+   "Merry-go-round analogy is a uniform-circular-motion picture of SHM; check it does not suggest angular speed equals frequency."
   ]
  },
  {
   "card_id": "C4-K",
   "concept": "C4",
-  "statement": "Overlapping waves add displacements, then pass on unchanged; close frequencies beat at |f1 − f2|.",
-  "analogy": "Like two queues crossing at a railway gate: they mix briefly, then walk on.",
-  "steps": [
-   "Add displacements point by point while waves overlap.",
-   "Afterwards each wave keeps its shape and direction.",
-   "A flat string is still moving: energy is kinetic, not lost.",
-   "Beat rate = |f1 − f2|; heard pitch ≈ (f1 + f2)/2.",
-   "Fixed string: nodes λ/2 apart, fundamental = v/2L."
+  "topic": "SHM",
+  "subtopic": "Restoring force and the defining condition a = −ω²x",
+  "learning_objective": "Students will be able to state that the restoring force in SHM is proportional to displacement and always directed toward the mean position, and use a = −ω²x with ω² = k/m to find acceleration at any displacement.",
+  "statement": "In SHM the restoring force F = −kx grows with displacement and always points toward the mean position, so a = −ω²x with ω² = k/m.",
+  "simple": "Pull a block on a spring and let go. The spring always pulls it back toward the middle. The farther you pull, the harder it pulls back. At the middle, the pull is zero.",
+  "formal": "A particle performs SHM when the net force on it is a restoring force proportional to its displacement from the mean position and opposite in direction: F = −kx. By Newton's second law, ma = −kx, so a = −(k/m)x = −ω²x, where ω = √(k/m) is the angular frequency. The condition a ∝ −x defines SHM. The acceleration is zero at the mean and has maximum magnitude ω²A at the extremes, whatever the direction of velocity.",
+  "equations": [
+   {
+    "expr": "F = −kx",
+    "meaning": "Restoring force is proportional to displacement and opposite to it",
+    "vars": {
+     "F": "restoring force (N)",
+     "k": "force constant (N/m)",
+     "x": "displacement from mean (m)"
+    },
+    "assumptions": "ideal spring, small displacement"
+   },
+   {
+    "expr": "a = −ω²x",
+    "meaning": "Defining condition of SHM: acceleration proportional to displacement, directed toward the mean",
+    "vars": {
+     "a": "acceleration (m/s²)",
+     "ω": "angular frequency (rad/s)",
+     "x": "displacement from mean (m)"
+    },
+    "assumptions": "linear restoring force, no damping"
+   },
+   {
+    "expr": "ω² = k/m",
+    "meaning": "Angular frequency is fixed by the stiffness and the mass",
+    "vars": {
+     "ω": "angular frequency (rad/s)",
+     "k": "force constant (N/m)",
+     "m": "mass (kg)"
+    },
+    "assumptions": "spring–mass system, massless spring"
+   }
   ],
-  "worked_example": "Forks 256 Hz, 260 Hz: 4 beats per second, pitch ≈ 258 Hz.",
+  "analogy": "A ball in a round bowl: wherever you push it, the slope always tips it back toward the bottom, and the farther up the side, the steeper the slope and the stronger the tip back.",
+  "steps": [
+   "Locate the mean position and measure the displacement x from it",
+   "The restoring force is F = −kx: its size is k|x| and its direction is toward the mean",
+   "Ignore which way the body is moving; only the displacement sets the force",
+   "Divide by mass: a = −(k/m)x = −ω²x",
+   "Check: zero at the mean, largest (ω²A) at the extremes"
+  ],
+  "worked_example": "m = 0.25 kg, k = 100 N/m, block at x = +0.03 m. F = −kx = −100 × 0.03 = −3 N (toward mean). ω² = k/m = 400 s⁻², so ω = 20 rad/s and a = −ω²x = −400 × 0.03 = −12 m/s², i.e. 12 m/s² toward the mean.",
+  "alternatives": [
+   "Think of the spring as always trying to undo the stretch: it pulls in when stretched and pushes out when compressed, so the force always points back to the natural length, and a bigger stretch means a bigger correction.",
+   "On an a–x graph, SHM is a straight line through the origin with negative slope −ω²; any other shape (constant a, positive slope, curve) is not SHM."
+  ],
+  "visual": "shm-oscillator",
+  "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
+   "Bowl analogy is exact only for small displacements in a circular bowl",
+   "Hinglish exemplars need native-speaker check"
   ]
  },
  {
-  "card_id": "W4-R",
+  "card_id": "S11-R",
   "concept": "C4",
-  "code": "W4",
-  "statement": "Cancellation is only momentary; the energy stays in the rope as motion and both pulses carry on.",
-  "wrong_idea": "When the two pulses cancel, they destroy each other and the energy is gone.",
-  "why_it_feels_right": "The rope looks completely flat, so it seems nothing is left.",
-  "why_wrong": "Flat is not still. At that instant every bit of the rope is moving fast, so all the energy is kinetic. A moment later both pulses reappear.",
-  "sim_moment": "Red-Dot Rope",
+  "code": "S11",
+  "statement": "The restoring force F = −kx is proportional to displacement: zero at the mean and largest at the extremes.",
+  "wrong_idea": "The spring pulls back with the same force everywhere, because k doesn't change.",
+  "why_it_feels_right": "k is a constant, so a constant pull seems natural.",
+  "why_wrong": "The force is k times the displacement: double the stretch, double the force; zero at the mean.",
+  "sim_moment": "Watch the acceleration arrow shrink to nothing at the mean and grow longest at the extremes.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
+   "Bowl analogy is exact only for small displacements in a circular bowl",
+   "Hinglish exemplars need native-speaker check"
   ]
  },
  {
-  "card_id": "W5-R",
+  "card_id": "S12-R",
   "concept": "C4",
-  "code": "W5",
-  "statement": "Pulses pass through each other and come out unchanged.",
-  "wrong_idea": "The two pulses hit each other and bounce back like balls.",
-  "why_it_feels_right": "Things we see colliding, like cricket balls or marbles, bounce off each other.",
-  "why_wrong": "A pulse is not an object; it is a shape moving along the rope. Where two meet, displacements simply add. Send a tall and a short pulse: the tall one ends up at the far end.",
-  "sim_moment": "Red-Dot Rope",
+  "code": "S12",
+  "statement": "The restoring force always points toward the mean, whichever way the block moves.",
+  "wrong_idea": "The force acts the way the block is moving, so when it moves outward the force is outward too.",
+  "why_it_feels_right": "We push things the way we want them to move, so force and motion seem to go together.",
+  "why_wrong": "Force sets acceleration, not velocity. Moving outward, the block slows down, so the force points back to the mean.",
+  "sim_moment": "Pause while the block moves outward: it heads out, but the acceleration arrow points back to the mean.",
   "verify_flags": [
    "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
-  ]
- },
- {
-  "card_id": "B1-R",
-  "concept": "C4",
-  "code": "B1",
-  "statement": "Beat frequency = |f1 − f2|.",
-  "wrong_idea": "Beat frequency is f1 + f2, because both sounds play together.",
-  "why_it_feels_right": "Superposition means adding, so adding the frequencies feels natural.",
-  "why_wrong": "We add displacements, not frequencies. Loudness swells when the waves fall into step and fades when they fall out of step, which happens |f1 − f2| times per second. 440 Hz and 444 Hz give 4 beats, not 884.",
-  "sim_moment": "Beats You Can Hear",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
-  ]
- },
- {
-  "card_id": "B2-R",
-  "concept": "C4",
-  "code": "B2",
-  "statement": "The average is the pitch; the beat rate is |f1 − f2|.",
-  "wrong_idea": "The beat frequency is the average of the two frequencies.",
-  "why_it_feels_right": "You really do hear a note near the average, so that number seems like the answer.",
-  "why_wrong": "The average, (f1 + f2)/2, is the pitch you hear. The beat is how often the loudness throbs, which is the difference. 506 Hz and 512 Hz: pitch about 509 Hz, beats 6 per second.",
-  "sim_moment": "Beats You Can Hear",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-   "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
+   "Bowl analogy is exact only for small displacements in a circular bowl",
+   "Hinglish exemplars need native-speaker check"
   ]
  },
  {
   "card_id": "C5-K",
   "concept": "C5",
-  "statement": "A plane mirror forms a virtual, erect, same-size image as far behind the mirror as you are in front.",
-  "analogy": "Like a twin behind a window, copying your every step.",
-  "steps": [
-   "Angle of incidence equals angle of reflection, from the normal",
-   "Image distance behind the mirror equals object distance in front",
-   "Step back and the image steps back too",
-   "So a full view needs a mirror half your height"
+  "topic": "SHM",
+  "subtopic": "Energy in SHM",
+  "learning_objective": "Students will be able to find the kinetic, potential and total energy of a body in SHM at any displacement, and explain why the total stays constant and grows as the square of the amplitude.",
+  "statement": "In ideal SHM, kinetic and potential energy keep trading places, but their sum stays fixed at ½kA².",
+  "simple": "A block on a spring keeps swapping two kinds of energy. In the middle it moves fastest, so it has the most kinetic energy and the spring stores none. At the ends it stops for an instant and the stretched spring stores all the energy. The total never changes if nothing rubs.",
+  "formal": "For x = A cos(ωt + φ), the kinetic energy is KE = ½mω²(A² − x²) and the potential energy is PE = ½kx² = ½mω²x², with k = mω². Their sum is E = ½kA² = ½mω²A², independent of x and t, so total mechanical energy is conserved in undamped SHM. KE is maximum (equal to E) at the mean position and zero at the extremes; PE does the opposite. Because E depends on A², doubling the amplitude makes the energy four times larger.",
+  "equations": [
+   {
+    "expr": "E = ½kA²",
+    "meaning": "Total mechanical energy, the same at every position",
+    "vars": {
+     "E": "total mechanical energy (J)",
+     "k": "force constant (N/m)",
+     "A": "amplitude (m)"
+    },
+    "assumptions": "ideal, undamped SHM"
+   },
+   {
+    "expr": "KE = ½mω²(A² − x²)",
+    "meaning": "Kinetic energy at displacement x; maximum at the mean, zero at the extremes",
+    "vars": {
+     "KE": "kinetic energy (J)",
+     "m": "mass (kg)",
+     "ω": "angular frequency (rad/s)",
+     "A": "amplitude (m)",
+     "x": "displacement from mean (m)"
+    },
+    "assumptions": "ideal, undamped SHM"
+   },
+   {
+    "expr": "PE = ½kx² = ½mω²x²",
+    "meaning": "Potential energy at displacement x; zero at the mean, maximum at the extremes",
+    "vars": {
+     "PE": "potential energy (J)",
+     "k": "force constant (N/m)",
+     "x": "displacement from mean (m)",
+     "m": "mass (kg)",
+     "ω": "angular frequency (rad/s)"
+    },
+    "assumptions": "PE taken as zero at the mean position; k = mω²"
+   },
+   {
+    "expr": "KE + PE = E",
+    "meaning": "The two energies always add to the same total",
+    "vars": {
+     "KE": "kinetic energy (J)",
+     "PE": "potential energy (J)",
+     "E": "total mechanical energy (J)"
+    },
+    "assumptions": "no friction or damping"
+   }
   ],
-  "worked_example": "Sita, 1.5 m tall, stands 2 m away: image is 4 m from her; a 0.75 m mirror shows her fully.",
+  "analogy": "Like money moving between your wallet and your pocket while you walk: one fills as the other empties, but the total you carry stays the same.",
+  "steps": [
+   "Find the total energy from the amplitude: E = ½kA².",
+   "Find the potential energy at the given position: PE = ½kx².",
+   "Get the kinetic energy as what is left: KE = E − PE.",
+   "Check the ends: at x = 0 all energy is KE; at x = ±A all of it is PE.",
+   "If the amplitude changes, scale the energy by the square of the factor."
+  ],
+  "worked_example": "m = 0.5 kg, k = 200 N/m, A = 0.1 m. E = ½ × 200 × 0.1² = 1 J. At x = 0.05 m: PE = ½ × 200 × 0.05² = 0.25 J, so KE = 0.75 J. At the mean, KE = 1 J, so v = √(2 × 1 / 0.5) = 2 m/s. With A = 0.2 m, E = 4 J.",
+  "alternatives": [
+   "Graph view: plot PE = ½kx² as a U-shaped curve and E as a flat line at ½kA². At any x, the gap between the line and the curve is the KE.",
+   "Work view: the spring does positive work on the block while it moves toward the mean and negative work while it moves away, so energy only shuttles between spring and block; no outside force adds or removes any."
+  ],
+  "visual": "shm-oscillator",
+  "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed.",
   "verify_flags": [
    "TODO_VERIFY",
-   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
-   "Half-height rule assumes a vertical plane mirror hung at the correct height."
+   "PE taken as zero at the mean position throughout; for a vertical spring this holds when x is measured from the loaded equilibrium position.",
+   "Hinglish exemplars written in Latin script; review for natural phrasing.",
+   "Worked example numbers match item C5-Q2 (m = 0.5 kg, k = 200 N/m, A = 0.1 m)."
   ]
  },
  {
-  "card_id": "R1-R",
+  "card_id": "S13-R",
   "concept": "C5",
-  "code": "R1",
-  "statement": "How much of yourself you see depends on the mirror's size and height, not on your distance.",
-  "wrong_idea": "If I step back from the mirror, I'll see more of myself.",
-  "why_it_feels_right": "Stepping back from a window or a camera does show more, so a mirror seems the same.",
-  "why_wrong": "Your image steps back by the same amount, so light from your feet still reflects from the same spot on the mirror. The mirror covers the same part of you.",
-  "sim_moment": "Lens Bench",
+  "code": "S13",
+  "statement": "In ideal SHM the total energy is constant; only the KE/PE split changes.",
+  "wrong_idea": "It has more energy in the middle where it zooms, less at the ends where it stops.",
+  "why_it_feels_right": "You can see speed, but not the energy stored in a stretched spring.",
+  "why_wrong": "At the ends the KE is stored as spring PE, ½kx². With no friction nothing leaves, so KE + PE = ½kA² everywhere.",
+  "sim_moment": "Watch the KE and PE bars: as one shrinks the other grows, and their stacked total stays the same height.",
   "verify_flags": [
    "TODO_VERIFY",
-   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
-   "Half-height rule assumes a vertical plane mirror hung at the correct height."
+   "PE taken as zero at the mean position throughout; for a vertical spring this holds when x is measured from the loaded equilibrium position.",
+   "Hinglish exemplars written in Latin script; review for natural phrasing.",
+   "Worked example numbers match item C5-Q2 (m = 0.5 kg, k = 200 N/m, A = 0.1 m)."
   ]
  },
  {
-  "card_id": "R2-R",
+  "card_id": "S14-R",
   "concept": "C5",
-  "code": "R2",
-  "statement": "The image is virtual and lies as far behind the mirror as the object is in front.",
-  "wrong_idea": "My image is right there on the mirror's surface.",
-  "why_it_feels_right": "The glass is the only thing you can touch, so the picture seems painted on it.",
-  "why_wrong": "Reflected rays spread out as if coming from a point behind the mirror, as far behind as you are in front. Your eyes trace them back there.",
-  "sim_moment": "Lens Bench",
+  "code": "S14",
+  "statement": "KE is maximum at the mean and PE at the extremes; never both at one point.",
+  "wrong_idea": "Everything is maximum at the mean, so PE is biggest there too.",
+  "why_it_feels_right": "Speed and KE peak at the mean, so it feels like everything peaks there.",
+  "why_wrong": "PE = ½kx² depends on stretch. At the mean x = 0, so PE = 0; at x = ±A it is maximum. KE does the opposite.",
+  "sim_moment": "Pause at the mean: KE bar full, PE bar empty. Pause at an extreme: the reverse.",
   "verify_flags": [
    "TODO_VERIFY",
-   "sim_moment 'Lens Bench' is a lens simulation; confirm it can show a plane-mirror reflection moment, else no listed sim fits C5.",
-   "Half-height rule assumes a vertical plane mirror hung at the correct height."
+   "PE taken as zero at the mean position throughout; for a vertical spring this holds when x is measured from the loaded equilibrium position.",
+   "Hinglish exemplars written in Latin script; review for natural phrasing.",
+   "Worked example numbers match item C5-Q2 (m = 0.5 kg, k = 200 N/m, A = 0.1 m)."
+  ]
+ },
+ {
+  "card_id": "S15-R",
+  "concept": "C5",
+  "code": "S15",
+  "statement": "Total energy is proportional to A², so doubling A makes E four times larger.",
+  "wrong_idea": "Pull it twice as far and it gets twice the energy.",
+  "why_it_feels_right": "Many everyday things scale directly, so doubling the input feels like doubling the output.",
+  "why_wrong": "E = ½kA² has A squared: ½k(2A)² = 4 × ½kA². The spring force doubles and acts over double the distance.",
+  "sim_moment": "Set amplitude A, note the total-energy bar, then set 2A: the bar grows four times, not two.",
+  "verify_flags": [
+   "TODO_VERIFY",
+   "PE taken as zero at the mean position throughout; for a vertical spring this holds when x is measured from the loaded equilibrium position.",
+   "Hinglish exemplars written in Latin script; review for natural phrasing.",
+   "Worked example numbers match item C5-Q2 (m = 0.5 kg, k = 200 N/m, A = 0.1 m)."
   ]
  },
  {
@@ -314,12 +607,67 @@
    "TIR only if incidence angle exceeds C"
   ],
   "worked_example": "Glass to air, n = 1.5: sin C = 1/1.5, C ≈ 41.8°. At 45° inside: TIR. At 30°: exits at 48.6°.",
+  "topic": "Optics",
+  "subtopic": "Refraction at a plane surface and total internal reflection",
+  "learning_objective": "Predict whether a ray bends toward or away from the normal, use n = c/v and Snell's law, and decide when total internal reflection can occur.",
+  "simple": "Light slows down in glass or water and speeds up again in air. Slowing down makes it bend toward the normal; speeding up makes it bend away. If light inside glass or water meets the surface at too steep an angle, it cannot get out and reflects back completely: total internal reflection.",
+  "formal": "The refractive index of a medium is n = c/v, the ratio of the speed of light in vacuum to its speed in the medium. At a boundary, Snell's law n₁ sin i = n₂ sin r fixes the refracted direction. Frequency is set by the source and stays the same, so the wavelength becomes λ_vacuum/n. For travel from a denser to a rarer medium, the critical angle C obeys sin C = n₂/n₁; for incidence beyond C there is no refracted ray and all the light is reflected.",
+  "equations": [
+   {
+    "expr": "n = c / v",
+    "meaning": "Refractive index compares the speed of light in vacuum with its speed in the medium.",
+    "vars": {
+     "n": "absolute refractive index (no unit)",
+     "c": "speed of light in vacuum, 3.0 × 10⁸ (m/s)",
+     "v": "speed of light in the medium (m/s)"
+    },
+    "assumptions": "Air is taken as n ≈ 1."
+   },
+   {
+    "expr": "n₁ sin i = n₂ sin r",
+    "meaning": "Snell's law links the angles on the two sides of a boundary.",
+    "vars": {
+     "n₁": "refractive index of first medium (no unit)",
+     "n₂": "refractive index of second medium (no unit)",
+     "i": "angle of incidence from the normal (degree)",
+     "r": "angle of refraction from the normal (degree)"
+    },
+    "assumptions": "Angles measured from the normal; plane boundary."
+   },
+   {
+    "expr": "λ_medium = λ_vacuum / n",
+    "meaning": "Wavelength shrinks by the factor n while frequency stays fixed.",
+    "vars": {
+     "λ_medium": "wavelength in the medium (m)",
+     "λ_vacuum": "wavelength in vacuum (m)",
+     "n": "refractive index (no unit)"
+    },
+    "assumptions": "Frequency is set by the source and does not change at a boundary."
+   },
+   {
+    "expr": "sin C = n₂ / n₁ (= 1/n into air)",
+    "meaning": "Critical angle beyond which total internal reflection occurs.",
+    "vars": {
+     "C": "critical angle (degree)",
+     "n₁": "refractive index of denser medium (no unit)",
+     "n₂": "refractive index of rarer medium (no unit)"
+    },
+    "assumptions": "Only defined for n₁ > n₂, light travelling denser to rarer; TIR when i > C."
+   }
+  ],
+  "alternatives": [
+   "Wavefront view: one edge of a slanting wavefront reaches the slower medium first and lags behind, so the whole wavefront swings round; entering a faster medium swings it the other way.",
+   "Marching band view: a row of marchers stepping slantwise from road onto mud slows at one end first and wheels toward the normal; stepping back onto road wheels it away."
+  ],
+  "visual": "refraction",
+  "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed.",
   "verify_flags": [
    "TODO_VERIFY",
    "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
-   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Remediation R4 sim_moment assumes the refraction visual lets the laser be aimed from the air side as well as from inside the glass",
    "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
-   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text",
+   "Seeded concept-card fields, equations and doubts need academic review; Unicode subscripts (n₁, n₂) must render in the app"
   ]
  },
  {
@@ -330,13 +678,14 @@
   "wrong_idea": "Whenever light goes into something new, it bends toward the normal.",
   "why_it_feels_right": "Most diagrams show air into glass or water, where it really does bend toward the normal.",
   "why_wrong": "The direction matters: going into a rarer medium like air, light speeds up and bends away from the normal.",
-  "sim_moment": "Lens Bench, laser-in-glass mode: watch the beam leave the glass into air and swing away from the normal.",
+  "sim_moment": "Refraction visual: drag the ray inside the glass and let it leave into air; it swings away from the normal. Drag it in from air and it swings toward.",
   "verify_flags": [
    "TODO_VERIFY",
    "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
-   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Remediation R4 sim_moment assumes the refraction visual lets the laser be aimed from the air side as well as from inside the glass",
    "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
-   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text",
+   "Seeded concept-card fields, equations and doubts need academic review; Unicode subscripts (n₁, n₂) must render in the app"
   ]
  },
  {
@@ -347,13 +696,14 @@
   "wrong_idea": "If the angle is big enough, light totally reflects at any surface, from either side.",
   "why_it_feels_right": "Glass and water look shiny from both sides, and 'more than critical' is easy to remember alone.",
   "why_wrong": "From air into glass a refracted ray always exists; only light already in the denser medium can be trapped.",
-  "sim_moment": "Lens Bench TIR mode: past 41.8° inside the glass the beam is trapped; aimed in from air, it always enters.",
+  "sim_moment": "Refraction visual: inside the glass, drag the ray past the critical angle and watch TIR trap it. Now aim it in from the air side at 80°; it always enters.",
   "verify_flags": [
    "TODO_VERIFY",
    "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
-   "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+   "Remediation R4 sim_moment assumes the refraction visual lets the laser be aimed from the air side as well as from inside the glass",
    "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
-   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
+   "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text",
+   "Seeded concept-card fields, equations and doubts need academic review; Unicode subscripts (n₁, n₂) must render in the app"
   ]
  },
  {
@@ -367,10 +717,46 @@
    "Rays meet at v anyway; a screen just scatters them."
   ],
   "worked_example": "u = −30 cm, f = +20 cm: 1/v = 1/20 − 1/30 = 1/60, v = +60 cm, m = −2 (real, inverted).",
+  "topic": "Optics",
+  "subtopic": "Thin lenses: lens formula and image formation",
+  "learning_objective": "Use 1/v − 1/u = 1/f and m = v/u to locate the image formed by a convex lens, and explain why covering part of the lens or removing the screen does not remove a real image.",
+  "simple": "A convex lens bends light from every point of an object so the rays meet again on the other side. Where they meet, a real image forms, whether or not a screen is there. Every part of the lens helps make every part of the image, so covering half of it only makes the image dimmer.",
+  "formal": "In the Cartesian sign convention, distances are measured from the optical centre and are positive in the direction of incident light, so a real object has negative u and a convex lens has positive f. The lens formula 1/v − 1/u = 1/f gives the image distance and m = v/u the magnification. Positive v means a real, inverted image on the far side; negative v means a virtual, upright one. Blocking part of the aperture reduces brightness, not the extent of the image.",
+  "equations": [
+   {
+    "expr": "1/v − 1/u = 1/f",
+    "meaning": "Lens formula linking object distance, image distance and focal length.",
+    "vars": {
+     "v": "image distance from optical centre (cm or m)",
+     "u": "object distance from optical centre (cm or m)",
+     "f": "focal length, positive for convex (cm or m)"
+    },
+    "assumptions": "Thin lens, paraxial rays, Cartesian sign convention; check against the board textbook."
+   },
+   {
+    "expr": "m = v / u = h_i / h_o",
+    "meaning": "Magnification: image size relative to object size; negative means inverted.",
+    "vars": {
+     "m": "linear magnification (no unit)",
+     "h_i": "image height (cm)",
+     "h_o": "object height (cm)",
+     "v": "image distance (cm)",
+     "u": "object distance (cm)"
+    },
+    "assumptions": "Same sign convention as the lens formula; heights above the axis positive."
+   }
+  ],
+  "alternatives": [
+   "Ray-diagram view: draw two principal rays from the top of the object, one parallel to the axis and one through the optical centre; they cross at the image whether or not any surface is there.",
+   "Funnel view: the lens collects light from each object point over its whole face and pours it into one image point; a smaller opening pours less light, but into the same point."
+  ],
+  "visual": "lens-bench",
+  "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed.",
   "verify_flags": [
    "TODO_VERIFY",
    "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
-   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image",
+   "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook"
   ]
  },
  {
@@ -381,11 +767,12 @@
   "wrong_idea": "If I cover the top half of the lens, the top half of the image disappears.",
   "why_it_feels_right": "Covering half a window hides half the view, so covering a lens seems to hide half the picture.",
   "why_wrong": "Each object point sends rays to the whole lens, so the open half still brings light from every point to the image.",
-  "sim_moment": "Lens Bench: switch on 'cover top half of lens' and watch the whole image stay, just fainter.",
+  "sim_moment": "Lens-bench visual: turn on 'cover half the lens' and watch the principal rays from the object still meet at the image; the whole image stays, only fainter.",
   "verify_flags": [
    "TODO_VERIFY",
    "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
-   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image",
+   "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook"
   ]
  },
  {
@@ -396,130 +783,12 @@
   "wrong_idea": "If there's no screen, there's no real image. It just doesn't form.",
   "why_it_feels_right": "In the lab we only ever notice the real image when it lands on the screen.",
   "why_wrong": "Rays meet at the image point with or without a screen; an eye or camera beyond it sees the image in air.",
-  "sim_moment": "Lens Bench: remove the screen and watch the rays still crossing at the image point.",
+  "sim_moment": "Lens-bench visual: remove the screen and watch the principal rays still cross at the image point, then spread out beyond it.",
   "verify_flags": [
    "TODO_VERIFY",
    "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
-   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
-  ]
- },
- {
-  "card_id": "C8-K",
-  "concept": "C8",
-  "statement": "Waves from two slits add or cancel, giving fringes of width beta = lambda D / d; energy is only redistributed.",
-  "analogy": "Like rearranging chairs: some rows fill, others empty, none added.",
-  "steps": [
-   "Bright at path difference n lambda, dark at (n + 1/2) lambda",
-   "beta = lambda D / d",
-   "Smaller d gives wider fringes",
-   "Bright reaches 4I0, dark 0, average 2I0",
-   "Cover one slit and fringes vanish"
-  ],
-  "worked_example": "lambda = 600 nm, D = 1.5 m, d = 0.30 mm: beta = (600e-9 x 1.5)/0.30e-3 = 3.0 mm.",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
-   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
-   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
-  ]
- },
- {
-  "card_id": "L1-R",
-  "concept": "C8",
-  "code": "L1",
-  "statement": "A smaller slit gap d gives wider fringes, since beta = lambda D / d.",
-  "wrong_idea": "If the slits are closer, the fringes should be closer and thinner too.",
-  "why_it_feels_right": "It seems the pattern should shrink with the slits, like a smaller stamp making a smaller print.",
-  "why_wrong": "With closer slits the path difference grows more slowly along the screen, so you move farther to gain one wavelength. Hence beta = lambda D / d, which goes as 1/d.",
-  "sim_moment": "Double Slit: drag the d slider down and watch the fringes spread apart.",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
-   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
-   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
-  ]
- },
- {
-  "card_id": "L2-R",
-  "concept": "C8",
-  "code": "L2",
-  "statement": "Interference redistributes light energy across the screen; it never creates or destroys it.",
-  "wrong_idea": "Interference makes extra light at bright fringes and destroys light at dark ones.",
-  "why_it_feels_right": "Bright fringes really are up to four times as bright as one slit alone, so light seems added.",
-  "why_wrong": "Energy is conserved. Each slit gives I0, so 2I0 on average. Interference only moves energy: bright fringes reach 4I0, dark ones 0, and the average stays 2I0.",
-  "sim_moment": "Double Slit: toggle 'cover one slit' and compare where the light goes with one slit versus two.",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
-   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
-   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
-  ]
- },
- {
-  "card_id": "L3-R",
-  "concept": "C8",
-  "code": "L3",
-  "statement": "Fringes need both slits; cover one and the whole fringe pattern disappears.",
-  "wrong_idea": "Covering one slit just removes half the fringes.",
-  "why_it_feels_right": "It feels like each slit makes its own share of fringes.",
-  "why_wrong": "Every fringe needs waves from both slits meeting. With one slit nothing adds or cancels, so no fringes, only the broad single-slit diffraction pattern of the open slit.",
-  "sim_moment": "Double Slit: flip the 'cover one slit' toggle and watch all fringes merge into one broad band.",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Formulas written in plain text (lambda, beta) to avoid encoding issues; swap to Greek symbols if the UI supports it",
-   "L2-R sim_moment assumes the Double Slit sim shows relative brightness clearly with and without the cover toggle",
-   "Single-slit pattern looks like a uniform broad band only when the slit is narrow; centre intensity drops from 4I0 to I0"
-  ]
- },
- {
-  "card_id": "C9-K",
-  "concept": "C9",
-  "statement": "A narrower slit gives a wider central maximum, and a tilted polaroid between crossed polaroids lets some light through.",
-  "analogy": "Like a vertical gate then a horizontal gate: a slanted gate between lets some through.",
-  "steps": [
-   "First minima: a sin θ = ±λ, so central width ≈ 2λD/a.",
-   "Smaller a, wider band.",
-   "Polaroid: I = I0 cos²θ; unpolarised gives I0/2.",
-   "Crossed pair plus 45° middle sheet: (I0/2)cos²45°cos²45° = I0/8."
-  ],
-  "worked_example": "λ = 500 nm, a = 0.10 mm, D = 2.0 m: width = 2(500×10⁻⁹)(2.0)/(1.0×10⁻⁴) = 0.020 m = 20 mm.",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Width 2λD/a uses the small-angle approximation",
-   "I0/8 assumes ideal polaroids with no extra absorption",
-   "Gate analogy is qualitative only"
-  ]
- },
- {
-  "card_id": "L4-R",
-  "concept": "C9",
-  "code": "L4",
-  "statement": "The central maximum width 2λD/a grows as the slit width a shrinks.",
-  "wrong_idea": "If I make the slit thinner, the bright spot on the screen gets thinner too.",
-  "why_it_feels_right": "For big openings a smaller window really does give a smaller patch of light.",
-  "why_wrong": "When the slit is only a few wavelengths wide, light diffracts; the first minima sit at sin θ = λ/a, so a smaller a pushes them outward.",
-  "sim_moment": "Double Slit, 'cover one slit' mode: narrow the slit and watch the single-slit envelope (width 2λD/a) spread out.",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Width 2λD/a uses the small-angle approximation",
-   "I0/8 assumes ideal polaroids with no extra absorption",
-   "Gate analogy is qualitative only"
-  ]
- },
- {
-  "card_id": "L5-R",
-  "concept": "C9",
-  "code": "L5",
-  "statement": "A polaroid passes the component along its axis, so a tilted middle polaroid can increase the light through a crossed pair.",
-  "wrong_idea": "A polaroid only blocks light, so adding another one can only make things darker.",
-  "why_it_feels_right": "Every extra filter usually cuts more light, and one polaroid already halves unpolarised light.",
-  "why_wrong": "A polaroid also sets the direction of polarisation. Crossed polaroids give 0, but a 45° sheet between them turns the light so (I0/2)cos²45°cos²45° = I0/8 passes.",
-  "sim_moment": "none — use the three-polaroid demo",
-  "verify_flags": [
-   "TODO_VERIFY",
-   "Width 2λD/a uses the small-angle approximation",
-   "I0/8 assumes ideal polaroids with no extra absorption",
-   "Gate analogy is qualitative only"
+   "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image",
+   "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook"
   ]
  }
 ]

@@ -10,7 +10,61 @@
       "Denser to rarer? sin C = n2/n1",
       "TIR only if incidence angle exceeds C"
     ],
-    "worked_example": "Glass to air, n = 1.5: sin C = 1/1.5, C ≈ 41.8°. At 45° inside: TIR. At 30°: exits at 48.6°."
+    "worked_example": "Glass to air, n = 1.5: sin C = 1/1.5, C ≈ 41.8°. At 45° inside: TIR. At 30°: exits at 48.6°.",
+    "topic": "Optics",
+    "subtopic": "Refraction at a plane surface and total internal reflection",
+    "learning_objective": "Predict whether a ray bends toward or away from the normal, use n = c/v and Snell's law, and decide when total internal reflection can occur.",
+    "simple": "Light slows down in glass or water and speeds up again in air. Slowing down makes it bend toward the normal; speeding up makes it bend away. If light inside glass or water meets the surface at too steep an angle, it cannot get out and reflects back completely: total internal reflection.",
+    "formal": "The refractive index of a medium is n = c/v, the ratio of the speed of light in vacuum to its speed in the medium. At a boundary, Snell's law n₁ sin i = n₂ sin r fixes the refracted direction. Frequency is set by the source and stays the same, so the wavelength becomes λ_vacuum/n. For travel from a denser to a rarer medium, the critical angle C obeys sin C = n₂/n₁; for incidence beyond C there is no refracted ray and all the light is reflected.",
+    "equations": [
+      {
+        "expr": "n = c / v",
+        "meaning": "Refractive index compares the speed of light in vacuum with its speed in the medium.",
+        "vars": {
+          "n": "absolute refractive index (no unit)",
+          "c": "speed of light in vacuum, 3.0 × 10⁸ (m/s)",
+          "v": "speed of light in the medium (m/s)"
+        },
+        "assumptions": "Air is taken as n ≈ 1."
+      },
+      {
+        "expr": "n₁ sin i = n₂ sin r",
+        "meaning": "Snell's law links the angles on the two sides of a boundary.",
+        "vars": {
+          "n₁": "refractive index of first medium (no unit)",
+          "n₂": "refractive index of second medium (no unit)",
+          "i": "angle of incidence from the normal (degree)",
+          "r": "angle of refraction from the normal (degree)"
+        },
+        "assumptions": "Angles measured from the normal; plane boundary."
+      },
+      {
+        "expr": "λ_medium = λ_vacuum / n",
+        "meaning": "Wavelength shrinks by the factor n while frequency stays fixed.",
+        "vars": {
+          "λ_medium": "wavelength in the medium (m)",
+          "λ_vacuum": "wavelength in vacuum (m)",
+          "n": "refractive index (no unit)"
+        },
+        "assumptions": "Frequency is set by the source and does not change at a boundary."
+      },
+      {
+        "expr": "sin C = n₂ / n₁ (= 1/n into air)",
+        "meaning": "Critical angle beyond which total internal reflection occurs.",
+        "vars": {
+          "C": "critical angle (degree)",
+          "n₁": "refractive index of denser medium (no unit)",
+          "n₂": "refractive index of rarer medium (no unit)"
+        },
+        "assumptions": "Only defined for n₁ > n₂, light travelling denser to rarer; TIR when i > C."
+      }
+    ],
+    "alternatives": [
+      "Wavefront view: one edge of a slanting wavefront reaches the slower medium first and lags behind, so the whole wavefront swings round; entering a faster medium swings it the other way.",
+      "Marching band view: a row of marchers stepping slantwise from road onto mud slows at one end first and wheels toward the normal; stepping back onto road wheels it away."
+    ],
+    "visual": "refraction",
+    "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed."
   },
   "remediation_cards": [
     {
@@ -20,7 +74,7 @@
       "why_it_feels_right": "Most diagrams show air into glass or water, where it really does bend toward the normal.",
       "why_wrong": "The direction matters: going into a rarer medium like air, light speeds up and bends away from the normal.",
       "correct_idea": "Light bends toward the normal entering a denser medium and away from it entering a rarer one.",
-      "sim_moment": "Lens Bench, laser-in-glass mode: watch the beam leave the glass into air and swing away from the normal."
+      "sim_moment": "Refraction visual: drag the ray inside the glass and let it leave into air; it swings away from the normal. Drag it in from air and it swings toward."
     },
     {
       "card_id": "R4-R",
@@ -29,7 +83,7 @@
       "why_it_feels_right": "Glass and water look shiny from both sides, and 'more than critical' is easy to remember alone.",
       "why_wrong": "From air into glass a refracted ray always exists; only light already in the denser medium can be trapped.",
       "correct_idea": "TIR needs denser-to-rarer travel and an incidence angle above the critical angle.",
-      "sim_moment": "Lens Bench TIR mode: past 41.8° inside the glass the beam is trapped; aimed in from air, it always enters."
+      "sim_moment": "Refraction visual: inside the glass, drag the ray past the critical angle and watch TIR trap it. Now aim it in from the air side at 80°; it always enters."
     }
   ],
   "exemplars": {
@@ -95,15 +149,34 @@
         "CORRECT"
       ],
       "probe": "Can light coming from the air ever be totally internally reflected at a glass surface if you make the angle big enough?",
-      "reply_if_first": "You said yes; try it in Lens Bench from the air side at 80° and see whether any beam goes into the glass.",
+      "reply_if_first": "You said yes; try it in the refraction visual from the air side at 80° and see whether any beam goes into the glass.",
       "reply_if_second": "You said no; so what two things must be true for light to get trapped inside the glass?"
     }
   ],
   "verify_flags": [
     "TODO_VERIFY",
     "Worked example: sin r = 1.5 × sin 30° = 0.75 -> r ≈ 48.6° (coincides numerically with water's critical angle; check this doesn't confuse students)",
-    "Remediation R4 sim_moment assumes Lens Bench TIR mode lets the laser be aimed from the air side as well as from inside the glass",
+    "Remediation R4 sim_moment assumes the refraction visual lets the laser be aimed from the air side as well as from inside the glass",
     "Probe 1 'reply_if_first' assumes an R3 holder predicts the ray enters bending toward the normal (correct outcome here); the probe separates by the R4 holder predicting TIR",
-    "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text"
+    "Cycle-onto-sand analogy is a common teaching analogy, not from NCERT text",
+    "Seeded concept-card fields, equations and doubts need academic review; Unicode subscripts (n₁, n₂) must render in the app"
+  ],
+  "doubts": [
+    {
+      "q": "Does the colour (frequency) of light change when it enters water?",
+      "a": "No. Frequency is set by the source and stays the same in every medium. Speed and wavelength both drop by the factor n, which is why a red laser still looks red underwater."
+    },
+    {
+      "q": "Why doesn't light bend when it hits the surface along the normal?",
+      "a": "At 0° incidence, sin i = 0, so Snell's law gives sin r = 0 and the ray goes straight on. It still slows down; only its direction is unchanged."
+    },
+    {
+      "q": "Can total internal reflection happen when light goes from air into glass?",
+      "a": "No. Going from rarer to denser, sin r = sin i / n is always less than 1, so a refracted ray always exists. TIR needs light in the denser medium heading toward a rarer one beyond the critical angle."
+    },
+    {
+      "q": "Why is it called 'total' if some light reflects at every surface anyway?",
+      "a": "Below the critical angle a surface reflects a small part and refracts the rest. Beyond it there is no refracted ray at all, so all the light is reflected, which is why optical fibres lose so little light."
+    }
   ]
 }

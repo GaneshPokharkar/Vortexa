@@ -1,0 +1,14 @@
+[
+ {
+  "topic_id": "SHM",
+  "title": "Simple Harmonic Motion",
+  "primary": true,
+  "description": "Why things oscillate: mean position, velocity and acceleration, period, restoring force and energy."
+ },
+ {
+  "topic_id": "OPTICS",
+  "title": "Optics",
+  "primary": false,
+  "description": "Extension module: refraction, total internal reflection and image formation by lenses."
+ }
+]

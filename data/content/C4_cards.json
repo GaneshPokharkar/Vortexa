@@ -2,216 +2,116 @@
   "concept_card": {
     "card_id": "C4-K",
     "concept": "C4",
-    "statement": "Overlapping waves add displacements, then pass on unchanged; close frequencies beat at |f1 − f2|.",
-    "analogy": "Like two queues crossing at a railway gate: they mix briefly, then walk on.",
-    "steps": [
-      "Add displacements point by point while waves overlap.",
-      "Afterwards each wave keeps its shape and direction.",
-      "A flat string is still moving: energy is kinetic, not lost.",
-      "Beat rate = |f1 − f2|; heard pitch ≈ (f1 + f2)/2.",
-      "Fixed string: nodes λ/2 apart, fundamental = v/2L."
+    "topic": "SHM",
+    "subtopic": "Restoring force and the defining condition a = −ω²x",
+    "learning_objective": "Students will be able to state that the restoring force in SHM is proportional to displacement and always directed toward the mean position, and use a = −ω²x with ω² = k/m to find acceleration at any displacement.",
+    "statement": "In SHM the restoring force F = −kx grows with displacement and always points toward the mean position, so a = −ω²x with ω² = k/m.",
+    "simple": "Pull a block on a spring and let go. The spring always pulls it back toward the middle. The farther you pull, the harder it pulls back. At the middle, the pull is zero.",
+    "formal": "A particle performs SHM when the net force on it is a restoring force proportional to its displacement from the mean position and opposite in direction: F = −kx. By Newton's second law, ma = −kx, so a = −(k/m)x = −ω²x, where ω = √(k/m) is the angular frequency. The condition a ∝ −x defines SHM. The acceleration is zero at the mean and has maximum magnitude ω²A at the extremes, whatever the direction of velocity.",
+    "equations": [
+      {"expr": "F = −kx", "meaning": "Restoring force is proportional to displacement and opposite to it", "vars": {"F": "restoring force (N)", "k": "force constant (N/m)", "x": "displacement from mean (m)"}, "assumptions": "ideal spring, small displacement"},
+      {"expr": "a = −ω²x", "meaning": "Defining condition of SHM: acceleration proportional to displacement, directed toward the mean", "vars": {"a": "acceleration (m/s²)", "ω": "angular frequency (rad/s)", "x": "displacement from mean (m)"}, "assumptions": "linear restoring force, no damping"},
+      {"expr": "ω² = k/m", "meaning": "Angular frequency is fixed by the stiffness and the mass", "vars": {"ω": "angular frequency (rad/s)", "k": "force constant (N/m)", "m": "mass (kg)"}, "assumptions": "spring–mass system, massless spring"}
     ],
-    "worked_example": "Forks 256 Hz, 260 Hz: 4 beats per second, pitch ≈ 258 Hz."
+    "analogy": "A ball in a round bowl: wherever you push it, the slope always tips it back toward the bottom, and the farther up the side, the steeper the slope and the stronger the tip back.",
+    "steps": [
+      "Locate the mean position and measure the displacement x from it",
+      "The restoring force is F = −kx: its size is k|x| and its direction is toward the mean",
+      "Ignore which way the body is moving; only the displacement sets the force",
+      "Divide by mass: a = −(k/m)x = −ω²x",
+      "Check: zero at the mean, largest (ω²A) at the extremes"
+    ],
+    "worked_example": "m = 0.25 kg, k = 100 N/m, block at x = +0.03 m. F = −kx = −100 × 0.03 = −3 N (toward mean). ω² = k/m = 400 s⁻², so ω = 20 rad/s and a = −ω²x = −400 × 0.03 = −12 m/s², i.e. 12 m/s² toward the mean.",
+    "alternatives": [
+      "Think of the spring as always trying to undo the stretch: it pulls in when stretched and pushes out when compressed, so the force always points back to the natural length, and a bigger stretch means a bigger correction.",
+      "On an a–x graph, SHM is a straight line through the origin with negative slope −ω²; any other shape (constant a, positive slope, curve) is not SHM."
+    ],
+    "visual": "shm-oscillator",
+    "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed."
   },
   "remediation_cards": [
     {
-      "card_id": "W4-R",
-      "code": "W4",
-      "wrong_idea": "When the two pulses cancel, they destroy each other and the energy is gone.",
-      "why_it_feels_right": "The rope looks completely flat, so it seems nothing is left.",
-      "why_wrong": "Flat is not still. At that instant every bit of the rope is moving fast, so all the energy is kinetic. A moment later both pulses reappear.",
-      "correct_idea": "Cancellation is only momentary; the energy stays in the rope as motion and both pulses carry on.",
-      "sim_moment": "Red-Dot Rope"
+      "card_id": "S11-R",
+      "code": "S11",
+      "wrong_idea": "The spring pulls back with the same force everywhere, because k doesn't change.",
+      "why_it_feels_right": "k is a constant, so a constant pull seems natural.",
+      "why_wrong": "The force is k times the displacement: double the stretch, double the force; zero at the mean.",
+      "correct_idea": "The restoring force F = −kx is proportional to displacement: zero at the mean and largest at the extremes.",
+      "sim_moment": "Watch the acceleration arrow shrink to nothing at the mean and grow longest at the extremes."
     },
     {
-      "card_id": "W5-R",
-      "code": "W5",
-      "wrong_idea": "The two pulses hit each other and bounce back like balls.",
-      "why_it_feels_right": "Things we see colliding, like cricket balls or marbles, bounce off each other.",
-      "why_wrong": "A pulse is not an object; it is a shape moving along the rope. Where two meet, displacements simply add. Send a tall and a short pulse: the tall one ends up at the far end.",
-      "correct_idea": "Pulses pass through each other and come out unchanged.",
-      "sim_moment": "Red-Dot Rope"
-    },
-    {
-      "card_id": "B1-R",
-      "code": "B1",
-      "wrong_idea": "Beat frequency is f1 + f2, because both sounds play together.",
-      "why_it_feels_right": "Superposition means adding, so adding the frequencies feels natural.",
-      "why_wrong": "We add displacements, not frequencies. Loudness swells when the waves fall into step and fades when they fall out of step, which happens |f1 − f2| times per second. 440 Hz and 444 Hz give 4 beats, not 884.",
-      "correct_idea": "Beat frequency = |f1 − f2|.",
-      "sim_moment": "Beats You Can Hear"
-    },
-    {
-      "card_id": "B2-R",
-      "code": "B2",
-      "wrong_idea": "The beat frequency is the average of the two frequencies.",
-      "why_it_feels_right": "You really do hear a note near the average, so that number seems like the answer.",
-      "why_wrong": "The average, (f1 + f2)/2, is the pitch you hear. The beat is how often the loudness throbs, which is the difference. 506 Hz and 512 Hz: pitch about 509 Hz, beats 6 per second.",
-      "correct_idea": "The average is the pitch; the beat rate is |f1 − f2|.",
-      "sim_moment": "Beats You Can Hear"
+      "card_id": "S12-R",
+      "code": "S12",
+      "wrong_idea": "The force acts the way the block is moving, so when it moves outward the force is outward too.",
+      "why_it_feels_right": "We push things the way we want them to move, so force and motion seem to go together.",
+      "why_wrong": "Force sets acceleration, not velocity. Moving outward, the block slows down, so the force points back to the mean.",
+      "correct_idea": "The restoring force always points toward the mean, whichever way the block moves.",
+      "sim_moment": "Pause while the block moves outward: it heads out, but the acceleration arrow points back to the mean."
     }
   ],
   "exemplars": {
-    "W4": [
-      "they cancel out so they're just gone",
-      "up and down make zero, so the pulses die",
-      "the energy got used up when they cancelled",
-      "flat rope means no energy left",
-      "they destroy each other in the middle",
-      "once they cancel nothing comes out the other side",
-      "the waves kind of kill each other off",
-      "it goes quiet because the sound energy is lost",
-      "destructive interference means energy gets destroyed",
-      "after they meet the rope just stays still",
-      "dono pulse cancel ho gaye, energy khatam",
-      "rope flat hai toh energy kahan bachi, sab chali gayi"
+    "S11": [
+      "the force is same everywhere in the oscillation",
+      "spring pulls with the same force at every point",
+      "restoring force is constant, it doesn't change with x",
+      "whether it's 2 cm or 6 cm, force is equal",
+      "force doesn't depend on how far you pull it",
+      "acceleration stays the same throughout the motion",
+      "it's the same pull near the centre and at the ends",
+      "the force is fixed, only the speed keeps changing",
+      "k is constant so the force is also constant",
+      "double the stretch, force is still the same only",
+      "force toh har jagah same hi rehta hai",
+      "kitna bhi kheecho, restoring force utna hi hai"
     ],
-    "W5": [
-      "they hit and bounce back",
-      "like two balls colliding, they rebound",
-      "each pulse goes back to the person who sent it",
-      "they can't pass through each other, so they reflect",
-      "they collide in the middle and turn around",
-      "the pulses push each other back",
-      "they bounce off, maybe a bit smaller after",
-      "it's a collision, so they reverse direction",
-      "the upward one comes back to my side",
-      "they act like solid things and bump",
-      "dono pulse takra ke wapas aa jaate hain",
-      "ball jaisa, collide karke bounce ho jaata hai"
-    ],
-    "B1": [
-      "just add them, 440 plus 444",
-      "both are playing so the beats are the total",
-      "beat frequency is f1 plus f2",
-      "superposition means add, so add the frequencies",
-      "884 beats, you sum them",
-      "two sounds together means the frequencies stack up",
-      "more sources, more beats, so it's the sum",
-      "the combined frequency is the sum",
-      "the beats would be super fast, like hundreds a second, since you add",
-      "total vibrations per second from both together",
-      "dono frequency ko jod do, wahi beat hai",
-      "plus karna hai na, 512 aur 506 ko"
-    ],
-    "B2": [
-      "it's the average of the two",
-      "add them and divide by two",
-      "the beat is somewhere in the middle",
-      "442, halfway between 440 and 444",
-      "the throb is at the mean frequency",
-      "beat frequency sits between both notes",
-      "you hear a middle note, so that's the beat",
-      "average, because the two sounds mix evenly",
-      "the beat number is like the middle value",
-      "f1 plus f2 over 2",
-      "dono ka average lo, bas",
-      "beech wala number hi beat frequency hai"
+    "S12": [
+      "the force acts in the direction it's moving",
+      "force pushes it outward toward the extreme",
+      "when it goes right, the force is also to the right",
+      "force is along the displacement",
+      "it pushes the block away from the centre",
+      "the spring force carries it along the way it's going",
+      "force and velocity are always in the same direction",
+      "it moves away from mean because the force is away from mean",
+      "force is in the same direction as x",
+      "the block keeps going because the force points forward",
+      "jidhar ja raha hai udhar hi force lagega",
+      "force mean se door ki taraf hai na"
     ],
     "CORRECT": [
-      "the beats are the difference, so 4 per second",
-      "they add while overlapping and then just carry on",
-      "the rope's flat but still moving, so the energy's still there",
-      "the pulses pass through each other unchanged",
-      "the average is the pitch, the difference is the beat rate",
-      "they go in and out of step, f1 minus f2 times a second"
+      "force always points back toward the mean position",
+      "F equals minus kx, so it's opposite to displacement and grows with it",
+      "double the displacement, double the restoring force",
+      "acceleration is minus omega squared x, always toward the centre",
+      "at the mean the force is zero, at the extremes it's maximum",
+      "even while it's moving outward, the force is pulling it back to the mean"
     ]
   },
   "contrast_probes": [
     {
-      "separates": [
-        "W4",
-        "W5"
-      ],
-      "probe": "Two equal and opposite pulses meet in the middle of a rope. A second later, is there any pulse near the ends?",
-      "reply_if_first": "No, nothing is left, the rope just stays flat.",
-      "reply_if_second": "Yes, each pulse is back near the end it started from."
+      "separates": ["S11", "S12"],
+      "probe": "As the block moves from the mean out to the extreme, what happens to the restoring force?",
+      "reply_if_first": "Nothing changes, it's the same force all the way out.",
+      "reply_if_second": "It keeps pushing the block outward, that's why it reaches the extreme."
     },
     {
-      "separates": [
-        "W4",
-        "B1"
-      ],
-      "probe": "Forks of 300 Hz and 304 Hz sound together. What happens to the loudness, and how often?",
-      "reply_if_first": "It keeps fading away because the waves cancel and the sound energy gets used up.",
-      "reply_if_second": "It throbs about 604 times a second."
+      "separates": ["S11", "CORRECT"],
+      "probe": "How does the restoring force at 1 cm from the mean compare with the force at 4 cm?",
+      "reply_if_first": "They're equal, the spring is the same so the force is the same.",
+      "reply_if_second": "At 4 cm it's four times bigger, since F is proportional to x."
     },
     {
-      "separates": [
-        "W4",
-        "B2"
-      ],
-      "probe": "Forks of 300 Hz and 304 Hz sound together. What happens to the loudness, and how often?",
-      "reply_if_first": "It keeps fading away because the waves cancel and the sound energy gets used up.",
-      "reply_if_second": "It throbs about 302 times a second."
-    },
-    {
-      "separates": [
-        "W5",
-        "B1"
-      ],
-      "probe": "Forks of 300 Hz and 304 Hz face each other across a room. Where their sound waves meet in the middle, what happens?",
-      "reply_if_first": "The waves bounce off each other and head back toward their own forks.",
-      "reply_if_second": "You hear a throb about 604 times a second."
-    },
-    {
-      "separates": [
-        "W5",
-        "B2"
-      ],
-      "probe": "Forks of 300 Hz and 304 Hz face each other across a room. Where their sound waves meet in the middle, what happens?",
-      "reply_if_first": "The waves bounce off each other and head back toward their own forks.",
-      "reply_if_second": "You hear a throb about 302 times a second."
-    },
-    {
-      "separates": [
-        "B1",
-        "B2"
-      ],
-      "probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
-      "reply_if_first": "About 604.",
-      "reply_if_second": "About 302."
-    },
-    {
-      "separates": [
-        "W4",
-        "CORRECT"
-      ],
-      "probe": "At the instant two opposite pulses make the rope look flat, is the middle of the rope moving or still?",
-      "reply_if_first": "Still, the pulses have cancelled so nothing is happening there.",
-      "reply_if_second": "Moving fast, the energy is in its motion and the pulses come back out."
-    },
-    {
-      "separates": [
-        "W5",
-        "CORRECT"
-      ],
-      "probe": "Kabir sends a tall pulse and Meera a short one toward each other on a slinky. After they meet, which pulse reaches Meera's end?",
-      "reply_if_first": "The short one, it bounces back to her.",
-      "reply_if_second": "The tall one, it passes straight through."
-    },
-    {
-      "separates": [
-        "B1",
-        "CORRECT"
-      ],
-      "probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
-      "reply_if_first": "About 604.",
-      "reply_if_second": "About 4."
-    },
-    {
-      "separates": [
-        "B2",
-        "CORRECT"
-      ],
-      "probe": "Forks of 300 Hz and 304 Hz sound together. Which number gives the pitch you hear, and which gives how often it throbs?",
-      "reply_if_first": "Both are about 302.",
-      "reply_if_second": "Pitch about 302 Hz, throbbing 4 times a second."
+      "separates": ["S12", "CORRECT"],
+      "probe": "While the block is moving outward, past the mean toward the extreme, which way does the force on it point?",
+      "reply_if_first": "Outward, along with the motion.",
+      "reply_if_second": "Back toward the mean, which is why the block slows down and stops at the extreme."
     }
   ],
-  "verify_flags": [
-    "TODO_VERIFY",
-    "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
-    "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
-  ]
+  "doubts": [
+    {"q": "If the force always pulls toward the mean, why doesn't the block just stop at the mean?", "a": "At the mean the force is zero but the speed is maximum. By inertia the block overshoots, and only then does the restoring force start slowing it down on the other side."},
+    {"q": "What does the minus sign in F = −kx actually mean?", "a": "It means the force is opposite to the displacement. If x is positive the force is negative, and vice versa, so the force always points back to the mean."},
+    {"q": "At the extreme the velocity is zero, so isn't the acceleration also zero there?", "a": "No. Acceleration depends on displacement, not velocity. At the extreme x = ±A, so the acceleration has its largest magnitude, ω²A, directed toward the mean."},
+    {"q": "Is every to-and-fro motion SHM?", "a": "No. It is SHM only if the acceleration is proportional to displacement and opposite to it, a = −ω²x. A ball bouncing on the floor is periodic but not SHM, because its acceleration is g, which does not depend on x."}
+  ],
+  "verify_flags": ["TODO_VERIFY", "Bowl analogy is exact only for small displacements in a circular bowl", "Hinglish exemplars need native-speaker check"]
 }

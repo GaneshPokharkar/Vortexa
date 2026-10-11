@@ -1,0 +1,217 @@
+{
+  "concept_card": {
+    "card_id": "C4-K",
+    "concept": "C4",
+    "statement": "Overlapping waves add displacements, then pass on unchanged; close frequencies beat at |f1 − f2|.",
+    "analogy": "Like two queues crossing at a railway gate: they mix briefly, then walk on.",
+    "steps": [
+      "Add displacements point by point while waves overlap.",
+      "Afterwards each wave keeps its shape and direction.",
+      "A flat string is still moving: energy is kinetic, not lost.",
+      "Beat rate = |f1 − f2|; heard pitch ≈ (f1 + f2)/2.",
+      "Fixed string: nodes λ/2 apart, fundamental = v/2L."
+    ],
+    "worked_example": "Forks 256 Hz, 260 Hz: 4 beats per second, pitch ≈ 258 Hz."
+  },
+  "remediation_cards": [
+    {
+      "card_id": "W4-R",
+      "code": "W4",
+      "wrong_idea": "When the two pulses cancel, they destroy each other and the energy is gone.",
+      "why_it_feels_right": "The rope looks completely flat, so it seems nothing is left.",
+      "why_wrong": "Flat is not still. At that instant every bit of the rope is moving fast, so all the energy is kinetic. A moment later both pulses reappear.",
+      "correct_idea": "Cancellation is only momentary; the energy stays in the rope as motion and both pulses carry on.",
+      "sim_moment": "Red-Dot Rope"
+    },
+    {
+      "card_id": "W5-R",
+      "code": "W5",
+      "wrong_idea": "The two pulses hit each other and bounce back like balls.",
+      "why_it_feels_right": "Things we see colliding, like cricket balls or marbles, bounce off each other.",
+      "why_wrong": "A pulse is not an object; it is a shape moving along the rope. Where two meet, displacements simply add. Send a tall and a short pulse: the tall one ends up at the far end.",
+      "correct_idea": "Pulses pass through each other and come out unchanged.",
+      "sim_moment": "Red-Dot Rope"
+    },
+    {
+      "card_id": "B1-R",
+      "code": "B1",
+      "wrong_idea": "Beat frequency is f1 + f2, because both sounds play together.",
+      "why_it_feels_right": "Superposition means adding, so adding the frequencies feels natural.",
+      "why_wrong": "We add displacements, not frequencies. Loudness swells when the waves fall into step and fades when they fall out of step, which happens |f1 − f2| times per second. 440 Hz and 444 Hz give 4 beats, not 884.",
+      "correct_idea": "Beat frequency = |f1 − f2|.",
+      "sim_moment": "Beats You Can Hear"
+    },
+    {
+      "card_id": "B2-R",
+      "code": "B2",
+      "wrong_idea": "The beat frequency is the average of the two frequencies.",
+      "why_it_feels_right": "You really do hear a note near the average, so that number seems like the answer.",
+      "why_wrong": "The average, (f1 + f2)/2, is the pitch you hear. The beat is how often the loudness throbs, which is the difference. 506 Hz and 512 Hz: pitch about 509 Hz, beats 6 per second.",
+      "correct_idea": "The average is the pitch; the beat rate is |f1 − f2|.",
+      "sim_moment": "Beats You Can Hear"
+    }
+  ],
+  "exemplars": {
+    "W4": [
+      "they cancel out so they're just gone",
+      "up and down make zero, so the pulses die",
+      "the energy got used up when they cancelled",
+      "flat rope means no energy left",
+      "they destroy each other in the middle",
+      "once they cancel nothing comes out the other side",
+      "the waves kind of kill each other off",
+      "it goes quiet because the sound energy is lost",
+      "destructive interference means energy gets destroyed",
+      "after they meet the rope just stays still",
+      "dono pulse cancel ho gaye, energy khatam",
+      "rope flat hai toh energy kahan bachi, sab chali gayi"
+    ],
+    "W5": [
+      "they hit and bounce back",
+      "like two balls colliding, they rebound",
+      "each pulse goes back to the person who sent it",
+      "they can't pass through each other, so they reflect",
+      "they collide in the middle and turn around",
+      "the pulses push each other back",
+      "they bounce off, maybe a bit smaller after",
+      "it's a collision, so they reverse direction",
+      "the upward one comes back to my side",
+      "they act like solid things and bump",
+      "dono pulse takra ke wapas aa jaate hain",
+      "ball jaisa, collide karke bounce ho jaata hai"
+    ],
+    "B1": [
+      "just add them, 440 plus 444",
+      "both are playing so the beats are the total",
+      "beat frequency is f1 plus f2",
+      "superposition means add, so add the frequencies",
+      "884 beats, you sum them",
+      "two sounds together means the frequencies stack up",
+      "more sources, more beats, so it's the sum",
+      "the combined frequency is the sum",
+      "the beats would be super fast, like hundreds a second, since you add",
+      "total vibrations per second from both together",
+      "dono frequency ko jod do, wahi beat hai",
+      "plus karna hai na, 512 aur 506 ko"
+    ],
+    "B2": [
+      "it's the average of the two",
+      "add them and divide by two",
+      "the beat is somewhere in the middle",
+      "442, halfway between 440 and 444",
+      "the throb is at the mean frequency",
+      "beat frequency sits between both notes",
+      "you hear a middle note, so that's the beat",
+      "average, because the two sounds mix evenly",
+      "the beat number is like the middle value",
+      "f1 plus f2 over 2",
+      "dono ka average lo, bas",
+      "beech wala number hi beat frequency hai"
+    ],
+    "CORRECT": [
+      "the beats are the difference, so 4 per second",
+      "they add while overlapping and then just carry on",
+      "the rope's flat but still moving, so the energy's still there",
+      "the pulses pass through each other unchanged",
+      "the average is the pitch, the difference is the beat rate",
+      "they go in and out of step, f1 minus f2 times a second"
+    ]
+  },
+  "contrast_probes": [
+    {
+      "separates": [
+        "W4",
+        "W5"
+      ],
+      "probe": "Two equal and opposite pulses meet in the middle of a rope. A second later, is there any pulse near the ends?",
+      "reply_if_first": "No, nothing is left, the rope just stays flat.",
+      "reply_if_second": "Yes, each pulse is back near the end it started from."
+    },
+    {
+      "separates": [
+        "W4",
+        "B1"
+      ],
+      "probe": "Forks of 300 Hz and 304 Hz sound together. What happens to the loudness, and how often?",
+      "reply_if_first": "It keeps fading away because the waves cancel and the sound energy gets used up.",
+      "reply_if_second": "It throbs about 604 times a second."
+    },
+    {
+      "separates": [
+        "W4",
+        "B2"
+      ],
+      "probe": "Forks of 300 Hz and 304 Hz sound together. What happens to the loudness, and how often?",
+      "reply_if_first": "It keeps fading away because the waves cancel and the sound energy gets used up.",
+      "reply_if_second": "It throbs about 302 times a second."
+    },
+    {
+      "separates": [
+        "W5",
+        "B1"
+      ],
+      "probe": "Forks of 300 Hz and 304 Hz face each other across a room. Where their sound waves meet in the middle, what happens?",
+      "reply_if_first": "The waves bounce off each other and head back toward their own forks.",
+      "reply_if_second": "You hear a throb about 604 times a second."
+    },
+    {
+      "separates": [
+        "W5",
+        "B2"
+      ],
+      "probe": "Forks of 300 Hz and 304 Hz face each other across a room. Where their sound waves meet in the middle, what happens?",
+      "reply_if_first": "The waves bounce off each other and head back toward their own forks.",
+      "reply_if_second": "You hear a throb about 302 times a second."
+    },
+    {
+      "separates": [
+        "B1",
+        "B2"
+      ],
+      "probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
+      "reply_if_first": "About 604.",
+      "reply_if_second": "About 302."
+    },
+    {
+      "separates": [
+        "W4",
+        "CORRECT"
+      ],
+      "probe": "At the instant two opposite pulses make the rope look flat, is the middle of the rope moving or still?",
+      "reply_if_first": "Still, the pulses have cancelled so nothing is happening there.",
+      "reply_if_second": "Moving fast, the energy is in its motion and the pulses come back out."
+    },
+    {
+      "separates": [
+        "W5",
+        "CORRECT"
+      ],
+      "probe": "Kabir sends a tall pulse and Meera a short one toward each other on a slinky. After they meet, which pulse reaches Meera's end?",
+      "reply_if_first": "The short one, it bounces back to her.",
+      "reply_if_second": "The tall one, it passes straight through."
+    },
+    {
+      "separates": [
+        "B1",
+        "CORRECT"
+      ],
+      "probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
+      "reply_if_first": "About 604.",
+      "reply_if_second": "About 4."
+    },
+    {
+      "separates": [
+        "B2",
+        "CORRECT"
+      ],
+      "probe": "Forks of 300 Hz and 304 Hz sound together. Which number gives the pitch you hear, and which gives how often it throbs?",
+      "reply_if_first": "Both are about 302.",
+      "reply_if_second": "Pitch about 302 Hz, throbbing 4 times a second."
+    }
+  ],
+  "verify_flags": [
+    "TODO_VERIFY",
+    "Heard pitch = (f1 + f2)/2 is approximate and holds only for close frequencies",
+    "In beats, quiet moments redistribute sound energy in time; it is not destroyed (used in W4 beat-context options and probes)"
+  ]
+}

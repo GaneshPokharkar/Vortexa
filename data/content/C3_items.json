@@ -2,109 +2,181 @@
   {
     "item_id": "C3-P1",
     "concept": "C3",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": null,
-    "stem": "Meera shakes one end of a long, tight rope 2 times per second, and the wave moves along at 6 m/s. Keeping the same rope and tension, she now shakes it 4 times per second. What happens?",
+    "transfer": false,
+    "stem": "In the physics lab, Sneha hangs two pendulums with equal string lengths. Bob X is 50 g and is pulled to 3°; bob Y is 200 g and is pulled to 6° (both small). She releases them together. Which finishes 10 oscillations first?",
     "options": {
-      "A": "The wave now travels at 12 m/s",
-      "B": "The speed stays 6 m/s and the wavelength becomes 1.5 m",
-      "C": "The speed stays 6 m/s and the wavelength becomes 6 m",
-      "D": "The rope pieces get carried forward quicker, so the wave goes faster"
+      "A": "X, because its swing is smaller so each oscillation is shorter",
+      "B": "Y, because gravity pulls the heavier bob harder so it swings faster",
+      "C": "Both finish together",
+      "D": "X, because the lighter bob is easier to move back and forth"
     },
-    "correct": "B",
-    "distractor_map": {
-      "A": "W2",
-      "B": "CORRECT",
-      "C": "SLIP",
-      "D": "W1"
-    },
+    "correct": "C",
+    "distractor_map": {"A": "S8", "B": "S9", "C": "CORRECT", "D": "S9"},
     "reasons": {
-      "r1": {"text": "She is shaking it faster, so the wave also has to move faster.", "maps_to": "W2"},
-      "r2": {"text": "Same rope, same tension, so same speed. Only the waves get shorter because she shakes more often.", "maps_to": "CORRECT"},
-      "r3": {"text": "Faster shaking pushes the rope itself forward quicker, and the wave rides along with it.", "maps_to": "W1"}
+      "r1": {"text": "Y swings through a bigger arc, so it has more distance to cover and takes more time.", "maps_to": "S8"},
+      "r2": {"text": "T = 2π√(L/g) has only length and g in it, and both have the same length, so the period is the same.", "maps_to": "CORRECT"},
+      "r3": {"text": "The heavy bob gets pulled down with more force, so it comes back quicker.", "maps_to": "S9"}
     },
-    "calc": "v = √(T/μ) unchanged = 6 m/s; λ = v/f = 6/4 = 1.5 m (earlier 6/2 = 3 m)",
-    "verify_flags": ["TODO_VERIFY", "Assumes ideal uniform string; the 6 m/s value is given, T and μ not stated"]
+    "calc": "T = 2π√(L/g) for both; independent of bob mass and of small amplitude, so both finish 10 oscillations together.",
+    "verify_flags": ["TODO_VERIFY", "Assumes negligible air drag on both bobs and both angles within the small-angle regime."]
   },
   {
     "item_id": "C3-P2",
     "concept": "C3",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C3-P1",
-    "stem": "At a Diwali mela, a flute player plays a 500 Hz note and a 1000 Hz note at the same instant. Priya stands 343 m away. Take the speed of sound in air as 343 m/s. Which note reaches her first?",
+    "transfer": false,
+    "stem": "Rohan's simple pendulum is 0.64 m long and swings with an amplitude of 3°. He restarts it at 6° (still small). Take g = π² m/s². What is the time period now?",
     "options": {
-      "A": "The 1000 Hz note, because faster vibration means faster sound",
-      "B": "Whichever note is played louder",
-      "C": "Both reach her together, after about 1 s",
-      "D": "Neither, until the puff of air from the flute blows across to her"
+      "A": "3.2 s",
+      "B": "0.41 s",
+      "C": "0.25 s",
+      "D": "1.6 s"
     },
-    "correct": "C",
-    "distractor_map": {
-      "A": "W2",
-      "B": "W3",
-      "C": "CORRECT",
-      "D": "W1"
-    },
+    "correct": "D",
+    "distractor_map": {"A": "S8", "B": "SLIP", "C": "S10", "D": "CORRECT"},
     "reasons": {
-      "r1": {"text": "Sound speed depends on the air, not on the note, so both take the same time.", "maps_to": "CORRECT"},
-      "r2": {"text": "The high note vibrates more times every second, so it must travel quicker.", "maps_to": "W2"},
-      "r3": {"text": "A louder note has more push behind it, so it gets there first.", "maps_to": "W3"}
+      "r1": {"text": "He doubled the swing, so the bob travels double the path and the period doubles too.", "maps_to": "S8"},
+      "r2": {"text": "Amplitude isn't in T = 2π√(L/g), so the period stays what it was for 3°.", "maps_to": "CORRECT"},
+      "r3": {"text": "ω = √(g/L) and the period is just 1/ω, so I take one by omega.", "maps_to": "S10"}
     },
-    "calc": "t = d/v = 343/343 = 1 s for both notes",
-    "verify_flags": ["TODO_VERIFY", "Uses 343 m/s for air at about 20 °C; NCERT also quotes 331 m/s at 0 °C"]
+    "calc": "T = 2π√(0.64/π²) = 2π(0.8/π) = 1.6 s (same at 3° and 6°). S8: 2×1.6 = 3.2 s. SLIP (no root): 2π(0.64/π²) = 1.28/π ≈ 0.41 s. S10: ω = π/0.8 ≈ 3.93 rad/s, 1/ω ≈ 0.25 s.",
+    "verify_flags": ["TODO_VERIFY"]
   },
   {
     "item_id": "C3-P3",
     "concept": "C3",
+    "kind": "mcq",
     "is_assessment": false,
     "sibling_of": "C3-P1",
-    "stem": "On sports day, Ravi and Anil each send one pulse along identical ropes tied to a post, with equal tension. Ravi jerks his hand much higher and much quicker than Anil. Whose pulse reaches the post first?",
+    "transfer": true,
+    "stem": "An empty tempo bounces on its suspension springs with a period of 0.5 s. After loading sacks of onions at a Nashik market, its total mass becomes 4 times. Treating it as a spring–mass system, what is the new bounce period?",
     "options": {
-      "A": "Ravi's, because his pulse is taller",
-      "B": "Ravi's, because he moved his hand quicker",
-      "C": "Ravi's, because his rope gets dragged towards the post more",
-      "D": "Both pulses reach the post at the same time"
+      "A": "1.0 s",
+      "B": "0.5 s, because the springs, not the load, decide the period",
+      "C": "2.0 s",
+      "D": "0.5 s on a smooth road, but longer when a speed breaker makes it bounce higher"
     },
-    "correct": "D",
-    "distractor_map": {
-      "A": "W3",
-      "B": "W2",
-      "C": "W1",
-      "D": "CORRECT"
-    },
+    "correct": "A",
+    "distractor_map": {"A": "CORRECT", "B": "S9", "C": "SLIP", "D": "S8"},
     "reasons": {
-      "r1": {"text": "A big jerk pulls the rope along towards the post, so the pulse arrives sooner.", "maps_to": "W1"},
-      "r2": {"text": "A taller pulse carries more energy, so it runs faster.", "maps_to": "W3"},
-      "r3": {"text": "The ropes and tension are the same, so the pulse speed is the same, no matter how he jerks.", "maps_to": "CORRECT"}
+      "r1": {"text": "T = 2π√(m/k), so 4 times the mass gives √4 = 2 times the period.", "maps_to": "CORRECT"},
+      "r2": {"text": "Mass only matters for weight; the bounce time depends on how stiff the spring is.", "maps_to": "S9"},
+      "r3": {"text": "A bigger bounce means the tempo goes up and down more, so it takes more time.", "maps_to": "S8"}
     },
-    "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Treats pulses as linear; a very large jerk can slightly raise tension, ignored here"]
+    "calc": "T ∝ √m: T₂ = 0.5 × √4 = 1.0 s. SLIP (T ∝ m, forgot root): 0.5 × 4 = 2.0 s.",
+    "verify_flags": ["TODO_VERIFY", "Real vehicle suspension has dampers and non-ideal springs; idealised as a single spring–mass system with k unchanged."]
   },
   {
     "item_id": "C3-A1",
     "concept": "C3",
+    "kind": "mcq",
     "is_assessment": true,
     "sibling_of": null,
-    "stem": "At Nagpur station, a worker taps a long steel rail with a hammer. Children 1 km down the line, with an ear on the rail, hear the tap. Which statement is correct?",
+    "transfer": false,
+    "stem": "Kavya's spring–mass system oscillates with angular frequency 4π rad/s at an amplitude of 5 cm. She pulls the block to 10 cm and releases it. What is the frequency of oscillation now?",
     "options": {
-      "A": "Each bit of steel only vibrates about its own place; the disturbance travels to the children",
-      "B": "Bits of steel are pushed along the rail until they reach the children",
-      "C": "Hitting the rail harder would make the sound reach them sooner",
-      "D": "Tapping more times each second would make the sound reach them sooner"
+      "A": "12.6 Hz",
+      "B": "2 Hz",
+      "C": "1 Hz",
+      "D": "0.5 Hz"
     },
-    "correct": "A",
-    "distractor_map": {
-      "A": "CORRECT",
-      "B": "W1",
-      "C": "W3",
-      "D": "W2"
-    },
+    "correct": "B",
+    "distractor_map": {"A": "S10", "B": "CORRECT", "C": "S8", "D": "UNMAPPED"},
     "reasons": {
-      "r1": {"text": "A harder hit gives the sound a stronger push, so it travels faster.", "maps_to": "W3"},
-      "r2": {"text": "The steel stays where it is and just vibrates; only the vibration passes along.", "maps_to": "CORRECT"},
-      "r3": {"text": "The hammer shoves the steel forward, and that moving steel carries the sound to them.", "maps_to": "W1"}
+      "r1": {"text": "Frequency is the same thing as omega here, so it is 4π, about 12.6 Hz.", "maps_to": "S10"},
+      "r2": {"text": "f = ω/2π = 2 Hz, and amplitude doesn't change ω for a spring, so it stays 2 Hz.", "maps_to": "CORRECT"},
+      "r3": {"text": "Double the stretch means double the distance, so the period doubles and frequency halves.", "maps_to": "S8"}
+    },
+    "calc": "f = ω/2π = 4π/2π = 2 Hz, independent of amplitude. S10: f = ω = 4π ≈ 12.6 Hz. S8: T doubled from 0.5 s to 1.0 s → 1 Hz. UNMAPPED: reported T = 0.5 s as 0.5 Hz.",
+    "verify_flags": ["TODO_VERIFY"]
+  },
+  {
+    "item_id": "C3-Q1",
+    "concept": "C3",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "Meera swaps her pendulum's brass bob for a heavier iron bob of the same size, keeps the string length the same, and pulls it a little further (still a small angle). Does the period change? Why?",
+    "answer_key": "No, the period stays the same because T = 2π√(L/g) depends only on length and g.",
+    "expected_reasoning": "For small angles the pendulum's period depends only on L and g; the bob's mass cancels out and amplitude does not appear in the formula.",
+    "accept_any": ["no change", "same", "does not change", "doesn't change", "unchanged", "remains same", "stays same", "won't change", "will not change"],
+    "reasoning_any": ["length", "l and g", "mass cancels", "independent of mass", "independent of amplitude", "2π√(l/g)", "root l by g", "not depend on mass", "not depend on amplitude"],
+    "numeric": null,
+    "patterns": [
+      {"code": "S8", "any": ["bigger swing", "pulled further", "more distance", "longer path", "swing more", "longer arc"]},
+      {"code": "S9", "any": ["heavier bob", "heavy bob", "more mass", "iron is heavier", "heavier one", "weight increases"]}
+    ],
+    "follow_ups": {
+      "S8": "If the bob is pulled further, it has a longer path. What else changes about how fast it moves at the bottom?",
+      "S9": "In T = 2π√(L/g), where would the bob's mass appear? What happens to m when you write F = ma for the bob?",
+      "CORRECT_NO_REASON": "You said the period does not change. Which quantities does a simple pendulum's period actually depend on?",
+      "CORRECT": "Meera now takes the same pendulum to a hill station where g is slightly smaller. Will the period increase, decrease or stay the same?",
+      "UNCLEAR": "Will one oscillation of the new bob take more time, less time, or the same time as before?"
     },
     "calc": "",
-    "verify_flags": ["TODO_VERIFY", "Sound in steel is both longitudinal and transverse; statement A kept general on purpose"]
+    "verify_flags": ["TODO_VERIFY", "Same-size bob chosen so air drag is comparable; real heavy vs light bobs differ slightly due to drag."]
+  },
+  {
+    "item_id": "C3-Q2",
+    "concept": "C3",
+    "kind": "short",
+    "is_assessment": false,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "A spring toy on Aditya's desk oscillates with angular frequency 10π rad/s. What is its time period? Give your value with the formula you used.",
+    "answer_key": "T = 2π/ω = 2π/(10π) = 0.2 s.",
+    "expected_reasoning": "Angular frequency ω is 2π times the frequency, so T = 2π/ω, not 1/ω; this gives f = 5 Hz and T = 0.2 s.",
+    "accept_any": [],
+    "reasoning_any": ["2π/ω", "2 pi by omega", "2π by ω", "ω = 2πf", "omega = 2 pi f", "f = 5", "5 hz"],
+    "numeric": {"value": 0.2, "unit": "s", "tolerance": 0.01, "slips": [
+      {"value": 0.032, "why": "used T = 1/ω, treating ω as the frequency"},
+      {"value": 5.0, "why": "gave the frequency f = 5 Hz instead of the period"}
+    ]},
+    "patterns": [
+      {"code": "S10", "any": ["1/ω", "1 by omega", "one by omega", "omega is frequency", "f = ω", "frequency is 10π"]},
+      {"code": "S9", "any": ["need mass", "mass not given", "need the mass", "without mass"]}
+    ],
+    "follow_ups": {
+      "S10": "ω is measured in rad/s and f in oscillations per second. How many radians does the block go through in one full oscillation?",
+      "S9": "The mass and spring constant decide ω. If ω is already given, do you still need m to find T?",
+      "CORRECT_NO_REASON": "You got 0.2 s. Why do we divide 2π by ω instead of just taking 1/ω?",
+      "CORRECT": "If the same toy is given a block of 4 times the mass, what will its new angular frequency be?",
+      "UNCLEAR": "Please give one number in seconds for the time of one full oscillation."
+    },
+    "calc": "T = 2π/ω = 2π/(10π) = 0.2 s; f = 5 Hz. Slip 1/ω = 1/(10π) ≈ 0.0318 s.",
+    "verify_flags": ["TODO_VERIFY", "Check that the grader's numeric tolerance (0.01 s) does not swallow the 0.032 s slip; it does not at |0.2 − 0.032|."]
+  },
+  {
+    "item_id": "C3-A2",
+    "concept": "C3",
+    "kind": "short",
+    "is_assessment": true,
+    "sibling_of": null,
+    "transfer": false,
+    "stem": "A block on a spring has a time period of 1.2 s. Anjali replaces it with a block 4 times as heavy on the same spring. What happens to the period, and why?",
+    "answer_key": "The period doubles to 2.4 s because T = 2π√(m/k) and √4 = 2.",
+    "expected_reasoning": "For a spring–mass system T = 2π√(m/k), so the period is proportional to √m; four times the mass gives twice the period.",
+    "accept_any": ["double", "twice", "2 times", "two times", "2.4", "2x"],
+    "reasoning_any": ["√m", "root m", "under root m", "square root", "m/k", "m by k", "proportional to root", "root 4"],
+    "numeric": null,
+    "patterns": [
+      {"code": "S9", "any": ["no change", "same period", "mass doesn't matter", "mass does not matter", "independent of mass", "only on spring", "only on k"]},
+      {"code": "S8", "any": ["depends on amplitude", "how far pulled", "depends on stretch", "bigger stretch", "more stretch"]}
+    ],
+    "follow_ups": {
+      "S9": "A heavier block feels the same spring force but has more inertia. Will it speed up and slow down more quickly or more slowly than the light one?",
+      "S8": "Nothing was said about how far the block is pulled. Does T = 2π√(m/k) contain the amplitude at all?",
+      "CORRECT_NO_REASON": "Why does 4 times the mass give 2 times the period and not 4 times?",
+      "CORRECT": "Anjali wants the heavy block to have a period of 1.2 s again. By what factor must she change the spring constant?",
+      "UNCLEAR": "Will the new period be longer, shorter or equal to 1.2 s? Say by how much."
+    },
+    "calc": "T₂ = 1.2 × √4 = 2.4 s.",
+    "verify_flags": ["TODO_VERIFY", "accept_any 'double' also matches 'doubled'; a student writing 'not double' would be mis-graded."]
   }
 ]

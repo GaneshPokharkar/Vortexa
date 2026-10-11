@@ -9,7 +9,42 @@
       "Each object point lights the whole lens, so covering part only dims the image.",
       "Rays meet at v anyway; a screen just scatters them."
     ],
-    "worked_example": "u = −30 cm, f = +20 cm: 1/v = 1/20 − 1/30 = 1/60, v = +60 cm, m = −2 (real, inverted)."
+    "worked_example": "u = −30 cm, f = +20 cm: 1/v = 1/20 − 1/30 = 1/60, v = +60 cm, m = −2 (real, inverted).",
+    "topic": "Optics",
+    "subtopic": "Thin lenses: lens formula and image formation",
+    "learning_objective": "Use 1/v − 1/u = 1/f and m = v/u to locate the image formed by a convex lens, and explain why covering part of the lens or removing the screen does not remove a real image.",
+    "simple": "A convex lens bends light from every point of an object so the rays meet again on the other side. Where they meet, a real image forms, whether or not a screen is there. Every part of the lens helps make every part of the image, so covering half of it only makes the image dimmer.",
+    "formal": "In the Cartesian sign convention, distances are measured from the optical centre and are positive in the direction of incident light, so a real object has negative u and a convex lens has positive f. The lens formula 1/v − 1/u = 1/f gives the image distance and m = v/u the magnification. Positive v means a real, inverted image on the far side; negative v means a virtual, upright one. Blocking part of the aperture reduces brightness, not the extent of the image.",
+    "equations": [
+      {
+        "expr": "1/v − 1/u = 1/f",
+        "meaning": "Lens formula linking object distance, image distance and focal length.",
+        "vars": {
+          "v": "image distance from optical centre (cm or m)",
+          "u": "object distance from optical centre (cm or m)",
+          "f": "focal length, positive for convex (cm or m)"
+        },
+        "assumptions": "Thin lens, paraxial rays, Cartesian sign convention; check against the board textbook."
+      },
+      {
+        "expr": "m = v / u = h_i / h_o",
+        "meaning": "Magnification: image size relative to object size; negative means inverted.",
+        "vars": {
+          "m": "linear magnification (no unit)",
+          "h_i": "image height (cm)",
+          "h_o": "object height (cm)",
+          "v": "image distance (cm)",
+          "u": "object distance (cm)"
+        },
+        "assumptions": "Same sign convention as the lens formula; heights above the axis positive."
+      }
+    ],
+    "alternatives": [
+      "Ray-diagram view: draw two principal rays from the top of the object, one parallel to the axis and one through the optical centre; they cross at the image whether or not any surface is there.",
+      "Funnel view: the lens collects light from each object point over its whole face and pours it into one image point; a smaller opening pours less light, but into the same point."
+    ],
+    "visual": "lens-bench",
+    "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed."
   },
   "remediation_cards": [
     {
@@ -19,7 +54,7 @@
       "why_it_feels_right": "Covering half a window hides half the view, so covering a lens seems to hide half the picture.",
       "why_wrong": "Each object point sends rays to the whole lens, so the open half still brings light from every point to the image.",
       "correct_idea": "Covering part of a lens still gives the full image, only dimmer.",
-      "sim_moment": "Lens Bench: switch on 'cover top half of lens' and watch the whole image stay, just fainter."
+      "sim_moment": "Lens-bench visual: turn on 'cover half the lens' and watch the principal rays from the object still meet at the image; the whole image stays, only fainter."
     },
     {
       "card_id": "R6-R",
@@ -28,7 +63,7 @@
       "why_it_feels_right": "In the lab we only ever notice the real image when it lands on the screen.",
       "why_wrong": "Rays meet at the image point with or without a screen; an eye or camera beyond it sees the image in air.",
       "correct_idea": "A real image forms where rays converge; a screen only scatters its light so it can be seen from many angles.",
-      "sim_moment": "Lens Bench: remove the screen and watch the rays still crossing at the image point."
+      "sim_moment": "Lens-bench visual: remove the screen and watch the principal rays still cross at the image point, then spread out beyond it."
     }
   ],
   "exemplars": {
@@ -71,19 +106,28 @@
   },
   "contrast_probes": [
     {
-      "separates": ["R5", "R6"],
+      "separates": [
+        "R5",
+        "R6"
+      ],
       "probe": "Half the lens is covered and the screen is taken away. What is left at the spot where the image was?",
       "reply_if_first": "Half an image is still there at that spot.",
       "reply_if_second": "Nothing at all, because the screen is gone."
     },
     {
-      "separates": ["R5", "CORRECT"],
+      "separates": [
+        "R5",
+        "CORRECT"
+      ],
       "probe": "The image is sharp on the screen. You stick paper over the top half of the lens. What changes on the screen?",
       "reply_if_first": "Part of the image disappears and only half is left.",
       "reply_if_second": "The whole image stays but gets dimmer."
     },
     {
-      "separates": ["R6", "CORRECT"],
+      "separates": [
+        "R6",
+        "CORRECT"
+      ],
       "probe": "You remove the screen and put your eye some distance beyond where the image was, looking at the lens. Do you see the image?",
       "reply_if_first": "No, without the screen there is nothing to see.",
       "reply_if_second": "Yes, I see the inverted image hanging in the air."
@@ -92,6 +136,25 @@
   "verify_flags": [
     "TODO_VERIFY",
     "Covering half the lens roughly halves the brightness; sharpness may change slightly (aberrations/diffraction), which the cards ignore",
-    "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image"
+    "Seeing an aerial real image needs the eye inside the cone of rays and at least about 25 cm beyond the image",
+    "Cartesian sign convention (1/v - 1/u = 1/f, m = v/u, convex f > 0) must be checked against the Maharashtra State Board textbook"
+  ],
+  "doubts": [
+    {
+      "q": "If I cover half the lens, why doesn't half the image vanish?",
+      "a": "Each point of the object sends rays to the whole lens. The open half still collects rays from every point and brings them to the same image points, so the image is complete but dimmer."
+    },
+    {
+      "q": "How can a real image exist if there is no screen?",
+      "a": "A real image is where rays actually meet. They meet there and spread out again; a screen only scatters that light toward your eyes. An eye placed beyond the image, inside the cone of rays, sees it in mid-air."
+    },
+    {
+      "q": "Why is u negative in the lens formula?",
+      "a": "In the Cartesian sign convention, distances are measured from the optical centre and are positive along the incident light. A real object sits on the side the light comes from, so u is negative. Confirm the convention your textbook uses."
+    },
+    {
+      "q": "What does a negative v or a negative m mean?",
+      "a": "Negative v means the image is on the same side as the object: virtual, upright and not catchable on a screen. Negative m means the image is inverted; for a single convex lens this goes with positive v."
+    }
   ]
 }

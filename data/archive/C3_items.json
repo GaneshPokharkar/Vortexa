@@ -1,0 +1,110 @@
+[
+  {
+    "item_id": "C3-P1",
+    "concept": "C3",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "Meera shakes one end of a long, tight rope 2 times per second, and the wave moves along at 6 m/s. Keeping the same rope and tension, she now shakes it 4 times per second. What happens?",
+    "options": {
+      "A": "The wave now travels at 12 m/s",
+      "B": "The speed stays 6 m/s and the wavelength becomes 1.5 m",
+      "C": "The speed stays 6 m/s and the wavelength becomes 6 m",
+      "D": "The rope pieces get carried forward quicker, so the wave goes faster"
+    },
+    "correct": "B",
+    "distractor_map": {
+      "A": "W2",
+      "B": "CORRECT",
+      "C": "SLIP",
+      "D": "W1"
+    },
+    "reasons": {
+      "r1": {"text": "She is shaking it faster, so the wave also has to move faster.", "maps_to": "W2"},
+      "r2": {"text": "Same rope, same tension, so same speed. Only the waves get shorter because she shakes more often.", "maps_to": "CORRECT"},
+      "r3": {"text": "Faster shaking pushes the rope itself forward quicker, and the wave rides along with it.", "maps_to": "W1"}
+    },
+    "calc": "v = √(T/μ) unchanged = 6 m/s; λ = v/f = 6/4 = 1.5 m (earlier 6/2 = 3 m)",
+    "verify_flags": ["TODO_VERIFY", "Assumes ideal uniform string; the 6 m/s value is given, T and μ not stated"]
+  },
+  {
+    "item_id": "C3-P2",
+    "concept": "C3",
+    "is_assessment": false,
+    "sibling_of": "C3-P1",
+    "stem": "At a Diwali mela, a flute player plays a 500 Hz note and a 1000 Hz note at the same instant. Priya stands 343 m away. Take the speed of sound in air as 343 m/s. Which note reaches her first?",
+    "options": {
+      "A": "The 1000 Hz note, because faster vibration means faster sound",
+      "B": "Whichever note is played louder",
+      "C": "Both reach her together, after about 1 s",
+      "D": "Neither, until the puff of air from the flute blows across to her"
+    },
+    "correct": "C",
+    "distractor_map": {
+      "A": "W2",
+      "B": "W3",
+      "C": "CORRECT",
+      "D": "W1"
+    },
+    "reasons": {
+      "r1": {"text": "Sound speed depends on the air, not on the note, so both take the same time.", "maps_to": "CORRECT"},
+      "r2": {"text": "The high note vibrates more times every second, so it must travel quicker.", "maps_to": "W2"},
+      "r3": {"text": "A louder note has more push behind it, so it gets there first.", "maps_to": "W3"}
+    },
+    "calc": "t = d/v = 343/343 = 1 s for both notes",
+    "verify_flags": ["TODO_VERIFY", "Uses 343 m/s for air at about 20 °C; NCERT also quotes 331 m/s at 0 °C"]
+  },
+  {
+    "item_id": "C3-P3",
+    "concept": "C3",
+    "is_assessment": false,
+    "sibling_of": "C3-P1",
+    "stem": "On sports day, Ravi and Anil each send one pulse along identical ropes tied to a post, with equal tension. Ravi jerks his hand much higher and much quicker than Anil. Whose pulse reaches the post first?",
+    "options": {
+      "A": "Ravi's, because his pulse is taller",
+      "B": "Ravi's, because he moved his hand quicker",
+      "C": "Ravi's, because his rope gets dragged towards the post more",
+      "D": "Both pulses reach the post at the same time"
+    },
+    "correct": "D",
+    "distractor_map": {
+      "A": "W3",
+      "B": "W2",
+      "C": "W1",
+      "D": "CORRECT"
+    },
+    "reasons": {
+      "r1": {"text": "A big jerk pulls the rope along towards the post, so the pulse arrives sooner.", "maps_to": "W1"},
+      "r2": {"text": "A taller pulse carries more energy, so it runs faster.", "maps_to": "W3"},
+      "r3": {"text": "The ropes and tension are the same, so the pulse speed is the same, no matter how he jerks.", "maps_to": "CORRECT"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Treats pulses as linear; a very large jerk can slightly raise tension, ignored here"]
+  },
+  {
+    "item_id": "C3-A1",
+    "concept": "C3",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "At Nagpur station, a worker taps a long steel rail with a hammer. Children 1 km down the line, with an ear on the rail, hear the tap. Which statement is correct?",
+    "options": {
+      "A": "Each bit of steel only vibrates about its own place; the disturbance travels to the children",
+      "B": "Bits of steel are pushed along the rail until they reach the children",
+      "C": "Hitting the rail harder would make the sound reach them sooner",
+      "D": "Tapping more times each second would make the sound reach them sooner"
+    },
+    "correct": "A",
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "W1",
+      "C": "W3",
+      "D": "W2"
+    },
+    "reasons": {
+      "r1": {"text": "A harder hit gives the sound a stronger push, so it travels faster.", "maps_to": "W3"},
+      "r2": {"text": "The steel stays where it is and just vibrates; only the vibration passes along.", "maps_to": "CORRECT"},
+      "r3": {"text": "The hammer shoves the steel forward, and that moving steel carries the sound to them.", "maps_to": "W1"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Sound in steel is both longitudinal and transverse; statement A kept general on purpose"]
+  }
+]

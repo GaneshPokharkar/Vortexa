@@ -1,7 +1,9 @@
 """SQLite persistence. apply_response() is the ONLY function that writes the mastery table."""
 from __future__ import annotations
 
+import json
 import os
+import secrets
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -9,10 +11,12 @@ from sqlmodel import Field, Session, SQLModel, create_engine, func, select
 
 from api import engine as eng
 from api.content import DATA_DIR, load_content
-from api.engine.grading import AMBIGUOUS, CORRECT_CATEGORIES, FALSE_POSITIVE, MISCONCEPTION, UNDIAGNOSED
+from api.engine.grading import CORRECT_CATEGORIES, FALSE_POSITIVE, MISCONCEPTION, NOT_COUNTED
 
-DB_URL = os.environ.get("WAVELOOP_DB", f"sqlite:///{DATA_DIR / 'waveloop.db'}")
+DB_URL = os.environ.get("WAVELOOP_DB", f"sqlite:///{DATA_DIR / 'learnloop.db'}")
 db = create_engine(DB_URL, connect_args={"check_same_thread": False})
+
+DEMO_LEARNERS = {"asha": "Asha (demo)", "ben": "Ben (demo)"}
 
 
 def _now() -> datetime:
@@ -23,6 +27,7 @@ class Learner(SQLModel, table=True):
     __tablename__ = "learners"
     id: str = Field(primary_key=True)
     name: str
+    is_demo: bool = False
     created_at: datetime = Field(default_factory=_now)
 
 
@@ -33,10 +38,12 @@ class Response(SQLModel, table=True):
     learner_id: str = Field(foreign_key="learners.id", index=True)
     item_id: str
     concept: str = Field(index=True)
-    option: str
+    kind: str = "mcq"
+    option: Optional[str] = None
     reason_id: Optional[str] = None
     reason_text: Optional[str] = None
-    confidence: str
+    answer_text: Optional[str] = None
+    confidence: str = "sure"
     created_at: datetime = Field(default_factory=_now)
 
 
@@ -46,10 +53,13 @@ class Diagnosis(SQLModel, table=True):
     response_id: int = Field(foreign_key="responses.id", primary_key=True)
     category: str
     rule_fired: str
-    option_code: str
+    engine: str = "rules"
+    option_code: Optional[str] = None
     reason_code: Optional[str] = None
     misconception_code: Optional[str] = None
-    classifier_score: Optional[float] = None  # evidence only, filled by the classifier phase
+    classifier_score: Optional[float] = None  # heuristic confidence; evidence only
+    evidence: str = "[]"  # JSON list of learner-facing lines
+    follow_up: str = "null"  # JSON FollowUp
     clarifications: int = 0
     # Set only by apply_response():
     applied_seq: Optional[int] = None
@@ -67,18 +77,32 @@ class Mastery(SQLModel, table=True):
     updated_at: datetime = Field(default_factory=_now)
 
 
-class Assessment(SQLModel, table=True):
-    """Pre/post test answers. Never touches mastery."""
-    __tablename__ = "assessments"
+class AssessmentSession(SQLModel, table=True):
+    __tablename__ = "assessment_sessions"
     id: Optional[int] = Field(default=None, primary_key=True)
     learner_id: str = Field(foreign_key="learners.id", index=True)
-    form: str  # "pre" | "post"
+    kind: str  # "pre" | "post"
+    started_at: datetime = Field(default_factory=_now)
+    completed_at: Optional[datetime] = None
+    total: int = 0
+    correct: int = 0
+    score_percentage: Optional[float] = None
+
+
+class Assessment(SQLModel, table=True):
+    """One pre/post answer. Never touches mastery; never shown back with its key."""
+    __tablename__ = "assessments"
+    id: Optional[int] = Field(default=None, primary_key=True)
+    session_id: int = Field(foreign_key="assessment_sessions.id", index=True)
+    learner_id: str = Field(foreign_key="learners.id", index=True)
     item_id: str
-    option: str
+    option: Optional[str] = None
     reason_id: Optional[str] = None
-    confidence: str
+    answer_text: Optional[str] = None
     answer_correct: bool
     reason_correct: bool
+    category: str
+    misconception_code: Optional[str] = None
     created_at: datetime = Field(default_factory=_now)
 
 
@@ -86,10 +110,36 @@ def init_db() -> None:
     SQLModel.metadata.create_all(db)
 
 
-def ensure_learner(session: Session, learner_id: str) -> None:
-    if session.get(Learner, learner_id) is None:
-        session.add(Learner(id=learner_id, name=learner_id.title()))
+def ensure_learner(session: Session, learner_id: str) -> Learner:
+    learner = session.get(Learner, learner_id)
+    if learner is None:
+        learner = Learner(id=learner_id, name=DEMO_LEARNERS.get(learner_id, "Learner"), is_demo=learner_id in DEMO_LEARNERS)
+        session.add(learner)
         session.commit()
+    return learner
+
+
+def create_learner(session: Session) -> Learner:
+    learner = Learner(id=f"anon-{secrets.token_hex(4)}", name="Learner")
+    session.add(learner)
+    session.commit()
+    session.refresh(learner)
+    return learner
+
+
+def reset_learner(session: Session, learner_id: str) -> int:
+    """Delete every record of one learner (used for demo learners only)."""
+    rows = session.exec(select(Response).where(Response.learner_id == learner_id)).all()
+    for r in rows:
+        d = session.get(Diagnosis, r.id)
+        if d:
+            session.delete(d)
+    session.commit()
+    for model in (Response, Assessment, AssessmentSession, Mastery):
+        for row in session.exec(select(model).where(model.learner_id == learner_id)).all():
+            session.delete(row)
+    session.commit()
+    return len(rows)
 
 
 def current_p(session: Session, learner_id: str, concept: str) -> float:
@@ -98,9 +148,9 @@ def current_p(session: Session, learner_id: str, concept: str) -> float:
 
 
 def apply_response(session: Session, response_id: int) -> Optional[float]:
-    """The single mastery writer. Idempotent. AMBIGUOUS waits for clarification; UNDIAGNOSED never counts."""
+    """The single mastery writer. Idempotent. Categories without trustworthy evidence never count."""
     d = session.get(Diagnosis, response_id)
-    if d is None or d.category in (AMBIGUOUS, UNDIAGNOSED):
+    if d is None or d.category in NOT_COUNTED:
         return None
     if d.applied_seq is not None:
         return d.p_after
@@ -122,14 +172,50 @@ def apply_response(session: Session, response_id: int) -> Optional[float]:
 
 def misconception_statuses(session: Session, learner_id: str) -> dict[str, str]:
     rows = session.exec(
-        select(Diagnosis.misconception_code, Response.item_id, Diagnosis.classifier_score)
+        select(Diagnosis.misconception_code, Response.item_id, Diagnosis.classifier_score, Diagnosis.engine)
         .join(Response)
         .where(Response.learner_id == learner_id, Diagnosis.category.in_([MISCONCEPTION, FALSE_POSITIVE]))
     ).all()
     evidence: dict[str, list[tuple[str, Optional[float]]]] = {}
-    for code, item_id, score in rows:
-        evidence.setdefault(code, []).append((item_id, score))
+    for code, item_id, score, engine in rows:
+        # Only a classifier (LLM) score counts toward "1 item + classifier match >= 0.75".
+        evidence.setdefault(code, []).append((item_id, score if engine == "llm" else None))
     return {code: eng.misconception_status(ev) for code, ev in evidence.items()}
+
+
+def attempts(session: Session, learner_id: str, concept: Optional[str] = None, limit: Optional[int] = None) -> list[dict]:
+    content = load_content()
+    q = select(Response, Diagnosis).join(Diagnosis).where(Response.learner_id == learner_id)
+    if concept:
+        q = q.where(Response.concept == concept)
+    rows = session.exec(q.order_by(Response.id)).all()
+    seen: set[str] = set()
+    out = []
+    for r, d in rows:
+        item = content.items.get(r.item_id)
+        if r.kind == "short":
+            answer = r.answer_text or ""
+        else:
+            answer = f"Option {r.option}" + (f", reason {r.reason_id}" if r.reason_id else "") + \
+                (f", “{r.reason_text}”" if r.reason_text else "")
+        out.append({
+            "response_id": r.id, "item_id": r.item_id, "concept": r.concept, "kind": r.kind, "answer": answer,
+            "category": d.category, "group": eng.grading.GROUP[d.category], "misconception_code": d.misconception_code,
+            "confidence": d.classifier_score, "engine": d.engine, "transfer": bool(item and item.transfer),
+            "novel": r.item_id not in seen, "counted": d.applied_seq is not None, "p_after": d.p_after,
+            "created_at": r.created_at.isoformat(),
+        })
+        seen.add(r.item_id)
+    return out[-limit:] if limit else out
+
+
+def _transfer_correct(session: Session, learner_id: str, concept: str) -> bool:
+    content = load_content()
+    rows = session.exec(
+        select(Response.item_id, Diagnosis.category).join(Diagnosis)
+        .where(Response.learner_id == learner_id, Response.concept == concept)
+    ).all()
+    return any(content.items[i].transfer and c in CORRECT_CATEGORIES for i, c in rows if i in content.items)
 
 
 def mastery(session: Session, learner_id: str) -> list[dict]:
@@ -144,22 +230,27 @@ def mastery(session: Session, learner_id: str) -> list[dict]:
             .order_by(Diagnosis.applied_seq)
         ).all()
         concept_mc = {code: s for code, s in statuses.items() if content.misconceptions[code].concept == c.concept_id}
+        confirmed = sorted(k for k, s in concept_mc.items() if s == "CONFIRMED")
+        transfer = _transfer_correct(session, learner_id, c.concept_id)
+        status, reason, enough = eng.mastery_status(m.p_learned, m.attempts, m.distinct_items, m.last_correct, transfer, confirmed)
         out.append({
             "concept": c.concept_id,
+            "status": status,
+            "status_reason": reason,
+            "enough_evidence": enough,
             "p_learned": round(m.p_learned, 4),
             "attempts": m.attempts,
             "distinct_items": m.distinct_items,
+            "transfer_correct": transfer,
             "last_correct": m.last_correct,
-            "mastered": eng.is_mastered(
-                m.p_learned, m.attempts, m.distinct_items, m.last_correct, "CONFIRMED" in concept_mc.values()
-            ),
+            "mastered": status == "demonstrated",
             "misconceptions": concept_mc,
             "history": [round(p, 4) for p in history],
         })
     return out
 
 
-def pending_slip(session: Session, learner_id: str) -> Optional[tuple[str, str]]:
+def pending_slip(session: Session, learner_id: str) -> Optional[tuple[str, Optional[str]]]:
     """(item_id, option_code) of the learner's latest response if it was a slip, else None."""
     row = session.exec(
         select(Response.item_id, Diagnosis.option_code, Diagnosis.category)
@@ -174,31 +265,47 @@ def prior_slip_code(session: Session, learner_id: str, item_id: str) -> Optional
     """Option code of the slip that scheduled this item as its sibling (input to slip rule 5)."""
     slip = pending_slip(session, learner_id)
     items = load_content().items
-    return slip[1] if slip and eng.is_sibling(items[slip[0]], items[item_id]) else None
+    return slip[1] if slip and slip[1] and eng.is_sibling(items[slip[0]], items[item_id]) else None
+
+
+def tries(session: Session, learner_id: str) -> dict[str, int]:
+    out: dict[str, int] = {}
+    for item_id in session.exec(select(Response.item_id).where(Response.learner_id == learner_id)).all():
+        out[item_id] = out.get(item_id, 0) + 1
+    return out
+
+
+def sibling_for(session: Session, learner_id: str, item_id: str) -> Optional[str]:
+    content = load_content()
+    tried = tries(session, learner_id)
+    src = content.items[item_id]
+    sibs = [i for i in content.items.values() if not i.is_assessment and eng.is_sibling(src, i)]
+    return min(sibs, key=lambda i: tried.get(i.item_id, 0)).item_id if sibs else None
 
 
 def next_item(session: Session, learner_id: str, concept: Optional[str] = None) -> Optional[str]:
-    """Slip rule 5 sibling first; else the least-tried practice item of `concept` if given (the learner
-    chose it), or of the first unmastered concept."""
+    """Slip rule 5 sibling first; else the least-tried practice item of `concept` if given (the learner chose it),
+    or of the first concept not yet demonstrated."""
     content = load_content()
-    tries: dict[str, int] = {}
-    for item_id in session.exec(select(Response.item_id).where(Response.learner_id == learner_id)).all():
-        tries[item_id] = tries.get(item_id, 0) + 1
+    tried = tries(session, learner_id)
 
     slip = pending_slip(session, learner_id)
-    if slip:
-        src = content.items[slip[0]]
-        sibs = [i for i in content.items.values() if not i.is_assessment and eng.is_sibling(src, i)]
-        if sibs and concept in (None, src.concept):
-            return min(sibs, key=lambda i: tries.get(i.item_id, 0)).item_id
+    if slip and concept in (None, content.items[slip[0]].concept):
+        sib = sibling_for(session, learner_id, slip[0])
+        if sib:
+            return sib
+
+    def pick(cid: str) -> Optional[str]:
+        pool = [i for i in content.items.values() if i.concept == cid and not i.is_assessment]
+        return min(pool, key=lambda i: tried.get(i.item_id, 0)).item_id if pool else None
 
     if concept:
-        pool = [i for i in content.items.values() if i.concept == concept and not i.is_assessment]
-        return min(pool, key=lambda i: tries.get(i.item_id, 0)).item_id if pool else None
+        return pick(concept)
     for m in mastery(session, learner_id):
-        if m["mastered"]:
-            continue
-        pool = [i for i in content.items.values() if i.concept == m["concept"] and not i.is_assessment]
-        if pool:
-            return min(pool, key=lambda i: tries.get(i.item_id, 0)).item_id
+        if m["status"] != "demonstrated":
+            return pick(m["concept"])
     return None
+
+
+def dump(value) -> str:
+    return json.dumps(value, ensure_ascii=False)

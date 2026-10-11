@@ -2,105 +2,293 @@
   "concept_card": {
     "card_id": "C2-K",
     "concept": "C2",
-    "statement": "In SHM, speed peaks at the mean, acceleration peaks at the extremes, and total energy stays constant.",
-    "analogy": "Like money shifting between wallet and pocket: the split changes, the total doesn't.",
-    "steps": [
-      "v = ω√(A² − x²) is zero at the extremes.",
-      "a = −ω²x is largest at the extremes.",
-      "KE and PE trade places.",
-      "E = ½kA² everywhere."
+    "topic": "SHM",
+    "subtopic": "Velocity and acceleration of a particle in SHM",
+    "learning_objective": "Students will be able to state and explain where the speed and the acceleration of an ideal simple harmonic oscillator are maximum and zero, give the direction of the acceleration, and calculate v and a at any displacement.",
+    "statement": "In ideal SHM the speed is greatest at the mean position and zero at the extremes, while the acceleration is zero at the mean, greatest at the extremes, and always directed toward the mean.",
+    "simple": "Think of a block on a spring. In the middle the spring is relaxed, so nothing pushes the block and it is moving fastest. At the ends it stops for an instant, but the spring is stretched most, so the pull back is strongest there.",
+    "formal": "For x = A cos(ωt + φ), the velocity is v = −Aω sin(ωt + φ) = ±ω√(A² − x²) and the acceleration is a = −ω²x. Speed is therefore maximum (Aω) at x = 0 and zero at x = ±A. Acceleration is proportional to displacement and opposite to it: zero at the mean and of maximum magnitude ω²A at the extremes. Velocity and acceleration are out of phase by π/2, so one is largest when the other is zero.",
+    "equations": [
+      {
+        "expr": "v = −Aω sin(ωt + φ)",
+        "meaning": "velocity at time t for x = A cos(ωt + φ)",
+        "vars": {
+          "v": "velocity (m/s)",
+          "A": "amplitude (m)",
+          "ω": "angular frequency (rad/s)",
+          "t": "time (s)",
+          "φ": "initial phase (rad)"
+        },
+        "assumptions": "ideal SHM, no damping"
+      },
+      {
+        "expr": "v = ±ω√(A² − x²)",
+        "meaning": "speed at displacement x; maximum Aω at x = 0, zero at x = ±A",
+        "vars": {
+          "v": "velocity (m/s)",
+          "ω": "angular frequency (rad/s)",
+          "A": "amplitude (m)",
+          "x": "displacement from the mean position (m)"
+        },
+        "assumptions": "ideal SHM, no damping"
+      },
+      {
+        "expr": "a = −ω²x",
+        "meaning": "acceleration is proportional to displacement and points toward the mean; zero at x = 0, magnitude ω²A at x = ±A",
+        "vars": {
+          "a": "acceleration (m/s²)",
+          "ω": "angular frequency (rad/s)",
+          "x": "displacement from the mean position (m)"
+        },
+        "assumptions": "ideal SHM, no damping"
+      },
+      {
+        "expr": "KE = ½mω²(A² − x²)",
+        "meaning": "kinetic energy is greatest at the mean position and zero at the extremes",
+        "vars": {
+          "KE": "kinetic energy (J)",
+          "m": "mass (kg)",
+          "ω": "angular frequency (rad/s)",
+          "A": "amplitude (m)",
+          "x": "displacement (m)"
+        },
+        "assumptions": "ideal SHM, no damping"
+      }
     ],
-    "worked_example": "m = 0.5 kg, k = 50 N/m, A = 0.1 m: ω = 10 rad/s; extreme a = 10 m/s², mean v = 1 m/s; E = 0.25 J throughout."
+    "analogy": "A child on a jhoola: she whooshes fastest through the bottom, where nothing tugs her forward or back, and pauses at the highest points, where the pull back down toward the bottom is strongest.",
+    "steps": [
+      "Locate the oscillator: find its displacement x from the mean position.",
+      "Acceleration follows displacement: a = −ω²x, so it is zero at x = 0, largest at x = ±A, and always points toward the mean.",
+      "Speed follows the opposite pattern: v = ω√(A² − x²), so it is largest at x = 0 and zero at x = ±A.",
+      "Zero velocity does not mean zero acceleration: at the extremes the body is only turning around.",
+      "Check with energy: at the mean all energy is kinetic; at the extremes all is potential."
+    ],
+    "worked_example": "A block oscillates with A = 0.1 m and ω = 10 rad/s. At the mean: v = Aω = 1 m/s, a = 0. At an extreme: v = 0, |a| = ω²A = 100 × 0.1 = 10 m/s², toward the mean. At x = 0.06 m: v = 10√(0.01 − 0.0036) = 10 × 0.08 = 0.8 m/s and a = −100 × 0.06 = −6 m/s².",
+    "alternatives": [
+      "Use force: the spring force F = −kx is zero at the mean and largest at the extremes, so by F = ma the acceleration follows the same pattern. The block speeds up while moving toward the mean and slows down after passing it, so its speed peaks exactly at the mean.",
+      "Use the circle: SHM is the shadow of uniform circular motion. At the centre of the shadow's path the point on the circle moves parallel to the line, so the shadow moves fastest; at the ends it moves perpendicular, so the shadow stops while the centripetal pull is fully along the line."
+    ],
+    "visual": "shm-oscillator",
+    "source": "Seeded draft written for LearnLoop AI; requires academic review against the Maharashtra State Board HSC Physics textbook. No textbook citation is claimed."
   },
   "remediation_cards": [
     {
-      "card_id": "O4-R",
-      "code": "O4",
-      "wrong_idea": "It stops at the end, so the acceleration there must be zero.",
-      "why_it_feels_right": "Things at rest usually feel force-free, and zero speed sounds like nothing is happening.",
-      "why_wrong": "Acceleration is the rate of change of velocity. At the end the spring is stretched most, so a = −ω²x is largest; velocity is zero for only an instant.",
-      "correct_idea": "At the extreme, velocity is zero but acceleration is maximum, ω²A, toward the mean.",
-      "sim_moment": "Pendulum Race"
+      "card_id": "S4-R",
+      "code": "S4",
+      "wrong_idea": "It goes fastest at the ends because that's the farthest it gets.",
+      "why_it_feels_right": "Farthest sounds like the most of everything, so the biggest displacement feels like the biggest speed.",
+      "why_wrong": "Displacement and speed are different. At an extreme the block stops for an instant to turn back; all its energy is in the spring.",
+      "correct_idea": "Speed is maximum (Aω) at the mean position and zero at the extremes.",
+      "sim_moment": "Pause at x = +A and read v = 0; then watch v peak as x passes 0."
     },
     {
-      "card_id": "O5-R",
-      "code": "O5",
-      "wrong_idea": "The energy is biggest in the middle where it moves fastest and drops at the ends.",
-      "why_it_feels_right": "You can see the speed, so kinetic energy feels like all of the energy.",
-      "why_wrong": "At the ends the kinetic energy has turned into potential energy, ½kx². With no damping nothing is lost, so KE + PE = ½kA² at every point.",
-      "correct_idea": "Total mechanical energy stays the same throughout an ideal oscillation; only the KE/PE split changes.",
-      "sim_moment": "Pendulum Race"
+      "card_id": "S5-R",
+      "code": "S5",
+      "wrong_idea": "The speed stays the same all through the oscillation.",
+      "why_it_feels_right": "The motion looks smooth and repeats evenly, so it seems steady.",
+      "why_wrong": "Repeating evenly means a fixed period, not a fixed speed. The restoring force speeds the block up toward the mean and slows it beyond.",
+      "correct_idea": "Speed varies as v = ω√(A² − x²): largest at the mean, zero at the extremes.",
+      "sim_moment": "Watch the v readout and v–t graph rise and fall every half cycle."
+    },
+    {
+      "card_id": "S6-R",
+      "code": "S6",
+      "wrong_idea": "At the end it has stopped, so its acceleration is zero there.",
+      "why_it_feels_right": "Stopped feels like nothing is happening, and we link acceleration with moving.",
+      "why_wrong": "Acceleration is the rate of change of velocity. At the extreme the velocity is reversing, and the spring force is largest.",
+      "correct_idea": "At the extremes v = 0 but the acceleration is maximum (ω²A), pointing toward the mean.",
+      "sim_moment": "Step through x = +A: v reads 0 while the acceleration arrow is longest, pointing to the centre."
+    },
+    {
+      "card_id": "S7-R",
+      "code": "S7",
+      "wrong_idea": "The acceleration is biggest in the middle, where it moves fastest.",
+      "why_it_feels_right": "Big speed and big acceleration both feel like 'a lot of motion', so they seem to go together.",
+      "why_wrong": "Acceleration comes from force. At the mean the spring is unstretched, so the force, and the acceleration, is zero even at top speed.",
+      "correct_idea": "Acceleration a = −ω²x is zero at the mean and largest at the extremes.",
+      "sim_moment": "Pause at x = 0: speed is at its peak, the acceleration readout is 0."
     }
   ],
   "exemplars": {
-    "O4": [
-      "it stops at the end so acceleration is zero there",
-      "velocity zero means acceleration zero, right?",
-      "at the extreme nothing is moving so no acceleration",
-      "if it is at rest how can it accelerate",
-      "the block is stopped, so no force on it at that point",
-      "acceleration is max in the middle where it is fastest",
-      "at the top of the swing it just hangs, zero acceleration",
-      "speed is zero so a is zero too, same thing",
-      "it's not moving at the turning point so nothing is acting",
-      "zero velocity, zero acceleration, that's the extreme",
-      "extreme pe ruk gaya toh acceleration bhi zero hi hoga na",
-      "woh ruka hua hai, toh usspe force kaise lagega"
+    "S4": [
+      "It's fastest at the extreme point.",
+      "At the ends, because that's the farthest it goes.",
+      "Speed is highest where the displacement is highest.",
+      "At the amplitude, it's moving the most there.",
+      "The farther it goes, the faster it gets.",
+      "At the turning points, that's where it's quickest.",
+      "Max speed is at plus A and minus A.",
+      "In the middle it's slow, at the edges it's fast.",
+      "At the end positions, because it has gone the longest distance.",
+      "It picks up speed going out and is fastest at the end.",
+      "Extreme pe sabse fast hota hai kyunki wahan sabse door hai.",
+      "Jitna door jayega utna speed badhega, so end pe maximum."
     ],
-    "O5": [
-      "energy is max at the mean because speed is max",
-      "at the ends it stops so it has no energy",
-      "total energy goes down when it slows near the extreme",
-      "it gets more energy every time it passes the middle",
-      "energy is highest at the extreme since the spring is stretched most",
-      "the total energy keeps changing as it moves",
-      "at the turning point the energy is zero for a moment",
-      "kinetic energy is the energy, so it changes with speed",
-      "when it is fastest it has the most total energy",
-      "energy goes up and down along with the position",
-      "mean pe speed max hai toh energy bhi max hogi na",
-      "extreme pe toh KE khatam, toh total energy kam ho gayi"
+    "S5": [
+      "Speed is constant everywhere.",
+      "It's the same speed the whole time.",
+      "It moves at a steady speed, only the direction changes.",
+      "The speed doesn't change in SHM.",
+      "Uniform speed, because the motion is periodic.",
+      "It's the same everywhere, it just goes back and forth.",
+      "The speed stays fixed, it's simple harmonic.",
+      "Every point has equal speed.",
+      "It repeats evenly, so the speed must be constant.",
+      "There's no place where it's faster, it's all the same.",
+      "Speed toh har jagah same hi rehti hai.",
+      "Constant hai speed, bas direction badalti hai."
+    ],
+    "S6": [
+      "At the end it stops, so acceleration is zero.",
+      "Velocity is zero there, so acceleration is zero too.",
+      "It's not moving at the extreme, so no acceleration.",
+      "Both velocity and acceleration are zero at the end.",
+      "When it stops, nothing is accelerating it.",
+      "Yes, it's zero, because the block is at rest.",
+      "There's no motion at the end, so a equals zero.",
+      "Since it's momentarily at rest, there's no acceleration.",
+      "At the turning point everything is zero.",
+      "If v is zero then a has to be zero.",
+      "Wahan ruk gaya na, toh acceleration bhi zero hoga.",
+      "Velocity zero hai toh acceleration bhi zero hi hai."
+    ],
+    "S7": [
+      "Acceleration is maximum at the mean position.",
+      "It accelerates the most in the middle where it's fastest.",
+      "Greatest acceleration is at the centre.",
+      "At the mean point the acceleration is highest.",
+      "It's moving fastest in the middle, so acceleration is biggest there.",
+      "The middle has the most acceleration, the ends have the least.",
+      "Max acceleration at x equals zero.",
+      "It speeds up the most at the centre, so acceleration peaks there.",
+      "At equilibrium the acceleration is largest.",
+      "Fastest point means biggest acceleration, so the centre.",
+      "Beech mein sabse zyada acceleration hota hai.",
+      "Mean position pe speed max hai toh acceleration bhi max hoga."
     ],
     "CORRECT": [
-      "at the extreme v is zero but a is max, ω²A",
-      "it stops for an instant but the spring is pulling hardest there",
-      "acceleration is zero only at the mean, where speed is max",
-      "total energy stays ½kA², it just shifts between KE and PE",
-      "at the ends it's all potential energy, in the middle all kinetic",
-      "no damping, so the total energy doesn't change during the swing"
+      "Speed is greatest at the mean position because all the energy is kinetic there.",
+      "At the ends it stops for a moment, but the spring pulls hardest, so acceleration is biggest there.",
+      "Acceleration is zero in the middle because the spring isn't stretched, so there's no force.",
+      "Acceleration always points back toward the centre, proportional to how far it is from there.",
+      "It speeds up all the way to the mean and slows down after, so the speed peaks at the mean.",
+      "Zero velocity at the extreme just means it's turning around; the acceleration there is maximum."
     ]
   },
   "contrast_probes": [
     {
       "separates": [
-        "O4",
-        "O5"
+        "S4",
+        "S5"
       ],
-      "probe": "At the extreme point, which quantity of the block becomes zero: its acceleration or its total energy?",
-      "reply_if_first": "Its acceleration, because the block has stopped there.",
-      "reply_if_second": "Its total energy, because it has no speed there."
+      "probe": "Is the block's speed at the extreme position bigger than, equal to, or smaller than its speed at the mean position?",
+      "reply_if_first": "Bigger — it's fastest at the extreme.",
+      "reply_if_second": "Equal — the speed is the same everywhere."
     },
     {
       "separates": [
-        "O4",
-        "CORRECT"
+        "S4",
+        "S6"
       ],
-      "probe": "At the extreme point the block is at rest for an instant. Is its acceleration there zero, or the largest in the whole cycle?",
-      "reply_if_first": "Zero, because it isn't moving.",
-      "reply_if_second": "The largest, because the spring is stretched the most there."
+      "probe": "What is the block's velocity at the instant it reaches the extreme position?",
+      "reply_if_first": "It's at its highest there.",
+      "reply_if_second": "It's zero there, so its acceleration is zero too."
     },
     {
       "separates": [
-        "O5",
+        "S4",
+        "S7"
+      ],
+      "probe": "At the mean position, is the block moving at its slowest or fastest?",
+      "reply_if_first": "Slowest — it's fastest at the ends.",
+      "reply_if_second": "Fastest, and that's why its acceleration is biggest there."
+    },
+    {
+      "separates": [
+        "S5",
+        "S6"
+      ],
+      "probe": "Does the block ever stop, even for an instant, during one oscillation?",
+      "reply_if_first": "No, it keeps going at the same speed all the time.",
+      "reply_if_second": "Yes, at the ends it stops, so it has no acceleration there."
+    },
+    {
+      "separates": [
+        "S5",
+        "S7"
+      ],
+      "probe": "Does the block's speed change as it moves from an extreme to the mean position?",
+      "reply_if_first": "No, it stays the same throughout.",
+      "reply_if_second": "Yes, it speeds up, and the acceleration is biggest when it reaches the mean."
+    },
+    {
+      "separates": [
+        "S6",
+        "S7"
+      ],
+      "probe": "Compare the block's acceleration at the extreme position with its acceleration at the mean position.",
+      "reply_if_first": "It's zero at the extreme because the block stops there.",
+      "reply_if_second": "It's biggest at the mean because the block is fastest there."
+    },
+    {
+      "separates": [
+        "S4",
         "CORRECT"
       ],
-      "probe": "Compare the block's total energy at the extreme point with its total energy at the mean position. Which is bigger?",
-      "reply_if_first": "The mean position, because it moves fastest there.",
-      "reply_if_second": "Neither, they are equal; only the KE and PE split is different."
+      "probe": "Where is the block's kinetic energy largest, and where does it move fastest?",
+      "reply_if_first": "It moves fastest at the extreme, the farthest point.",
+      "reply_if_second": "Both at the mean position, where all the energy is kinetic."
+    },
+    {
+      "separates": [
+        "S5",
+        "CORRECT"
+      ],
+      "probe": "Does the spring's force change the block's speed during an oscillation?",
+      "reply_if_first": "No, the speed stays constant; only the direction flips.",
+      "reply_if_second": "Yes, it speeds the block up toward the mean and slows it down beyond."
+    },
+    {
+      "separates": [
+        "S6",
+        "CORRECT"
+      ],
+      "probe": "At the instant the block stops at an extreme, is any force acting on it?",
+      "reply_if_first": "No, it's at rest, so there's no force and no acceleration.",
+      "reply_if_second": "Yes, the spring force is largest, so the acceleration is largest, toward the mean."
+    },
+    {
+      "separates": [
+        "S7",
+        "CORRECT"
+      ],
+      "probe": "How much is the spring stretched when the block is at the mean position?",
+      "reply_if_first": "It doesn't matter; the block is fastest there, so acceleration is biggest.",
+      "reply_if_second": "Not at all, so there's no force and the acceleration is zero."
+    }
+  ],
+  "doubts": [
+    {
+      "q": "How can the acceleration be maximum when the velocity is zero?",
+      "a": "Acceleration measures how fast velocity changes, not how big it is. At an extreme the velocity is switching from one direction to the other, and the spring force is largest there, so the acceleration is largest even though v = 0 for an instant."
+    },
+    {
+      "q": "If the acceleration is zero at the mean position, why doesn't the block stop there?",
+      "a": "Zero acceleration means the velocity is not changing at that instant, not that the velocity is zero. The block arrives at the mean with its maximum speed and carries on past it, then the restoring force starts slowing it down."
+    },
+    {
+      "q": "Is the acceleration always opposite to the velocity in SHM?",
+      "a": "No. The acceleration always points toward the mean, but the velocity points toward the mean only on the way in. While moving toward the mean they are in the same direction and the body speeds up; while moving away they are opposite and it slows down."
+    },
+    {
+      "q": "Why is there a minus sign in a = −ω²x?",
+      "a": "The minus sign shows the acceleration is always opposite to the displacement, that is, always directed toward the mean position. When x is positive a is negative, and when x is negative a is positive."
     }
   ],
   "verify_flags": [
     "TODO_VERIFY",
-    "Concept-card worked example: ω = √(50/0.5) = 10 rad/s, v_max = ωA = 1 m/s, a_max = ω²A = 10 m/s², E = ½kA² = 0.25 J."
+    "Jhoola analogy and P2 pendulum use the small-angle approximation; at the lowest point a real pendulum still has a centripetal acceleration v²/L, ignored in the SHM model.",
+    "Circle-projection alternative: confirm phrasing suits Class 11 reference-circle treatment.",
+    "Hinglish exemplars are informal Latin-script; have a native speaker check naturalness."
   ]
 }

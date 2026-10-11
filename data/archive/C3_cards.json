@@ -1,0 +1,159 @@
+{
+  "concept_card": {
+    "card_id": "C3-K",
+    "concept": "C3",
+    "statement": "Each particle does SHM in place; the wave pattern moves at a speed set by the medium, not the source.",
+    "analogy": "Stadium Mexican wave: fans only stand and sit, yet the wave runs round.",
+    "steps": [
+      "Particles oscillate about their own mean positions",
+      "Pattern and energy pass from particle to particle",
+      "Medium sets speed: v = √(T/μ) on a string",
+      "Source sets f; amplitude leaves v unchanged",
+      "Hence λ = v/f"
+    ],
+    "worked_example": "T = 100 N, μ = 0.01 kg/m: v = √(100/0.01) = 100 m/s; at 50 Hz, λ = 2 m."
+  },
+  "remediation_cards": [
+    {
+      "card_id": "W1-R",
+      "code": "W1",
+      "wrong_idea": "The wave carries the rope (or water, or air) along with it to the other end.",
+      "why_it_feels_right": "You can see something moving forward, and waves at the beach seem to push things to the shore.",
+      "why_wrong": "Each piece of the medium only moves up-down or back-forth about its own place. Only the pattern and energy move forward.",
+      "correct_idea": "The medium stays put and oscillates; the disturbance is what travels.",
+      "sim_moment": "Red-Dot Rope: the red dot bobs up and down as the wave runs past, never moving along."
+    },
+    {
+      "card_id": "W2-R",
+      "code": "W2",
+      "wrong_idea": "If I shake the rope faster, the wave will run along it faster.",
+      "why_it_feels_right": "Moving your hand faster feels like more effort, so it seems the wave should be quicker too.",
+      "why_wrong": "On a string v = √(T/μ), set only by tension and mass per length. Shaking faster raises f, so λ = v/f shrinks instead.",
+      "correct_idea": "Higher frequency gives shorter waves moving at the same speed.",
+      "sim_moment": "Red-Dot Rope: raise the frequency slider and see the crests bunch closer while the front still reaches the end at the same time."
+    },
+    {
+      "card_id": "W3-R",
+      "code": "W3",
+      "wrong_idea": "If I shake harder and make bigger waves, they will travel faster.",
+      "why_it_feels_right": "A bigger push usually makes things go faster, like throwing a ball harder.",
+      "why_wrong": "Amplitude does not appear in v = √(T/μ). A taller wave carries more energy, but on the same rope it moves at the same speed.",
+      "correct_idea": "Bigger amplitude means more energy, not more speed.",
+      "sim_moment": "Red-Dot Rope: raise the amplitude slider and see the taller pulse reach the end at the same moment as a small one."
+    }
+  ],
+  "exemplars": {
+    "W1": [
+      "the rope goes along with the wave",
+      "the water moves forward with the ripple, that's how it reaches the shore",
+      "sound is just air travelling from the speaker to my ear",
+      "the wave pushes the string bits to the other end",
+      "the red dot will end up at the far side",
+      "the particles move along with the wave, right?",
+      "the air from the flute comes to us, that's why we hear it",
+      "the medium travels with it, otherwise how does the wave get there",
+      "the stuff gets carried forward, like a conveyor belt",
+      "the leaf will float off with the waves",
+      "wave ke saath rope bhi aage chali jaati hai",
+      "hawa hi toh speaker se kaan tak aati hai, wahi sound hai"
+    ],
+    "W2": [
+      "shake it faster and the wave goes faster",
+      "higher frequency means higher speed",
+      "the high note reaches first because it vibrates more",
+      "more waves per second so it must travel quicker",
+      "if you wiggle fast the wave zooms",
+      "faster hand, faster wave, obviously",
+      "double the frequency, double the speed",
+      "the treble sound travels quicker than the bass",
+      "quick shakes make quick waves",
+      "it moves faster because the source is vibrating faster",
+      "jaldi jaldi hilao toh wave bhi jaldi pahunchegi",
+      "frequency badhegi toh speed bhi badhegi na"
+    ],
+    "W3": [
+      "shake harder and the wave goes faster",
+      "bigger waves travel faster",
+      "the louder sound reaches first",
+      "more amplitude means more speed",
+      "a big jerk sends the pulse quicker",
+      "the taller pulse has more energy so it runs faster",
+      "if you hit it harder the sound gets there sooner",
+      "big push, fast wave",
+      "the stronger wave will win the race",
+      "louder means faster, it has more force behind it",
+      "zor se hilao toh wave tez jaayegi",
+      "badi wave hai toh jaldi pahunchegi"
+    ],
+    "CORRECT": [
+      "the rope just goes up and down, only the shape moves along",
+      "same rope, same tension, so same speed",
+      "speed depends on the medium, not on how I shake it",
+      "shaking faster only makes the waves shorter, not faster",
+      "a bigger wave has more energy but the same speed",
+      "the air just vibrates in place, the sound pattern is what travels"
+    ]
+  },
+  "contrast_probes": [
+    {
+      "separates": [
+        "W1",
+        "W2"
+      ],
+      "probe": "If you shake a rope faster, where does a red dot painted on its middle end up after a minute?",
+      "reply_if_first": "It gets carried down to the far end along with the wave.",
+      "reply_if_second": "It stays near its spot and just jiggles faster."
+    },
+    {
+      "separates": [
+        "W1",
+        "W3"
+      ],
+      "probe": "What decides how soon a pulse on a rope reaches the far end?",
+      "reply_if_first": "How fast the rope itself gets dragged forward.",
+      "reply_if_second": "How big the pulse is; a bigger one gets there sooner."
+    },
+    {
+      "separates": [
+        "W2",
+        "W3"
+      ],
+      "probe": "On the same rope, one pulse is tall but slowly made and the other is small but quickly made. Which reaches the end first?",
+      "reply_if_first": "The small, quickly made one.",
+      "reply_if_second": "The tall one."
+    },
+    {
+      "separates": [
+        "W1",
+        "CORRECT"
+      ],
+      "probe": "After a wave has fully passed a ribbon tied to the middle of a rope, where is the ribbon?",
+      "reply_if_first": "Further along the rope, closer to the far end.",
+      "reply_if_second": "Back at the same spot; it only went up and down."
+    },
+    {
+      "separates": [
+        "W2",
+        "CORRECT"
+      ],
+      "probe": "Same rope, same tension: you double how many times per second you shake it. What happens to the wave speed?",
+      "reply_if_first": "It doubles too.",
+      "reply_if_second": "It stays the same; the waves just get shorter."
+    },
+    {
+      "separates": [
+        "W3",
+        "CORRECT"
+      ],
+      "probe": "Same rope, same tension: you make the pulse twice as tall. Does it reach the far end sooner?",
+      "reply_if_first": "Yes, the bigger pulse gets there sooner.",
+      "reply_if_second": "No, it arrives at the same time, just taller."
+    }
+  ],
+  "verify_flags": [
+    "TODO_VERIFY",
+    "Amplitude-independence of v holds for small (linear) waves only",
+    "Sound speed 343 m/s at about 20 °C used in items; NCERT also quotes 331 m/s at 0 °C",
+    "W1 'beach waves push things to shore' in why_it_feels_right: real water waves do cause slight drift; kept as the student's intuition, not as physics"
+  ]
+}

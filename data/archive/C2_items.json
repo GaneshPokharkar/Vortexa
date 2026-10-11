@@ -1,0 +1,110 @@
+[
+  {
+    "item_id": "C2-P1",
+    "concept": "C2",
+    "is_assessment": false,
+    "sibling_of": null,
+    "stem": "On a smooth lab table, Riya pulls a 0.5 kg block attached to a spring (k = 50 N/m) 0.1 m from its mean position and releases it. At that extreme point, which set of values is correct?",
+    "options": {
+      "A": "v = 0, a = 0, total energy = 0.25 J",
+      "B": "v = 0, a = 10 m/s², total energy = 0.25 J",
+      "C": "v = 0, a = 1 m/s², total energy = 0.25 J",
+      "D": "v = 0, a = 10 m/s², total energy = 0 J"
+    },
+    "correct": "B",
+    "distractor_map": {
+      "A": "O4",
+      "B": "CORRECT",
+      "C": "SLIP",
+      "D": "O5"
+    },
+    "reasons": {
+      "r1": {"text": "At the end the block stops, so it has no energy at that moment. The energy comes back when it starts moving again.", "maps_to": "O5"},
+      "r2": {"text": "At the end the speed is zero, but the spring is stretched the most, so the pull and the acceleration are the biggest. All the energy is stored in the spring, so the total is still ½kA².", "maps_to": "CORRECT"},
+      "r3": {"text": "The block is not moving at the end, so there is nothing changing, so the acceleration must be zero there.", "maps_to": "O4"}
+    },
+    "calc": "ω² = k/m = 50/0.5 = 100 s⁻²; a = ω²A = 100 × 0.1 = 10 m/s²; E = ½kA² = ½ × 50 × 0.1² = 0.25 J (SLIP C uses ωA = 10 × 0.1 = 1)",
+    "verify_flags": ["TODO_VERIFY"]
+  },
+  {
+    "item_id": "C2-P2",
+    "concept": "C2",
+    "is_assessment": false,
+    "sibling_of": "C2-P1",
+    "stem": "Meera swings on a jhoola in small arcs, close to SHM, with no air drag. At the highest point she stops for an instant. Which statement about that instant is correct?",
+    "options": {
+      "A": "Her acceleration is zero because she has stopped.",
+      "B": "Her total energy is less than at the bottom because she is not moving.",
+      "C": "Her acceleration is at its largest, pointing back toward the lowest point, and her total energy is the same as at the bottom.",
+      "D": "Her acceleration is at its largest, and her total energy is also at its largest because she is highest."
+    },
+    "correct": "C",
+    "distractor_map": {
+      "A": "O4",
+      "B": "O5",
+      "C": "CORRECT",
+      "D": "O5"
+    },
+    "reasons": {
+      "r1": {"text": "She is not moving at the top, so nothing is pushing her speed up or down. So no acceleration.", "maps_to": "O4"},
+      "r2": {"text": "At the top she has no speed, so she lost her kinetic energy. So the total energy has gone down at that point.", "maps_to": "O5"},
+      "r3": {"text": "At the top she is furthest from the middle, so the pull back is strongest. The kinetic energy just turned into potential energy, so the total did not change.", "maps_to": "CORRECT"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Swing treated as a small-angle simple pendulum; at the extreme the acceleration is tangential (g sinθ) toward the mean, with zero centripetal part since v = 0."]
+  },
+  {
+    "item_id": "C2-P3",
+    "concept": "C2",
+    "is_assessment": false,
+    "sibling_of": "C2-P1",
+    "stem": "Kabir's 2 kg toy cart, held between two springs on a smooth track, moves as x = 0.05 sin(4t) m. When the cart is at x = 0.05 m, what are its acceleration and total energy?",
+    "options": {
+      "A": "a = 0, E = 0.04 J",
+      "B": "a = 0.8 m/s², E = 0 J",
+      "C": "a = 0.8 m/s², E = 0.04 J now, but it rises to 0.08 J at the mean position",
+      "D": "a = 0.8 m/s², E = 0.04 J"
+    },
+    "correct": "D",
+    "distractor_map": {
+      "A": "O4",
+      "B": "O5",
+      "C": "O5",
+      "D": "CORRECT"
+    },
+    "reasons": {
+      "r1": {"text": "x = 0.05 m is the end of the motion, so speed is zero but acceleration is ω²A, the biggest. Energy just moves between KE and PE, so the total stays ½mω²A².", "maps_to": "CORRECT"},
+      "r2": {"text": "The cart stops at x = 0.05 m, so its acceleration is zero there.", "maps_to": "O4"},
+      "r3": {"text": "The cart is stopped at the end, so its energy is low there. It gets more energy when it zooms through the middle.", "maps_to": "O5"}
+    },
+    "calc": "ω = 4 rad/s; a = ω²A = 16 × 0.05 = 0.8 m/s²; E = ½mω²A² = ½ × 2 × 16 × 0.05² = 0.04 J",
+    "verify_flags": ["TODO_VERIFY"]
+  },
+  {
+    "item_id": "C2-A1",
+    "concept": "C2",
+    "is_assessment": true,
+    "sibling_of": null,
+    "stem": "In Shreya's college lab, water in a U-tube is disturbed and its level goes up and down in SHM. Assume no friction or viscosity. Which statement about the water column is correct?",
+    "options": {
+      "A": "When the level is highest, the column is at rest for an instant, but its acceleration is the largest.",
+      "B": "When the level is highest, the column is at rest, so the net force on it is zero.",
+      "C": "The total energy of the column is largest when it rushes through the mean level.",
+      "D": "The column moves fastest when the level is highest."
+    },
+    "correct": "A",
+    "distractor_map": {
+      "A": "CORRECT",
+      "B": "O4",
+      "C": "O5",
+      "D": "UNMAPPED"
+    },
+    "reasons": {
+      "r1": {"text": "At the highest level the water stops, and when something stops there is no force on it.", "maps_to": "O4"},
+      "r2": {"text": "When the water is moving fastest it has the most energy, so total energy is biggest at the middle.", "maps_to": "O5"},
+      "r3": {"text": "At the highest level the water is furthest from the middle, so the restoring push is biggest, even though it is stopped for a moment.", "maps_to": "CORRECT"}
+    },
+    "calc": "",
+    "verify_flags": ["TODO_VERIFY", "Ideal U-tube (no viscosity) treated as SHM, restoring force from the level difference; check students know this setup from NCERT."]
+  }
+]

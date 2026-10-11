@@ -1,341 +1,482 @@
 [
  {
   "concept_id": "C1",
-  "name": "SHM: period and restoring force",
+  "name": "Oscillations: mean position, displacement and amplitude",
+  "topic_id": "SHM",
+  "subtopic": "Oscillations: mean position, displacement and amplitude",
   "zone": "Oscillations",
-  "summary": "For small swings, a pendulum's period T = 2π√(L/g) depends only on length and g, not amplitude or bob mass.",
+  "summary": "In an oscillation, displacement is measured from the mean (equilibrium) position, and the amplitude is the maximum displacement: the distance from the mean position to either extreme, which is half the extreme-to-extreme distance.",
+  "learning_objective": "Students will be able to locate the mean position of an oscillating body, measure displacement from it, find the amplitude as half the distance between the extreme positions, and tell periodic, oscillatory and simple harmonic motion apart.",
+  "review_status": "needs_review",
   "contrast_probes": [
    {
     "separates": [
-     "O1",
-     "O2"
+     "S1",
+     "S2"
     ],
-    "probe": "If you pull the same pendulum further out before letting go, does each swing take more time or less time?",
-    "reply_if_first": "More time, because it has a longer path to cover.",
-    "reply_if_second": "Less time, because it moves faster."
+    "probe": "What would you need to check before saying a repeating motion is 'SHM with an amplitude of 5 cm'?",
+    "reply_if_first": "That it is SHM, and that its two ends are 5 cm apart.",
+    "reply_if_second": "Only that it repeats at equal intervals, and that it goes 5 cm out from the middle."
    },
    {
     "separates": [
-     "O1",
-     "O3"
+     "S1",
+     "S3"
     ],
-    "probe": "Two pendulums of the same length are released from the same small angle, one with a light bob and one with a heavy bob; would they stay in step?",
-    "reply_if_first": "Yes, they start from the same angle so they cover the same distance and stay together.",
-    "reply_if_second": "No, the heavy one will swing at a different speed and drift apart."
+    "probe": "A pendulum released from one extreme swings between extremes 8 cm apart; what is its displacement when it is exactly at the middle?",
+    "reply_if_first": "Zero, it is at the mean position, though the amplitude is the full 8 cm.",
+    "reply_if_second": "4 cm, because it has moved halfway from where it was released."
    },
    {
     "separates": [
-     "O2",
-     "O3"
+     "S2",
+     "S3"
     ],
-    "probe": "What would you change to make a pendulum come back sooner: release it from higher up, or hang a heavier bob?",
-    "reply_if_first": "Release it from higher up so it goes faster.",
-    "reply_if_second": "Hang a heavier bob, since mass changes the swing time."
+    "probe": "For a ball bouncing on the floor, is the motion SHM, and where is its displacement zero?",
+    "reply_if_first": "It repeats, so it is SHM, with zero displacement at the middle of its bounce height.",
+    "reply_if_second": "Its displacement is zero at the floor, because that is where each bounce starts."
    },
    {
     "separates": [
-     "O1",
+     "S1",
      "CORRECT"
     ],
-    "probe": "A pendulum takes 2 s per swing at 4°; roughly how long does it take at 8°, still a small angle?",
-    "reply_if_first": "More than 2 s, maybe about 4 s, because it goes twice as far.",
-    "reply_if_second": "Still 2 s, because the time doesn't depend on how wide it swings."
+    "probe": "A swing's two extreme points are 2 m apart; how far is each extreme from the lowest point, and what is the amplitude?",
+    "reply_if_first": "Each extreme is 1 m from the bottom, but the amplitude is 2 m because that is the full swing.",
+    "reply_if_second": "Each extreme is 1 m from the lowest point, so the amplitude is 1 m."
    },
    {
     "separates": [
-     "O2",
+     "S2",
      "CORRECT"
     ],
-    "probe": "A bob released from 10° moves faster at the bottom than one released from 5°; does that mean it finishes its swing first?",
-    "reply_if_first": "Yes, faster means it gets back first.",
-    "reply_if_second": "No, it also has farther to go, so both take the same time."
+    "probe": "Earth goes round the Sun once every year; is that motion SHM?",
+    "reply_if_first": "Yes, it repeats every year, so it is SHM.",
+    "reply_if_second": "No, it is periodic, but it is not to-and-fro about a mean position with a force proportional to -x."
    },
    {
     "separates": [
-     "O3",
+     "S3",
      "CORRECT"
     ],
-    "probe": "If you replace a 100 g bob with a 400 g bob on the same string, what happens to the period?",
-    "reply_if_first": "It changes, the heavier bob swings at a different rate.",
-    "reply_if_second": "It stays the same, because mass cancels and only L and g matter."
+    "probe": "A block released 5 cm to the right of the mean position is now 2 cm to the right of it; what is its displacement?",
+    "reply_if_first": "3 cm, because it has moved 3 cm from where it was released.",
+    "reply_if_second": "+2 cm, measured from the mean position."
    }
   ],
   "correct_exemplars": [
-   "same time, because amplitude isn't in the formula",
-   "bigger swing goes further but also faster, so it evens out",
-   "only length and g matter for a pendulum",
-   "mass cancels out, so heavy or light gives the same period",
-   "both come back together as long as the angle is small",
-   "T is 2π root L by g, nothing else"
+   "amplitude is half the distance between the two extremes",
+   "displacement is measured from the mean position where the net force is zero",
+   "at the mean position displacement is zero and at the extremes it is plus or minus A",
+   "every SHM is periodic but not every periodic motion is SHM",
+   "it's SHM only if the restoring force is proportional to displacement and towards the mean",
+   "the release point is just an extreme, the reference is still the middle"
+  ],
+  "doubts": [
+   {
+    "q": "Can amplitude be negative?",
+    "a": "No. Amplitude is the maximum distance from the mean position, so it is always positive. Displacement can be negative, for example x = -A at the other extreme; the sign only shows which side of the mean the body is on."
+   },
+   {
+    "q": "Why do we measure displacement from the mean position and not from where we release the body?",
+    "a": "The mean position is where the net force is zero, and the motion is symmetric about it, so it stays the same however you start the motion. The release point is just one extreme and can change from trial to trial."
+   },
+   {
+    "q": "Is every oscillatory motion SHM?",
+    "a": "No. Oscillatory only means to-and-fro motion about a mean position. It is SHM only when the restoring force is proportional to displacement, F = -kx. A pendulum swinging through large angles oscillates but is not exactly SHM."
+   },
+   {
+    "q": "How much distance does the body cover in one complete oscillation?",
+    "a": "In one oscillation it goes from the mean to one extreme, back through the mean to the other extreme, and back to the mean, covering 4A. Its displacement after one full oscillation is zero, since it returns to the same point."
+   }
   ]
  },
  {
   "concept_id": "C2",
-  "name": "SHM: velocity, acceleration, energy",
+  "name": "Velocity and acceleration in SHM",
+  "topic_id": "SHM",
+  "subtopic": "Velocity and acceleration of a particle in SHM",
   "zone": "Oscillations",
-  "summary": "In SHM, speed peaks at the mean, acceleration peaks at the extremes, and total energy stays constant.",
+  "summary": "In ideal SHM the speed is greatest at the mean position and zero at the extremes, while the acceleration is zero at the mean, greatest at the extremes, and always directed toward the mean.",
+  "learning_objective": "Students will be able to state and explain where the speed and the acceleration of an ideal simple harmonic oscillator are maximum and zero, give the direction of the acceleration, and calculate v and a at any displacement.",
+  "review_status": "needs_review",
   "contrast_probes": [
    {
     "separates": [
-     "O4",
-     "O5"
+     "S4",
+     "S5"
     ],
-    "probe": "At the extreme point, which quantity of the block becomes zero: its acceleration or its total energy?",
-    "reply_if_first": "Its acceleration, because the block has stopped there.",
-    "reply_if_second": "Its total energy, because it has no speed there."
+    "probe": "Is the block's speed at the extreme position bigger than, equal to, or smaller than its speed at the mean position?",
+    "reply_if_first": "Bigger — it's fastest at the extreme.",
+    "reply_if_second": "Equal — the speed is the same everywhere."
    },
    {
     "separates": [
-     "O4",
-     "CORRECT"
+     "S4",
+     "S6"
     ],
-    "probe": "At the extreme point the block is at rest for an instant. Is its acceleration there zero, or the largest in the whole cycle?",
-    "reply_if_first": "Zero, because it isn't moving.",
-    "reply_if_second": "The largest, because the spring is stretched the most there."
+    "probe": "What is the block's velocity at the instant it reaches the extreme position?",
+    "reply_if_first": "It's at its highest there.",
+    "reply_if_second": "It's zero there, so its acceleration is zero too."
    },
    {
     "separates": [
-     "O5",
+     "S4",
+     "S7"
+    ],
+    "probe": "At the mean position, is the block moving at its slowest or fastest?",
+    "reply_if_first": "Slowest — it's fastest at the ends.",
+    "reply_if_second": "Fastest, and that's why its acceleration is biggest there."
+   },
+   {
+    "separates": [
+     "S5",
+     "S6"
+    ],
+    "probe": "Does the block ever stop, even for an instant, during one oscillation?",
+    "reply_if_first": "No, it keeps going at the same speed all the time.",
+    "reply_if_second": "Yes, at the ends it stops, so it has no acceleration there."
+   },
+   {
+    "separates": [
+     "S5",
+     "S7"
+    ],
+    "probe": "Does the block's speed change as it moves from an extreme to the mean position?",
+    "reply_if_first": "No, it stays the same throughout.",
+    "reply_if_second": "Yes, it speeds up, and the acceleration is biggest when it reaches the mean."
+   },
+   {
+    "separates": [
+     "S6",
+     "S7"
+    ],
+    "probe": "Compare the block's acceleration at the extreme position with its acceleration at the mean position.",
+    "reply_if_first": "It's zero at the extreme because the block stops there.",
+    "reply_if_second": "It's biggest at the mean because the block is fastest there."
+   },
+   {
+    "separates": [
+     "S4",
      "CORRECT"
     ],
-    "probe": "Compare the block's total energy at the extreme point with its total energy at the mean position. Which is bigger?",
-    "reply_if_first": "The mean position, because it moves fastest there.",
-    "reply_if_second": "Neither, they are equal; only the KE and PE split is different."
+    "probe": "Where is the block's kinetic energy largest, and where does it move fastest?",
+    "reply_if_first": "It moves fastest at the extreme, the farthest point.",
+    "reply_if_second": "Both at the mean position, where all the energy is kinetic."
+   },
+   {
+    "separates": [
+     "S5",
+     "CORRECT"
+    ],
+    "probe": "Does the spring's force change the block's speed during an oscillation?",
+    "reply_if_first": "No, the speed stays constant; only the direction flips.",
+    "reply_if_second": "Yes, it speeds the block up toward the mean and slows it down beyond."
+   },
+   {
+    "separates": [
+     "S6",
+     "CORRECT"
+    ],
+    "probe": "At the instant the block stops at an extreme, is any force acting on it?",
+    "reply_if_first": "No, it's at rest, so there's no force and no acceleration.",
+    "reply_if_second": "Yes, the spring force is largest, so the acceleration is largest, toward the mean."
+   },
+   {
+    "separates": [
+     "S7",
+     "CORRECT"
+    ],
+    "probe": "How much is the spring stretched when the block is at the mean position?",
+    "reply_if_first": "It doesn't matter; the block is fastest there, so acceleration is biggest.",
+    "reply_if_second": "Not at all, so there's no force and the acceleration is zero."
    }
   ],
   "correct_exemplars": [
-   "at the extreme v is zero but a is max, ω²A",
-   "it stops for an instant but the spring is pulling hardest there",
-   "acceleration is zero only at the mean, where speed is max",
-   "total energy stays ½kA², it just shifts between KE and PE",
-   "at the ends it's all potential energy, in the middle all kinetic",
-   "no damping, so the total energy doesn't change during the swing"
+   "Speed is greatest at the mean position because all the energy is kinetic there.",
+   "At the ends it stops for a moment, but the spring pulls hardest, so acceleration is biggest there.",
+   "Acceleration is zero in the middle because the spring isn't stretched, so there's no force.",
+   "Acceleration always points back toward the centre, proportional to how far it is from there.",
+   "It speeds up all the way to the mean and slows down after, so the speed peaks at the mean.",
+   "Zero velocity at the extreme just means it's turning around; the acceleration there is maximum."
+  ],
+  "doubts": [
+   {
+    "q": "How can the acceleration be maximum when the velocity is zero?",
+    "a": "Acceleration measures how fast velocity changes, not how big it is. At an extreme the velocity is switching from one direction to the other, and the spring force is largest there, so the acceleration is largest even though v = 0 for an instant."
+   },
+   {
+    "q": "If the acceleration is zero at the mean position, why doesn't the block stop there?",
+    "a": "Zero acceleration means the velocity is not changing at that instant, not that the velocity is zero. The block arrives at the mean with its maximum speed and carries on past it, then the restoring force starts slowing it down."
+   },
+   {
+    "q": "Is the acceleration always opposite to the velocity in SHM?",
+    "a": "No. The acceleration always points toward the mean, but the velocity points toward the mean only on the way in. While moving toward the mean they are in the same direction and the body speeds up; while moving away they are opposite and it slows down."
+   },
+   {
+    "q": "Why is there a minus sign in a = −ω²x?",
+    "a": "The minus sign shows the acceleration is always opposite to the displacement, that is, always directed toward the mean position. When x is positive a is negative, and when x is negative a is positive."
+   }
   ]
  },
  {
   "concept_id": "C3",
-  "name": "Waves are chained SHM; wave speed",
-  "zone": "Waves",
-  "summary": "Each particle does SHM in place; the wave pattern moves at a speed set by the medium, not the source.",
+  "name": "Time period, frequency and angular frequency",
+  "topic_id": "SHM",
+  "subtopic": "Time period, frequency and angular frequency",
+  "zone": "Oscillations",
+  "summary": "In SHM the period T = 2π/ω is fixed by the system (m and k, or L and g), not by how far it is pulled.",
+  "learning_objective": "Students will be able to convert between T, f and ω, calculate the period of a spring–mass system and a simple pendulum, and explain why the period does not depend on amplitude in ideal SHM.",
+  "review_status": "needs_review",
   "contrast_probes": [
    {
     "separates": [
-     "W1",
-     "W2"
+     "S8",
+     "S9"
     ],
-    "probe": "If you shake a rope faster, where does a red dot painted on its middle end up after a minute?",
-    "reply_if_first": "It gets carried down to the far end along with the wave.",
-    "reply_if_second": "It stays near its spot and just jiggles faster."
+    "probe": "Two pendulums of equal length: a light bob pulled far and a heavy bob pulled a little. Which one do you think takes longer per swing, and what decides it?",
+    "reply_if_first": "The light bob, because it is pulled further and has more distance to cover.",
+    "reply_if_second": "It depends on the bobs' masses; the heavy one will be slower or faster because of its weight."
    },
    {
     "separates": [
-     "W1",
-     "W3"
+     "S8",
+     "S10"
     ],
-    "probe": "What decides how soon a pulse on a rope reaches the far end?",
-    "reply_if_first": "How fast the rope itself gets dragged forward.",
-    "reply_if_second": "How big the pulse is; a bigger one gets there sooner."
+    "probe": "A block with ω = 2π rad/s is pulled from 5 cm to 10 cm. What is its period now, and why?",
+    "reply_if_first": "It was 1 s, but now it travels double the distance, so about 2 s.",
+    "reply_if_second": "Period is 1 by omega, so 1/(2π), about 0.16 s, whatever the amplitude."
    },
    {
     "separates": [
-     "W2",
-     "W3"
+     "S9",
+     "S10"
     ],
-    "probe": "On the same rope, one pulse is tall but slowly made and the other is small but quickly made. Which reaches the end first?",
-    "reply_if_first": "The small, quickly made one.",
-    "reply_if_second": "The tall one."
+    "probe": "A spring–mass system has ω = 4π rad/s. What extra information, if any, do you need to find its period?",
+    "reply_if_first": "I need the mass of the block, otherwise I can't find the period.",
+    "reply_if_second": "Nothing extra; the period is 1/ω = 1/(4π) s."
    },
    {
     "separates": [
-     "W1",
+     "S8",
      "CORRECT"
     ],
-    "probe": "After a wave has fully passed a ribbon tied to the middle of a rope, where is the ribbon?",
-    "reply_if_first": "Further along the rope, closer to the far end.",
-    "reply_if_second": "Back at the same spot; it only went up and down."
+    "probe": "If you double the amplitude of a spring–mass oscillator, what happens to the time for one oscillation?",
+    "reply_if_first": "It increases, because the block has to cover more distance.",
+    "reply_if_second": "It stays the same; the block covers more distance but moves faster, and T = 2π√(m/k) has no amplitude."
    },
    {
     "separates": [
-     "W2",
+     "S9",
      "CORRECT"
     ],
-    "probe": "Same rope, same tension: you double how many times per second you shake it. What happens to the wave speed?",
-    "reply_if_first": "It doubles too.",
-    "reply_if_second": "It stays the same; the waves just get shorter."
+    "probe": "You replace a 100 g bob with a 400 g bob on a pendulum, and a 100 g block with a 400 g block on a spring. What happens to each period?",
+    "reply_if_first": "Either both periods change because of the extra mass, or neither changes because only L and k matter.",
+    "reply_if_second": "The pendulum's period stays the same, but the spring's period doubles because T ∝ √m."
    },
    {
     "separates": [
-     "W3",
+     "S10",
      "CORRECT"
     ],
-    "probe": "Same rope, same tension: you make the pulse twice as tall. Does it reach the far end sooner?",
-    "reply_if_first": "Yes, the bigger pulse gets there sooner.",
-    "reply_if_second": "No, it arrives at the same time, just taller."
+    "probe": "An oscillator has ω = 10π rad/s. How many full oscillations does it make in one second?",
+    "reply_if_first": "10π, about 31 oscillations, since omega is the frequency.",
+    "reply_if_second": "5, because f = ω/2π = 10π/2π."
    }
   ],
   "correct_exemplars": [
-   "the rope just goes up and down, only the shape moves along",
-   "same rope, same tension, so same speed",
-   "speed depends on the medium, not on how I shake it",
-   "shaking faster only makes the waves shorter, not faster",
-   "a bigger wave has more energy but the same speed",
-   "the air just vibrates in place, the sound pattern is what travels"
+   "period is 2 pi by omega because one cycle is 2 pi radians",
+   "amplitude isn't in the formula so the period stays the same",
+   "pendulum period depends only on length and g, the mass cancels",
+   "for a spring T is 2 pi root m by k so four times mass gives double period",
+   "bigger swing means more distance but also more speed, so same time",
+   "f is omega by 2 pi, so 4 pi radians per second is 2 hertz"
+  ],
+  "doubts": [
+   {
+    "q": "Why do we need both f and ω if they both tell how fast it oscillates?",
+    "a": "f counts full oscillations per second, while ω counts radians of phase per second. ω fits naturally into x = A cos(ωt + φ) and into ω = √(k/m). They are linked by ω = 2πf."
+   },
+   {
+    "q": "Why does a pendulum's period not depend on the mass of the bob, but a spring's period does?",
+    "a": "In a pendulum the restoring force comes from gravity, which grows with mass, so mass cancels with inertia. In a spring the restoring force kx does not depend on the block's mass, so a heavier block accelerates less and T = 2π√(m/k) grows."
+   },
+   {
+    "q": "Is the pendulum period really independent of amplitude for any swing?",
+    "a": "Only for small angles, where sin θ ≈ θ and the motion is SHM. For large swings the period becomes slightly longer than 2π√(L/g)."
+   },
+   {
+    "q": "If I double the mass on a spring, why does the period not double?",
+    "a": "The period depends on the square root of mass, T = 2π√(m/k). Doubling m multiplies T by √2 ≈ 1.41; you need four times the mass to double the period."
+   }
   ]
  },
  {
   "concept_id": "C4",
-  "name": "Superposition, standing waves, beats",
-  "zone": "Waves",
-  "summary": "Overlapping waves add displacements, then pass on unchanged; close frequencies beat at |f1 − f2|.",
+  "name": "Restoring force and a = −ω²x",
+  "topic_id": "SHM",
+  "subtopic": "Restoring force and the defining condition a = −ω²x",
+  "zone": "Oscillations",
+  "summary": "In SHM the restoring force F = −kx grows with displacement and always points toward the mean position, so a = −ω²x with ω² = k/m.",
+  "learning_objective": "Students will be able to state that the restoring force in SHM is proportional to displacement and always directed toward the mean position, and use a = −ω²x with ω² = k/m to find acceleration at any displacement.",
+  "review_status": "needs_review",
   "contrast_probes": [
    {
     "separates": [
-     "W4",
-     "W5"
+     "S11",
+     "S12"
     ],
-    "probe": "Two equal and opposite pulses meet in the middle of a rope. A second later, is there any pulse near the ends?",
-    "reply_if_first": "No, nothing is left, the rope just stays flat.",
-    "reply_if_second": "Yes, each pulse is back near the end it started from."
+    "probe": "As the block moves from the mean out to the extreme, what happens to the restoring force?",
+    "reply_if_first": "Nothing changes, it's the same force all the way out.",
+    "reply_if_second": "It keeps pushing the block outward, that's why it reaches the extreme."
    },
    {
     "separates": [
-     "W4",
-     "B1"
-    ],
-    "probe": "Forks of 300 Hz and 304 Hz sound together. What happens to the loudness, and how often?",
-    "reply_if_first": "It keeps fading away because the waves cancel and the sound energy gets used up.",
-    "reply_if_second": "It throbs about 604 times a second."
-   },
-   {
-    "separates": [
-     "W4",
-     "B2"
-    ],
-    "probe": "Forks of 300 Hz and 304 Hz sound together. What happens to the loudness, and how often?",
-    "reply_if_first": "It keeps fading away because the waves cancel and the sound energy gets used up.",
-    "reply_if_second": "It throbs about 302 times a second."
-   },
-   {
-    "separates": [
-     "W5",
-     "B1"
-    ],
-    "probe": "Forks of 300 Hz and 304 Hz face each other across a room. Where their sound waves meet in the middle, what happens?",
-    "reply_if_first": "The waves bounce off each other and head back toward their own forks.",
-    "reply_if_second": "You hear a throb about 604 times a second."
-   },
-   {
-    "separates": [
-     "W5",
-     "B2"
-    ],
-    "probe": "Forks of 300 Hz and 304 Hz face each other across a room. Where their sound waves meet in the middle, what happens?",
-    "reply_if_first": "The waves bounce off each other and head back toward their own forks.",
-    "reply_if_second": "You hear a throb about 302 times a second."
-   },
-   {
-    "separates": [
-     "B1",
-     "B2"
-    ],
-    "probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
-    "reply_if_first": "About 604.",
-    "reply_if_second": "About 302."
-   },
-   {
-    "separates": [
-     "W4",
+     "S11",
      "CORRECT"
     ],
-    "probe": "At the instant two opposite pulses make the rope look flat, is the middle of the rope moving or still?",
-    "reply_if_first": "Still, the pulses have cancelled so nothing is happening there.",
-    "reply_if_second": "Moving fast, the energy is in its motion and the pulses come back out."
+    "probe": "How does the restoring force at 1 cm from the mean compare with the force at 4 cm?",
+    "reply_if_first": "They're equal, the spring is the same so the force is the same.",
+    "reply_if_second": "At 4 cm it's four times bigger, since F is proportional to x."
    },
    {
     "separates": [
-     "W5",
+     "S12",
      "CORRECT"
     ],
-    "probe": "Kabir sends a tall pulse and Meera a short one toward each other on a slinky. After they meet, which pulse reaches Meera's end?",
-    "reply_if_first": "The short one, it bounces back to her.",
-    "reply_if_second": "The tall one, it passes straight through."
-   },
-   {
-    "separates": [
-     "B1",
-     "CORRECT"
-    ],
-    "probe": "Forks of 300 Hz and 304 Hz sound together. Roughly how many throbs per second do you hear?",
-    "reply_if_first": "About 604.",
-    "reply_if_second": "About 4."
-   },
-   {
-    "separates": [
-     "B2",
-     "CORRECT"
-    ],
-    "probe": "Forks of 300 Hz and 304 Hz sound together. Which number gives the pitch you hear, and which gives how often it throbs?",
-    "reply_if_first": "Both are about 302.",
-    "reply_if_second": "Pitch about 302 Hz, throbbing 4 times a second."
+    "probe": "While the block is moving outward, past the mean toward the extreme, which way does the force on it point?",
+    "reply_if_first": "Outward, along with the motion.",
+    "reply_if_second": "Back toward the mean, which is why the block slows down and stops at the extreme."
    }
   ],
   "correct_exemplars": [
-   "the beats are the difference, so 4 per second",
-   "they add while overlapping and then just carry on",
-   "the rope's flat but still moving, so the energy's still there",
-   "the pulses pass through each other unchanged",
-   "the average is the pitch, the difference is the beat rate",
-   "they go in and out of step, f1 minus f2 times a second"
+   "force always points back toward the mean position",
+   "F equals minus kx, so it's opposite to displacement and grows with it",
+   "double the displacement, double the restoring force",
+   "acceleration is minus omega squared x, always toward the centre",
+   "at the mean the force is zero, at the extremes it's maximum",
+   "even while it's moving outward, the force is pulling it back to the mean"
+  ],
+  "doubts": [
+   {
+    "q": "If the force always pulls toward the mean, why doesn't the block just stop at the mean?",
+    "a": "At the mean the force is zero but the speed is maximum. By inertia the block overshoots, and only then does the restoring force start slowing it down on the other side."
+   },
+   {
+    "q": "What does the minus sign in F = −kx actually mean?",
+    "a": "It means the force is opposite to the displacement. If x is positive the force is negative, and vice versa, so the force always points back to the mean."
+   },
+   {
+    "q": "At the extreme the velocity is zero, so isn't the acceleration also zero there?",
+    "a": "No. Acceleration depends on displacement, not velocity. At the extreme x = ±A, so the acceleration has its largest magnitude, ω²A, directed toward the mean."
+   },
+   {
+    "q": "Is every to-and-fro motion SHM?",
+    "a": "No. It is SHM only if the acceleration is proportional to displacement and opposite to it, a = −ω²x. A ball bouncing on the floor is periodic but not SHM, because its acceleration is g, which does not depend on x."
+   }
   ]
  },
  {
   "concept_id": "C5",
-  "name": "Reflection and mirrors",
-  "zone": "Rays",
-  "summary": "A plane mirror forms a virtual, erect, same-size image as far behind the mirror as you are in front.",
+  "name": "Energy in SHM",
+  "topic_id": "SHM",
+  "subtopic": "Energy in SHM",
+  "zone": "Oscillations",
+  "summary": "In ideal SHM, kinetic and potential energy keep trading places, but their sum stays fixed at ½kA².",
+  "learning_objective": "Students will be able to find the kinetic, potential and total energy of a body in SHM at any displacement, and explain why the total stays constant and grows as the square of the amplitude.",
+  "review_status": "needs_review",
   "contrast_probes": [
    {
     "separates": [
-     "R1",
-     "R2"
+     "S13",
+     "S14"
     ],
-    "probe": "If you step 1 m back from a mirror, what happens to your image?",
-    "reply_if_first": "It looks farther away and I can see more of my body in it.",
-    "reply_if_second": "Nothing, it stays right there on the glass."
+    "probe": "At the mean position, how much energy is stored in the spring, and is the block's total energy there more than, less than, or equal to its total at the extreme?",
+    "reply_if_first": "The spring's PE is zero at the mean, but the total is more there because the block is moving fastest.",
+    "reply_if_second": "The spring's PE is maximum at the mean, along with the KE, so that's where the energy is biggest."
    },
    {
     "separates": [
-     "R1",
-     "CORRECT"
+     "S13",
+     "S15"
     ],
-    "probe": "A small wall mirror shows you from head to chest. You walk three steps back. Down to where can you see now?",
-    "reply_if_first": "Lower down, maybe to my waist.",
-    "reply_if_second": "Still only down to my chest."
+    "probe": "For a block on a spring, does the total energy depend on its position during the motion, on the amplitude, or on both?",
+    "reply_if_first": "It depends on position: more energy near the middle and less near the ends.",
+    "reply_if_second": "It depends on the amplitude, in direct proportion: twice the amplitude, twice the energy."
    },
    {
     "separates": [
-     "R2",
+     "S14",
+     "S15"
+    ],
+    "probe": "If the amplitude doubles, what happens to the PE at the mean position and to the total energy?",
+    "reply_if_first": "The PE at the mean, which is its biggest value, goes up, since a bigger swing stores more there.",
+    "reply_if_second": "The total energy doubles because energy follows the amplitude directly."
+   },
+   {
+    "separates": [
+     "S13",
      "CORRECT"
     ],
-    "probe": "You stand 1 m from a mirror. How far from you is your image?",
-    "reply_if_first": "1 m, because it's on the glass.",
-    "reply_if_second": "2 m, because it's 1 m behind the glass."
+    "probe": "As the block slows down near the extreme, where does its kinetic energy go?",
+    "reply_if_first": "It is lost, so the block has less total energy near the extreme.",
+    "reply_if_second": "It goes into the stretched spring as PE, so the total stays the same."
+   },
+   {
+    "separates": [
+     "S14",
+     "CORRECT"
+    ],
+    "probe": "At which position is the spring stretched or compressed the most, and what does that mean for the PE there?",
+    "reply_if_first": "The mean is the key point, so PE should be maximum there, along with the KE.",
+    "reply_if_second": "The stretch is greatest at the extremes, so PE = ½kx² is maximum there and zero at the mean."
+   },
+   {
+    "separates": [
+     "S15",
+     "CORRECT"
+    ],
+    "probe": "If the amplitude is made three times larger, by what factor does the total energy change?",
+    "reply_if_first": "Three times, since energy goes with the amplitude.",
+    "reply_if_second": "Nine times, since E = ½kA² and 3² = 9."
    }
   ],
   "correct_exemplars": [
-   "the image is as far behind the mirror as I am in front",
-   "my image is double the distance from me, not on the glass",
-   "stepping back doesn't help, the image steps back too",
-   "you only need a mirror half your height",
-   "how much you see depends on the mirror's size and height, not how far you stand",
-   "angle in equals angle out from the normal, so the ray from my feet hits halfway down"
+   "the total stays the same, KE just turns into PE and back",
+   "PE is maximum at the extremes and KE is maximum at the mean",
+   "E is half k A square, so doubling A makes it four times",
+   "at any point KE plus PE equals half k A square",
+   "at the mean the spring is not stretched so PE is zero and KE is full",
+   "with no friction nothing is lost, so the total energy is constant"
+  ],
+  "doubts": [
+   {
+    "q": "If the total energy is constant, why does a real spring or pendulum eventually stop?",
+    "a": "Real systems have friction and air drag, which slowly turn mechanical energy into heat. That is damped oscillation, and the amplitude shrinks. E = ½kA² stays constant only in the ideal, undamped case."
+   },
+   {
+    "q": "At what displacement are KE and PE equal?",
+    "a": "Set ½kx² = ½ × ½kA², so x² = A²/2 and x = ±A/√2 ≈ ±0.707A. There each energy is half the total."
+   },
+   {
+    "q": "Does the total energy depend on the mass if I use E = ½mω²A²?",
+    "a": "For a given spring, k = mω² is fixed, so E = ½kA² depends only on k and A. Changing the mass changes ω but not the energy for the same amplitude. Mass appears in ½mω²A² only because ω itself depends on m."
+   },
+   {
+    "q": "How often do KE and PE repeat compared to the motion itself?",
+    "a": "KE is maximum each time the body passes the mean, which happens twice per cycle. So KE and PE each repeat with period T/2, or frequency 2f, while the total stays flat."
+   }
   ]
  },
  {
   "concept_id": "C6",
   "name": "Refraction and total internal reflection",
+  "topic_id": "OPTICS",
+  "subtopic": "Refraction at a plane surface and total internal reflection",
   "zone": "Rays",
   "summary": "Light bends toward the normal entering a denser medium, away entering a rarer one; TIR needs denser-to-rarer travel beyond the critical angle.",
+  "learning_objective": "Predict whether a ray bends toward or away from the normal, use n = c/v and Snell's law, and decide when total internal reflection can occur.",
+  "review_status": "needs_review",
   "contrast_probes": [
    {
     "separates": [
@@ -361,7 +502,7 @@
      "CORRECT"
     ],
     "probe": "Can light coming from the air ever be totally internally reflected at a glass surface if you make the angle big enough?",
-    "reply_if_first": "You said yes; try it in Lens Bench from the air side at 80° and see whether any beam goes into the glass.",
+    "reply_if_first": "You said yes; try it in the refraction visual from the air side at 80° and see whether any beam goes into the glass.",
     "reply_if_second": "You said no; so what two things must be true for light to get trapped inside the glass?"
    }
   ],
@@ -372,13 +513,35 @@
    "coming out of water into air it goes away from the normal",
    "air into glass can never be TIR, it always gets in",
    "if it hits straight along the normal it doesn't bend at all"
+  ],
+  "doubts": [
+   {
+    "q": "Does the colour (frequency) of light change when it enters water?",
+    "a": "No. Frequency is set by the source and stays the same in every medium. Speed and wavelength both drop by the factor n, which is why a red laser still looks red underwater."
+   },
+   {
+    "q": "Why doesn't light bend when it hits the surface along the normal?",
+    "a": "At 0° incidence, sin i = 0, so Snell's law gives sin r = 0 and the ray goes straight on. It still slows down; only its direction is unchanged."
+   },
+   {
+    "q": "Can total internal reflection happen when light goes from air into glass?",
+    "a": "No. Going from rarer to denser, sin r = sin i / n is always less than 1, so a refracted ray always exists. TIR needs light in the denser medium heading toward a rarer one beyond the critical angle."
+   },
+   {
+    "q": "Why is it called 'total' if some light reflects at every surface anyway?",
+    "a": "Below the critical angle a surface reflects a small part and refracts the rest. Beyond it there is no refracted ray at all, so all the light is reflected, which is why optical fibres lose so little light."
+   }
   ]
  },
  {
   "concept_id": "C7",
   "name": "Lenses and image formation",
+  "topic_id": "OPTICS",
+  "subtopic": "Thin lenses: lens formula and image formation",
   "zone": "Rays",
   "summary": "A convex lens forms a full real image where rays meet, screen or not.",
+  "learning_objective": "Use 1/v − 1/u = 1/f and m = v/u to locate the image formed by a convex lens, and explain why covering part of the lens or removing the screen does not remove a real image.",
+  "review_status": "needs_review",
   "contrast_probes": [
    {
     "separates": [
@@ -415,119 +578,24 @@
    "the screen just lets us see it, the image is there anyway",
    "half the lens means less light, so a fainter but complete image",
    "if you put your eye beyond the image you could see it in the air"
-  ]
- },
- {
-  "concept_id": "C8",
-  "name": "Interference (Young's double slit)",
-  "zone": "Light as a wave",
-  "summary": "Waves from two slits add or cancel, giving fringes of width beta = lambda D / d; energy is only redistributed.",
-  "contrast_probes": [
-   {
-    "separates": [
-     "L1",
-     "L2"
-    ],
-    "probe": "When the slits are moved closer, what is the main thing that changes on the screen?",
-    "reply_if_first": "The fringes get narrower and more crowded.",
-    "reply_if_second": "More light energy gets made, so the bright fringes get brighter."
-   },
-   {
-    "separates": [
-     "L1",
-     "L3"
-    ],
-    "probe": "Ravi's screen now shows fewer, more crowded-looking fringes; did he move the slits closer or cover one slit?",
-    "reply_if_first": "He moved the slits closer, so the fringes squeezed together.",
-    "reply_if_second": "He covered one slit, so half the fringes went away."
-   },
-   {
-    "separates": [
-     "L2",
-     "L3"
-    ],
-    "probe": "After one slit is covered, what do you expect at the spot where the brightest fringe used to be?",
-    "reply_if_first": "Hardly any light, because that light was being made by the two beams interfering.",
-    "reply_if_second": "Still a bright fringe, the pattern is just cut down to half."
-   },
-   {
-    "separates": [
-     "L1",
-     "CORRECT"
-    ],
-    "probe": "If Ananya halves the gap between the slits, what happens to the fringe width?",
-    "reply_if_first": "It halves too.",
-    "reply_if_second": "It doubles, because beta = lambda D / d."
-   },
-   {
-    "separates": [
-     "L2",
-     "CORRECT"
-    ],
-    "probe": "The bright fringes are four times as bright as one slit alone; where did that extra light come from?",
-    "reply_if_first": "Interference created it.",
-    "reply_if_second": "It was taken from the dark fringes, so the total stays the same."
-   },
-   {
-    "separates": [
-     "L3",
-     "CORRECT"
-    ],
-    "probe": "If one slit is taped over, will you still see alternating bright and dark fringes?",
-    "reply_if_first": "Yes, just half of them.",
-    "reply_if_second": "No, the fringes vanish and only a broad band of light from the open slit remains."
-   }
   ],
-  "correct_exemplars": [
-   "Fringe width is lambda D by d, so closer slits give wider fringes.",
-   "Interference only shifts light from dark bands to bright bands, total stays same.",
-   "Cover one slit and the fringes vanish, you just get a broad patch from that slit.",
-   "Bright where path difference is a whole number of wavelengths, dark at a half extra.",
-   "Bright ones go up to 4I0 and dark ones to zero, so it averages to 2I0.",
-   "Halving d doubles the fringe width."
-  ]
- },
- {
-  "concept_id": "C9",
-  "name": "Diffraction and polarization",
-  "zone": "Light as a wave",
-  "summary": "A narrower slit gives a wider central maximum, and a tilted polaroid between crossed polaroids lets some light through.",
-  "contrast_probes": [
+  "doubts": [
    {
-    "separates": [
-     "L4",
-     "L5"
-    ],
-    "probe": "Which of these can make light reach a spot that was dark before: narrowing a slit, or adding a polaroid between two crossed polaroids?",
-    "reply_if_first": "Only the polaroid one — a narrower slit just makes the bright band thinner.",
-    "reply_if_second": "Only the narrower slit — a polaroid can only block light."
+    "q": "If I cover half the lens, why doesn't half the image vanish?",
+    "a": "Each point of the object sends rays to the whole lens. The open half still collects rays from every point and brings them to the same image points, so the image is complete but dimmer."
    },
    {
-    "separates": [
-     "L4",
-     "CORRECT"
-    ],
-    "probe": "You halve the slit width. Does the first dark band on the screen move closer to the centre or farther away?",
-    "reply_if_first": "Closer, because the whole pattern shrinks with the slit.",
-    "reply_if_second": "Farther, because sin θ = λ/a doubles when a is halved."
+    "q": "How can a real image exist if there is no screen?",
+    "a": "A real image is where rays actually meet. They meet there and spread out again; a screen only scatters that light toward your eyes. An eye placed beyond the image, inside the cone of rays, sees it in mid-air."
    },
    {
-    "separates": [
-     "L5",
-     "CORRECT"
-    ],
-    "probe": "Two crossed polaroids give a dark screen. You slide a third one at 45° between them. Does the screen stay dark or get some light?",
-    "reply_if_first": "It stays dark, because another polaroid can only block more.",
-    "reply_if_second": "It gets some light, I0/8, because the middle sheet turns the polarisation."
+    "q": "Why is u negative in the lens formula?",
+    "a": "In the Cartesian sign convention, distances are measured from the optical centre and are positive along the incident light. A real object sits on the side the light comes from, so u is negative. Confirm the convention your textbook uses."
+   },
+   {
+    "q": "What does a negative v or a negative m mean?",
+    "a": "Negative v means the image is on the same side as the object: virtual, upright and not catchable on a screen. Negative m means the image is inverted; for a single convex lens this goes with positive v."
    }
-  ],
-  "correct_exemplars": [
-   "narrower slit makes the light spread more, so the central band gets wider",
-   "width is 2λD by a, so smaller a means bigger width",
-   "the middle polaroid turns the polarisation, so some light gets through the last one",
-   "with the 45 degree one in between you get I0 by 8, not zero",
-   "first minimum is at sin theta equals lambda by a, so smaller a pushes it out",
-   "a polaroid passes the part along its axis, it doesn't just block"
   ]
  }
 ]
