@@ -273,6 +273,52 @@ export type Doubts = {
 
 export type TutorAnswer = { answer: string; grounded_in: string[]; engine: "llm" | "rules"; refer_teacher: boolean };
 
+/* ---------------- Socratic dialogue & teacher map ---------------- */
+
+export type DialogueTurn =
+  | { role: "peer"; text: string; engine: "rules" | "claude" }
+  | {
+      role: "student";
+      text: string;
+      engine: "rules" | "llm";
+      group: Group;
+      group_label: string;
+      flagged_code: string | null;
+      flagged_description: string | null;
+      evidence: string[];
+      pipeline: PipelineStage[];
+    };
+
+export type Dialogue = {
+  dialogue_id: number;
+  concept: string;
+  peer_name: string;
+  peer_belief: string;
+  code: string;
+  question: string;
+  status: "open" | "resolved" | "unresolved";
+  turns_left: number;
+  engine_note: string;
+  turns: DialogueTurn[];
+};
+
+export type TeacherFlag = {
+  code: string;
+  concept: string;
+  description: string;
+  status: "suspected" | "confirmed" | "resolved";
+  times: number;
+  quote: string;
+  source: "practice" | "dialogue";
+  when: string;
+};
+
+export type ClassMap = {
+  concepts: { concept: string; name: string; misconceptions: { code: string; description: string; active: number; resolved: number }[] }[];
+  students: { label: string; is_demo: boolean; flags: TeacherFlag[] }[];
+  note: string;
+};
+
 /* ---------------- modes, learners, voice ---------------- */
 
 export type Modes = {
@@ -352,4 +398,9 @@ export const api = {
     call<VoiceSession>(`/voice/session${q({ learner_id: learnerId, concept })}`),
   // teacher review (needs the reviewer token from api/.env)
   review: (token: string) => call<unknown>("/review", { headers: { "X-Reviewer-Token": token } }),
+  teacherMap: (token: string) => call<ClassMap>("/teacher/map", { headers: { "X-Reviewer-Token": token } }),
+  // Socratic dialogue with a confused peer
+  startDialogue: (body: { learner_id: string; concept: string; code?: string }) => call<Dialogue>("/dialogues", post(body)),
+  dialogue: (id: number) => call<Dialogue>(`/dialogues/${id}`),
+  replyDialogue: (id: number, text: string) => call<Dialogue>(`/dialogues/${id}/turns`, post({ text })),
 };

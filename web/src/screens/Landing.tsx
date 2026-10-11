@@ -195,7 +195,7 @@ function Modules() {
         </div>
       )}
       <p className="mt-6 text-[14px] text-muted">
-        Teachers: all content is a seeded draft marked for academic review. <Link to="/review" className="text-blue-ink underline-offset-2 hover:underline">Review it here</Link>.
+        Teachers: all content is a seeded draft marked for academic review. <Link to="/teacher" className="text-blue-ink underline-offset-2 hover:underline">Teacher view</Link>.
       </p>
     </section>
   );

@@ -15,12 +15,12 @@ from pydantic import BaseModel, Field  # noqa: E402
 from sqlmodel import Session, select  # noqa: E402
 
 from api import engine as eng  # noqa: E402
-from api import reports, tutor  # noqa: E402
+from api import dialogue, reports, teacher, tutor  # noqa: E402
 from api.ai import llm, voice  # noqa: E402
 from api.content import Item, Option, ReasonId, load_content  # noqa: E402
 from api.engine.grading import GROUP, GROUP_LABEL  # noqa: E402
 from api.store import (  # noqa: E402
-    DEMO_LEARNERS, AssessmentSession, Diagnosis, Learner, Response, attempts, create_learner, db, ensure_learner,
+    DEMO_LEARNERS, AssessmentSession, Diagnosis, Dialogue, Learner, Response, attempts, create_learner, db, ensure_learner,
     init_db, mastery, misconception_statuses, next_item, reset_learner,
 )
 
@@ -332,13 +332,64 @@ def voice_session(learner_id: str, concept: Optional[str] = None):
 
 # ---------------- teacher review ----------------
 
-@app.get("/review")
-def review(x_reviewer_token: Optional[str] = Header(default=None)):
+def require_reviewer(x_reviewer_token: Optional[str] = Header(default=None)) -> None:
     expected = os.environ.get("LEARNLOOP_REVIEWER_TOKEN")
     if not expected:
-        raise HTTPException(503, "Teacher review is off. Set LEARNLOOP_REVIEWER_TOKEN in api/.env.")
+        raise HTTPException(503, "Teacher views are off. Set LEARNLOOP_REVIEWER_TOKEN in api/.env.")
     if x_reviewer_token != expected:
         raise HTTPException(401, "Wrong reviewer token.")
+
+
+# ---------------- Socratic dialogue ----------------
+
+class DialogueStartIn(BaseModel):
+    learner_id: str = Field(min_length=1, max_length=64)
+    concept: str
+    code: Optional[str] = None
+
+
+class DialogueReplyIn(BaseModel):
+    text: str = Field(min_length=1, max_length=1000)
+
+
+def _dialogue(session: Session, dialogue_id: int) -> Dialogue:
+    dlg = session.get(Dialogue, dialogue_id)
+    if dlg is None:
+        raise HTTPException(404, "Unknown conversation.")
+    return dlg
+
+
+@app.post("/dialogues")
+def start_dialogue(body: DialogueStartIn, session: Session = Depends(get_session)):
+    ensure_learner(session, body.learner_id)
+    try:
+        return dialogue.view(session, dialogue.start(session, body.learner_id, body.concept, body.code))
+    except dialogue.DialogueError as e:
+        raise HTTPException(409, str(e))
+
+
+@app.get("/dialogues/{dialogue_id}")
+def get_dialogue(dialogue_id: int, session: Session = Depends(get_session)):
+    return dialogue.view(session, _dialogue(session, dialogue_id))
+
+
+@app.post("/dialogues/{dialogue_id}/turns")
+def dialogue_turn(dialogue_id: int, body: DialogueReplyIn, session: Session = Depends(get_session)):
+    try:
+        return dialogue.view(session, dialogue.reply(session, _dialogue(session, dialogue_id), body.text.strip()))
+    except dialogue.DialogueError as e:
+        raise HTTPException(409, str(e))
+
+
+# ---------------- teacher views (reviewer token) ----------------
+
+@app.get("/teacher/map", dependencies=[Depends(require_reviewer)])
+def teacher_map(session: Session = Depends(get_session)):
+    return teacher.class_map(session)
+
+
+@app.get("/review", dependencies=[Depends(require_reviewer)])
+def review():
     c = load_content()
     return {
         "concepts": [{**x.public(), "verify_items": sum(1 for i in c.items.values() if i.concept == x.concept_id and i.verify_flags)}

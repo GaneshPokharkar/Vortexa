@@ -108,6 +108,35 @@ class Assessment(SQLModel, table=True):
     created_at: datetime = Field(default_factory=_now)
 
 
+class Dialogue(SQLModel, table=True):
+    """A Socratic dialogue: a confused classmate holds one misconception; the student tries to convince them."""
+    __tablename__ = "dialogues"
+    id: Optional[int] = Field(default=None, primary_key=True)
+    learner_id: str = Field(foreign_key="learners.id", index=True)
+    concept: str
+    code: str  # the misconception the peer holds
+    item_id: str  # short-answer item whose key and patterns judge the student's replies
+    persona: str = "peer"
+    status: str = "open"  # open | resolved | unresolved
+    student_turns: int = 0
+    created_at: datetime = Field(default_factory=_now)
+    updated_at: datetime = Field(default_factory=_now)
+
+
+class DialogueTurn(SQLModel, table=True):
+    __tablename__ = "dialogue_turns"
+    id: Optional[int] = Field(default=None, primary_key=True)
+    dialogue_id: int = Field(foreign_key="dialogues.id", index=True)
+    role: str  # peer | student
+    text: str
+    engine: str = "rules"  # who wrote a peer line (rules script or claude); who judged a student line
+    category: Optional[str] = None  # student turns: orchestrator result
+    misconception_code: Optional[str] = None  # student turns: flagged faulty idea, if any
+    evidence: str = "[]"
+    pipeline: str = "[]"
+    created_at: datetime = Field(default_factory=_now)
+
+
 def init_db() -> None:
     SQLModel.metadata.create_all(db)
 
@@ -136,6 +165,11 @@ def reset_learner(session: Session, learner_id: str) -> int:
         d = session.get(Diagnosis, r.id)
         if d:
             session.delete(d)
+    session.commit()
+    for dlg in session.exec(select(Dialogue).where(Dialogue.learner_id == learner_id)).all():
+        for t in session.exec(select(DialogueTurn).where(DialogueTurn.dialogue_id == dlg.id)).all():
+            session.delete(t)
+        session.delete(dlg)
     session.commit()
     for model in (Response, Assessment, AssessmentSession, Mastery):
         for row in session.exec(select(model).where(model.learner_id == learner_id)).all():

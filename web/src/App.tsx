@@ -5,6 +5,7 @@ import { api, type Learner } from "./lib/api";
 import { learnerName, useLearner } from "./lib/learner";
 import { lazy, Suspense } from "react";
 import Landing from "./screens/Landing";
+import Teacher from "./screens/Teacher";
 
 const DevOverlays = import.meta.env.DEV ? lazy(() => import("./screens/DevOverlays")) : null;
 
@@ -161,7 +162,7 @@ function Shell({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-5 text-[14px] text-muted sm:px-6">
           <p>LearnLoop supports your teacher. It does not replace them.</p>
           <div className="flex gap-4">
-            <Link to="/review" className="hover:text-ink">Teacher review</Link>
+            <Link to="/teacher" className="hover:text-ink">For teachers</Link>
             <span>Content is a draft awaiting teacher review.</span>
           </div>
         </div>
@@ -190,7 +191,8 @@ export default function App() {
         <Route path="/assessment" element={<NeedsLearner><NotBuiltYet what="The pre/post test" /></NeedsLearner>} />
         <Route path="/report" element={<NeedsLearner><NotBuiltYet what="The learning report" /></NeedsLearner>} />
         <Route path="/doubts" element={<NotBuiltYet what="Common doubts" />} />
-        <Route path="/review" element={<NotBuiltYet what="Teacher review" />} />
+        <Route path="/teacher" element={<Teacher />} />
+        <Route path="/review" element={<Navigate to="/teacher" replace />} />
         {DevOverlays && <Route path="/dev/overlays" element={<Suspense fallback={null}><DevOverlays /></Suspense>} />}
         <Route path="*" element={<p className="py-16 text-muted">This page doesn't exist. <Link className="text-blue-ink underline" to="/">Go to the start</Link>.</p>} />
       </Routes>
