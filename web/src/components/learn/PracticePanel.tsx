@@ -2,6 +2,7 @@ import { ArrowRight, BookOpen, MessageCircleQuestion, Users } from "lucide-react
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { api, type Feedback, type PublicItem, type RemediationCard } from "../../lib/api";
 import { HEADLINE, confidenceWords } from "../../lib/groups";
+import { Speak, recorded } from "../../voice/Speak";
 import { CorrectionVisual } from "../../visuals";
 import { DialoguePanel } from "../DialoguePanel";
 import { Button, Empty, ErrorNote, GroupBadge, Loading } from "../ui";
@@ -168,6 +169,7 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
   const [card, setCard] = useState<RemediationCard | null>(null);
   const borderByGroup: Record<string, string> = { A: "border-ga/40", B: "border-gb/35", C: "border-gc/40", D: "border-gd/35", E: "border-ge/35", F: "border-line" };
   const sure = confidenceWords(fb.confidence);
+  const spoken = recorded(`result-${fb.category}`, HEADLINE[fb.category]);
   const closeWhy = useCallback(() => setWhy(false), []);
 
   const showCard = async () => {
@@ -179,7 +181,10 @@ function FeedbackCard({ fb, learnerId, conceptId, onNext, onUpdate }: {
     <section aria-live="polite" className={`overflow-hidden rounded-xl border bg-surface ${borderByGroup[fb.group]}`}>
       <div className="px-5 pt-5 sm:px-6">
         <GroupBadge group={fb.group} size="lg" />
-        <p className="mt-3 text-[21px] font-semibold leading-snug text-ink">{HEADLINE[fb.category]}</p>
+        <div className="mt-3 flex items-start gap-2">
+          <p className="text-[21px] font-semibold leading-snug text-ink">{HEADLINE[fb.category]}</p>
+          {spoken && <Speak id={spoken} iconOnly />}
+        </div>
         <p className="read mt-2 text-[16.5px] text-ink-2">{fb.feedback_text}</p>
         <ul className="mt-3 list-disc space-y-1 pl-5 text-[14.5px] text-ink-2">
           {fb.evidence.map((e) => <li key={e}>{e}</li>)}
