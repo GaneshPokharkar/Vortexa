@@ -10,8 +10,11 @@ from sqlmodel import Session
 
 from api import engine as eng
 from api.content import Item, Option, ReasonId, load_content
-from api.engine.grading import AMBIGUOUS, UNDIAGNOSED
-from api.store import Response, apply_response, current_p, db, init_db, mastery, misconception_statuses, next_item
+from api.engine.grading import AMBIGUOUS, SLIP_CATEGORIES, UNDIAGNOSED
+from api.store import (
+    Diagnosis, Response, apply_response, current_p, db, ensure_learner, init_db, mastery,
+    misconception_statuses, next_item, prior_slip_code,
+)
 
 
 @asynccontextmanager
@@ -57,36 +60,34 @@ def _item(item_id: str) -> Item:
     return item
 
 
-def _clarify_payload(r: Response, item: Item) -> dict:
+def _clarify_payload(d: Diagnosis, item: Item) -> dict:
     content = load_content()
-    codes = [c for c in (r.option_code, r.reason_code) if c in content.misconceptions]
+    codes = [c for c in (d.option_code, d.reason_code) if c in content.misconceptions]
     return {
         "probes": [content.misconceptions[c].contrast_probe for c in dict.fromkeys(codes)],
         "reasons": item.public()["reasons"],
-        "remaining": eng.MAX_CLARIFICATIONS - r.clarifications,
+        "remaining": eng.MAX_CLARIFICATIONS - d.clarifications,
     }
 
 
-def _feedback(session: Session, r: Response) -> dict:
+def _feedback(session: Session, r: Response, d: Diagnosis) -> dict:
     content = load_content()
-    item = content.items[r.item_id]
-    mc = content.misconceptions.get(r.misconception_code or "")
-    concept_card = next((c.card_id for c in content.cards.values() if c.concept == r.concept), None)
-    words = len((r.reason_text or "").split())
+    mc = content.misconceptions.get(d.misconception_code or "")
+    words = eng.content_word_count(r.reason_text or "")
     return {
         "response_id": r.id,
-        "category": r.category,
-        "rule": r.rule,
-        "rule_text": eng.RULES[r.rule],
-        "misconception_code": r.misconception_code,
-        "misconception_status": misconception_statuses(session, r.learner_id).get(r.misconception_code or ""),
-        "remediation_card_id": mc.remediation_card_id if mc else concept_card,
+        "category": d.category,
+        "rule_fired": d.rule_fired,
+        "rule_text": eng.RULES[d.rule_fired],
+        "misconception_code": d.misconception_code,
+        "misconception_status": misconception_statuses(session, r.learner_id).get(d.misconception_code or ""),
+        "remediation_card_id": mc.remediation_card_id if mc else f"{r.concept}-K",
         "followup_item_ids": mc.followup_item_ids if mc else [],
-        "sibling_scheduled": r.category in eng.grading.SLIP_CATEGORIES,
+        "sibling_scheduled": d.category in SLIP_CATEGORIES,
         # No classifier yet (top1 = top2 = 0), so every AMBIGUOUS response asks for clarification.
-        "needs_clarification": r.category == AMBIGUOUS
-        and eng.needs_clarification(r.classifier_score or 0.0, 0.0, words, r.rule == "slip:4"),
-        "clarify": _clarify_payload(r, item) if r.category == AMBIGUOUS else None,
+        "needs_clarification": d.category == AMBIGUOUS
+        and eng.needs_clarification(d.classifier_score or 0.0, 0.0, words, d.rule_fired == "slip:4"),
+        "clarify": _clarify_payload(d, content.items[r.item_id]) if d.category == AMBIGUOUS else None,
         "mastery": {"concept": r.concept, "p_learned": round(current_p(session, r.learner_id, r.concept), 4)},
     }
 
@@ -110,42 +111,50 @@ def items_next(learner_id: str, session: Session = Depends(get_session)):
 @app.post("/responses")
 def post_response(body: ResponseIn, session: Session = Depends(get_session)):
     item = _item(body.item_id)
-    g = eng.grade(item, body.option, body.reason_id, body.confidence, current_p(session, body.learner_id, item.concept))
+    if item.is_assessment:
+        raise HTTPException(409, "assessment items are answered through the assessment flow")
+    ensure_learner(session, body.learner_id)
+    g = eng.grade(
+        item, body.option, body.reason_id, body.confidence,
+        p_learned=current_p(session, body.learner_id, item.concept),
+        prior_slip_code=prior_slip_code(session, body.learner_id, item.item_id),
+    )
     r = Response(
         learner_id=body.learner_id, item_id=item.item_id, concept=item.concept, option=body.option,
         reason_id=body.reason_id, reason_text=body.reason_text, confidence=body.confidence,
-        category=g.category, rule=g.rule, option_code=g.option_code, reason_code=g.reason_code,
-        misconception_code=g.misconception_code,
     )
     session.add(r)
+    session.flush()
+    d = Diagnosis(
+        response_id=r.id, category=g.category, rule_fired=g.rule_fired, option_code=g.option_code,
+        reason_code=g.reason_code, misconception_code=g.misconception_code,
+    )
+    session.add(d)
     session.commit()
-    session.refresh(r)
     apply_response(session, r.id)
-    return _feedback(session, r)
+    return _feedback(session, r, d)
 
 
 @app.post("/clarify")
 def clarify(body: ClarifyIn, session: Session = Depends(get_session)):
-    r = session.get(Response, body.response_id)
-    if r is None:
+    r, d = session.get(Response, body.response_id), session.get(Diagnosis, body.response_id)
+    if r is None or d is None:
         raise HTTPException(404, "unknown response")
-    if r.category != AMBIGUOUS:
-        raise HTTPException(409, f"response is {r.category}, not AMBIGUOUS")
-    item = _item(r.item_id)
-    r.clarifications += 1
+    if d.category != AMBIGUOUS:
+        raise HTTPException(409, f"response is {d.category}, not AMBIGUOUS")
+    d.clarifications += 1
     if body.text:
         r.reason_text = f"{r.reason_text or ''}\n{body.text}".strip()
     if body.reason_id:
-        g = eng.grade(item, r.option, body.reason_id, r.confidence, current_p(session, r.learner_id, r.concept))
-        r.reason_id, r.reason_code = body.reason_id, g.reason_code
-        r.category, r.rule, r.misconception_code = g.category, g.rule, g.misconception_code
-    if r.category == AMBIGUOUS and r.clarifications >= eng.MAX_CLARIFICATIONS:
-        r.category, r.rule = UNDIAGNOSED, "clarify:limit"
-    session.add(r)
+        g = eng.grade(_item(r.item_id), r.option, body.reason_id, r.confidence, current_p(session, r.learner_id, r.concept))
+        r.reason_id, d.reason_code = body.reason_id, g.reason_code
+        d.category, d.rule_fired, d.misconception_code = g.category, g.rule_fired, g.misconception_code
+    if d.category == AMBIGUOUS and d.clarifications >= eng.MAX_CLARIFICATIONS:
+        d.category, d.rule_fired = UNDIAGNOSED, "clarify:limit"
+    session.add_all([r, d])
     session.commit()
-    session.refresh(r)
     apply_response(session, r.id)
-    return _feedback(session, r)
+    return _feedback(session, r, d)
 
 
 @app.get("/mastery/{learner_id}")
@@ -163,20 +172,20 @@ def explain(card_id: str):
 
 @app.get("/diagnosis/{response_id}/why")
 def why(response_id: int, session: Session = Depends(get_session)):
-    r = session.get(Response, response_id)
-    if r is None:
+    r, d = session.get(Response, response_id), session.get(Diagnosis, response_id)
+    if r is None or d is None:
         raise HTTPException(404, "unknown response")
     item = _item(r.item_id)
     return {
         "response_id": r.id,
         "item_id": r.item_id,
-        "category": r.category,
-        "rule": r.rule,
-        "rule_text": eng.RULES[r.rule],
+        "category": d.category,
+        "rule_fired": d.rule_fired,
+        "rule_text": eng.RULES[d.rule_fired],
         "distractor_map_entry": {r.option: item.distractor_map[r.option]},
-        "reason": {"reason_id": r.reason_id, "maps_to": r.reason_code} if r.reason_id else None,
+        "reason": {"reason_id": r.reason_id, "maps_to": d.reason_code} if r.reason_id else None,
         "reason_text": r.reason_text,
-        "classifier_confidence": r.classifier_score,
-        "clarifications": r.clarifications,
-        "misconception_status": misconception_statuses(session, r.learner_id).get(r.misconception_code or ""),
+        "classifier_confidence": d.classifier_score,
+        "clarifications": d.clarifications,
+        "misconception_status": misconception_statuses(session, r.learner_id).get(d.misconception_code or ""),
     }

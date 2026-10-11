@@ -1,7 +1,9 @@
 import pytest
 
 from api.content import Item
-from api.engine import bkt_update, grade, is_mastered, misconception_status, needs_clarification, slip_rules
+from api.engine import (
+    bkt_update, content_word_count, grade, is_mastered, is_sibling, misconception_status, needs_clarification, slip_rules,
+)
 
 # A = correct, B -> W1, C -> UNMAPPED, D -> SLIP (careless number). r1 correct, r2 W1, r3 W2.
 ITEM = Item(
@@ -45,26 +47,41 @@ def test_ambiguous_unclassifiable():
 
 def test_slip_rule_1_wrong_answer_correct_reason():
     assert slip_rules("W1", "CORRECT", 0.0) == ("SLIP", "slip:1")
-    assert grade(ITEM, "B", "r1", "unsure").rule == "slip:1"
+    assert grade(ITEM, "B", "r1", "unsure").rule_fired == "slip:1"
 
 def test_slip_rule_2_high_pl_unmapped():
     assert grade(ITEM, "C", "r2", "sure", p_learned=0.80).category == "SLIP"
-    assert grade(ITEM, "C", "r2", "sure", p_learned=0.80).rule == "slip:2"
+    assert grade(ITEM, "C", "r2", "sure", p_learned=0.80).rule_fired == "slip:2"
     assert slip_rules("UNMAPPED", "W1", 0.79) is None
 
 def test_slip_rule_3_computational():
     assert grade(ITEM, "D", "r1", "sure").category == "COMPUTATIONAL_SLIP"
-    assert grade(ITEM, "D", None, "sure").rule == "slip:3"
+    assert grade(ITEM, "D", None, "sure").rule_fired == "slip:3"
 
 def test_slip_rule_4_code_mismatch():
     g = grade(ITEM, "B", "r3", "sure")
-    assert (g.category, g.rule) == ("AMBIGUOUS", "slip:4")
+    assert (g.category, g.rule_fired) == ("AMBIGUOUS", "slip:4")
 
 def test_slip_rule_5_slips_schedule_sibling():
     assert grade(ITEM, "B", "r1", "sure").schedule_sibling
     assert grade(ITEM, "D", "r1", "sure").schedule_sibling
     assert not grade(ITEM, "B", "r2", "sure").schedule_sibling
     assert not grade(ITEM, "A", "r1", "sure").schedule_sibling
+
+def test_slip_rule_5_same_wrong_way_on_sibling_upgrades():
+    g = grade(ITEM, "B", "r1", "sure", prior_slip_code="W1")  # slipped on W1 before, picks W1 again
+    assert (g.category, g.rule_fired, g.misconception_code) == ("MISCONCEPTION", "slip:5", "W1")
+    assert grade(ITEM, "B", "r1", "sure", prior_slip_code="W2").category == "SLIP"  # different wrong way
+    assert grade(ITEM, "A", "r1", "sure", prior_slip_code="W1").category == "SCIENTIFIC"  # right this time
+    assert grade(ITEM, "C", "r1", "sure", prior_slip_code="UNMAPPED").category == "SLIP"  # nothing to upgrade to
+
+def test_is_sibling():
+    parent = ITEM.model_copy(update={"item_id": "P1"})
+    child_a = ITEM.model_copy(update={"item_id": "P2", "sibling_of": "P1"})
+    child_b = ITEM.model_copy(update={"item_id": "P3", "sibling_of": "P1"})
+    other = ITEM.model_copy(update={"item_id": "X1"})
+    assert is_sibling(parent, child_a) and is_sibling(child_a, parent) and is_sibling(child_a, child_b)
+    assert not is_sibling(parent, other) and not is_sibling(parent, parent)
 
 
 # --- misconception status -----------------------------------------------------
@@ -94,6 +111,11 @@ def test_confirmed_by_classifier_on_one_item():
 ])
 def test_needs_clarification(top1, top2, words, contra, expected):
     assert needs_clarification(top1, top2, words, contra) is expected
+
+def test_content_words_ignore_filler():
+    assert content_word_count("I understand") == 0
+    assert content_word_count("um I think it's just, like, the heavier bob") == 3  # it's, heavier, bob
+    assert content_word_count("Mass does not change the period of a pendulum") == 5
 
 
 # --- BKT ----------------------------------------------------------------------

@@ -6,7 +6,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, model_validator
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 
@@ -37,7 +37,8 @@ class Item(BaseModel):
     distractor_map: dict[Option, str]
     reasons: dict[ReasonId, Reason]
     sibling_of: Optional[str] = None
-    status: Optional[str] = None
+    calc: str = ""
+    verify_flags: list[str] = []
 
     @model_validator(mode="after")
     def _check(self) -> "Item":
@@ -69,23 +70,27 @@ class Misconception(BaseModel):
     code: str
     concept: str
     description: str
-    exemplars: list[str] = Field(min_length=8)
+    exemplars: list[str] = []  # 12 required for real content; enforced by scripts/validate_content.py
     remediation_card_id: str
     followup_item_ids: list[str]
     contrast_probe: str
-    status: Optional[str] = None
+    verify_flags: list[str] = []
 
 
 class Card(BaseModel):
+    """Concept cards (<concept>-K) and remediation cards (<code>-R) share one shape."""
     card_id: str
     concept: str
+    code: Optional[str] = None
     statement: str
-    worked_example: str
-    analogy: str
-    steps: list[str]
-    wrong_idea: str
-    why_wrong: str
-    status: Optional[str] = None
+    analogy: str = ""
+    steps: list[str] = []
+    worked_example: str = ""
+    wrong_idea: str = ""
+    why_it_feels_right: str = ""
+    why_wrong: str = ""
+    sim_moment: str = ""
+    verify_flags: list[str] = []
 
 
 class Content(BaseModel):

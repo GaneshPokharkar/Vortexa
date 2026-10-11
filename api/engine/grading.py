@@ -33,6 +33,7 @@ RULES = {
     "slip:2": "P(L) >= 0.80 and the option is not linked to any misconception: slip.",
     "slip:3": "Option is the careless-number distractor and the setup (reason) was correct: computational slip.",
     "slip:4": "Option code and reason code point to different misconceptions: ambiguous.",
+    "slip:5": "Wrong the same way again on the sibling item after a slip: upgraded to misconception.",
     "clarify:resolved": "Re-graded after the learner answered a clarification.",
     "clarify:limit": "Still unclear after 2 clarifications: undiagnosed.",
 }
@@ -41,7 +42,7 @@ RULES = {
 @dataclass(frozen=True)
 class Grade:
     category: str
-    rule: str
+    rule_fired: str
     option_code: str
     reason_code: Optional[str]
     misconception_code: Optional[str] = None
@@ -73,7 +74,22 @@ def slip_rules(option_code: str, reason_code: Optional[str], p_learned: float) -
     return None
 
 
-def grade(item: Item, option: str, reason_id: Optional[str], confidence: Confidence, p_learned: float = 0.0) -> Grade:
+def is_sibling(a: Item, b: Item) -> bool:
+    """Siblings share an idea: one points at the other, or both point at the same parent."""
+    if a.item_id == b.item_id:
+        return False
+    return a.sibling_of == b.item_id or b.sibling_of == a.item_id or (a.sibling_of is not None and a.sibling_of == b.sibling_of)
+
+
+def grade(
+    item: Item,
+    option: str,
+    reason_id: Optional[str],
+    confidence: Confidence,
+    p_learned: float = 0.0,
+    prior_slip_code: Optional[str] = None,
+) -> Grade:
+    """prior_slip_code: option code of the slip that scheduled this sibling item (slip rule 5 upgrade)."""
     option_code = item.distractor_map[option]
     reason_code = item.reasons[reason_id].maps_to if reason_id else None
 
@@ -86,6 +102,8 @@ def grade(item: Item, option: str, reason_id: Optional[str], confidence: Confide
             return Grade(FALSE_POSITIVE, "tier:false_positive", option_code, reason_code, reason_code)
         return Grade(AMBIGUOUS, "tier:unclassifiable", option_code, reason_code)
 
+    if _is_code(prior_slip_code) and option_code == prior_slip_code:
+        return Grade(MISCONCEPTION, "slip:5", option_code, reason_code, option_code)
     fired = slip_rules(option_code, reason_code, p_learned)
     if fired:
         return Grade(fired[0], fired[1], option_code, reason_code)
