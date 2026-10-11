@@ -4,6 +4,11 @@ The voice tutor is an ElevenLabs agent that **talks**; LearnLoop's backend **dec
 answer itself: it calls our `check_answer` tool, which runs the same 3-agent diagnosis as the text tutor, and then
 says what the backend returned.
 
+**Already created:** `LearnLoop tutor`, agent ID `agent_3101m4n30vtcfr3t489k0tt5wx4q`, voice *Sanika* (Marathi),
+LLM Gemini 2.5 Flash, English + Marathi + Hindi with language detection, the three client tools below, auth on,
+allowlist `localhost:5173` / `127.0.0.1:5173`, max 200 conversations a day. The API key must come from the same
+ElevenLabs workspace. Steps 1–4 are only needed to recreate it.
+
 Time needed: about 10 minutes. You need an ElevenLabs account.
 
 ## 1. Create the agent
@@ -37,10 +42,12 @@ How you work:
 - Never ask for the student's name, school or other personal details.
 ```
 
-**Language**: default *English*. Under *Additional languages* add **Marathi** (and Hindi if you like) and turn on
-**language detection**, so the agent answers in the language the student speaks.
+**Language**: default *English*. Under *Additional languages* add **Marathi** and **Hindi** and turn on
+**language detection**, so the agent answers in the language the student speaks. The live agent's prompt also tells
+it to reply in the student's language, keep physics terms in English, and translate faithfully (keeping mistakes)
+into `answer_text`.
 
-**Voice**: any clear, friendly voice. Keep responses short (the prompt already asks for this).
+**Voice**: *Sanika – Cheerful Puneri Creator* (`es0ipzX1rWO9Y2E2TbgY`), used for all three languages.
 
 ## 2. Dynamic variables
 
