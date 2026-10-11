@@ -93,7 +93,7 @@ export default function Landing() {
           {error ? <div className="mt-4"><ErrorNote error={error} /></div> : null}
         </div>
 
-        <ThreeStudents />
+        <Films />
       </section>
 
       <section className="border-t border-line py-14" aria-labelledby="how">
@@ -116,7 +116,19 @@ export default function Landing() {
         </ol>
       </section>
 
-      <Films />
+      <section
+        className="grid items-start gap-10 border-t border-line py-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]"
+        aria-labelledby="diagnosis"
+      >
+        <div className="max-w-xl lg:sticky lg:top-24">
+          <h2 id="diagnosis" className="text-[22px] font-semibold">Same question, different reasoning</h2>
+          <p className="read mt-3 text-[17px] text-ink-2">
+            Three students answer the same question. LearnLoop reads the reason behind each answer, names what is going
+            on, and asks each of them a different next question.
+          </p>
+        </div>
+        <ThreeStudents />
+      </section>
 
       <Modules />
 
