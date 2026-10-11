@@ -1,0 +1,11 @@
+[
+  {"concept_id": "C1", "name": "What sets the period of SHM", "zone": "Oscillations", "summary": "Period depends on the restoring system (length and g, or k and m), not on amplitude for small swings."},
+  {"concept_id": "C2", "name": "Motion and energy in SHM", "zone": "Oscillations", "summary": "Acceleration is greatest at the extremes, speed greatest at the centre; energy goes as amplitude squared."},
+  {"concept_id": "C3", "name": "Waves are chained SHM", "zone": "Waves", "summary": "Each particle does SHM in place; the medium sets the speed, the source sets the frequency, v = f lambda."},
+  {"concept_id": "C4", "name": "Superposition and beats", "zone": "Waves", "summary": "Waves add point by point; two close frequencies give beats at |f1 - f2|."},
+  {"concept_id": "C5", "name": "Plane mirrors", "zone": "Rays", "summary": "The image is as far behind the mirror as the object is in front, and the visible portion does not depend on distance."},
+  {"concept_id": "C6", "name": "Curved mirrors", "zone": "Rays", "summary": "Where the object sits relative to F and C decides whether a concave mirror forms a real or virtual image."},
+  {"concept_id": "C7", "name": "Refraction and lenses", "zone": "Rays", "summary": "Light bends towards the normal entering a denser medium; every part of a lens forms the whole image."},
+  {"concept_id": "C8", "name": "Interference: double slit", "zone": "Light as a wave", "summary": "Coherent waves from two slits make fringes of width beta = lambda D / d; dark fringes are cancellation."},
+  {"concept_id": "C9", "name": "Diffraction", "zone": "Light as a wave", "summary": "A single slit spreads light into a central band of width 2 lambda D / a; narrower slits spread more."}
+]
