@@ -1,0 +1,8 @@
+# Runtime dependencies for the deployed API (Vercel). Local development and tests use api/requirements.txt.
+fastapi==0.143.0
+sqlmodel==0.0.48
+pydantic==2.14.0
+httpx==0.28.1
+python-dotenv==1.2.4
+anthropic==1.13.0
+psycopg[binary]>=3.2,<4

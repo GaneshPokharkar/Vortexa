@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "web": {
+      "root": "web/"
+    },
+    "api": {
+      "root": "./",
+      "entrypoint": "api.main:app",
+      "routes": [
+        { "src": "/api/(.*)", "transforms": [{ "type": "request.path", "op": "set", "args": "/$1" }] }
+      ]
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": { "service": "api" } },
+    { "source": "/(.*)", "destination": { "service": "web" } }
+  ]
+}

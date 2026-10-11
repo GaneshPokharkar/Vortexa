@@ -464,3 +464,8 @@ def review():
         "misconceptions": [m.model_dump() for m in c.misconceptions.values()],
         "cards": [card.model_dump() for card in c.cards.values()],
     }
+
+
+if os.environ.get("VERCEL"):  # serverless: the platform may not run the lifespan hook, so prepare on import
+    load_content()
+    init_db()

@@ -1,4 +1,4 @@
-"""SQLite persistence. apply_response() is the ONLY function that writes the mastery table."""
+"""Persistence (SQLite locally, Postgres when deployed). apply_response() is the ONLY function that writes the mastery table."""
 from __future__ import annotations
 
 import json
@@ -13,8 +13,17 @@ from api import engine as eng
 from api.content import DATA_DIR, load_content
 from api.engine.grading import CORRECT_CATEGORIES, FALSE_POSITIVE, MISCONCEPTION, NOT_COUNTED
 
-DB_URL = os.environ.get("WAVELOOP_DB", f"sqlite:///{DATA_DIR / 'learnloop.db'}")
-db = create_engine(DB_URL, connect_args={"check_same_thread": False})
+def _db_url() -> str:
+    """WAVELOOP_DB (tests, local) > DATABASE_URL / POSTGRES_URL (Neon on Vercel) > local SQLite file.
+    On Vercel without a database the only writable place is /tmp, which does not survive between servers."""
+    url = os.environ.get("WAVELOOP_DB") or os.environ.get("DATABASE_URL") or os.environ.get("POSTGRES_URL")
+    if url:
+        return url.replace("postgres://", "postgresql+psycopg://", 1).replace("postgresql://", "postgresql+psycopg://", 1)
+    return "sqlite:////tmp/learnloop.db" if os.environ.get("VERCEL") else f"sqlite:///{DATA_DIR / 'learnloop.db'}"
+
+
+DB_URL = _db_url()
+db = create_engine(DB_URL, connect_args={"check_same_thread": False}) if DB_URL.startswith("sqlite")     else create_engine(DB_URL, pool_pre_ping=True, pool_size=2, max_overflow=3)
 
 DEMO_LEARNERS = {"asha": "Asha (demo)", "ben": "Ben (demo)"}
 
@@ -163,9 +172,10 @@ class DialogueTurn(SQLModel, table=True):
 def init_db() -> None:
     SQLModel.metadata.create_all(db)
     # Additive migration for databases made before per-topic tests; existing rows keep topic "ALL".
-    with db.begin() as conn:
-        cols = [r[1] for r in conn.exec_driver_sql("PRAGMA table_info(assessment_sessions)")]
-        if "topic" not in cols:
+    from sqlalchemy import inspect
+    cols = [c["name"] for c in inspect(db).get_columns("assessment_sessions")]
+    if "topic" not in cols:
+        with db.begin() as conn:
             conn.exec_driver_sql("ALTER TABLE assessment_sessions ADD COLUMN topic VARCHAR NOT NULL DEFAULT 'ALL'")
 
 
