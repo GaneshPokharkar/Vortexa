@@ -313,6 +313,20 @@ export type TeacherFlag = {
   when: string;
 };
 
+/** Full content with answer keys: teacher review only (reviewer token). */
+export type ReviewItem = {
+  item_id: string; concept: string; kind: "mcq" | "short"; is_assessment: boolean; transfer: boolean; stem: string;
+  options: Record<string, string> | null; correct: string | null; distractor_map: Record<string, string> | null;
+  reasons: Record<string, { text: string; maps_to: string }> | null;
+  answer_key: string; expected_reasoning: string; patterns: { code: string; any: string[] }[];
+  calc: string; verify_flags: string[];
+};
+export type ReviewData = {
+  concepts: (Concept & { verify_items: number })[];
+  items: ReviewItem[];
+  misconceptions: { code: string; concept: string; description: string; remediation_card_id: string; verify_flags: string[] }[];
+};
+
 export type ClassMap = {
   concepts: { concept: string; name: string; misconceptions: { code: string; description: string; active: number; resolved: number }[] }[];
   students: { label: string; is_demo: boolean; flags: TeacherFlag[] }[];
@@ -397,7 +411,7 @@ export const api = {
   voiceSession: (learnerId: string, concept?: string) =>
     call<VoiceSession>(`/voice/session${q({ learner_id: learnerId, concept })}`),
   // teacher review (needs the reviewer token from api/.env)
-  review: (token: string) => call<unknown>("/review", { headers: { "X-Reviewer-Token": token } }),
+  review: (token: string) => call<ReviewData>("/review", { headers: { "X-Reviewer-Token": token } }),
   teacherMap: (token: string) => call<ClassMap>("/teacher/map", { headers: { "X-Reviewer-Token": token } }),
   // Socratic dialogue with a confused peer
   startDialogue: (body: { learner_id: string; concept: string; code?: string }) => call<Dialogue>("/dialogues", post(body)),

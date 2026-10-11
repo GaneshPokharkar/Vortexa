@@ -1,5 +1,6 @@
 import { KeyRound, Lock } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { ContentReview } from "../components/ContentReview";
 import { Button, Empty, ErrorNote, Loading, PageHeader } from "../components/ui";
 import { ApiError, api, type ClassMap, type TeacherFlag } from "../lib/api";
 
@@ -25,6 +26,7 @@ export default function Teacher() {
   const [data, setData] = useState<ClassMap | null>(null);
   const [error, setError] = useState<unknown>(null);
   const [concept, setConcept] = useState("all");
+  const [tab, setTab] = useState<"map" | "review">("map");
 
   useEffect(() => {
     if (!token) return;
@@ -65,6 +67,25 @@ export default function Teacher() {
     );
   }
 
+  const tabs = (
+    <div role="tablist" aria-label="Teacher view" className="mt-6 inline-flex rounded-lg border border-line bg-surface p-1">
+      {([["map", "Class misconception map"], ["review", "Content review"]] as const).map(([id, label]) => (
+        <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)}
+          className={`rounded-md px-3.5 py-1.5 text-[14.5px] ${tab === id ? "bg-blue-soft font-medium text-blue-ink" : "text-ink-2 hover:bg-surface-2"}`}>
+          {label}
+        </button>
+      ))}
+    </div>
+  );
+  if (tab === "review") {
+    return (
+      <div>
+        {tabs}
+        <PageHeader title="Content review">Answer keys, how each wrong option maps to an idea, and what still needs a physics teacher's check.</PageHeader>
+        <ContentReview token={token} />
+      </div>
+    );
+  }
   if (error) return <div className="pt-10"><ErrorNote error={error} /></div>;
   if (!data) return <Loading what="the class map" />;
 
@@ -72,6 +93,7 @@ export default function Teacher() {
 
   return (
     <div>
+      {tabs}
       <PageHeader title="Class misconception map"
         aside={
           <label className="flex items-center gap-2 text-[14px] text-muted">

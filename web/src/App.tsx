@@ -5,6 +5,8 @@ import { api, type Learner } from "./lib/api";
 import { learnerName, useLearner } from "./lib/learner";
 import { lazy, Suspense } from "react";
 import Assessment from "./screens/Assessment";
+import Doubts from "./screens/Doubts";
+import Home from "./screens/Home";
 import Landing from "./screens/Landing";
 import Report from "./screens/Report";
 import Learn from "./screens/Learn";
@@ -180,21 +182,17 @@ function NeedsLearner({ children }: { children: ReactNode }) {
   return learner ? <>{children}</> : <Navigate to="/" replace />;
 }
 
-function NotBuiltYet({ what }: { what: string }) {
-  return <p className="py-16 text-muted">{what} is being built in the next step.</p>;
-}
-
 export default function App() {
   return (
     <Shell>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<NeedsLearner><NotBuiltYet what="Your dashboard" /></NeedsLearner>} />
+        <Route path="/home" element={<NeedsLearner><Home /></NeedsLearner>} />
         <Route path="/topics" element={<NeedsLearner><Topics /></NeedsLearner>} />
         <Route path="/learn/:conceptId" element={<NeedsLearner><Learn /></NeedsLearner>} />
         <Route path="/assessment" element={<NeedsLearner><Assessment /></NeedsLearner>} />
         <Route path="/report" element={<NeedsLearner><Report /></NeedsLearner>} />
-        <Route path="/doubts" element={<NotBuiltYet what="Common doubts" />} />
+        <Route path="/doubts" element={<Doubts />} />
         <Route path="/teacher" element={<Teacher />} />
         <Route path="/review" element={<Navigate to="/teacher" replace />} />
         {DevOverlays && <Route path="/dev/overlays" element={<Suspense fallback={null}><DevOverlays /></Suspense>} />}

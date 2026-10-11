@@ -232,8 +232,12 @@ def attempts(session: Session, learner_id: str, concept: Optional[str] = None, l
         if r.kind == "short":
             answer = r.answer_text or ""
         else:
-            answer = f"Option {r.option}" + (f", reason {r.reason_id}" if r.reason_id else "") + \
-                (f", “{r.reason_text}”" if r.reason_text else "")
+            answer = f"{r.option}: {item.options[r.option]}" if item and item.options else f"Option {r.option}"
+            if r.reason_id and item and item.reasons:
+                why = item.reasons[r.reason_id].text
+                answer += f", because {why[:1].lower()}{why[1:]}"
+            elif r.reason_text:
+                answer += f", “{r.reason_text}”"
         out.append({
             "response_id": r.id, "item_id": r.item_id, "concept": r.concept, "kind": r.kind, "answer": answer,
             "category": d.category, "group": eng.grading.GROUP[d.category], "misconception_code": d.misconception_code,

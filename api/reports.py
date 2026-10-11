@@ -219,8 +219,8 @@ def recommendations(session: Session, learner_id: str) -> dict:
     nxt = next((cid for cid in order if rows[cid]["status"] != "demonstrated"), None)
     next_lesson = None
     if nxt:
-        why = "it's the first concept on the path" if not rows[nxt]["attempts"] else rows[nxt]["status_reason"]
-        next_lesson = {"concept": nxt, "reason": f"{content.concept(nxt).name}: {why}"}
+        why = "It's the first concept on the path you haven't shown yet." if not rows[nxt]["attempts"] else rows[nxt]["status_reason"]
+        next_lesson = {"concept": nxt, "reason": why}
         if not items:
             items.append({"kind": "next", "concept": nxt, "title": f"Start: {content.concept(nxt).name}",
                           "reason": "No answers yet, so the path starts here.", "card_id": f"{nxt}-K",
