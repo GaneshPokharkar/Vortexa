@@ -1,81 +1,118 @@
 @import "tailwindcss";
 
-/* Design tokens (brief-locked). Tailwind utilities read them through @theme below. */
+/* LearnLoop design tokens. Light, quiet, textbook-like: navy ink on white and pale blue, one blue accent.
+   The --ll-* names are shared with web/src/visuals. */
 :root {
-  --bg: #0b1220;
-  --panel: #131c2e;
-  --panel-2: #1a2540;
-  --line: #24314d;
-  --text: #e6edf7;
-  --muted: #8a97ad;
-  --amber: #f2a541;
-  --teal: #2ec4b6;
-  --coral: #ff6b6b;
-  --green: #7bd389;
-  --font-head: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-num: "JetBrains Mono", ui-monospace, monospace;
-  color-scheme: dark;
+  --ll-bg: #f5f9ff;
+  --ll-surface: #ffffff;
+  --ll-surface-2: #eef4fc;
+  --ll-line: #d9e3f0;
+  --ll-line-strong: #b9c9de;
+  --ll-ink: #0e2a47;
+  --ll-ink-2: #29435f;
+  --ll-muted: #5a6b82;
+  --ll-blue: #2563eb;
+  --ll-blue-ink: #1d4ed8;
+  --ll-blue-soft: #dbeafe;
+
+  /* answer groups A–F */
+  --ll-a: #15803d;
+  --ll-a-soft: #e7f5ec;
+  --ll-b: #b42318;
+  --ll-b-soft: #fdeceb;
+  --ll-c: #b45309;
+  --ll-c-soft: #fdf3e6;
+  --ll-d: #0e6b8f;
+  --ll-d-soft: #e4f3f8;
+  --ll-e: #5b4bb7;
+  --ll-e-soft: #efedfb;
+  --ll-f: #64748b;
+  --ll-f-soft: #f1f4f8;
+
+  --font-ui: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-read: "Source Serif 4", Georgia, "Times New Roman", serif;
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-bg: var(--bg);
-  --color-panel: var(--panel);
-  --color-panel-2: var(--panel-2);
-  --color-line: var(--line);
-  --color-text: var(--text);
-  --color-muted: var(--muted);
-  --color-amber: var(--amber);
-  --color-teal: var(--teal);
-  --color-coral: var(--coral);
-  --color-green: var(--green);
-  --font-head: var(--font-head);
-  --font-body: var(--font-body);
-  --font-num: var(--font-num);
+  --color-bg: var(--ll-bg);
+  --color-surface: var(--ll-surface);
+  --color-surface-2: var(--ll-surface-2);
+  --color-line: var(--ll-line);
+  --color-line-strong: var(--ll-line-strong);
+  --color-ink: var(--ll-ink);
+  --color-ink-2: var(--ll-ink-2);
+  --color-muted: var(--ll-muted);
+  --color-blue: var(--ll-blue);
+  --color-blue-ink: var(--ll-blue-ink);
+  --color-blue-soft: var(--ll-blue-soft);
+  --color-ga: var(--ll-a);
+  --color-ga-soft: var(--ll-a-soft);
+  --color-gb: var(--ll-b);
+  --color-gb-soft: var(--ll-b-soft);
+  --color-gc: var(--ll-c);
+  --color-gc-soft: var(--ll-c-soft);
+  --color-gd: var(--ll-d);
+  --color-gd-soft: var(--ll-d-soft);
+  --color-ge: var(--ll-e);
+  --color-ge-soft: var(--ll-e-soft);
+  --color-gf: var(--ll-f);
+  --color-gf-soft: var(--ll-f-soft);
+  --font-ui: var(--font-ui);
+  --font-read: var(--font-read);
 }
 
 html {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
+  background: var(--ll-bg);
+  color: var(--ll-ink);
+  font-family: var(--font-ui);
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(1200px 500px at 15% -10%, rgb(46 196 182 / 0.07), transparent 60%),
-    radial-gradient(900px 400px at 100% 0%, rgb(242 165 65 / 0.05), transparent 60%),
-    var(--bg);
+  background: var(--ll-bg);
 }
 
-h1, h2, h3 {
-  font-family: var(--font-head);
-  letter-spacing: -0.015em;
+h1, h2, h3, h4 {
+  font-family: var(--font-ui);
+  color: var(--ll-ink);
+  letter-spacing: -0.012em;
   text-wrap: balance;
 }
 
-p { text-wrap: pretty; }
+p {
+  text-wrap: pretty;
+}
+
+/* Reading text: lesson explanations, questions, worked examples. */
+.read {
+  font-family: var(--font-read);
+  font-optical-sizing: auto;
+  line-height: 1.6;
+}
+
+/* Inline physics: variables in italic serif, like a textbook. */
+.math {
+  font-family: var(--font-read);
+  font-style: italic;
+  white-space: nowrap;
+}
 
 .num {
-  font-family: var(--font-num);
   font-variant-numeric: tabular-nums;
 }
 
-/* Visible keyboard focus everywhere. */
 :focus-visible {
-  outline: 2px solid var(--teal);
-  outline-offset: 3px;
+  outline: 2px solid var(--ll-blue);
+  outline-offset: 2px;
   border-radius: 6px;
 }
 
-/* Faint lab-grid behind the path. */
-.grid-paper {
-  background-image:
-    linear-gradient(rgb(138 151 173 / 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(138 151 173 / 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
+::selection {
+  background: var(--ll-blue-soft);
 }
 
 @media (prefers-reduced-motion: reduce) {

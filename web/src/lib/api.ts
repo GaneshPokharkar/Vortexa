@@ -1,5 +1,5 @@
-// LearnLoop AI API contract. Owned jointly: backend changes and this file change in the same PR.
-// Every call goes through the Vite proxy at /api (FastAPI on :8000). Status: ✅ live, 🛠 being built on ganesh/learnloop-core.
+// LearnLoop AI API contract. Backend changes and this file change in the same commit.
+// Every call goes through the Vite proxy at /api (FastAPI on :8000).
 
 /* ---------------- shared ---------------- */
 
@@ -34,13 +34,7 @@ export type Concept = {
   summary: string;
   learning_objective: string;
   review_status: "needs_review" | "verified";
-  /** @deprecated old dark-theme screens only; removed when the new screens land. */
-  zone: Zone;
 };
-/** @deprecated old dark-theme screens only. */
-export type Zone = "Oscillations" | "Waves" | "Rays" | "Light as a wave";
-/** @deprecated old screens; use ConceptCard | RemediationCard. */
-export type Card = ConceptCard & RemediationCard;
 
 export type Equation = { expr: string; meaning: string; vars: Record<string, string>; assumptions: string };
 
@@ -297,42 +291,42 @@ const q = (params: Record<string, string | undefined>) => {
 };
 
 export const api = {
-  modes: () => call<Modes>("/modes"), // 🛠
-  // learners 🛠
+  modes: () => call<Modes>("/modes"),
+  // learners
   createLearner: () => call<Learner>("/learners", post({})),
   demoLearners: () => call<Learner[]>("/learners/demo"),
   resetDemo: (learner_id: string) => call<{ cleared: number }>("/demo/reset", post({ learner_id })),
   // curriculum
-  topics: () => call<Topic[]>("/topics"), // 🛠
-  concepts: () => call<Concept[]>("/concepts"), // ✅ (fields extended 🛠)
+  topics: () => call<Topic[]>("/topics"),
+  concepts: () => call<Concept[]>("/concepts"),
   lesson: (conceptId: string, learnerId?: string) =>
-    call<Lesson>(`/concepts/${conceptId}/lesson${q({ learner_id: learnerId })}`), // 🛠
-  card: (cardId: string) => call<ConceptCard | RemediationCard>(`/explain/${encodeURIComponent(cardId)}`), // ✅
+    call<Lesson>(`/concepts/${conceptId}/lesson${q({ learner_id: learnerId })}`),
+  card: (cardId: string) => call<ConceptCard | RemediationCard>(`/explain/${encodeURIComponent(cardId)}`),
   // practice & diagnosis
-  nextItem: (learnerId: string, concept?: string) =>
-    call<{ item: PublicItem | null }>(`/items/next${q({ learner_id: learnerId, concept })}`), // ✅
-  getItem: (itemId: string) => call<PublicItem>(`/items/${itemId}`), // 🛠
-  respond: (body: AnswerBody) => call<Feedback>("/responses", post(body)), // ✅ (short answers + new fields 🛠)
-  clarify: (body: { response_id: number; reason_id?: string; text?: string }) => call<Feedback>("/clarify", post(body)), // ✅
-  why: (responseId: number) => call<Why>(`/diagnosis/${responseId}/why`), // ✅
+  nextItem: (learnerId: string, concept?: string, kind?: "mcq" | "short") =>
+    call<{ item: PublicItem | null }>(`/items/next${q({ learner_id: learnerId, concept, kind })}`),
+  getItem: (itemId: string) => call<PublicItem>(`/items/${itemId}`),
+  respond: (body: AnswerBody) => call<Feedback>("/responses", post(body)),
+  clarify: (body: { response_id: number; reason_id?: string; text?: string }) => call<Feedback>("/clarify", post(body)),
+  why: (responseId: number) => call<Why>(`/diagnosis/${responseId}/why`),
   // mastery
-  mastery: (learnerId: string) => call<{ learner_id: string; concepts: ConceptMastery[] }>(`/mastery/${encodeURIComponent(learnerId)}`), // ✅
+  mastery: (learnerId: string) => call<{ learner_id: string; concepts: ConceptMastery[] }>(`/mastery/${encodeURIComponent(learnerId)}`),
   history: (learnerId: string, conceptId: string) =>
-    call<ConceptHistory>(`/mastery/${encodeURIComponent(learnerId)}/${conceptId}/history`), // 🛠
-  // assessment & report 🛠
+    call<ConceptHistory>(`/mastery/${encodeURIComponent(learnerId)}/${conceptId}/history`),
+  // assessment & report
   startAssessment: (learner_id: string, kind: AssessmentKind) => call<AssessmentSession>("/assessments", post({ learner_id, kind })),
   answerAssessment: (sessionId: number, body: Omit<AnswerBody, "learner_id">) =>
     call<{ answered: number; total: number }>(`/assessments/${sessionId}/answers`, post(body)),
   completeAssessment: (sessionId: number) => call<AssessmentResult>(`/assessments/${sessionId}/complete`, post({})),
   report: (includeDemo = false) => call<Report>(`/report${q({ include_demo: includeDemo ? "true" : undefined })}`),
   learnerReport: (learnerId: string) => call<LearnerReport>(`/report/learner/${encodeURIComponent(learnerId)}`),
-  // self-learning 🛠
+  // self-learning
   recommendations: (learnerId: string) => call<Recommendations>(`/recommendations/${encodeURIComponent(learnerId)}`),
   doubts: (query?: string, concept?: string) => call<Doubts>(`/doubts${q({ q: query, concept })}`),
   ask: (body: { learner_id: string; concept: string; question: string }) => call<TutorAnswer>("/tutor/ask", post(body)),
-  // voice 🛠 (used by the VoiceTutor component, not by screens directly)
+  // voice (used by the VoiceTutor component)
   voiceSession: (learnerId: string, concept?: string) =>
     call<VoiceSession>(`/voice/session${q({ learner_id: learnerId, concept })}`),
-  // teacher review 🛠 (needs the reviewer token from api/.env)
+  // teacher review (needs the reviewer token from api/.env)
   review: (token: string) => call<unknown>("/review", { headers: { "X-Reviewer-Token": token } }),
 };
