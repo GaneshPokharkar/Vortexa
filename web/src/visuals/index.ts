@@ -4,6 +4,7 @@ import { Refraction } from "./Refraction";
 import { ShmOscillator } from "./ShmOscillator";
 
 export { LensBench, Refraction, ShmOscillator };
+export { CorrectionVisual } from "./overlays/CorrectionVisual";
 
 /** Registry keyed by a card's `visual` id. */
 export const VISUALS: Record<string, ComponentType> = {

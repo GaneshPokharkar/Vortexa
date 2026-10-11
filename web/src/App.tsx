@@ -3,7 +3,10 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, NavLink, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { api, type Learner } from "./lib/api";
 import { learnerName, useLearner } from "./lib/learner";
+import { lazy, Suspense } from "react";
 import Landing from "./screens/Landing";
+
+const DevOverlays = import.meta.env.DEV ? lazy(() => import("./screens/DevOverlays")) : null;
 
 function Wordmark() {
   return (
@@ -188,6 +191,7 @@ export default function App() {
         <Route path="/report" element={<NeedsLearner><NotBuiltYet what="The learning report" /></NeedsLearner>} />
         <Route path="/doubts" element={<NotBuiltYet what="Common doubts" />} />
         <Route path="/review" element={<NotBuiltYet what="Teacher review" />} />
+        {DevOverlays && <Route path="/dev/overlays" element={<Suspense fallback={null}><DevOverlays /></Suspense>} />}
         <Route path="*" element={<p className="py-16 text-muted">This page doesn't exist. <Link className="text-blue-ink underline" to="/">Go to the start</Link>.</p>} />
       </Routes>
     </Shell>
