@@ -1,0 +1,6 @@
+# One line-ending style for everyone (Windows and Mac), so diffs show real changes only.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.mp3 binary
+*.db binary

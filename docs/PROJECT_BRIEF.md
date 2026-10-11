@@ -159,3 +159,25 @@ why — then STOP and wait for "continue". One git commit per phase.
    panel #131C2E, text #E6EDF7, muted #8A97AD, amber #F2A541, teal #2EC4B6, coral #FF6B6B, green #7BD389;
    Space Grotesk headings, Inter body, JetBrains Mono numbers. Keyboard reachable. Polished, not template-like.
 4–6. To be added when received.
+
+## Working together (2 people)
+
+Setup on a fresh clone: `python -m venv .venv` → `.venv/Scripts/python -m pip install -r api/requirements.txt` →
+`cd web && npm install`. Local-only, never committed: `data/waveloop.db`, `api/.env` (each keeps their own key),
+`.venv/`, `web/node_modules/`.
+
+1. **Never commit straight to `main`.** One short-lived branch per task: `git switch main && git pull --rebase`,
+   then `git switch -c <yourname>/<task>`. Merge back within ~2 hours via a pull request the other person glances at.
+2. **Before opening the PR:** `git fetch && git rebase origin/main`, then all three must pass:
+   `.venv/Scripts/python -m pytest` · `cd web && npm test` · `cd web && npm run build`.
+3. **Own different folders.** Default split: one person `/api`, `/data`, `/scripts`; the other `/web`. Say so in chat
+   before touching the other side.
+4. **Shared hot files — announce before editing, keep edits small:** `docs/PROJECT_BRIEF.md`, `api/content.py`
+   (schema), `web/src/lib/api.ts` (API types), `api/requirements.txt`, `web/package.json` + `package-lock.json`.
+   An API change and its `web/src/lib/api.ts` update go in the same PR.
+5. **Content:** edit only `data/content/<concept>_*.json`, and only one person per concept at a time. `data/*.json`
+   is generated: on a merge conflict there, accept either side, re-run `python scripts/load_content.py`, commit the
+   result.
+6. **Lockfile conflict:** take `main`'s `package-lock.json`, then re-run `npm install <the package you added>`.
+7. **New phase specs** go into the Phases section of this file in their own small PR, so both Claude sessions read the
+   same plan.
