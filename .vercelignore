@@ -1,0 +1,12 @@
+# Never upload secrets, local databases or local tool folders.
+api/.env
+*.env
+*.db
+.venv/
+**/node_modules/
+**/__pycache__/
+.pytest_cache/
+.claude/
+.impeccable/
+web/.impeccable/
+.git/
